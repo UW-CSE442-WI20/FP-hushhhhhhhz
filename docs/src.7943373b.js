@@ -28657,11 +28657,6 @@ function () {
 }();
 
 module.exports = MyClass;
-},{}],"dPF9":[function(require,module,exports) {
-module.exports = {
-  "example": [1, 2, 3, 4, 5],
-  "data": [6, 7, 8, 9, 10]
-};
 },{}],"Focm":[function(require,module,exports) {
 // You can require libraries
 var d3 = require('d3'); // You can include local JS files:
@@ -28670,16 +28665,42 @@ var d3 = require('d3'); // You can include local JS files:
 var MyClass = require('./my-class');
 
 var myClassInstance = new MyClass();
-myClassInstance.sayHi(); // You can load JSON files directly via require.
-// Note this does not add a network request, it adds
-// the data directly to your JavaScript bundle.
+myClassInstance.sayHi(); // get scrolling coordinates
 
-var exampleData = require('./example-data.json'); // Anything you put in the static folder will be available
-// over the network, e.g.
+sections = d3.selectAll('.step');
+sectionPositions = [];
+var startPos;
+sections.each(function (d, i) {
+  var top = this.getBoundingClientRect().top;
 
+  if (i === 0) {
+    startPos = top;
+  }
 
-d3.csv('carbon-emissions.csv').then(function (data) {
-  console.log('Dynamically loaded CSV data', data);
+  sectionPositions.push(top - startPos);
 });
-},{"d3":"UzF0","./my-class":"elfx","./example-data.json":"dPF9"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.8a0757a2.js.map
+d3.select(window).on("scroll.scroller", position);
+
+function position() {
+  var pos = window.pageYOffset - 10;
+  var sectionIndex = d3.bisect(sectionPositions, pos);
+  sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+
+  if (currentIndex !== sectionIndex) {
+    dispatch.active(sectionIndex);
+    currentIndex = sectionIndex;
+  }
+} // var dispatch = d3.dispatch("active", "progress");
+// square grid
+
+
+var squares = g.selectAll(".square").data(wordData);
+squares.enter().append("rect").attr("width", squareSize).attr("height", squareSize).attr("fill", "#fff").classed("square", true).classed("fill-square", function (d) {
+  return d.filler;
+}).attr("x", function (d) {
+  return d.x;
+}).attr("y", function (d) {
+  return d.y;
+}).attr("opacity", 0);
+},{"d3":"UzF0","./my-class":"elfx"}]},{},["Focm"], null)
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.7943373b.js.map

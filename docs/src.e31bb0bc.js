@@ -28911,11 +28911,6 @@ function () {
 }();
 
 module.exports = MyClass;
-},{}],"example-data.json":[function(require,module,exports) {
-module.exports = {
-  "example": [1, 2, 3, 4, 5],
-  "data": [6, 7, 8, 9, 10]
-};
 },{}],"index.js":[function(require,module,exports) {
 // You can require libraries
 var d3 = require('d3'); // You can include local JS files:
@@ -28924,18 +28919,44 @@ var d3 = require('d3'); // You can include local JS files:
 var MyClass = require('./my-class');
 
 var myClassInstance = new MyClass();
-myClassInstance.sayHi(); // You can load JSON files directly via require.
-// Note this does not add a network request, it adds
-// the data directly to your JavaScript bundle.
+myClassInstance.sayHi(); // get scrolling coordinates
 
-var exampleData = require('./example-data.json'); // Anything you put in the static folder will be available
-// over the network, e.g.
+sections = d3.selectAll('.step');
+sectionPositions = [];
+var startPos;
+sections.each(function (d, i) {
+  var top = this.getBoundingClientRect().top;
 
+  if (i === 0) {
+    startPos = top;
+  }
 
-d3.csv('carbon-emissions.csv').then(function (data) {
-  console.log('Dynamically loaded CSV data', data);
+  sectionPositions.push(top - startPos);
 });
-},{"d3":"../node_modules/d3/index.js","./my-class":"my-class.js","./example-data.json":"example-data.json"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+d3.select(window).on("scroll.scroller", position);
+
+function position() {
+  var pos = window.pageYOffset - 10;
+  var sectionIndex = d3.bisect(sectionPositions, pos);
+  sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+
+  if (currentIndex !== sectionIndex) {
+    dispatch.active(sectionIndex);
+    currentIndex = sectionIndex;
+  }
+} // var dispatch = d3.dispatch("active", "progress");
+// square grid
+
+
+var squares = g.selectAll(".square").data(wordData);
+squares.enter().append("rect").attr("width", squareSize).attr("height", squareSize).attr("fill", "#fff").classed("square", true).classed("fill-square", function (d) {
+  return d.filler;
+}).attr("x", function (d) {
+  return d.x;
+}).attr("y", function (d) {
+  return d.y;
+}).attr("opacity", 0);
+},{"d3":"../node_modules/d3/index.js","./my-class":"my-class.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28963,7 +28984,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58925" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58990" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

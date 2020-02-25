@@ -19,8 +19,6 @@ sections.each(function(d,i) {
 	}
 	sectionPositions.push(top - startPos);
 });
-var g = d3.select("body");
-var squares = g.select("#vis");
 
 function position() {
     var currentIndex = -1;
@@ -33,7 +31,8 @@ function position() {
 		currentIndex = sectionIndex;
 	}
     
-    squares.text(names._groups[0][sectionIndex].innerText)
+    // currently selects the grey box, will change as we add visualizations
+    d3.select("#vis").text(names._groups[0][sectionIndex].innerText)
 
 }
 
@@ -41,7 +40,3 @@ var dispatch = d3.dispatch("active", "progress");
 
 d3.select(window)
 	.on("scroll.scroller", position);
-
-// square grid
-
-console.log(names._groups)

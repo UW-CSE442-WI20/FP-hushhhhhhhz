@@ -20,6 +20,11 @@
   background-color: #F1F1F1;
 }
 
+.message {
+	display: flex;
+
+}
+
 #container {
   width: 890px;
   margin: auto;

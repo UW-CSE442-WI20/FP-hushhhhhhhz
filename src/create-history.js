@@ -10,7 +10,7 @@ class CreateHistory {
 
   start() {
     console.log('[CreateHistory]', 'Hello World 5.');
-		
+	document.getElementById('vis').innerHTML = "";		
   }
 }
 

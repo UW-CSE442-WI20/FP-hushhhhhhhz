@@ -4,6 +4,7 @@ const d3 = require('d3')
 // You can include local JS files:
 const createHistory = require('./create-history');
 const MyClass = require('./my-class');
+const Symmetric = require('./symmetric');
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();
 

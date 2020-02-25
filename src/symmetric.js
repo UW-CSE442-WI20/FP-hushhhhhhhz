@@ -1,11 +1,12 @@
 const d3 = require('d3')
+const crypto = require('./crypto')
 
 var body = d3.select('#vis')
 
 body.append('form')
     .attr('id', 'form1')
     .attr('name', 'myform')
-    .attr('onSubmit','return handleClick()')
+    .on('submit', handleClick)
     
 d3.select("#form1").append('input')
     .attr('type','submit')

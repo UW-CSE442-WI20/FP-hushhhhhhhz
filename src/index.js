@@ -22,18 +22,17 @@ sections.each(function(d,i) {
 
 function position() {
     var currentIndex = -1;
-	var pos = window.pageYOffset - 10;
-	var sectionIndex = d3.bisect(sectionPositions, pos);
-	sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+    var pos = window.pageYOffset - 400;
+    var sectionIndex = d3.bisect(sectionPositions, pos);
+    sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
-	if (currentIndex !== sectionIndex) {
-		dispatch.call('active', this, sectionIndex);
-		currentIndex = sectionIndex;
-	}
+    if (currentIndex !== sectionIndex) {
+    	dispatch.call('active', this, sectionIndex);
+    	currentIndex = sectionIndex;
+    }
     
     // currently selects the grey box, will change as we add visualizations
     d3.select("#vis").text(names._groups[0][sectionIndex].innerText)
-
 }
 
 var dispatch = d3.dispatch("active", "progress");

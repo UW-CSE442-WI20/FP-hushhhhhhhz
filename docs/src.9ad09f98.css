@@ -7,21 +7,20 @@
 }
 
 .step {
-  margin-bottom: 200px;
+  margin-bottom: 500px;
 }
 
 #vis {
   display: inline-block;
   position: fixed;
-  top: 60px;
   z-index: 1;
   margin: 50px 0 0 50px;
   height: 600px;
   width: 600px;
-  background-color: #ddd;
+  background-color: #F1F1F1;
 }
 
-.container {
+#container {
   width: 890px;
   margin: auto;
 }

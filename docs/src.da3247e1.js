@@ -28668,6 +28668,7 @@ var myClassInstance = new MyClass();
 myClassInstance.sayHi(); // get scrolling coordinates
 
 sections = d3.selectAll('.step');
+names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
 var startPos;
 sections.each(function (d, i) {
@@ -28679,28 +28680,23 @@ sections.each(function (d, i) {
 
   sectionPositions.push(top - startPos);
 });
-d3.select(window).on("scroll.scroller", position);
 
 function position() {
+  var currentIndex = -1;
   var pos = window.pageYOffset - 10;
   var sectionIndex = d3.bisect(sectionPositions, pos);
   sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
   if (currentIndex !== sectionIndex) {
-    dispatch.active(sectionIndex);
+    dispatch.call('active', this, sectionIndex);
     currentIndex = sectionIndex;
-  }
-} // var dispatch = d3.dispatch("active", "progress");
-// square grid
+  } // currently selects the grey box, will change as we add visualizations
 
 
-var squares = g.selectAll(".square").data(wordData);
-squares.enter().append("rect").attr("width", squareSize).attr("height", squareSize).attr("fill", "#fff").classed("square", true).classed("fill-square", function (d) {
-  return d.filler;
-}).attr("x", function (d) {
-  return d.x;
-}).attr("y", function (d) {
-  return d.y;
-}).attr("opacity", 0);
+  d3.select("#vis").text(names._groups[0][sectionIndex].innerText);
+}
+
+var dispatch = d3.dispatch("active", "progress");
+d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./my-class":"elfx"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.7943373b.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.da3247e1.js.map

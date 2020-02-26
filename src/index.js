@@ -31,13 +31,13 @@ function position() {
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
+	var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);
     	currentIndex = sectionIndex;
-		var newInstance = new activateFunctions[sectionIndex]();
 		newInstance.start();
     }
-    
+    newInstance.cont();
     // currently selects the grey box, will change as we add visualizations
 }
 

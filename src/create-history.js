@@ -12,6 +12,10 @@ class CreateHistory {
     console.log('[CreateHistory]', 'Hello World 5.');
 	document.getElementById('vis').innerHTML = "";		
   }
+  cont() {
+    console.log('[CreateHistory]', 'Hello World 5.');
+    document.getElementById('vis').innerHTML = "";
+  }
 }
 
 module.exports = CreateHistory;

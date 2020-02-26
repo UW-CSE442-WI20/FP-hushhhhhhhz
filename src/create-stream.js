@@ -184,9 +184,36 @@ class CreateStream {
             .style('background-color', '#F1F1F1')
             .delay(2000+m*i);
 	}
-
-
-		
+	inputMessage = "";
+	inputKey = "KEY"
+	var inputContainer = d3.select('#vis').append('div').attr('class', 'inputContainer');
+    var textInput = inputContainer.append('input')
+                        .attr('id', 'textInput')
+                        .attr('style', 'text')
+    var inputButton = inputContainer.append('button')
+                        .attr('id', 'inputButton')
+    var resetButton = inputContainer.append('button')
+                        .attr('id', 'resetButton')
+	var textDisplay = inputContainer.append('p')
+						.attr('id', 'textDisplay')
+						.text("no message selected")
+  }
+  cont() {
+	d3.select('#resetButton').text("reset");	
+    d3.select('#inputButton').text("choose");
+	d3.select('#inputButton').on('click', function () { 
+		inputMessage = document.getElementById('textInput').value 
+		inputMessage = inputMessage.replace(/\s+/g, '');
+		inputMessage = inputMessage.toUpperCase();
+		document.getElementById('textDisplay').innerHTML = inputMessage;
+		document.getElementById('textInput').value = ""
+	});
+	d3.select('#resetButton').on('click', function () {
+        inputMessage = ""
+		document.getElementById('textInput').value = ""
+		document.getElementById('textDisplay').innerHTML = "no message selected"
+    });
+    console.log(inputMessage);
   }
 }
 

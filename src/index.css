@@ -16,26 +16,39 @@
   z-index: 1;
   margin: 50px 0 0 50px;
   height: 600px;
-  width: 600px;
+  width: 800px;
   background-color: #F1F1F1;
 }
 
 .message {
 	display: flex;
 	font-size: 30px;
-	margin-left: 50px;	
-	margin-top: 50px;
+	margin-right: 50px;	
 }
 
 .index {
 	margin: 5px;
 	text-align: center;
+}
 
+td,th {
+	border: 1px solid black;
+	padding: 6px;	
+	text-align: center;
+	width: 17px;
+}
+table {
+	border-collapse: collapse;
 }
 
 #container {
-  width: 890px;
+  width: 80%;
   margin: auto;
+}
+
+.streamContainer {
+  display: flex;
+  margin: 50px;
 }
 
 #graphic {

@@ -184,36 +184,121 @@ class CreateStream {
             .style('background-color', '#F1F1F1')
             .delay(2000+m*i);
 	}
+	d3.select('#plain')
+            .transition()
+            .duration(50)
+            .text('P')
+            .delay(20000);
+	d3.select('#cipher')
+            .transition()
+            .duration(50)
+            .text('C')
+            .delay(20000);
+	d3.select('#key')
+            .transition()
+            .duration(50)
+            .text('K')
+            .delay(20000);
 	inputMessage = "";
-	inputKey = "KEY"
+	inputKey = "";
+	resultCipher = "";
 	var inputContainer = d3.select('#vis').append('div').attr('class', 'inputContainer');
-    var textInput = inputContainer.append('input')
+	var inputs = inputContainer.append('div').attr('class', 'inputs');
+	var results = inputContainer.append('div').attr('class', 'results');
+	results.append('br')
+	results.append('br')
+    inputs.append('text').text('type your message below and hit select:')
+	inputs.append('br')
+	inputs.append('br')
+	var textInput = inputs.append('input')
                         .attr('id', 'textInput')
                         .attr('style', 'text')
-    var inputButton = inputContainer.append('button')
+    var inputButton = inputs.append('button')
                         .attr('id', 'inputButton')
-    var resetButton = inputContainer.append('button')
-                        .attr('id', 'resetButton')
-	var textDisplay = inputContainer.append('p')
+	var textDisplay = results.append('p')
 						.attr('id', 'textDisplay')
-						.text("no message selected")
-  }
-  cont() {
-	d3.select('#resetButton').text("reset");	
-    d3.select('#inputButton').text("choose");
+						.text("plaintext: ")
+						.style('color', '#00897b')
+	var keyDisplay = results.append('p')
+                        .attr('id', 'keyDisplay')
+                        .text("keytext: ")
+						.style('color', '#fdd835')
+	var cipherDisplay = results.append('p')
+                        .attr('id', 'cipherDisplay')
+                        .text("ciphertext: ")
+						.style('color', '#e53935')
+	inputs.append('br')
+	inputs.append('br')
+	inputs.append('text').text('hover over the keys below to see the cipher:')
+	inputs.append('br')
+	inputs.append('br')
+	var row1 = ["RNC","ONQ","CKO","LYY","FGU"];
+	var row2 = ["MIO","CAY","ZUU","KRK","BMW"];
+	var row3 = ["QXG","UXV","HPV","YUH","LDG"];
+	var row4 = ["STD","HVO","JEQ","PYL","DNO"];
+	var row5 = ["QDA","HZQ","WKV","XDF","UPR"];
+	var keys = [row1, row2, row3, row4, row5];
+	var keyTable = inputs.append('table').attr('class', 'keyTable')
+	var theadKey = keyTable.append('thead');
+    var tbodyKey = keyTable.append('tbody');
+	function calculateCipher() {
+		if (inputMessage.length > 0) {
+			for (var i = 0; i < inputMessage.length; i++) {
+				p = alphaAlpha.indexOf(inputMessage[i])
+				k = alphaAlpha.indexOf(inputKey[i])
+				c = (p + k) % 26
+				console.log(c)
+				resultCipher = resultCipher + alphaAlpha[c]
+				console.log(resultCipher)
+			}
+		}
+	}
+	function handleMouseOver() {  // Add interactivity
+		d3.select(this).style('background-color', '#fdd835')
+    	inputKey = this.id
+		var newKey = "" 
+		if (inputMessage.length > 0) {
+			for (var i = 0; i < inputMessage.length; i++) {
+				newKey = newKey + inputKey[i%3]
+			}
+			inputKey = newKey
+		}
+		document.getElementById('keyDisplay').innerHTML = "keytext:     " + inputKey;	
+		calculateCipher();
+		document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
+	}
+	function handleMouseOut() {
+    	d3.select(this).style('background-color', '#F1F1F1')      
+		inputKey = ""
+		resultCipher = ""
+		document.getElementById('keyDisplay').innerHTML = "keytext:    ";
+		document.getElementById('cipherDisplay').innerHTML = "ciphertext: ";
+	}
+    var rowsKey = tbodyKey.selectAll('tr')
+        .data(keys)
+        .enter()
+        .append('tr')
+    var cellsKey = rowsKey.selectAll('td')
+        .data(function(row, i) {
+            return keys.map(function(row) {
+				return {column: i, value: row[i]};
+            });
+        })
+        .enter()
+        .append('td')
+            .html(function(d) {return d.value})
+            .attr('id', function(d) { return d.value })
+			.attr('class', 'keyChoice')
+			.on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);;
+    d3.select('#inputButton').text("SELECT");
 	d3.select('#inputButton').on('click', function () { 
 		inputMessage = document.getElementById('textInput').value 
 		inputMessage = inputMessage.replace(/\s+/g, '');
 		inputMessage = inputMessage.toUpperCase();
-		document.getElementById('textDisplay').innerHTML = inputMessage;
+		document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
 		document.getElementById('textInput').value = ""
 	});
-	d3.select('#resetButton').on('click', function () {
-        inputMessage = ""
-		document.getElementById('textInput').value = ""
-		document.getElementById('textDisplay').innerHTML = "no message selected"
-    });
-    console.log(inputMessage);
   }
 }
 

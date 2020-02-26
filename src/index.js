@@ -37,7 +37,6 @@ function position() {
     	currentIndex = sectionIndex;
 		newInstance.start();
     }
-    newInstance.cont();
     // currently selects the grey box, will change as we add visualizations
 }
 

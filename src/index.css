@@ -14,21 +14,85 @@
   display: inline-block;
   position: fixed;
   z-index: 1;
-  margin: 50px 0 0 50px;
-  height: 600px;
-  width: 600px;
+  margin: 0 0 0 50px;
+  height: 650px;
+  width: 800px;
   background-color: #F1F1F1;
 }
 
+.message {
+	display: flex;
+	font-size: 30px;
+	margin-right: 50px;	
+}
+
+.index {
+	margin: 5px;
+	text-align: center;
+}
+
+td,th {
+	border: 1px solid black;
+	padding: 6px;	
+	text-align: center;
+	width: 17px;
+}
+table {
+	border-collapse: collapse;
+}
+
+#textInput {
+	font-size: 10px;
+}
+
 #container {
-  width: 890px;
+  width: 80%;
   margin: auto;
 }
 
+.streamContainer {
+  display: flex;
+  margin: 60px 0 0 60px;
+}
+
+.inputContainer {
+	display: flex;
+	margin-left: 50px;
+	font-size: 18px;
+}
+
+.inputs,.results {
+	margin: 30px;
+}
+
+.results {
+	font-size: 22px;
+}
+
+#inputButton,#textInput {
+	font-size:16px;
+	font-family: 'Times New Roman';
+	margin-right: 30px;
+}
+
+.math {
+	display: flex;
+	font-size: 20px;
+}
+
 #graphic {
-  padding-top: 60px;
+  padding-top: 0px;
 }
 
 h1 {
   text-align: center
+}
+
+p {
+  padding: 1px;
+}
+
+#key, #cipher, #plain {
+  width: 20px;
+  text-align: center;
 }

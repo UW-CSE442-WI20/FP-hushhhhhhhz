@@ -51,10 +51,23 @@ table {
   margin: 50px;
 }
 
+.math {
+  display: flex;
+}
+
 #graphic {
   padding-top: 60px;
 }
 
 h1 {
   text-align: center
+}
+
+p {
+  padding: 1px;
+}
+
+#key, #cipher, #plain {
+  width: 20px;
+  text-align: center;
 }

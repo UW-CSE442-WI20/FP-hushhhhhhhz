@@ -12,7 +12,9 @@ class CreateStream {
 	initialCipher = "WIQCEEO";
 	var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M"];
 	var alphabet2 = ["N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    var alphaAlpha = alphabet.concat(alphabet2)
 	document.getElementById('vis').innerHTML = "";	
+
 
     var stream_container = d3.select('#vis').append('div').attr('class', 'streamContainer');
 	var message = stream_container.append('div').attr('class', 'message');
@@ -85,6 +87,20 @@ class CreateStream {
 			.attr('class', function(d) { return d.column });
 
 
+    // MATH CALCULATIONS
+    var math_div = table_div.append('div').attr('class', 'math')
+    var plain_text = math_div.append('p').text('P')
+                             .style('color', '#00897b')
+                             .attr('id', 'plain')
+    var plus = math_div.append('p').text(' + ')
+    var key = math_div.append('p').text('K')
+                             .style('color', '#fdd835')
+                             .attr('id', 'key')
+    var mod = math_div.append('p').text(' mod 26 = ')
+    var cipher = math_div.append('p').text('C')
+                             .style('color', '#e53935')
+                             .attr('id', 'cipher')
+
 	var m = 3000;
 	for (var i = 0; i < initialMessage.length; i++) {
 		d3.select('#index'+i).select('.letter')
@@ -96,6 +112,16 @@ class CreateStream {
             .transition()
             .duration(500)
             .style('color', '#fdd835')
+            .delay(m*i);
+		d3.select('#key')
+            .transition()
+            .duration(500)
+            .text(alphaAlpha.indexOf(initialKey[i]))
+            .delay(m*i);
+		d3.select('#plain')
+            .transition()
+            .duration(500)
+            .text(alphaAlpha.indexOf(initialMessage[i]))
             .delay(m*i);
 		if (initialMessage[i] === initialKey[i]) {
 			d3.selectAll('.'+initialMessage[i])
@@ -121,6 +147,11 @@ class CreateStream {
 			.style('color', '#e53935')
 			.text(initialCipher[i])
 			.delay(1000+m*i);
+		d3.select('#cipher')
+            .transition()
+            .duration(500)
+            .text(alphaAlpha.indexOf(initialCipher[i]))
+            .delay(1000+m*i);
 		d3.selectAll('.'+initialMessage[i])
             .transition()
             .duration(500)

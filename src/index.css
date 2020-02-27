@@ -15,7 +15,7 @@
   position: fixed;
   z-index: 1;
   margin: 50px 0 0 50px;
-  height: 600px;
+  height: 650px;
   width: 800px;
   background-color: #F1F1F1;
 }
@@ -55,9 +55,9 @@ table {
   display: flex;
 }
 
-#graphic {
+/* #graphic {
   padding-top: 60px;
-}
+} */
 
 h1 {
   text-align: center
@@ -73,8 +73,8 @@ p {
 }
 
 .grid_box {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border: 1px solid black;
   text-align: center;
 }
@@ -82,11 +82,11 @@ p {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  width: 30%;
+  width: 38%;
   float: right;
 }
 
-.example {
+.example, .rules, .block_message, .cipher_message {
   display: flex;
 }
 
@@ -95,7 +95,29 @@ p {
 }
 
 .block_letter {
-  font-size: 35px;
+  font-size: 25px;
   width: 40px;
   text-align: center;
+}
+
+.exampleContainer {
+  margin-right: 45px; 
+  margin-top: -22px;
+}
+
+.block_pairs {
+  margin-right: 3%;
+}
+
+.block_msg_letter{
+  margin-right: 21px;
+  font-size: 65px;
+}
+
+.update_margin {
+  margin-right: 17px;
+}
+
+.encryption {
+  margin-top: 25px;
 }

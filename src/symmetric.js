@@ -74,6 +74,7 @@ class Symmetric {
             .attr('type','text')
             .attr('id', 'secret')
             .attr('placeholder','Key to be used (random when empty)')
+            .on('input', this.handleNewMessage)
         
         d3.select("#form1").append("div")
             .attr('id', 'encrypt')

@@ -2,6 +2,8 @@ const d3 = require('d3')
 const Crypto = require('./crypto')
 const key = require('./images/key.png')
 const lock = require('./images/lock.png')
+const unlock = require('./images/unlock.png')
+const arrow = require('./images/arrow.png')
 class Symmetric {
     constructor() {
         this.handleEncrypt = this.handleEncrypt.bind(this)
@@ -17,12 +19,16 @@ class Symmetric {
         d3.select('#encryption_display').transition().text(this.encryption.ciphertext)
         console.log(this.encryption.ciphertext)
         d3.select('#decrypt_button').attr('hidden', null)
+        d3.select("#lock").attr('hidden', null)
     }
     
     handleDecrypt() {
         let decryption = this.cryptoInstance.decrypt(this.encryption.encrypted_data)
         console.log(decryption)
         d3.select('#decryption_display').transition().text(decryption)
+        d3.select("#unlock2").attr('hidden', null)
+        d3.select("#key2").attr('hidden', null)
+
     }
 
     start() {
@@ -32,64 +38,73 @@ class Symmetric {
         this.vis.append('form')
             .attr('id', 'form1')
             .attr('name', 'myform')
+        
+        d3.select("#form1").append("div")
+            .attr('id', 'input_box')
 
         // input
-        d3.select("#form1").append('input')
+        d3.select("#input_box").append('input')
             .attr('type','text')
             .attr('id', 'message')
             .attr('placeholder','Message to be sent')
-
-        d3.select('#form1').append('br')
+        
+        d3.select("#form1").append("div")
+            .attr('id', 'secret_box')
 
         // key
-        d3.select("#form1").append('input')
+        d3.select("#secret_box").append('input')
             .attr('type','text')
             .attr('id', 'secret')
             .attr('placeholder','Key to be used (random when empty)')
-                
-        d3.select('#form1').append('br')
-
-        // encrypt button
-        d3.select("#form1").append('img')
-            .attr('id', 'encrypt_button')
-            .attr("src", key)
+        
+        d3.select("#input_box").append('img')
+            .attr('id', 'arrow')
+            .attr("src", arrow)
             .attr('width', '10%')
             .on('click', this.handleEncrypt)
 
-        // d3.select("#form1").append('input')
-        //     .attr('type','submit')
-        //     .attr('value', 'Encrypt')
-
-        this.vis.append('text')
+        d3.select("#input_box").append('text')
             .attr('id', 'encryption_display')
+
+        d3.select("#input_box").append('img')
+            .attr('id', 'decrypt_button')
+            .attr("src", arrow)
+            .attr('width', '10%')
+            .attr('hidden', 'true')
+            .on('click', this.handleDecrypt)
+
+        d3.select("#input_box").append('text')
+            .attr('id', 'decryption_display')
+        
+        this.vis.append('img')
+            .attr('id', 'unlock')
+            .attr("src", unlock)
+            .attr('width', '10%')
+
+        this.vis.append('img')
+            .attr('id', 'key')
+            .attr("src", key)
+            .attr('width', '10%')
 
         this.vis.append('img')
             .attr('id', 'lock')
             .attr("src", lock)
             .attr('width', '10%')
-
-        this.vis.append('br')
+            .attr("style","margin-left: 20%")
+            .attr('hidden', 'true')
+        
+        this.vis.append('img')
+            .attr('id', 'unlock2')
+            .attr("src", unlock)
+            .attr('width', '10%')
+            .attr("style","margin-left: 20%")
+            .attr('hidden', 'true')
 
         this.vis.append('img')
-            .attr('id', 'decrypt_button')
+            .attr('id', 'key2')
             .attr("src", key)
             .attr('width', '10%')
             .attr('hidden', 'true')
-            .on('click', this.handleDecrypt)
-
-
-        // this.vis.append('input')
-        //     .attr('id', 'decrypt_button')
-        //     .attr('type','submit')
-        //     .attr('value', 'Decrypt')
-        //     .attr('hidden', 'true')
-        //     .on('click', this.handleDecrypt);
-
-
-        this.vis.append('br')
-        
-        this.vis.append('text')
-            .attr('id', 'decryption_display')
     }
 }
 

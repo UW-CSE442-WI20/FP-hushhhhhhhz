@@ -17,31 +17,34 @@ class CreateHistory {
 
 	y = d3.scaleLinear()
 	      .domain([1450, 1975])
-	      .range([0, 600]);
+	      .range([0, 700]);
 
         var line = d3.line()
+		  .curve(d3.curveCatmullRom.alpha(0.5))
 		  .x(10)
 		  .y(function(d) {
-			  return y(d.year);
+			  return y(d);
 		  });
 
-	var data = [{"year": 1467},
-		    {"year": 1553},
-		    {"year": 1678},
-		    {"year": 1854},
-		    {"year": 1863},
-		    {"year": 1923},
-		    {"year": 1960},
-		    {"year": 1975}]
+	var data = []
+	for (var i = 1467; i < 1975; i ++) {
+           data.push(i)
+	}
+	  
+	var totalLength = 600
 
 	d3.select('.lineDiv').append('svg')
 		  .attr("width", 20)
 		  .append('path')
-	          .transition()
-		  .duration(500)
 		  .attr('d', line(data))
 		  .attr("stroke", "black")
 	          .attr("stroke-width", 2)
+	          .attr("stroke-dasharray", totalLength + " " + totalLength)
+		  .attr("stroke-dashoffset", totalLength)
+		  .transition()
+		  .duration(8000)
+	          .ease(d3.easeLinear)
+		  .attr("stroke-dashoffset", 0);
 
         eventHash = { 
 		"1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
@@ -67,7 +70,6 @@ class CreateHistory {
 			.attr('class', 'eventBox')
 			.attr('id', 'eventBox' + i)
 		        .delay(delay * i);
-
 		eventBox.append('div')
 		        .transition()
 			.attr('class', 'year')

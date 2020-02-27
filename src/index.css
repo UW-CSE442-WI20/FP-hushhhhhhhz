@@ -94,6 +94,7 @@ p {
 
 .timelineContainer {
 	display: flex;
+	height: 600px;
 }
 
 .line {

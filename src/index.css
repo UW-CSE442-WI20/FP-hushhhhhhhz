@@ -17,7 +17,6 @@
   margin: 0 0 0 50px;
   height: 650px;
   width: 800px;
-  background-color: #F1F1F1;
 }
 
 .message {
@@ -98,7 +97,7 @@ p {
 }
 
 .line {
-	background-color: #afc2cb;
+	background-color: gray;
 	align: center;
 	width: 4px;
 	height: 95%;
@@ -110,7 +109,7 @@ p {
 
 .lineDiv {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 }
 
 .leftDiv, .rightDiv {
@@ -119,9 +118,19 @@ p {
 }
 
 .eventBox {
-	background-color: #afc2cb;
-	height: 150px;
+	background-color: #F1F1F1;
+	height: 125px;
 	width: 300px;
 	border-radius: 10px;
-	margin: 30px 0 0 30px;
+	margin: 30px;
+}
+
+.year {
+	padding: 10px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.event {
+	padding: 10px;
 }

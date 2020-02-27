@@ -14,7 +14,34 @@ class CreateHistory {
 	var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
 	var rightDiv = timelineContainer.append('div').attr('class', 'rightDiv');
 	rightDiv.append('br')
-	var line = lineDiv.append('div').attr('class', 'line');
+
+	y = d3.scaleLinear()
+	      .domain([1450, 1975])
+	      .range([0, 600]);
+
+        var line = d3.line()
+		  .x(10)
+		  .y(function(d) {
+			  return y(d.year);
+		  });
+
+	var data = [{"year": 1467},
+		    {"year": 1553},
+		    {"year": 1678},
+		    {"year": 1854},
+		    {"year": 1863},
+		    {"year": 1923},
+		    {"year": 1960},
+		    {"year": 1975}]
+
+	d3.select('.lineDiv').append('svg')
+		  .attr("width", 20)
+		  .append('path')
+	          .transition()
+		  .duration(500)
+		  .attr('d', line(data))
+		  .attr("stroke", "black")
+	          .attr("stroke-width", 2)
 
         eventHash = { 
 		"1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",

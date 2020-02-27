@@ -8,6 +8,7 @@ class Symmetric {
     constructor() {
         this.handleEncrypt = this.handleEncrypt.bind(this)
         this.handleDecrypt = this.handleDecrypt.bind(this)
+        this.handleNewMessage = this.handleNewMessage.bind(this)
     }
 
     handleEncrypt(){
@@ -23,15 +24,30 @@ class Symmetric {
         d3.select("#lock").attr('hidden', null)
         d3.select("#lock2").attr('hidden', null)
         d3.select("#key2").attr('hidden', null)
-
+        d3.select("#encryption_display").attr('hidden', null)    
     }
     
     handleDecrypt() {
         let decryption = this.cryptoInstance.decrypt(this.encryption.encrypted_data)
         console.log(decryption)
-        d3.select('#decryption_display').transition().text(decryption)
+        d3.select('#decryption_display').attr('hidden', null).transition().text(decryption)
         d3.select("#lock2").attr('src', unlock)
+    }
 
+    handleNewMessage() {
+        d3.event.preventDefault();
+        d3.select('#decrypt_button').attr('hidden', 'true')
+        d3.select("#lock").attr('hidden', 'true')
+        d3.select("#lock2").attr('hidden', 'true')
+        d3.select("#key2").attr('hidden', 'true')
+        d3.select("#encryption_display").attr('hidden', 'true')
+        d3.select("#decryption_display").attr('hidden', 'true')
+    }
+
+    stopRKey(evt) {
+        var evt = (evt) ? evt : ((event) ? event : null);
+        var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
     }
 
     start() {
@@ -46,11 +62,12 @@ class Symmetric {
             .attr('id', 'input_box')
 
         // input
-        d3.select("#input_box").append('input')
+        d3.select("#input_box").append('textarea')
+            .attr('style', "resize: none;")
             .attr('type','text')
             .attr('id', 'message')
             .attr('placeholder','Message to be sent')
-        
+            .on('input', this.handleNewMessage)
 
         // key
         d3.select("#input_box").append('input')
@@ -97,12 +114,6 @@ class Symmetric {
             .attr('width', '10%')
             .attr("style","margin-left: 20%")
             .attr('hidden', 'true')
-        
-        // d3.select("#shapes").append('img')
-        //     .attr('id', 'unlock2')
-        //     .attr("src", unlock)
-        //     .attr('width', '10%')
-        //     .attr('hidden', 'true')
 
         d3.select("#shapes").append('img')
             .attr('id', 'key2')
@@ -110,6 +121,7 @@ class Symmetric {
             .attr('width', '10%')
             .on('click', this.handleDecrypt)
             .attr('hidden', 'true')
+        document.onkeypress = this.stopRKey; 
     }
 }
 

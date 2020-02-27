@@ -32,14 +32,12 @@
 h1 {
   text-align: center
 }
-#input_box{
+
+#form1{
     display: inline-grid;
 }
 
-#form1{
+#shapes, #randomdiv {
     display: flex;
-}
-
-#shapes{
-    display: flex;
+    justify-content: space-between
 }

@@ -54,15 +54,18 @@ class Symmetric {
         document.getElementById('vis').innerHTML = "";
         this.vis = d3.select('#vis')
 
-        this.vis.append('form')
+        this.vis.append('div')
+            .attr('id', 'randomdiv')
+
+        d3.select('#randomdiv').append('form')
             .attr('id', 'form1')
             .attr('name', 'myform')
         
-        d3.select("#form1").append("div")
-            .attr('id', 'input_box')
+        // d3.select("#form1").append("div")
+        //     .attr('id', 'input_box')
 
         // input
-        d3.select("#input_box").append('textarea')
+        d3.select("#form1").append('textarea')
             .attr('style', "resize: none;")
             .attr('type','text')
             .attr('id', 'message')
@@ -70,23 +73,27 @@ class Symmetric {
             .on('input', this.handleNewMessage)
 
         // key
-        d3.select("#input_box").append('input')
+        d3.select("#form1").append('input')
             .attr('type','text')
             .attr('id', 'secret')
             .attr('placeholder','Key to be used (random when empty)')
             .on('input', this.handleNewMessage)
         
-        d3.select("#form1").append("div")
+        d3.select("#randomdiv").append("div")
             .attr('id', 'encrypt')
 
-        d3.select("#encrypt").append('text')
+        d3.select("#encrypt").append('textarea')
+            .attr('style', "resize: none;")
             .attr('id', 'encryption_display')
+            .attr('hidden', 'true')
 
-        d3.select("#form1").append("div")
+        d3.select("#randomdiv").append("div")
             .attr('id', 'decrypt')
 
-        d3.select("#decrypt").append('text')
+        d3.select("#decrypt").append('textarea')
+            .attr('style', "resize: none;")
             .attr('id', 'decryption_display')
+            .attr('hidden', 'true')
         
         this.vis.append("div")
             .attr('id', 'shapes')
@@ -106,14 +113,12 @@ class Symmetric {
             .attr('id', 'lock')
             .attr("src", lock)
             .attr('width', '10%')
-            .attr("style","margin-left: 20%")
             .attr('hidden', 'true')
         
         d3.select("#shapes").append('img')
             .attr('id', 'lock2')
             .attr("src", lock)
             .attr('width', '10%')
-            .attr("style","margin-left: 20%")
             .attr('hidden', 'true')
 
         d3.select("#shapes").append('img')

@@ -51,8 +51,6 @@ class Symmetric {
             .attr('id', 'message')
             .attr('placeholder','Message to be sent')
         
-        // d3.select("#form1").append("div")
-        //     .attr('id', 'secret_box')
 
         // key
         d3.select("#input_box").append('input')
@@ -60,30 +58,17 @@ class Symmetric {
             .attr('id', 'secret')
             .attr('placeholder','Key to be used (random when empty)')
         
-        // d3.select("#input_box").append('img')
-        //     .attr('id', 'arrow')
-        //     .attr("src", arrow)
-        //     .attr('width', '10%')
-        //     .on('click', this.handleEncrypt)
-        
         d3.select("#form1").append("div")
-            .attr('id', 'output_box')
+            .attr('id', 'encrypt')
 
-        d3.select("#output_box").append('text')
+        d3.select("#encrypt").append('text')
             .attr('id', 'encryption_display')
-            .attr("style","margin-left: 50%")
 
+        d3.select("#form1").append("div")
+            .attr('id', 'decrypt')
 
-        // d3.select("#input_box").append('img')
-        //     .attr('id', 'decrypt_button')
-        //     .attr("src", arrow)
-        //     .attr('width', '10%')
-        //     .attr('hidden', 'true')
-        //     .on('click', this.handleDecrypt)
-
-        d3.select("#output_box").append('text')
+        d3.select("#decrypt").append('text')
             .attr('id', 'decryption_display')
-            .attr("style","margin-left: 40%")
         
         this.vis.append("div")
             .attr('id', 'shapes')

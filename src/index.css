@@ -32,3 +32,14 @@
 h1 {
   text-align: center
 }
+#input_box{
+    display: inline-grid;
+}
+
+#form1{
+    display: flex;
+}
+
+#shapes{
+    display: flex;
+}

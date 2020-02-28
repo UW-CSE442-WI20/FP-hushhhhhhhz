@@ -124,14 +124,14 @@ class CreateBlock {
 		d3.select("#"+ rule + "_cipher_1")
 			.transition()
 			.duration(duration)
-			.style('color', '#01579b')
+			.style('color', '#1b87e5')
 			.text(cipher_text_pairs[i][0])
 			.delay((duration + delay) + 500);
 
 		d3.select("#"+ rule + "_cipher_2")
 			.transition()
 			.duration(duration)
-			.style('color', '#01579b')
+			.style('color', '#1b87e5')
 			.text(cipher_text_pairs[i][1])
 			.delay((duration + delay) + 500);
 
@@ -240,14 +240,14 @@ class CreateBlock {
 		d3.select("#box_cipher_1")
 			.transition()
 			.duration(duration)
-			.style('color', '#01579b')
+			.style('color', '#1b87e5')
 			.text(cipher_text_pairs[i][0])
 			.delay(delay + duration);
 
 		d3.select("#box_cipher_2")
 			.transition()
 			.duration(duration)
-			.style('color', '#01579b')
+			.style('color', '#1b87e5')
 			.text(cipher_text_pairs[i][1])
 			.delay(delay + duration);
 
@@ -378,14 +378,14 @@ class CreateBlock {
 			d3.select("#decr_block_" + i)
 				.transition()
 				.duration(duration)
-				.style('color', '#01579b')
+				.style('color', '#1b87e5')
 				.text(cipherMessage[i])
 				.delay((last * buffer)+(delay + duration));
 
 			d3.select("#decr_block_" + (i+1))
 				.transition()
 				.duration(duration)
-				.style('color', '#01579b')
+				.style('color', '#1b87e5')
 				.text(cipherMessage[i+1])
 				.delay((last * buffer)+(delay + duration));	
 

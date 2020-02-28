@@ -26,9 +26,13 @@ class CreateStream {
 			
 		index.append('div')
       		.attr('class', 'letter')
+			.transition()
+			.duration(200)
 			.text(initialMessage[i]);
 		index.append('div')
             .attr('class', 'key')
+			.transition()
+            .duration(200)
 			.text(initialKey[i]);
 		index.append('div')
             .attr('class', 'cipher')
@@ -90,15 +94,15 @@ class CreateStream {
     // MATH CALCULATIONS
     var math_div = table_div.append('div').attr('class', 'math')
     var plain_text = math_div.append('p').text('P')
-                             .style('color', '#00897b')
+                             .style('color', '#fdd835')
                              .attr('id', 'plain')
     var plus = math_div.append('p').text(' + ')
     var key = math_div.append('p').text('K')
-                             .style('color', '#fdd835')
+                             .style('color', '#e53935')
                              .attr('id', 'key')
     var mod = math_div.append('p').text(' mod 26 = ')
     var cipher = math_div.append('p').text('C')
-                             .style('color', '#e53935')
+                             .style('color', '#1c87e5')
                              .attr('id', 'cipher')
 
 	var m = 3000;
@@ -106,12 +110,12 @@ class CreateStream {
 		d3.select('#index'+i).select('.letter')
 			.transition()
 			.duration(500)
-			.style('color', '#00897b')
+			.style('color', '#fdd835')
 			.delay(m*i);
 		d3.select('#index'+i).select('.key')
             .transition()
             .duration(500)
-            .style('color', '#fdd835')
+            .style('color', '#e53935')
             .delay(m*i);
 		d3.select('#key')
             .transition()
@@ -127,24 +131,24 @@ class CreateStream {
 			d3.selectAll('.'+initialMessage[i])
             	.transition()
             	.duration(500)
-            	.style('background-color', '#7cb342')
+            	.style('background-color', '#fb8c00') 
             	.delay(m*i);
 		} else {
 			d3.selectAll('.'+initialMessage[i])
 				.transition()
 				.duration(500)
-				.style('background-color', '#00897b')
+				.style('background-color', '#fdd835')
 				.delay(m*i);
 			d3.selectAll('.'+initialKey[i])
             	.transition()
             	.duration(500)
-            	.style('background-color', '#fdd835')
+            	.style('background-color', '#e53935')
             	.delay(m*i);
 		}
 		d3.select('#index'+i).select('.cipher')
 			.transition()
 			.duration(500)
-			.style('color', '#e53935')
+			.style('color', '#1c87e5')
 			.text(initialCipher[i])
 			.delay(1000+m*i);
 		d3.select('#cipher')
@@ -155,17 +159,17 @@ class CreateStream {
 		d3.selectAll('.'+initialMessage[i])
             .transition()
             .duration(500)
-            .style('background-color', 'white')
+            .style('background-color', 'transparent')
             .delay(1000+m*i);
         d3.selectAll('.'+initialKey[i])
             .transition()
             .duration(500)
-            .style('background-color', 'white')
+            .style('background-color', 'transparent')
             .delay(1000+m*i);
 		d3.selectAll('.'+initialCipher[i])
             .transition()
             .duration(500)
-            .style('background-color', '#e53935')
+            .style('background-color', '#1c87e5')
             .delay(1000+m*i);
 
 		d3.select('#index'+i).select('.letter')
@@ -181,7 +185,7 @@ class CreateStream {
 		d3.selectAll('.'+initialCipher[i])
             .transition()
             .duration(500)
-            .style('background-color', 'white')
+            .style('background-color', 'transparent')
             .delay(2000+m*i);
 	}
 	d3.select('#plain')
@@ -256,7 +260,7 @@ class CreateStream {
 		}
 	}
 	function handleMouseOver() {  // Add interactivity
-		d3.select(this).style('background-color', '#fdd835')
+		d3.select(this).style('background-color', '#e53935')
     	inputKey = this.id
 		var newKey = "" 
 		if (inputMessage.length > 0) {
@@ -270,7 +274,7 @@ class CreateStream {
 		document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
 	}
 	function handleMouseOut() {
-    	d3.select(this).style('background-color', 'white')      
+    	d3.select(this).style('background-color', 'transparent')      
 		inputKey = ""
 		resultCipher = ""
 		document.getElementById('keyDisplay').innerHTML = "keytext:    ";
@@ -301,13 +305,13 @@ class CreateStream {
 		document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
 		document.getElementById('textInput').value = ""
 	});
-	d3.selectAll('.instruction').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
-  	d3.select('#textInput').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
-	d3.select('#inputButton').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
-	d3.select('#textDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(10000).style('color', '#00897b')
-	d3.select('#keyDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(10000).style('color', '#fdd835')
-	d3.select('#cipherDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(10000).style('color', '#e53935')
-	d3.select('.keyTable').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
+	d3.selectAll('.instruction').transition().duration(200).attr('style', 'opacity: 1').delay(20000)
+  	d3.select('#textInput').transition().duration(200).attr('style', 'opacity: 1').delay(20000)
+	d3.select('#inputButton').transition().duration(200).attr('style', 'opacity: 1').delay(20000)
+	d3.select('#textDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#fdd835')
+	d3.select('#keyDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#e53935')
+	d3.select('#cipherDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#1c87e5')
+	d3.select('.keyTable').transition().duration(200).attr('style', 'opacity: 1').delay(20000)
 	}
 }
 

@@ -48,16 +48,17 @@ class CreateHistory {
 
         eventHash = { 
 		"1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
-		"1553": "Vigenere cipher described by Giovan Battista Bellaso",
+		"1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
 		"1678": "Robert Hooke publishes first one way function (related to RSA)",
-		"1854": "playfair invented by Sir Charles Wheatstone",
+		"1854": "Playfair cipher invented by Sir Charles Wheatstone",
 		"1863": "first published solution to vigenere cipher, authored by Kasiski",
-		// "1917" : "Gilbert Vernam proposed one time pad, a stream cipher",
-		"1923": "enigma decoding machine invented by alan turing and co.",
-		"1960": "cryptographic hash functions were first used in computers for passwords",
-		"1975": "DES, data encryption standard in 1975 (an early symmetric key encryption)",
-		// "2001": "SHA-2 published in 2001, SHA-3 in 2015",
-		// "2015": "SHA-2 published in 2001, SHA-3 in 2015",
+		// "1917" : "Gilbert Vernam proposed one time pad modification to a stream cipher",
+		// "1923": "Enigma encoding machine invented by the Germans",
+		"1942": "Enigma code cracked by Alan Turing and his fellows at Bletchley Park",
+		"1960": "cryptographic hash functions were first introduced into computer systems for storing passwords",
+		"1975": "DES, or the data encryption standard is introduced (an early symmetric key encryption)",
+		// "2001": "SHA-2 published",
+		// "2015": "SHA-3 published",
 	}
 
 	var i = 0;

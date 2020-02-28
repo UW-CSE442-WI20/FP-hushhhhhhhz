@@ -4,7 +4,7 @@ const d3 = require('d3')
 // You can include local JS files:
 const createHistory = require('./create-history');
 const createStream = require('./create-stream');
-const createBlock = require('./create-block');
+const createBlock = require('./create-block1');
 const MyClass = require('./my-class');
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();

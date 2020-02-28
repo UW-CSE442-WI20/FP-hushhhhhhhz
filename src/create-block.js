@@ -80,6 +80,7 @@ class CreateBlock {
 				.delay((last * 2500)+(delay + duration));
 			
 			if(i == 0) {
+				console.log("in")
 				var actual_i = i;
 				var index = alphabet.indexOf('C')
 
@@ -147,6 +148,7 @@ class CreateBlock {
 					.style('background-color', '#ffcccc')
 					.delay((last * 2000)+(delay + duration))
 					.on('end', function() {
+						console.log("first", (last * 2000)+(delay + duration));
 						d3.select('.block-' + alphabet[index + 15])
 							.transition()
 							.duration(duration)
@@ -258,113 +260,115 @@ class CreateBlock {
 							.duration(duration)
 							.style('background-color', 'transparent')
 							.delay(1500)
+					});	
+
+			
+			}
+
+			if(i == 2) {
+				var actual_i = i;
+				var index = alphabet.indexOf('B')
+				console.log((last * 9000)+(delay + duration));
+				d3.select('.block-' + alphabet[index])
+					.transition()
+					.duration(duration)
+					.style('background-color', '#ffcccc')
+					.delay((last * 9000)+(delay + duration));
+				d3.select('.block-' + alphabet[index + 1])
+					.transition()
+					.duration(duration)
+					.style('background-color', 'red')
+					.delay((last * 9000)+(delay + duration));
+				
+				d3.select('.block-' + alphabet[index + 5])
+					.transition()
+					.duration(duration)
+					.style('background-color', '#ffcccc')
+					.delay((last * 9000)+(delay + duration));
+				d3.select('.block-' + alphabet[index + 6])
+					.transition()
+					.duration(duration)
+					.style('background-color', '#ffcccc')
+					.delay((last * 9000)+(delay + duration));
+
+				d3.select('.block-' + alphabet[index + 10])
+					.transition()
+					.duration(duration)
+					.style('background-color', '#ffcccc')
+					.delay((last * 9000)+(delay + duration));
+				d3.select('.block-' + alphabet[index + 11])
+					.transition()
+					.duration(duration)
+					.style('background-color', '#ffcccc')
+					.delay((last * 9000)+(delay + duration));
+				
+				d3.select('.block-' + alphabet[index + 15])
+					.transition()
+					.duration(duration)
+					.style('background-color', 'red')
+					.delay((last * 9000)+(delay + duration));
+				d3.select('.block-' + alphabet[index + 16])
+					.transition()
+					.duration(duration)
+					.style('background-color', '#ffcccc')
+					.delay((last * 9000)+(delay + duration))
+					.on('end', function() {
+						d3.select('.block-' + alphabet[index + 15])
+							.transition()
+							.duration(duration)
+							.style('background-color', '#ffcccc')
+							.delay(500);
+						d3.select('.block-' + alphabet[index + 2])
+							.transition()
+							.duration(duration)
+							.style('background-color', '#ffcccc')
+							.delay(500);
+						d3.select('.block-' + alphabet[index])
+							.transition()
+							.duration(duration)
+							.style('background-color', 'red')
+							.delay(500);
+						d3.select('.block-' + alphabet[index + 17])
+							.transition()
+							.duration(duration)
+							.style('background-color', 'red')
+							.delay(500);
+
+						d3.select("#encr_block_" + actual_i)
+							.transition()
+							.duration(duration)
+							.style('color', 'black')
+							.delay(500);
+						
+						d3.select("#encr_block_" + (actual_i+1))
+							.transition()
+							.duration(duration)
+							.style('color', 'black')
+							.delay(500);
+
+						d3.select("#decr_block_" + actual_i)
+							.transition()
+							.duration(duration)
+							.text(cipherMessage[actual_i])
+							.style('color', 'blue')
+							.delay(600);
+			
+						d3.select("#decr_block_" + (actual_i+1))
+							.transition()
+							.duration(duration)
+							.text(cipherMessage[actual_i+1])
+							.style('color', 'blue')
+							.delay(800);
 					});		
 
 			}
-
-			// if(i == 2) {
-			// 	var actual_i = i;
-			// 	var index = alphabet.indexOf('B')
-
-			// 	d3.select('.block-' + alphabet[index])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', '#ffcccc')
-			// 		.delay((last * 4000)+(delay + duration));
-			// 	d3.select('.block-' + alphabet[index + 1])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', 'red')
-			// 		.delay((last * 4000)+(delay + duration));
-				
-			// 	d3.select('.block-' + alphabet[index + 5])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', '#ffcccc')
-			// 		.delay((last * 4000)+(delay + duration));
-			// 	d3.select('.block-' + alphabet[index + 6])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', '#ffcccc')
-			// 		.delay((last * 4000)+(delay + duration));
-
-			// 	d3.select('.block-' + alphabet[index + 10])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', '#ffcccc')
-			// 		.delay((last * 4000)+(delay + duration));
-			// 	d3.select('.block-' + alphabet[index + 11])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', '#ffcccc')
-			// 		.delay((last * 4000)+(delay + duration));
-				
-			// 	d3.select('.block-' + alphabet[index + 15])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', 'red')
-			// 		.delay((last * 4000)+(delay + duration));
-			// 	d3.select('.block-' + alphabet[index + 16])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', '#ffcccc')
-			// 		.delay((last * 4000)+(delay + duration));
-					// .on('end', function() {
-					// 	d3.select('.block-' + alphabet[index + 15])
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.style('background-color', '#ffcccc')
-					// 		.delay(500);
-					// 	d3.select('.block-' + alphabet[index + 2])
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.style('background-color', '#ffcccc')
-					// 		.delay(500);
-					// 	d3.select('.block-' + alphabet[index])
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.style('background-color', 'red')
-					// 		.delay(500);
-					// 	d3.select('.block-' + alphabet[index + 17])
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.style('background-color', 'red')
-					// 		.delay(500);
-
-					// 	d3.select("#encr_block_" + actual_i)
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.style('color', 'black')
-					// 		.delay(500);
-						
-					// 	d3.select("#encr_block_" + (actual_i+1))
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.style('color', 'black')
-					// 		.delay(500);
-
-					// 	d3.select("#decr_block_" + actual_i)
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.text(cipherMessage[actual_i])
-					// 		.style('color', 'blue')
-					// 		.delay(600);
-			
-					// 	d3.select("#decr_block_" + (actual_i+1))
-					// 		.transition()
-					// 		.duration(duration)
-					// 		.text(cipherMessage[actual_i+1])
-					// 		.style('color', 'blue')
-					// 		.delay(800);
-					// });		
-
-			// }
 
 
 			last += 1
 
 		}
 	}
+
 
 	box_transition(plain_text_pairs, cipher_text_pairs, i) {
 		var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text( "Box rule:")

@@ -28637,8 +28637,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// You can separate your code out into modules to
-// keep code clean.
+var d3 = require('d3');
+
 var CreateHistory =
 /*#__PURE__*/
 function () {
@@ -28650,6 +28650,48 @@ function () {
     key: "start",
     value: function start() {
       console.log('[CreateHistory]', 'Hello World 5.');
+      document.getElementById('vis').innerHTML = "";
+      var timelineContainer = d3.select('#vis').append('div').attr('class', 'timelineContainer');
+      var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
+      var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
+      var rightDiv = timelineContainer.append('div').attr('class', 'rightDiv');
+      rightDiv.append('br');
+      y = d3.scaleLinear().domain([1450, 1975]).range([0, 700]);
+      var line = d3.line().curve(d3.curveCatmullRom.alpha(0.5)).x(10).y(function (d) {
+        return y(d);
+      });
+      var data = [];
+
+      for (var i = 1467; i < 1975; i++) {
+        data.push(i);
+      }
+
+      var totalLength = 600;
+      d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "black").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(8000).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
+      eventHash = {
+        "1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
+        "1553": "Vigenere cipher described by Giovan Battista Bellaso",
+        "1678": "Robert Hooke publishes first one way function (related to RSA)",
+        "1854": "playfair invented by Sir Charles Wheatstone",
+        "1863": "first published solution to vigenere cipher, authored by Kasiski",
+        // "1917" : "Gilbert Vernam proposed one time pad, a stream cipher",
+        "1923": "enigma decoding machine invented by alan turing and co.",
+        "1960": "cryptographic hash functions were first used in computers for passwords",
+        "1975": "DES, data encryption standard in 1975 (an early symmetric key encryption)" // "2001": "SHA-2 published in 2001, SHA-3 in 2015",
+        // "2015": "SHA-2 published in 2001, SHA-3 in 2015",
+
+      };
+      var i = 0;
+      var delay = 1000;
+
+      for (var key in eventHash) {
+        var side = i % 2 == 0 ? leftDiv : rightDiv;
+        var eventBox = side.append('div');
+        eventBox.transition().attr('class', 'eventBox').attr('id', 'eventBox' + i).delay(delay * i);
+        eventBox.append('div').transition().attr('class', 'year').text(key).delay(delay * i);
+        eventBox.append('div').transition().attr('class', 'event').text(eventHash[key]).delay(delay * i);
+        i += 1;
+      }
     }
   }]);
 
@@ -28657,7 +28699,461 @@ function () {
 }();
 
 module.exports = CreateHistory;
-},{}],"elfx":[function(require,module,exports) {
+},{"d3":"UzF0"}],"RnAV":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var CreateStream =
+/*#__PURE__*/
+function () {
+  function CreateStream() {
+    _classCallCheck(this, CreateStream);
+  }
+
+  _createClass(CreateStream, [{
+    key: "start",
+    value: function start() {
+      console.log('[CreateStream]', 'Hello World 5.');
+      initialMessage = "MESSAGE";
+      initialKey = "KEYKEYK";
+      initialCipher = "WIQCEEO";
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+      var alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var alphaAlpha = alphabet.concat(alphabet2);
+      document.getElementById('vis').innerHTML = "";
+      var stream_container = d3.select('#vis').append('div').attr('class', 'streamContainer');
+      var message = stream_container.append('div').attr('class', 'message');
+
+      for (var i = 0; i < initialMessage.length; i++) {
+        var index = message.append('div').attr('id', 'index' + i).attr('class', 'index');
+        index.append('div').attr('class', 'letter').text(initialMessage[i]);
+        index.append('div').attr('class', 'key').text(initialKey[i]);
+        index.append('div').attr('class', 'cipher');
+      } // TABLE 1
+
+
+      var table_div = stream_container.append('div').attr('class', 'tableDiv');
+      var table = table_div.append('table');
+      var thead = table.append('thead');
+      var tbody = table.append('tbody');
+      thead.append('tr').selectAll('th').data(alphabet).enter().append('th').text(function (letter) {
+        return letter;
+      }).attr('class', function (letter) {
+        return letter;
+      });
+      var rows = tbody.selectAll('tr').data([1]).enter().append('tr');
+      var cells = rows.selectAll('td').data(function (row) {
+        return alphabet.map(function (letter) {
+          return {
+            column: letter,
+            value: alphabet.indexOf(letter)
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('class', function (d) {
+        return d.column;
+      }); //TABLE 2
+
+      var table2 = table_div.append('table');
+      var thead2 = table2.append('thead');
+      var tbody2 = table2.append('tbody');
+      thead2.append('tr').selectAll('th').data(alphabet2).enter().append('th').text(function (letter) {
+        return letter;
+      }).attr('class', function (letter) {
+        return letter;
+      });
+      var rows2 = tbody2.selectAll('tr').data([1]).enter().append('tr');
+      var cells2 = rows2.selectAll('td').data(function (row) {
+        return alphabet2.map(function (letter) {
+          return {
+            column: letter,
+            value: alphabet2.indexOf(letter) + 13
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('class', function (d) {
+        return d.column;
+      }); // MATH CALCULATIONS
+
+      var math_div = table_div.append('div').attr('class', 'math');
+      var plain_text = math_div.append('p').text('P').style('color', '#00897b').attr('id', 'plain');
+      var plus = math_div.append('p').text(' + ');
+      var key = math_div.append('p').text('K').style('color', '#fdd835').attr('id', 'key');
+      var mod = math_div.append('p').text(' mod 26 = ');
+      var cipher = math_div.append('p').text('C').style('color', '#e53935').attr('id', 'cipher');
+      var m = 3000;
+
+      for (var i = 0; i < initialMessage.length; i++) {
+        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', '#00897b').delay(m * i);
+        d3.select('#index' + i).select('.key').transition().duration(500).style('color', '#fdd835').delay(m * i);
+        d3.select('#key').transition().duration(500).text(alphaAlpha.indexOf(initialKey[i])).delay(m * i);
+        d3.select('#plain').transition().duration(500).text(alphaAlpha.indexOf(initialMessage[i])).delay(m * i);
+
+        if (initialMessage[i] === initialKey[i]) {
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#7cb342').delay(m * i);
+        } else {
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#00897b').delay(m * i);
+          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', '#fdd835').delay(m * i);
+        }
+
+        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', '#e53935').text(initialCipher[i]).delay(1000 + m * i);
+        d3.select('#cipher').transition().duration(500).text(alphaAlpha.indexOf(initialCipher[i])).delay(1000 + m * i);
+        d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'white').delay(1000 + m * i);
+        d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'white').delay(1000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', '#e53935').delay(1000 + m * i);
+        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', 'black').delay(1000 + m * i);
+        d3.select('#index' + i).select('.key').transition().duration(500).style('color', 'black').delay(1000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'white').delay(2000 + m * i);
+      }
+
+      d3.select('#plain').transition().duration(50).text('P').delay(20000);
+      d3.select('#cipher').transition().duration(50).text('C').delay(20000);
+      d3.select('#key').transition().duration(50).text('K').delay(20000);
+      inputMessage = "";
+      inputKey = "";
+      resultCipher = "";
+      var inputContainer = d3.select('#vis').append('div').attr('class', 'inputContainer');
+      var inputs = inputContainer.append('div').attr('class', 'inputs');
+      var results = inputContainer.append('div').attr('class', 'results');
+      results.append('br');
+      results.append('br');
+      inputs.append('text').text('type your message below and hit select:');
+      inputs.append('br');
+      inputs.append('br');
+      var textInput = inputs.append('input').attr('id', 'textInput').attr('style', 'text');
+      var inputButton = inputs.append('button').attr('id', 'inputButton');
+      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").style('color', '#00897b');
+      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").style('color', '#fdd835');
+      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").style('color', '#e53935');
+      inputs.append('br');
+      inputs.append('br');
+      inputs.append('text').text('hover over the keys below to see the cipher:');
+      inputs.append('br');
+      inputs.append('br');
+      var row1 = ["RNC", "ONQ", "CKO", "LYY", "FGU"];
+      var row2 = ["MIO", "CAY", "ZUU", "KRK", "BMW"];
+      var row3 = ["QXG", "UXV", "HPV", "YUH", "LDG"];
+      var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
+      var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
+      var keys = [row1, row2, row3, row4, row5];
+      var keyTable = inputs.append('table').attr('class', 'keyTable');
+      var theadKey = keyTable.append('thead');
+      var tbodyKey = keyTable.append('tbody');
+
+      function calculateCipher() {
+        if (inputMessage.length > 0) {
+          for (var i = 0; i < inputMessage.length; i++) {
+            p = alphaAlpha.indexOf(inputMessage[i]);
+            k = alphaAlpha.indexOf(inputKey[i]);
+            c = (p + k) % 26;
+            console.log(c);
+            resultCipher = resultCipher + alphaAlpha[c];
+            console.log(resultCipher);
+          }
+        }
+      }
+
+      function handleMouseOver() {
+        // Add interactivity
+        d3.select(this).style('background-color', '#fdd835');
+        inputKey = this.id;
+        var newKey = "";
+
+        if (inputMessage.length > 0) {
+          for (var i = 0; i < inputMessage.length; i++) {
+            newKey = newKey + inputKey[i % 3];
+          }
+
+          inputKey = newKey;
+        }
+
+        document.getElementById('keyDisplay').innerHTML = "keytext:     " + inputKey;
+        calculateCipher();
+        document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
+      }
+
+      function handleMouseOut() {
+        d3.select(this).style('background-color', 'white');
+        inputKey = "";
+        resultCipher = "";
+        document.getElementById('keyDisplay').innerHTML = "keytext:    ";
+        document.getElementById('cipherDisplay').innerHTML = "ciphertext: ";
+      }
+
+      var rowsKey = tbodyKey.selectAll('tr').data(keys).enter().append('tr');
+      var cellsKey = rowsKey.selectAll('td').data(function (row, i) {
+        return keys.map(function (row) {
+          return {
+            column: i,
+            value: row[i]
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('id', function (d) {
+        return d.value;
+      }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
+      ;
+      d3.select('#inputButton').text("SELECT");
+      d3.select('#inputButton').on('click', function () {
+        inputMessage = document.getElementById('textInput').value;
+        inputMessage = inputMessage.replace(/\s+/g, '');
+        inputMessage = inputMessage.toUpperCase();
+        document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
+        document.getElementById('textInput').value = "";
+      });
+    }
+  }]);
+
+  return CreateStream;
+}();
+
+module.exports = CreateStream;
+},{"d3":"UzF0"}],"s4iG":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var CreateBlock =
+/*#__PURE__*/
+function () {
+  function CreateBlock() {// this.checkanswer = this.checkanswer.bind(this)
+
+    _classCallCheck(this, CreateBlock);
+  }
+
+  _createClass(CreateBlock, [{
+    key: "start",
+    value: function start() {
+      console.log('[CreateBlock]'); // need this in order to clear out the previous section's visualization
+
+      document.getElementById('vis').innerHTML = ""; // column, row, box
+
+      plain_text_pairs = ["GR", "MO", "MY"];
+      cipher_text_pairs = ["MW", "NP", "OW"];
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var everything = d3.select("#vis").append("div").attr('class', 'everything');
+      var block_container = everything.append("div").attr('class', 'blockContainer');
+      var grid = block_container.append('div').attr('class', 'grid');
+
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5; j++) {
+          grid.append('div').attr('class', 'grid_box block-' + alphabet[j + i * 4 + i]).append('p').text(alphabet[j + i * 4 + i]);
+        }
+      }
+
+      var text_container = block_container.append('div').attr('class', 'text_container');
+      text_container.append('div').attr('class', 'rules');
+      this.transitions(plain_text_pairs, cipher_text_pairs, 0);
+      var encryption = text_container.append('div').attr('class', 'encryption');
+      encryption.append('div').attr('class', 'block_message').text("");
+      encryption.append('div').attr('class', 'cipher_message').text("");
+      var interactive_container = everything.append("div").attr('class', 'interactiveContainer'); // var interactive_container = d3.select('.interactiveContainer')
+      // interactive_container.append('h2').text('Test your block cipher skills!')
+      // interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
+      // var textboxes = interactive_container.append('div').attr('class', 'textboxes')
+      // var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+      // var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
+      // var dropdown = textboxes.append('select').attr('id', 'dropdown')
+      // for (var i = 0; i < words.length; i++) {
+      // 	dropdown.append('option').text(words[i])
+      // }
+      // textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
+      // textboxes.append('div')
+      // 	.attr('id', 'checkbutton')
+      // 	.text('check')
+      // textboxes.append('div').attr('id', 'shareResult')
+      // document.getElementById("checkbutton").onclick = this.checkanswer;
+    }
+  }, {
+    key: "transitions",
+    value: function transitions(plain_text_pairs, cipher_text_pairs, i) {
+      var rule = i == 0 ? "column" : "row";
+      var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text(rule[0].toUpperCase() + rule.substr(1, rule.length) + " rule:");
+      var plain_text = column_ex.append('div').attr('class', 'example');
+      plain_text.append('div').text(plain_text_pairs[i][0]).attr('class', 'block_letter');
+      plain_text.append('div').text(plain_text_pairs[i][1]).attr('class', 'block_letter');
+      var cipher_text = column_ex.append('div').attr('class', 'example');
+      cipher_text.append('div').attr('id', rule + '_cipher_1').attr('class', 'block_letter');
+      cipher_text.append('div').attr('id', rule + '_cipher_2').attr('class', 'block_letter');
+      var duration = 500;
+      var delay = 1000; // color the plain text letters in the grid (red)
+
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(0);
+      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', '#e53935').delay(0); // color the plain text letters in the grid (light red)
+
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#ef9a9a').delay(duration + delay);
+      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', '#ef9a9a').delay(duration + delay); // color the cipher text letters in the grid (red)
+
+      d3.select('.block-' + cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(duration + delay);
+      d3.select('.block-' + cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', '#e53935').delay(duration + delay); // add in the ciphered letters at the same time as the cipher text highlight
+
+      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][0]).delay(duration + delay + 500);
+      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
+
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
+      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
+      d3.select('.block-' + cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
+      var forreal = this;
+
+      if (i == 0) {
+        d3.select('.block-' + cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500).on("end", function () {
+          forreal.transitions(plain_text_pairs, cipher_text_pairs, 1);
+        });
+      }
+
+      if (i == 1) {
+        d3.select('.block-' + cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500).on("end", function () {
+          forreal.box_transition(plain_text_pairs, cipher_text_pairs, 2);
+        });
+      }
+    }
+  }, {
+    key: "box_transition",
+    value: function box_transition(plain_text_pairs, cipher_text_pairs, i) {
+      var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text("Box rule:");
+      var plain_text = column_ex.append('div').attr('class', 'example');
+      plain_text.append('div').text(plain_text_pairs[i][0]).attr('class', 'block_letter');
+      plain_text.append('div').text(plain_text_pairs[i][1]).attr('class', 'block_letter');
+      var cipher_text = column_ex.append('div').attr('class', 'example');
+      cipher_text.append('div').attr('id', 'box_cipher_1').attr('class', 'block_letter');
+      cipher_text.append('div').attr('id', 'box_cipher_2').attr('class', 'block_letter');
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var duration = 500;
+      var delay = 1000;
+      var forreal = this; // highlight M and Y in red 
+
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(0);
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', '#e53935').delay(0); // highlight M and Y in pink
+
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#ef9a9a').delay(delay);
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', '#ef9a9a').delay(delay); // highlight O and W in red 
+
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', '#e53935').delay(delay + duration);
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 10]).transition().duration(500).style('background-color', '#e53935').delay(delay + duration); // add in the ciphered letters at the same time as the cipher text highlight
+
+      d3.select("#box_cipher_1").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][0]).delay(delay + duration);
+      d3.select("#box_cipher_2").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
+
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', "transparent").delay(2 * (delay + duration));
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', 'transparent').delay(2 * (delay + duration));
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 10]).transition().duration(duration).style('background-color', 'transparent').delay(2 * (delay + duration));
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', "transparent").delay(2 * (delay + duration)).on('end', function () {
+        forreal.message_transition();
+      });
+    }
+  }, {
+    key: "message_transition",
+    value: function message_transition() {
+      var initialMessage = "SECRET";
+      var cipherMessage = "UCBSDU";
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var duration = 1000;
+      var buffer = 2500;
+
+      for (var i = 0; i < initialMessage.length; i++) {
+        var delay = 1000;
+        d3.select('.block_message').append("div").attr('id', "encr_block_" + i).attr('class', 'block_msg_letter').transition().duration(duration).text(initialMessage[i == 0 ? 0 : i]).delay(delay);
+        d3.select('.cipher_message').append("div").attr('id', "decr_block_" + i).attr('class', 'block_msg_letter update_margin').transition().duration(duration).delay(delay);
+      }
+
+      var lastTiming = 0;
+
+      for (var i = 0; i < initialMessage.length; i += 2) {
+        var delay = i == 0 ? 0 : lastTiming - i / 2 * 3000;
+        var last = i / 2;
+        d3.select("#encr_block_" + i).transition().duration(duration).style('color', '#e53935').delay(last * buffer + (delay + duration));
+        d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', '#e53935').delay(last * buffer + (delay + duration));
+        var e_index1 = alphabet.indexOf(initialMessage[i]);
+        var e_index2 = alphabet.indexOf(initialMessage[i + 1]); // make two plain text letters red 
+
+        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
+        delay = i == 0 ? 2000 : lastTiming - i / 2 * 1000 - 1000 * (i - 2);
+        d3.select("#encr_block_" + i).transition().duration(duration).style('color', 'black').delay(last * buffer + (delay + duration));
+        d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', 'black').delay(last * buffer + (delay + duration)); // make two plain text letters pink
+
+        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', '#ef9a9a').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', '#ef9a9a').delay(last * buffer + (delay + duration));
+        var c_index1 = alphabet.indexOf(cipherMessage[i]);
+        var c_index2 = alphabet.indexOf(cipherMessage[i + 1]); // make two cipher text letters red
+
+        d3.select('.block-' + alphabet[c_index1]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + i).transition().duration(duration).style('color', '#01579b').text(cipherMessage[i]).delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', '#01579b').text(cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
+        delay = i == 0 ? 3000 : lastTiming - (i - 2) * 500; // decolor everything
+
+        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[c_index1]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
+        var forreal = this;
+
+        if (i == 4) {
+          d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration)).on('end', function () {
+            var interactive_container = d3.select('.interactiveContainer');
+            interactive_container.append('h2').text('Test your block cipher skills!');
+            interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)');
+            var textboxes = interactive_container.append('div').attr('class', 'textboxes');
+            var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST'];
+            var dropdown = textboxes.append('select').attr('id', 'dropdown');
+
+            for (var i = 0; i < words.length; i++) {
+              dropdown.append('option').text(words[i]);
+            }
+
+            textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput');
+            textboxes.append('div').attr('id', 'checkbutton').text('check');
+            textboxes.append('div').attr('id', 'shareResult');
+            document.getElementById("checkbutton").onclick = forreal.checkanswer;
+          });
+        } else {
+          d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
+        }
+
+        lastTiming = last * buffer + (delay + duration) + duration;
+      }
+    }
+  }, {
+    key: "checkanswer",
+    value: function checkanswer() {
+      console.log("YO");
+      var selected_word = d3.select('#dropdown option:checked').text();
+      var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST'];
+      var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU'];
+
+      if (selected_word != 'CHOOSE A WORD') {
+        var userinput = document.getElementById("userinput").value;
+        var index = words.indexOf(selected_word);
+        console.log(userinput, ciphered[index]);
+
+        if (userinput.toUpperCase() === ciphered[index]) {
+          console.log("CONGRATS");
+          d3.select("#shareResult").text("congrats!");
+        } else {
+          console.log("try again");
+          d3.select("#shareResult").text("try again!");
+        }
+      }
+    }
+  }]);
+
+  return CreateBlock;
+}();
+
+module.exports = CreateBlock;
+},{"d3":"UzF0"}],"elfx":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -28691,6 +29187,10 @@ var d3 = require('d3'); // You can include local JS files:
 
 var createHistory = require('./create-history');
 
+var createStream = require('./create-stream');
+
+var createBlock = require('./create-block1');
+
 var MyClass = require('./my-class');
 
 var myClassInstance = new MyClass();
@@ -28708,27 +29208,24 @@ sections.each(function (d, i) {
   }
 
   sectionPositions.push(top - startPos);
-}); //var activateFunctions = [createHistory, createStream, createBlock, createModern, createSchemes, createSymmetric, createAsymmetric, createHashRSA]
-
-var activateFunctions = [createHistory];
+});
+var currentIndex = -1;
+var activateFunctions = [createHistory, createStream, createBlock];
 
 function position() {
-  var currentIndex = -1;
-  var pos = window.pageYOffset - 400;
+  var pos = window.pageYOffset - 500;
   var sectionIndex = d3.bisect(sectionPositions, pos);
   sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+  var newInstance = new activateFunctions[sectionIndex]();
 
   if (currentIndex !== sectionIndex) {
     dispatch.call('active', this, sectionIndex);
     currentIndex = sectionIndex;
-  } // currently selects the grey box, will change as we add visualizations
-
-
-  var newInstance = new activateFunctions[sectionIndex]();
-  newInstance.start();
+    newInstance.start();
+  }
 }
 
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
-},{"d3":"UzF0","./create-history":"HZPL","./my-class":"elfx"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.568fc572.js.map
+},{"d3":"UzF0","./create-history":"HZPL","./create-stream":"RnAV","./create-block1":"s4iG","./my-class":"elfx"}]},{},["Focm"], null)
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.9c043a35.js.map

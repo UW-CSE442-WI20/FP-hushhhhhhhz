@@ -3,7 +3,7 @@ const d3 = require('d3');
 class CreateBlock {
 
 	constructor() {
-		this.checkanswer = this.checkanswer.bind(this)
+		// this.checkanswer = this.checkanswer.bind(this)
 	}
 
 	start() {
@@ -42,28 +42,28 @@ class CreateBlock {
 
 		var interactive_container = everything.append("div").attr('class', 'interactiveContainer')
 
-		var interactive_container = d3.select('.interactiveContainer')
-		interactive_container.append('h2').text('Test your block cipher skills!')
-		interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
-		var textboxes = interactive_container.append('div').attr('class', 'textboxes')
+		// var interactive_container = d3.select('.interactiveContainer')
+		// interactive_container.append('h2').text('Test your block cipher skills!')
+		// interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
+		// var textboxes = interactive_container.append('div').attr('class', 'textboxes')
 
-		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
-		var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
-		var dropdown = textboxes.append('select').attr('id', 'dropdown')
+		// var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+		// var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
+		// var dropdown = textboxes.append('select').attr('id', 'dropdown')
 
-		for (var i = 0; i < words.length; i++) {
-			dropdown.append('option').text(words[i])
-		}
+		// for (var i = 0; i < words.length; i++) {
+		// 	dropdown.append('option').text(words[i])
+		// }
 
-		textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
+		// textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
 
-		textboxes.append('div')
-			.attr('id', 'checkbutton')
-			.text('check')
+		// textboxes.append('div')
+		// 	.attr('id', 'checkbutton')
+		// 	.text('check')
 
-		textboxes.append('div').attr('id', 'shareResult')
+		// textboxes.append('div').attr('id', 'shareResult')
 
-		document.getElementById("checkbutton").onclick = this.checkanswer;
+		// document.getElementById("checkbutton").onclick = this.checkanswer;
 	}
 
 
@@ -410,40 +410,43 @@ class CreateBlock {
 			
 			var forreal = this;
 			
-			// if (i == 4) {
-			// 	d3.select('.block-' + alphabet[c_index2])
-			// 		.transition()
-			// 		.duration(duration)
-			// 		.style('background-color', 'transparent')
-			// 		.delay((last * buffer)+(delay + duration))
-			// 		.on('end', function() {
-			// 			var interactive_container = d3.select('.interactiveContainer')
-			// 			interactive_container.append('h2').text('Test your block cipher skills!')
-			// 			interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
-			// 			var textboxes = interactive_container.append('div').attr('class', 'textboxes')
+			if (i == 4) {
+				d3.select('.block-' + alphabet[c_index2])
+					.transition()
+					.duration(duration)
+					.style('background-color', 'transparent')
+					.delay((last * buffer)+(delay + duration))
+					.on('end', function() {
+						var interactive_container = d3.select('.interactiveContainer')
+						interactive_container.append('h2').text('Test your block cipher skills!')
+						interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
+						var textboxes = interactive_container.append('div').attr('class', 'textboxes')
 
-			// 			var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'CREATIVE', 'ACTIVITY']
-			// 			var dropdown = textboxes.append('select')
-						
-			// 			for(var i = 0; i < words.length; i++){
-			// 				dropdown.append('option').text(words[i])
-			// 			}
+						var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+						var dropdown = textboxes.append('select').attr('id', 'dropdown')
 
-			// 			var userinput = textboxes.append('input').style('margin-left', '20px')
-			// 			var submitbutton = textboxes.append('div')
-			// 				.attr('id', 'checkbutton')
-			// 				.text('check')
+						for (var i = 0; i < words.length; i++) {
+							dropdown.append('option').text(words[i])
+						}
+
+						textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
+
+						textboxes.append('div')
+							.attr('id', 'checkbutton')
+							.text('check')
+
+						textboxes.append('div').attr('id', 'shareResult')
 							
-			// 			document.getElementById("checkbutton").onclick = forreal.checkanswer;
+						document.getElementById("checkbutton").onclick = forreal.checkanswer;
 
-			// 		});
-			// } else {
-			d3.select('.block-' + alphabet[c_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration));
-			// }
+					});
+			} else {
+				d3.select('.block-' + alphabet[c_index2])
+					.transition()
+					.duration(duration)
+					.style('background-color', 'transparent')
+					.delay((last * buffer)+(delay + duration));
+			}
 			
 			lastTiming = (last * buffer)+(delay + duration) + duration
 		}

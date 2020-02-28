@@ -51,6 +51,7 @@ class Symmetric {
         d3.select("#encryption_display").attr('hidden', 'true')
         d3.select("#decryption_display").attr('hidden', 'true')
         d3.select("#text2").attr('hidden', "true") 
+        d3.select("#text3").attr('hidden', "true")
         d3.select("#text4").attr('hidden', "true")
 
     }

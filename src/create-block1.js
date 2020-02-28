@@ -33,13 +33,13 @@ class CreateBlock {
 		var text_container = block_container.append('div').attr('class', 'text_container')
 		text_container.append('div').attr('class', 'rules');
 		
-		// this.transitions(plain_text_pairs, cipher_text_pairs, 0);
+		this.transitions(plain_text_pairs, cipher_text_pairs, 0);
 
 		var encryption = text_container.append('div').attr('class', 'encryption');
 		encryption.append('div').attr('class', 'block_message').text("");
 		encryption.append('div').attr('class', 'cipher_message').text("");
 
-		this.message_transition()
+		// this.message_transition()
 		
 	}
 
@@ -186,8 +186,212 @@ class CreateBlock {
 
 			lastTiming = (last * buffer)+(delay + duration) + duration
 		}
+	}
 
+	transitions(plain_text_pairs, cipher_text_pairs, i) {
+		var rule = (i==0) ? "column" : "row"; 
 
+		var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text( rule[0].toUpperCase() + rule.substr(1, rule.length) + " rule:")
+		var plain_text = column_ex.append('div').attr('class', 'example')
+
+		plain_text.append('div').text(plain_text_pairs[i][0]).attr('class', 'block_letter')
+
+		plain_text.append('div').text(plain_text_pairs[i][1]).attr('class', 'block_letter')
+
+		var cipher_text = column_ex.append('div').attr('class', 'example')
+		cipher_text.append('div').attr('id', rule + '_cipher_1').attr('class', 'block_letter')
+		cipher_text.append('div').attr('id', rule + '_cipher_2').attr('class', 'block_letter')
+		
+		var duration = 500;
+		var delay = 1000;
+
+		// color the plain text letters in the grid (red)
+		d3.select('.block-' + plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay(0);
+		d3.select('.block-' + plain_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay(0);
+
+		// color the plain text letters in the grid (light red)
+		d3.select('.block-' + plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', '#ffcccc')
+			.delay(duration + delay);
+		d3.select('.block-' + plain_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('background-color', '#ffcccc')
+			.delay(duration + delay);
+
+		// color the cipher text letters in the grid (red)
+		d3.select('.block-' + cipher_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay((duration + delay));
+		d3.select('.block-' + cipher_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay((duration + delay));
+
+		// add in the ciphered letters at the same time as the cipher text highlight
+		d3.select("#"+ rule + "_cipher_1")
+			.transition()
+			.duration(duration)
+			.text(cipher_text_pairs[i][0])
+			.delay((duration + delay) + 500);
+
+		d3.select("#"+ rule + "_cipher_2")
+			.transition()
+			.duration(duration)
+			.text(cipher_text_pairs[i][1])
+			.delay((duration + delay) + 500);
+
+		
+		// decolor everything 
+		d3.select('.block-' + plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay((duration + delay + 1500));
+		d3.select('.block-' + plain_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay(duration + delay + 1500);
+
+		d3.select('.block-' + cipher_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay(duration + delay + 1500);
+
+		var forreal = this;
+
+		if (i == 0) {
+			d3.select('.block-' + cipher_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay(duration + delay + 1500)
+			.on("end", function () {
+				forreal.transitions(plain_text_pairs, cipher_text_pairs, 1)
+			});
+		}
+
+		if (i == 1) {
+			d3.select('.block-' + cipher_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay(duration + delay + 1500)
+			.on("end", function () {
+				forreal.box_transition(plain_text_pairs, cipher_text_pairs, 2)
+			});
+		}
+	}
+
+	box_transition(plain_text_pairs, cipher_text_pairs, i) {
+		var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text( "Box rule:")
+		var plain_text = column_ex.append('div').attr('class', 'example')
+
+		plain_text.append('div').text(plain_text_pairs[i][0]).attr('class', 'block_letter')
+
+		plain_text.append('div').text(plain_text_pairs[i][1]).attr('class', 'block_letter')
+
+		var cipher_text = column_ex.append('div').attr('class', 'example')
+		cipher_text.append('div').attr('id', 'box_cipher_1').attr('class', 'block_letter')
+		cipher_text.append('div').attr('id', 'box_cipher_2').attr('class', 'block_letter')
+
+		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+		var duration = 500;
+		var delay = 1000;
+		var forreal = this;
+		
+		// highlight M and Y in red 
+		d3.select('.block-' + plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay(0);
+
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 12)])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay(0);
+		
+		// highlight M and Y in pink
+		d3.select('.block-' + plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', '#ffcccc')
+			.delay(delay);
+
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 12)])
+			.transition()
+			.duration(duration)
+			.style('background-color', '#ffcccc')
+			.delay(delay);
+
+		// highlight O and W in red 
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 2)])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'red')
+			.delay(delay + duration);
+
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 10)])
+			.transition()
+			.duration(500)
+			.style('background-color', 'red')
+			.delay(delay + duration);
+
+		// add in the ciphered letters at the same time as the cipher text highlight
+		d3.select("#box_cipher_1")
+			.transition()
+			.duration(duration)
+			.text(cipher_text_pairs[i][0])
+			.delay(delay + duration);
+
+		d3.select("#box_cipher_2")
+			.transition()
+			.duration(duration)
+			.text(cipher_text_pairs[i][1])
+			.delay(delay + duration);
+
+		// decolor everything
+		d3.select('.block-' + plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('background-color', "transparent")
+			.delay(2*(delay+duration));
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 2)])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay(2*(delay+duration));
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 10)])
+			.transition()
+			.duration(duration)
+			.style('background-color', 'transparent')
+			.delay(2*(delay+duration));
+		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 12)])
+			.transition()
+			.duration(duration)
+			.style('background-color', "transparent")
+			.delay(2*(delay+duration))
+			.on('end', function () {
+				forreal.message_transition();
+			});
 	}
 
 }

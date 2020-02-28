@@ -28637,8 +28637,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// You can separate your code out into modules to
-// keep code clean.
+var d3 = require('d3');
+
 var CreateHistory =
 /*#__PURE__*/
 function () {
@@ -28650,6 +28650,48 @@ function () {
     key: "start",
     value: function start() {
       console.log('[CreateHistory]', 'Hello World 5.');
+      document.getElementById('vis').innerHTML = "";
+      var timelineContainer = d3.select('#vis').append('div').attr('class', 'timelineContainer');
+      var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
+      var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
+      var rightDiv = timelineContainer.append('div').attr('class', 'rightDiv');
+      rightDiv.append('br');
+      y = d3.scaleLinear().domain([1450, 1975]).range([0, 700]);
+      var line = d3.line().curve(d3.curveCatmullRom.alpha(0.5)).x(10).y(function (d) {
+        return y(d);
+      });
+      var data = [];
+
+      for (var i = 1467; i < 1975; i++) {
+        data.push(i);
+      }
+
+      var totalLength = 600;
+      d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "black").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(8000).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
+      eventHash = {
+        "1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
+        "1553": "Vigenere cipher described by Giovan Battista Bellaso",
+        "1678": "Robert Hooke publishes first one way function (related to RSA)",
+        "1854": "playfair invented by Sir Charles Wheatstone",
+        "1863": "first published solution to vigenere cipher, authored by Kasiski",
+        // "1917" : "Gilbert Vernam proposed one time pad, a stream cipher",
+        "1923": "enigma decoding machine invented by alan turing and co.",
+        "1960": "cryptographic hash functions were first used in computers for passwords",
+        "1975": "DES, data encryption standard in 1975 (an early symmetric key encryption)" // "2001": "SHA-2 published in 2001, SHA-3 in 2015",
+        // "2015": "SHA-2 published in 2001, SHA-3 in 2015",
+
+      };
+      var i = 0;
+      var delay = 1000;
+
+      for (var key in eventHash) {
+        var side = i % 2 == 0 ? leftDiv : rightDiv;
+        var eventBox = side.append('div');
+        eventBox.transition().attr('class', 'eventBox').attr('id', 'eventBox' + i).delay(delay * i);
+        eventBox.append('div').transition().attr('class', 'year').text(key).delay(delay * i);
+        eventBox.append('div').transition().attr('class', 'event').text(eventHash[key]).delay(delay * i);
+        i += 1;
+      }
     }
   }]);
 
@@ -28657,7 +28699,224 @@ function () {
 }();
 
 module.exports = CreateHistory;
-},{}],"elfx":[function(require,module,exports) {
+},{"d3":"UzF0"}],"RnAV":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var CreateStream =
+/*#__PURE__*/
+function () {
+  function CreateStream() {
+    _classCallCheck(this, CreateStream);
+  }
+
+  _createClass(CreateStream, [{
+    key: "start",
+    value: function start() {
+      console.log('[CreateStream]', 'Hello World 5.');
+      initialMessage = "MESSAGE";
+      initialKey = "KEYKEYK";
+      initialCipher = "WIQCEEO";
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+      var alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var alphaAlpha = alphabet.concat(alphabet2);
+      document.getElementById('vis').innerHTML = "";
+      var stream_container = d3.select('#vis').append('div').attr('class', 'streamContainer');
+      var message = stream_container.append('div').attr('class', 'message');
+
+      for (var i = 0; i < initialMessage.length; i++) {
+        var index = message.append('div').attr('id', 'index' + i).attr('class', 'index');
+        index.append('div').attr('class', 'letter').text(initialMessage[i]);
+        index.append('div').attr('class', 'key').text(initialKey[i]);
+        index.append('div').attr('class', 'cipher');
+      } // TABLE 1
+
+
+      var table_div = stream_container.append('div').attr('class', 'tableDiv');
+      var table = table_div.append('table');
+      var thead = table.append('thead');
+      var tbody = table.append('tbody');
+      thead.append('tr').selectAll('th').data(alphabet).enter().append('th').text(function (letter) {
+        return letter;
+      }).attr('class', function (letter) {
+        return letter;
+      });
+      var rows = tbody.selectAll('tr').data([1]).enter().append('tr');
+      var cells = rows.selectAll('td').data(function (row) {
+        return alphabet.map(function (letter) {
+          return {
+            column: letter,
+            value: alphabet.indexOf(letter)
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('class', function (d) {
+        return d.column;
+      }); //TABLE 2
+
+      var table2 = table_div.append('table');
+      var thead2 = table2.append('thead');
+      var tbody2 = table2.append('tbody');
+      thead2.append('tr').selectAll('th').data(alphabet2).enter().append('th').text(function (letter) {
+        return letter;
+      }).attr('class', function (letter) {
+        return letter;
+      });
+      var rows2 = tbody2.selectAll('tr').data([1]).enter().append('tr');
+      var cells2 = rows2.selectAll('td').data(function (row) {
+        return alphabet2.map(function (letter) {
+          return {
+            column: letter,
+            value: alphabet2.indexOf(letter) + 13
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('class', function (d) {
+        return d.column;
+      }); // MATH CALCULATIONS
+
+      var math_div = table_div.append('div').attr('class', 'math');
+      var plain_text = math_div.append('p').text('P').style('color', '#00897b').attr('id', 'plain');
+      var plus = math_div.append('p').text(' + ');
+      var key = math_div.append('p').text('K').style('color', '#fdd835').attr('id', 'key');
+      var mod = math_div.append('p').text(' mod 26 = ');
+      var cipher = math_div.append('p').text('C').style('color', '#e53935').attr('id', 'cipher');
+      var m = 3000;
+
+      for (var i = 0; i < initialMessage.length; i++) {
+        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', '#00897b').delay(m * i);
+        d3.select('#index' + i).select('.key').transition().duration(500).style('color', '#fdd835').delay(m * i);
+        d3.select('#key').transition().duration(500).text(alphaAlpha.indexOf(initialKey[i])).delay(m * i);
+        d3.select('#plain').transition().duration(500).text(alphaAlpha.indexOf(initialMessage[i])).delay(m * i);
+
+        if (initialMessage[i] === initialKey[i]) {
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#7cb342').delay(m * i);
+        } else {
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#00897b').delay(m * i);
+          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', '#fdd835').delay(m * i);
+        }
+
+        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', '#e53935').text(initialCipher[i]).delay(1000 + m * i);
+        d3.select('#cipher').transition().duration(500).text(alphaAlpha.indexOf(initialCipher[i])).delay(1000 + m * i);
+        d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'white').delay(1000 + m * i);
+        d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'white').delay(1000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', '#e53935').delay(1000 + m * i);
+        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', 'black').delay(1000 + m * i);
+        d3.select('#index' + i).select('.key').transition().duration(500).style('color', 'black').delay(1000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'white').delay(2000 + m * i);
+      }
+
+      d3.select('#plain').transition().duration(50).text('P').delay(20000);
+      d3.select('#cipher').transition().duration(50).text('C').delay(20000);
+      d3.select('#key').transition().duration(50).text('K').delay(20000);
+      inputMessage = "";
+      inputKey = "";
+      resultCipher = "";
+      var inputContainer = d3.select('#vis').append('div').attr('class', 'inputContainer');
+      var inputs = inputContainer.append('div').attr('class', 'inputs');
+      var results = inputContainer.append('div').attr('class', 'results');
+      results.append('br');
+      results.append('br');
+      inputs.append('text').text('type your message below and hit select:');
+      inputs.append('br');
+      inputs.append('br');
+      var textInput = inputs.append('input').attr('id', 'textInput').attr('style', 'text');
+      var inputButton = inputs.append('button').attr('id', 'inputButton');
+      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").style('color', '#00897b');
+      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").style('color', '#fdd835');
+      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").style('color', '#e53935');
+      inputs.append('br');
+      inputs.append('br');
+      inputs.append('text').text('hover over the keys below to see the cipher:');
+      inputs.append('br');
+      inputs.append('br');
+      var row1 = ["RNC", "ONQ", "CKO", "LYY", "FGU"];
+      var row2 = ["MIO", "CAY", "ZUU", "KRK", "BMW"];
+      var row3 = ["QXG", "UXV", "HPV", "YUH", "LDG"];
+      var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
+      var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
+      var keys = [row1, row2, row3, row4, row5];
+      var keyTable = inputs.append('table').attr('class', 'keyTable');
+      var theadKey = keyTable.append('thead');
+      var tbodyKey = keyTable.append('tbody');
+
+      function calculateCipher() {
+        if (inputMessage.length > 0) {
+          for (var i = 0; i < inputMessage.length; i++) {
+            p = alphaAlpha.indexOf(inputMessage[i]);
+            k = alphaAlpha.indexOf(inputKey[i]);
+            c = (p + k) % 26;
+            console.log(c);
+            resultCipher = resultCipher + alphaAlpha[c];
+            console.log(resultCipher);
+          }
+        }
+      }
+
+      function handleMouseOver() {
+        // Add interactivity
+        d3.select(this).style('background-color', '#fdd835');
+        inputKey = this.id;
+        var newKey = "";
+
+        if (inputMessage.length > 0) {
+          for (var i = 0; i < inputMessage.length; i++) {
+            newKey = newKey + inputKey[i % 3];
+          }
+
+          inputKey = newKey;
+        }
+
+        document.getElementById('keyDisplay').innerHTML = "keytext:     " + inputKey;
+        calculateCipher();
+        document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
+      }
+
+      function handleMouseOut() {
+        d3.select(this).style('background-color', 'white');
+        inputKey = "";
+        resultCipher = "";
+        document.getElementById('keyDisplay').innerHTML = "keytext:    ";
+        document.getElementById('cipherDisplay').innerHTML = "ciphertext: ";
+      }
+
+      var rowsKey = tbodyKey.selectAll('tr').data(keys).enter().append('tr');
+      var cellsKey = rowsKey.selectAll('td').data(function (row, i) {
+        return keys.map(function (row) {
+          return {
+            column: i,
+            value: row[i]
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('id', function (d) {
+        return d.value;
+      }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
+      ;
+      d3.select('#inputButton').text("SELECT");
+      d3.select('#inputButton').on('click', function () {
+        inputMessage = document.getElementById('textInput').value;
+        inputMessage = inputMessage.replace(/\s+/g, '');
+        inputMessage = inputMessage.toUpperCase();
+        document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
+        document.getElementById('textInput').value = "";
+      });
+    }
+  }]);
+
+  return CreateStream;
+}();
+
+module.exports = CreateStream;
+},{"d3":"UzF0"}],"elfx":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -28691,6 +28950,8 @@ var d3 = require('d3'); // You can include local JS files:
 
 var createHistory = require('./create-history');
 
+var createStream = require('./create-stream');
+
 var MyClass = require('./my-class');
 
 var myClassInstance = new MyClass();
@@ -28708,27 +28969,24 @@ sections.each(function (d, i) {
   }
 
   sectionPositions.push(top - startPos);
-}); //var activateFunctions = [createHistory, createStream, createBlock, createModern, createSchemes, createSymmetric, createAsymmetric, createHashRSA]
-
-var activateFunctions = [createHistory];
+});
+var currentIndex = -1;
+var activateFunctions = [createHistory, createStream];
 
 function position() {
-  var currentIndex = -1;
   var pos = window.pageYOffset - 400;
   var sectionIndex = d3.bisect(sectionPositions, pos);
   sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+  var newInstance = new activateFunctions[sectionIndex]();
 
   if (currentIndex !== sectionIndex) {
     dispatch.call('active', this, sectionIndex);
     currentIndex = sectionIndex;
-  } // currently selects the grey box, will change as we add visualizations
-
-
-  var newInstance = new activateFunctions[sectionIndex]();
-  newInstance.start();
+    newInstance.start();
+  }
 }
 
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
-},{"d3":"UzF0","./create-history":"HZPL","./my-class":"elfx"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.568fc572.js.map
+},{"d3":"UzF0","./create-history":"HZPL","./create-stream":"RnAV","./my-class":"elfx"}]},{},["Focm"], null)
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.80a53e83.js.map

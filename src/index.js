@@ -24,20 +24,18 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-//var activateFunctions = [createHistory, createStream, createBlock, createModern, createSchemes, createSymmetric, createAsymmetric, createHashRSA]
 var activateFunctions = [createHistory, createStream]
 function position() {
     var pos = window.pageYOffset - 400;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
-	var newInstance = new activateFunctions[sectionIndex]();
+    var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);
     	currentIndex = sectionIndex;
 		newInstance.start();
     }
-    // currently selects the grey box, will change as we add visualizations
 }
 
 var dispatch = d3.dispatch("active", "progress");

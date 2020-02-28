@@ -17,7 +17,6 @@
   margin: 0 0 0 50px;
   height: 650px;
   width: 800px;
-  background-color: #F1F1F1;
 }
 
 .message {
@@ -80,10 +79,6 @@ table {
 	font-size: 20px;
 }
 
-#graphic {
-  padding-top: 0px;
-}
-
 h1 {
   text-align: center
 }
@@ -95,4 +90,47 @@ p {
 #key, #cipher, #plain {
   width: 20px;
   text-align: center;
+}
+
+.timelineContainer {
+	display: flex;
+	height: 600px;
+}
+
+.line {
+	background-color: gray;
+	align: center;
+	width: 4px;
+	height: 100%;
+	margin-top: 15px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+}
+
+.lineDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.leftDiv, .rightDiv {
+	width: 400px;
+	height: 100%
+}
+
+.eventBox {
+	background-color: #F1F1F1;
+	height: 125px;
+	border-radius: 10px;
+	margin: 30px;
+}
+
+.year {
+	padding: 10px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.event {
+	padding: 10px;
 }

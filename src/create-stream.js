@@ -155,12 +155,12 @@ class CreateStream {
 		d3.selectAll('.'+initialMessage[i])
             .transition()
             .duration(500)
-            .style('background-color', '#F1F1F1')
+            .style('background-color', 'white')
             .delay(1000+m*i);
         d3.selectAll('.'+initialKey[i])
             .transition()
             .duration(500)
-            .style('background-color', '#F1F1F1')
+            .style('background-color', 'white')
             .delay(1000+m*i);
 		d3.selectAll('.'+initialCipher[i])
             .transition()
@@ -181,7 +181,7 @@ class CreateStream {
 		d3.selectAll('.'+initialCipher[i])
             .transition()
             .duration(500)
-            .style('background-color', '#F1F1F1')
+            .style('background-color', 'white')
             .delay(2000+m*i);
 	}
 	d3.select('#plain')
@@ -268,7 +268,7 @@ class CreateStream {
 		document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
 	}
 	function handleMouseOut() {
-    	d3.select(this).style('background-color', '#F1F1F1')      
+    	d3.select(this).style('background-color', 'white')      
 		inputKey = ""
 		resultCipher = ""
 		document.getElementById('keyDisplay').innerHTML = "keytext:    ";

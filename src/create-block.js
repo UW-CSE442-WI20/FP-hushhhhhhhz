@@ -70,13 +70,13 @@ class CreateBlock {
 			d3.select("#encr_block_" + i)
 				.transition()
 				.duration(duration)
-				.style('color', 'red')
+				.style('color', '#e53935')
 				.delay((last * 2500)+(delay + duration));
 
 			d3.select("#encr_block_" + (i+1))
 				.transition()
 				.duration(duration)
-				.style('color', 'red')
+				.style('color', '#e53935')
 				.delay((last * 2500)+(delay + duration));
 			
 			if(i == 0) {
@@ -97,7 +97,7 @@ class CreateBlock {
 				d3.select('.block-' + alphabet[index + 2])
 					.transition()
 					.duration(duration)
-					.style('background-color', 'red')
+					.style('background-color', '#e53935')
 					.delay((last * 2000)+(delay + duration));
 
 				d3.select('.block-' + alphabet[index + 5])
@@ -135,7 +135,7 @@ class CreateBlock {
 				d3.select('.block-' + alphabet[index + 15])
 					.transition()
 					.duration(duration)
-					.style('background-color', 'red')
+					.style('background-color', '#e53935')
 					.delay((last * 2000)+(delay + duration));
 				d3.select('.block-' + alphabet[index + 16])
 					.transition()
@@ -162,12 +162,12 @@ class CreateBlock {
 						d3.select('.block-' + alphabet[index])
 							.transition()
 							.duration(duration)
-							.style('background-color', 'red')
+							.style('background-color', '#e53935')
 							.delay(500);
 						d3.select('.block-' + alphabet[index + 17])
 							.transition()
 							.duration(duration)
-							.style('background-color', 'red')
+							.style('background-color', '#e53935')
 							.delay(500);
 
 						d3.select("#encr_block_" + actual_i)
@@ -277,7 +277,7 @@ class CreateBlock {
 				d3.select('.block-' + alphabet[index + 1])
 					.transition()
 					.duration(duration)
-					.style('background-color', 'red')
+					.style('background-color', '#e53935')
 					.delay((last * 9000)+(delay + duration));
 				
 				d3.select('.block-' + alphabet[index + 5])
@@ -305,7 +305,7 @@ class CreateBlock {
 				d3.select('.block-' + alphabet[index + 15])
 					.transition()
 					.duration(duration)
-					.style('background-color', 'red')
+					.style('background-color', '#e53935')
 					.delay((last * 9000)+(delay + duration));
 				d3.select('.block-' + alphabet[index + 16])
 					.transition()
@@ -326,12 +326,12 @@ class CreateBlock {
 						d3.select('.block-' + alphabet[index])
 							.transition()
 							.duration(duration)
-							.style('background-color', 'red')
+							.style('background-color', '#e53935')
 							.delay(500);
 						d3.select('.block-' + alphabet[index + 17])
 							.transition()
 							.duration(duration)
-							.style('background-color', 'red')
+							.style('background-color', '#e53935')
 							.delay(500);
 
 						d3.select("#encr_block_" + actual_i)
@@ -391,7 +391,7 @@ class CreateBlock {
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay(0);
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 1)])
 			.transition()
@@ -435,7 +435,7 @@ class CreateBlock {
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 12)])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay(0);
 		
 		// make everything pink
@@ -455,13 +455,13 @@ class CreateBlock {
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 2)])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay(delay + duration);
 
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 10)])
 			.transition()
 			.duration(500)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay(delay + duration);
 
 		// add in the ciphered letters at the same time as the cipher text highlight
@@ -549,12 +549,12 @@ class CreateBlock {
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay(0);
 		d3.select('.block-' + plain_text_pairs[i][1])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay(0);
 
 		// color the plain text letters in the grid (light red)
@@ -573,12 +573,12 @@ class CreateBlock {
 		d3.select('.block-' + cipher_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay((duration + delay));
 		d3.select('.block-' + cipher_text_pairs[i][1])
 			.transition()
 			.duration(duration)
-			.style('background-color', 'red')
+			.style('background-color', '#e53935')
 			.delay((duration + delay));
 
 		// add in the ciphered letters at the same time as the cipher text highlight

@@ -28,7 +28,7 @@ var currentIndex = -1;
 //var activateFunctions = [createHistory, createStream, createBlock, createModern, createSchemes, createSymmetric, createAsymmetric, createHashRSA]
 var activateFunctions = [createHistory, createStream, createBlock]
 function position() {
-    var pos = window.pageYOffset - 600;
+    var pos = window.pageYOffset - 500;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 	console.log("curr index", currentIndex)

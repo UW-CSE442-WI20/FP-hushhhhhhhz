@@ -207,29 +207,31 @@ class CreateStream {
 	var results = inputContainer.append('div').attr('class', 'results');
 	results.append('br')
 	results.append('br')
-    inputs.append('text').text('type your message below and hit select:')
+    inputs.append('text').text('type your message below and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0')
 	inputs.append('br')
 	inputs.append('br')
 	var textInput = inputs.append('input')
                         .attr('id', 'textInput')
                         .attr('style', 'text')
+						.attr('style', 'opacity: 0')
     var inputButton = inputs.append('button')
                         .attr('id', 'inputButton')
+						.attr('style', 'opacity: 0')
 	var textDisplay = results.append('p')
 						.attr('id', 'textDisplay')
 						.text("plaintext: ")
-						.style('color', '#00897b')
+						.attr('style', 'opacity: 0')
 	var keyDisplay = results.append('p')
                         .attr('id', 'keyDisplay')
                         .text("keytext: ")
-						.style('color', '#fdd835')
+						.attr('style', 'opacity: 0')
 	var cipherDisplay = results.append('p')
                         .attr('id', 'cipherDisplay')
                         .text("ciphertext: ")
-						.style('color', '#e53935')
+						.attr('style', 'opacity: 0')
 	inputs.append('br')
 	inputs.append('br')
-	inputs.append('text').text('hover over the keys below to see the cipher:')
+	inputs.append('text').text('hover over the keys below to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0')
 	inputs.append('br')
 	inputs.append('br')
 	var row1 = ["RNC","ONQ","CKO","LYY","FGU"];
@@ -238,7 +240,7 @@ class CreateStream {
 	var row4 = ["STD","HVO","JEQ","PYL","DNO"];
 	var row5 = ["QDA","HZQ","WKV","XDF","UPR"];
 	var keys = [row1, row2, row3, row4, row5];
-	var keyTable = inputs.append('table').attr('class', 'keyTable')
+	var keyTable = inputs.append('table').attr('class', 'keyTable').attr('style', 'opacity: 0')
 	var theadKey = keyTable.append('thead');
     var tbodyKey = keyTable.append('tbody');
 	function calculateCipher() {
@@ -299,7 +301,14 @@ class CreateStream {
 		document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
 		document.getElementById('textInput').value = ""
 	});
-  }
+	d3.selectAll('.instruction').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
+  	d3.select('#textInput').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
+	d3.select('#inputButton').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
+	d3.select('#textDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(10000).style('color', '#00897b')
+	d3.select('#keyDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(10000).style('color', '#fdd835')
+	d3.select('#cipherDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(10000).style('color', '#e53935')
+	d3.select('.keyTable').transition().duration(200).attr('style', 'opacity: 1').delay(10000)
+	}
 }
 
 module.exports = CreateStream;

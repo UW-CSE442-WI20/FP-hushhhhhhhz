@@ -86,11 +86,11 @@ p {
   float: right;
 }
 
-.example, .rules, .block_message, .cipher_message {
+.example, .rules, .block_message, .cipher_message, .textboxes {
   display: flex;
 }
 
-.blockContainer {
+.blockContainer, .interactiveContainer {
   margin: 50px;
 }
 
@@ -120,4 +120,17 @@ p {
 
 .encryption {
   margin-top: 25px;
+}
+
+#checkbutton {
+  border-radius: 5px;
+  margin-left: 15px;
+  border: 1px solid darkgray;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#shareResult {
+  margin-left: 10px;
+  font-size: 30px;
 }

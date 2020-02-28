@@ -3,7 +3,7 @@ const d3 = require('d3');
 class CreateBlock {
 
 	constructor() {
-
+		this.checkanswer = this.checkanswer.bind(this)
 	}
 
 	start() {
@@ -20,7 +20,8 @@ class CreateBlock {
 
 		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-		var block_container = d3.select("#vis").append("div").attr('class', 'blockContainer')
+		var everything = d3.select("#vis").append("div").attr('class', 'everything')
+		var block_container = everything.append("div").attr('class', 'blockContainer')
 
 		var grid = block_container.append('div').attr('class', 'grid');
 
@@ -37,156 +38,34 @@ class CreateBlock {
 
 		var encryption = text_container.append('div').attr('class', 'encryption');
 		encryption.append('div').attr('class', 'block_message').text("");
-		encryption.append('div').attr('class', 'cipher_message').text("");
+		encryption.append('div').attr('class', 'cipher_message').text("");		
 
-		// this.message_transition()
-		
-	}
+		var interactive_container = everything.append("div").attr('class', 'interactiveContainer')
 
-	message_transition() {
-		var initialMessage = "SECRET";
-		var cipherMessage = "UCBSDU"
-		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-		
-		var duration = 1000
-		var buffer = 2500;
+		var interactive_container = d3.select('.interactiveContainer')
+		interactive_container.append('h2').text('Test your block cipher skills!')
+		interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
+		var textboxes = interactive_container.append('div').attr('class', 'textboxes')
 
-		for(var i=0; i < initialMessage.length; i++){
-			var delay = 1000
-			d3.select('.block_message').append("div").attr('id', "encr_block_"+i).attr('class', 'block_msg_letter')
-				.transition()
-				.duration(duration)
-				.text(initialMessage[(i == 0) ? 0 : i])
-				.delay(delay);
+		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+		var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
+		var dropdown = textboxes.append('select').attr('id', 'dropdown')
 
-			d3.select('.cipher_message').append("div").attr('id', "decr_block_"+i).attr('class', 'block_msg_letter update_margin')
-				.transition()
-				.duration(duration)
-				.delay(delay);
+		for (var i = 0; i < words.length; i++) {
+			dropdown.append('option').text(words[i])
 		}
 
-		var lastTiming = 0;
-		for(var i=0; i < initialMessage.length; i+=2){
-			var delay = (i==0) ? 0 : (lastTiming - ((i/2) * 3000));
+		textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
 
-			var last = i/2;
-			
-			d3.select("#encr_block_" + i)
-				.transition()
-				.duration(duration)
-				.style('color', 'red')
-				.delay((last * buffer)+(delay + duration));
+		textboxes.append('div')
+			.attr('id', 'checkbutton')
+			.text('check')
 
-			d3.select("#encr_block_" + (i+1))
-				.transition()
-				.duration(duration)
-				.style('color', 'red')
-				.delay((last * buffer)+(delay + duration));	
-			
+		textboxes.append('div').attr('id', 'shareResult')
 
-			var e_index1 = alphabet.indexOf(initialMessage[i])
-			var e_index2 = alphabet.indexOf(initialMessage[i+1])
-
-			// make two plain text letters red 
-			d3.select('.block-' + alphabet[e_index1])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'red')
-				.delay((last * buffer)+(delay + duration));
-			d3.select('.block-' + alphabet[e_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'red')
-				.delay((last * buffer)+(delay + duration));
-
-			console.log("first" + i, (last * buffer)+(delay + duration) + duration)
-
-			delay = (i==0) ? 2000 : (lastTiming - ((i/2) * 1000) - (1000*(i-2)))
-
-			d3.select("#encr_block_" + i)
-				.transition()
-				.duration(duration)
-				.style('color', 'black')
-				.delay((last * buffer)+(delay + duration));
-
-			d3.select("#encr_block_" + (i+1))
-				.transition()
-				.duration(duration)
-				.style('color', 'black')
-				.delay((last * buffer)+(delay + duration));	
-			
-			// make two plain text letters pink
-			d3.select('.block-' + alphabet[e_index1])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'pink')
-				.delay((last * buffer)+(delay + duration));
-			d3.select('.block-' + alphabet[e_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'pink')
-				.delay((last * buffer)+(delay + duration));
-
-			var c_index1 = alphabet.indexOf(cipherMessage[i])
-			var c_index2 = alphabet.indexOf(cipherMessage[i+1])
-			
-			// make two cipher text letters red
-			d3.select('.block-' + alphabet[c_index1])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'red')
-				.delay((last * buffer)+(delay + duration));
-			d3.select('.block-' + alphabet[c_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'red')
-				.delay((last * buffer)+(delay + duration));
-
-			d3.select("#decr_block_" + i)
-				.transition()
-				.duration(duration)
-				.style('color', 'blue')
-				.text(cipherMessage[i])
-				.delay((last * buffer)+(delay + duration));
-
-			d3.select("#decr_block_" + (i+1))
-				.transition()
-				.duration(duration)
-				.style('color', 'blue')
-				.text(cipherMessage[i+1])
-				.delay((last * buffer)+(delay + duration));	
-
-			console.log("second" + i, (last * buffer)+(delay + duration) + duration)
-
-			delay = (i==0) ? 3000 : (lastTiming - ((i-2) * 500))
-			
-			// decolor everything
-			d3.select('.block-' + alphabet[e_index1])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration));
-			d3.select('.block-' + alphabet[e_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration));
-			d3.select('.block-' + alphabet[c_index1])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration));
-			d3.select('.block-' + alphabet[c_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration));
-
-			console.log("third" + i, (last * buffer)+(delay + duration) + duration)
-
-			lastTiming = (last * buffer)+(delay + duration) + duration
-		}
+		document.getElementById("checkbutton").onclick = this.checkanswer;
 	}
+
 
 	transitions(plain_text_pairs, cipher_text_pairs, i) {
 		var rule = (i==0) ? "column" : "row"; 
@@ -245,12 +124,14 @@ class CreateBlock {
 		d3.select("#"+ rule + "_cipher_1")
 			.transition()
 			.duration(duration)
+			.style('color', 'blue')
 			.text(cipher_text_pairs[i][0])
 			.delay((duration + delay) + 500);
 
 		d3.select("#"+ rule + "_cipher_2")
 			.transition()
 			.duration(duration)
+			.style('color', 'blue')
 			.text(cipher_text_pairs[i][1])
 			.delay((duration + delay) + 500);
 
@@ -359,12 +240,14 @@ class CreateBlock {
 		d3.select("#box_cipher_1")
 			.transition()
 			.duration(duration)
+			.style('color', 'blue')
 			.text(cipher_text_pairs[i][0])
 			.delay(delay + duration);
 
 		d3.select("#box_cipher_2")
 			.transition()
 			.duration(duration)
+			.style('color', 'blue')
 			.text(cipher_text_pairs[i][1])
 			.delay(delay + duration);
 
@@ -392,6 +275,201 @@ class CreateBlock {
 			.on('end', function () {
 				forreal.message_transition();
 			});
+	}
+
+	message_transition() {
+		var initialMessage = "SECRET";
+		var cipherMessage = "UCBSDU"
+		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+		
+		var duration = 1000
+		var buffer = 2500;
+
+		for(var i=0; i < initialMessage.length; i++){
+			var delay = 1000
+			d3.select('.block_message').append("div").attr('id', "encr_block_"+i).attr('class', 'block_msg_letter')
+				.transition()
+				.duration(duration)
+				.text(initialMessage[(i == 0) ? 0 : i])
+				.delay(delay);
+
+			d3.select('.cipher_message').append("div").attr('id', "decr_block_"+i).attr('class', 'block_msg_letter update_margin')
+				.transition()
+				.duration(duration)
+				.delay(delay);
+		}
+
+		var lastTiming = 0;
+
+		for(var i=0; i < initialMessage.length; i+=2){
+			var delay = (i==0) ? 0 : (lastTiming - ((i/2) * 3000));
+
+			var last = i/2;
+			
+			d3.select("#encr_block_" + i)
+				.transition()
+				.duration(duration)
+				.style('color', 'red')
+				.delay((last * buffer)+(delay + duration));
+
+			d3.select("#encr_block_" + (i+1))
+				.transition()
+				.duration(duration)
+				.style('color', 'red')
+				.delay((last * buffer)+(delay + duration));	
+			
+
+			var e_index1 = alphabet.indexOf(initialMessage[i])
+			var e_index2 = alphabet.indexOf(initialMessage[i+1])
+
+			// make two plain text letters red 
+			d3.select('.block-' + alphabet[e_index1])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'red')
+				.delay((last * buffer)+(delay + duration));
+			d3.select('.block-' + alphabet[e_index2])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'red')
+				.delay((last * buffer)+(delay + duration));
+
+			delay = (i==0) ? 2000 : (lastTiming - ((i/2) * 1000) - (1000*(i-2)))
+
+			d3.select("#encr_block_" + i)
+				.transition()
+				.duration(duration)
+				.style('color', 'black')
+				.delay((last * buffer)+(delay + duration));
+
+			d3.select("#encr_block_" + (i+1))
+				.transition()
+				.duration(duration)
+				.style('color', 'black')
+				.delay((last * buffer)+(delay + duration));	
+			
+			// make two plain text letters pink
+			d3.select('.block-' + alphabet[e_index1])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'pink')
+				.delay((last * buffer)+(delay + duration));
+			d3.select('.block-' + alphabet[e_index2])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'pink')
+				.delay((last * buffer)+(delay + duration));
+
+			var c_index1 = alphabet.indexOf(cipherMessage[i])
+			var c_index2 = alphabet.indexOf(cipherMessage[i+1])
+			
+			// make two cipher text letters red
+			d3.select('.block-' + alphabet[c_index1])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'red')
+				.delay((last * buffer)+(delay + duration));
+			d3.select('.block-' + alphabet[c_index2])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'red')
+				.delay((last * buffer)+(delay + duration));
+
+			d3.select("#decr_block_" + i)
+				.transition()
+				.duration(duration)
+				.style('color', 'blue')
+				.text(cipherMessage[i])
+				.delay((last * buffer)+(delay + duration));
+
+			d3.select("#decr_block_" + (i+1))
+				.transition()
+				.duration(duration)
+				.style('color', 'blue')
+				.text(cipherMessage[i+1])
+				.delay((last * buffer)+(delay + duration));	
+
+			delay = (i==0) ? 3000 : (lastTiming - ((i-2) * 500))
+			
+			// decolor everything
+			d3.select('.block-' + alphabet[e_index1])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay((last * buffer)+(delay + duration));
+			d3.select('.block-' + alphabet[e_index2])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay((last * buffer)+(delay + duration));
+			d3.select('.block-' + alphabet[c_index1])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay((last * buffer)+(delay + duration));
+			
+			var forreal = this;
+			
+			// if (i == 4) {
+			// 	d3.select('.block-' + alphabet[c_index2])
+			// 		.transition()
+			// 		.duration(duration)
+			// 		.style('background-color', 'transparent')
+			// 		.delay((last * buffer)+(delay + duration))
+			// 		.on('end', function() {
+			// 			var interactive_container = d3.select('.interactiveContainer')
+			// 			interactive_container.append('h2').text('Test your block cipher skills!')
+			// 			interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
+			// 			var textboxes = interactive_container.append('div').attr('class', 'textboxes')
+
+			// 			var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'CREATIVE', 'ACTIVITY']
+			// 			var dropdown = textboxes.append('select')
+						
+			// 			for(var i = 0; i < words.length; i++){
+			// 				dropdown.append('option').text(words[i])
+			// 			}
+
+			// 			var userinput = textboxes.append('input').style('margin-left', '20px')
+			// 			var submitbutton = textboxes.append('div')
+			// 				.attr('id', 'checkbutton')
+			// 				.text('check')
+							
+			// 			document.getElementById("checkbutton").onclick = forreal.checkanswer;
+
+			// 		});
+			// } else {
+			d3.select('.block-' + alphabet[c_index2])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay((last * buffer)+(delay + duration));
+			// }
+			
+			lastTiming = (last * buffer)+(delay + duration) + duration
+		}
+	}
+
+	checkanswer() {
+		console.log("YO");
+		var selected_word = d3.select('#dropdown option:checked').text();
+		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+		var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
+
+		if (selected_word != 'CHOOSE A WORD') {
+			var userinput = document.getElementById("userinput").value
+			var index = words.indexOf(selected_word);
+
+			console.log(userinput, ciphered[index])
+			
+			
+			if (userinput.toUpperCase() === ciphered[index]) {
+				console.log("CONGRATS")
+				d3.select("#shareResult").text("congrats!")
+			}else{
+				console.log("try again")
+				d3.select("#shareResult").text("try again!")
+			}
+		}
 	}
 
 }

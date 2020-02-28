@@ -1,9 +1,9 @@
 const d3 = require('d3')
 const Crypto = require('./crypto')
-const key = require('./images/key.png')
 const lock = require('./images/lock.png')
 const unlock = require('./images/unlock.png')
-const arrow = require('./images/arrow.png')
+const unlocked_key = require('./images/unlocked_key.png')
+const locked_key = require('./images/locked_key.png')
 class Symmetric {
     constructor() {
         this.handleEncrypt = this.handleEncrypt.bind(this)
@@ -18,28 +18,27 @@ class Symmetric {
         this.cryptoInstance = new Crypto(secret)
         this.encryption = this.cryptoInstance.encrypt(message)
         d3.select('#encryption_display').transition().text(this.encryption.ciphertext)
+        d3.select('#decryption_display').transition().text(this.encryption.ciphertext)
         console.log(this.encryption.ciphertext)
-        d3.select("#lock2").attr('src', lock)
-        d3.select('#decrypt_button').attr('hidden', null)
+        d3.select("#decrypt_button").attr('src', locked_key)
         d3.select("#lock").attr('hidden', null)
-        d3.select("#lock2").attr('hidden', null)
-        d3.select("#key2").attr('hidden', null)
+        d3.select("#decrypt_button").attr('hidden', null)
         d3.select("#encryption_display").attr('hidden', null)    
+        d3.select("#decryption_display").attr('hidden', null)    
+
     }
     
     handleDecrypt() {
         let decryption = this.cryptoInstance.decrypt(this.encryption.encrypted_data)
         console.log(decryption)
         d3.select('#decryption_display').attr('hidden', null).transition().text(decryption)
-        d3.select("#lock2").attr('src', unlock)
+        d3.select("#decrypt_button").attr('src', unlock)
     }
 
     handleNewMessage() {
         d3.event.preventDefault();
-        d3.select('#decrypt_button').attr('hidden', 'true')
         d3.select("#lock").attr('hidden', 'true')
-        d3.select("#lock2").attr('hidden', 'true')
-        d3.select("#key2").attr('hidden', 'true')
+        d3.select("#decrypt_button").attr('hidden', 'true')
         d3.select("#encryption_display").attr('hidden', 'true')
         d3.select("#decryption_display").attr('hidden', 'true')
     }
@@ -57,12 +56,15 @@ class Symmetric {
         this.vis.append('div')
             .attr('id', 'randomdiv')
 
-        d3.select('#randomdiv').append('form')
+        d3.select('#randomdiv').append("div")
+            .attr('id', 'first')
+
+        d3.select('#first').append("div")
+            .attr('id', 'input_boxes')
+
+        d3.select('#input_boxes').append('form')
             .attr('id', 'form1')
             .attr('name', 'myform')
-        
-        // d3.select("#form1").append("div")
-        //     .attr('id', 'input_box')
 
         // input
         d3.select("#form1").append('textarea')
@@ -79,54 +81,55 @@ class Symmetric {
             .attr('placeholder','Key to be used (random when empty)')
             .on('input', this.handleNewMessage)
         
-        d3.select("#randomdiv").append("div")
-            .attr('id', 'encrypt')
+        d3.select('#first').append("div")
+            .attr('id', 'shape1')
 
-        d3.select("#encrypt").append('textarea')
+        d3.select("#shape1").append('img')
+            .attr('id', 'unlocked_key')
+            .attr("src", unlocked_key)
+            .on('click', this.handleEncrypt)
+
+        d3.select('#randomdiv').append("div")
+            .attr('id', 'second')
+
+        d3.select('#second').append("div")
+            .attr('id', 'encrypted')
+
+        d3.select("#encrypted").append('textarea')
             .attr('style', "resize: none;")
             .attr('id', 'encryption_display')
             .attr('hidden', 'true')
 
-        d3.select("#randomdiv").append("div")
-            .attr('id', 'decrypt')
+        d3.select('#second').append("div")
+            .attr('id', 'shape2')
 
-        d3.select("#decrypt").append('textarea')
+        d3.select("#shape2").append('img')
+            .attr('id', 'lock')
+            .attr("src", lock)
+            .attr('width', '140')
+            .attr('hidden', 'true')
+
+        d3.select('#randomdiv').append("div")
+            .attr('id', 'third')
+        
+        d3.select('#third').append("div")
+            .attr('id', 'decrypted')
+
+        d3.select("#decrypted").append('textarea')
             .attr('style', "resize: none;")
             .attr('id', 'decryption_display')
             .attr('hidden', 'true')
         
-        this.vis.append("div")
-            .attr('id', 'shapes')
+        d3.select('#third').append("div")
+            .attr('id', 'shape3')
 
-        d3.select("#shapes").append('img')
-            .attr('id', 'unlock')
-            .attr("src", unlock)
-            .attr('width', '10%')
-
-        d3.select("#shapes").append('img')
-            .attr('id', 'key')
-            .attr("src", key)
-            .attr('width', '10%')
-            .on('click', this.handleEncrypt)
-
-        d3.select("#shapes").append('img')
-            .attr('id', 'lock')
-            .attr("src", lock)
-            .attr('width', '10%')
+        d3.select("#shape3").append('img')
+            .attr('id', 'decrypt_button')
+            .attr("src", locked_key)
+            .attr('width', '160')
             .attr('hidden', 'true')
-        
-        d3.select("#shapes").append('img')
-            .attr('id', 'lock2')
-            .attr("src", lock)
-            .attr('width', '10%')
-            .attr('hidden', 'true')
-
-        d3.select("#shapes").append('img')
-            .attr('id', 'key2')
-            .attr("src", key)
-            .attr('width', '10%')
             .on('click', this.handleDecrypt)
-            .attr('hidden', 'true')
+
         document.onkeypress = this.stopRKey; 
     }
 }

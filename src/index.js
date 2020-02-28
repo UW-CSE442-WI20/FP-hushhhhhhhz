@@ -30,7 +30,7 @@ function position() {
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
-	var newInstance = new activateFunctions[sectionIndex]();
+    var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);
     	currentIndex = sectionIndex;

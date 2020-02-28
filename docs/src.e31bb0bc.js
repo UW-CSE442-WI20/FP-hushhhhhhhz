@@ -28924,15 +28924,16 @@ function () {
       d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "black").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(8000).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
       eventHash = {
         "1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
-        "1553": "Vigenere cipher described by Giovan Battista Bellaso",
+        "1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
         "1678": "Robert Hooke publishes first one way function (related to RSA)",
-        "1854": "playfair invented by Sir Charles Wheatstone",
+        "1854": "Playfair cipher invented by Sir Charles Wheatstone",
         "1863": "first published solution to vigenere cipher, authored by Kasiski",
-        // "1917" : "Gilbert Vernam proposed one time pad, a stream cipher",
-        "1923": "enigma decoding machine invented by alan turing and co.",
-        "1960": "cryptographic hash functions were first used in computers for passwords",
-        "1975": "DES, data encryption standard in 1975 (an early symmetric key encryption)" // "2001": "SHA-2 published in 2001, SHA-3 in 2015",
-        // "2015": "SHA-2 published in 2001, SHA-3 in 2015",
+        // "1917" : "Gilbert Vernam proposed one time pad modification to a stream cipher",
+        // "1923": "Enigma encoding machine invented by the Germans",
+        "1942": "Enigma code cracked by Alan Turing and his fellows at Bletchley Park",
+        "1960": "cryptographic hash functions were first introduced into computer systems for storing passwords",
+        "1975": "DES, or the data encryption standard is introduced (an early symmetric key encryption)" // "2001": "SHA-2 published",
+        // "2015": "SHA-3 published",
 
       };
       var i = 0;
@@ -28985,8 +28986,8 @@ function () {
 
       for (var i = 0; i < initialMessage.length; i++) {
         var index = message.append('div').attr('id', 'index' + i).attr('class', 'index');
-        index.append('div').attr('class', 'letter').text(initialMessage[i]);
-        index.append('div').attr('class', 'key').text(initialKey[i]);
+        index.append('div').attr('class', 'letter').transition().duration(200).text(initialMessage[i]);
+        index.append('div').attr('class', 'key').transition().duration(200).text(initialKey[i]);
         index.append('div').attr('class', 'cipher');
       } // TABLE 1
 
@@ -29037,34 +29038,34 @@ function () {
       }); // MATH CALCULATIONS
 
       var math_div = table_div.append('div').attr('class', 'math');
-      var plain_text = math_div.append('p').text('P').style('color', '#00897b').attr('id', 'plain');
+      var plain_text = math_div.append('p').text('P').style('color', '#fdd835').attr('id', 'plain');
       var plus = math_div.append('p').text(' + ');
-      var key = math_div.append('p').text('K').style('color', '#fdd835').attr('id', 'key');
+      var key = math_div.append('p').text('K').style('color', '#e53935').attr('id', 'key');
       var mod = math_div.append('p').text(' mod 26 = ');
-      var cipher = math_div.append('p').text('C').style('color', '#e53935').attr('id', 'cipher');
+      var cipher = math_div.append('p').text('C').style('color', '#1c87e5').attr('id', 'cipher');
       var m = 3000;
 
       for (var i = 0; i < initialMessage.length; i++) {
-        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', '#00897b').delay(m * i);
-        d3.select('#index' + i).select('.key').transition().duration(500).style('color', '#fdd835').delay(m * i);
+        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', '#fdd835').delay(m * i);
+        d3.select('#index' + i).select('.key').transition().duration(500).style('color', '#e53935').delay(m * i);
         d3.select('#key').transition().duration(500).text(alphaAlpha.indexOf(initialKey[i])).delay(m * i);
         d3.select('#plain').transition().duration(500).text(alphaAlpha.indexOf(initialMessage[i])).delay(m * i);
 
         if (initialMessage[i] === initialKey[i]) {
-          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#7cb342').delay(m * i);
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#fb8c00').delay(m * i);
         } else {
-          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#00897b').delay(m * i);
-          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', '#fdd835').delay(m * i);
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#fdd835').delay(m * i);
+          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', '#e53935').delay(m * i);
         }
 
-        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', '#e53935').text(initialCipher[i]).delay(1000 + m * i);
+        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', '#1c87e5').text(initialCipher[i]).delay(1000 + m * i);
         d3.select('#cipher').transition().duration(500).text(alphaAlpha.indexOf(initialCipher[i])).delay(1000 + m * i);
-        d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'white').delay(1000 + m * i);
-        d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'white').delay(1000 + m * i);
-        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', '#e53935').delay(1000 + m * i);
+        d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'transparent').delay(1000 + m * i);
+        d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'transparent').delay(1000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', '#1c87e5').delay(1000 + m * i);
         d3.select('#index' + i).select('.letter').transition().duration(500).style('color', 'black').delay(1000 + m * i);
         d3.select('#index' + i).select('.key').transition().duration(500).style('color', 'black').delay(1000 + m * i);
-        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'white').delay(2000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'transparent').delay(2000 + m * i);
       }
 
       d3.select('#plain').transition().duration(50).text('P').delay(20000);
@@ -29078,17 +29079,17 @@ function () {
       var results = inputContainer.append('div').attr('class', 'results');
       results.append('br');
       results.append('br');
-      inputs.append('text').text('type your message below and hit select:');
+      inputs.append('text').text('type your message below and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0');
       inputs.append('br');
       inputs.append('br');
-      var textInput = inputs.append('input').attr('id', 'textInput').attr('style', 'text');
-      var inputButton = inputs.append('button').attr('id', 'inputButton');
-      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").style('color', '#00897b');
-      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").style('color', '#fdd835');
-      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").style('color', '#e53935');
+      var textInput = inputs.append('input').attr('id', 'textInput').attr('style', 'text').attr('style', 'opacity: 0');
+      var inputButton = inputs.append('button').attr('id', 'inputButton').attr('style', 'opacity: 0');
+      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").attr('style', 'opacity: 0');
+      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").attr('style', 'opacity: 0');
+      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").attr('style', 'opacity: 0');
       inputs.append('br');
       inputs.append('br');
-      inputs.append('text').text('hover over the keys below to see the cipher:');
+      inputs.append('text').text('hover over the keys below to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0');
       inputs.append('br');
       inputs.append('br');
       var row1 = ["RNC", "ONQ", "CKO", "LYY", "FGU"];
@@ -29097,7 +29098,7 @@ function () {
       var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
       var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
       var keys = [row1, row2, row3, row4, row5];
-      var keyTable = inputs.append('table').attr('class', 'keyTable');
+      var keyTable = inputs.append('table').attr('class', 'keyTable').attr('style', 'opacity: 0');
       var theadKey = keyTable.append('thead');
       var tbodyKey = keyTable.append('tbody');
 
@@ -29116,7 +29117,7 @@ function () {
 
       function handleMouseOver() {
         // Add interactivity
-        d3.select(this).style('background-color', '#fdd835');
+        d3.select(this).style('background-color', '#e53935');
         inputKey = this.id;
         var newKey = "";
 
@@ -29134,7 +29135,7 @@ function () {
       }
 
       function handleMouseOut() {
-        d3.select(this).style('background-color', 'white');
+        d3.select(this).style('background-color', 'transparent');
         inputKey = "";
         resultCipher = "";
         document.getElementById('keyDisplay').innerHTML = "keytext:    ";
@@ -29163,6 +29164,13 @@ function () {
         document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
         document.getElementById('textInput').value = "";
       });
+      d3.selectAll('.instruction').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
+      d3.select('#textInput').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
+      d3.select('#inputButton').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
+      d3.select('#textDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#fdd835');
+      d3.select('#keyDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#e53935');
+      d3.select('#cipherDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#1c87e5');
+      d3.select('.keyTable').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
     }
   }]);
 
@@ -29253,8 +29261,8 @@ function () {
       d3.select('.block-' + cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(duration + delay);
       d3.select('.block-' + cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', '#e53935').delay(duration + delay); // add in the ciphered letters at the same time as the cipher text highlight
 
-      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][0]).delay(duration + delay + 500);
-      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
+      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][0]).delay(duration + delay + 500);
+      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
 
       d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
       d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
@@ -29297,8 +29305,8 @@ function () {
       d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', '#e53935').delay(delay + duration);
       d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 10]).transition().duration(500).style('background-color', '#e53935').delay(delay + duration); // add in the ciphered letters at the same time as the cipher text highlight
 
-      d3.select("#box_cipher_1").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][0]).delay(delay + duration);
-      d3.select("#box_cipher_2").transition().duration(duration).style('color', '#01579b').text(cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
+      d3.select("#box_cipher_1").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][0]).delay(delay + duration);
+      d3.select("#box_cipher_2").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
 
       d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', "transparent").delay(2 * (delay + duration));
       d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', 'transparent').delay(2 * (delay + duration));
@@ -29345,8 +29353,8 @@ function () {
 
         d3.select('.block-' + alphabet[c_index1]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
         d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
-        d3.select("#decr_block_" + i).transition().duration(duration).style('color', '#01579b').text(cipherMessage[i]).delay(last * buffer + (delay + duration));
-        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', '#01579b').text(cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + i).transition().duration(duration).style('color', '#1b87e5').text(cipherMessage[i]).delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', '#1b87e5').text(cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
         delay = i == 0 ? 3000 : lastTiming - (i - 2) * 500; // decolor everything
 
         d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
@@ -29509,7 +29517,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63729" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56664" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

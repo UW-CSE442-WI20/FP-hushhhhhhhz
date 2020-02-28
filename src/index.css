@@ -36,8 +36,3 @@ h1 {
 #form1{
     display: inline-grid;
 }
-
-#randomdiv {
-    display: flex;
-    justify-content: space-between
-}

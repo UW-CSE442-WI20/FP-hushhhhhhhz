@@ -4,6 +4,7 @@ const d3 = require('d3')
 // You can include local JS files:
 const createHistory = require('./create-history');
 const createStream = require('./create-stream');
+const createBlock = require('./create-block1');
 const MyClass = require('./my-class');
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();
@@ -24,9 +25,9 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createHistory, createStream]
+var activateFunctions = [createHistory, createStream, createBlock]
 function position() {
-    var pos = window.pageYOffset - 400;
+    var pos = window.pageYOffset - 500;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 

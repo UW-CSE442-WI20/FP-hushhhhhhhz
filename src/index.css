@@ -92,6 +92,69 @@ p {
   text-align: center;
 }
 
+.grid_box {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 38%;
+  float: right;
+}
+
+.example, .rules, .block_message, .cipher_message, .textboxes {
+  display: flex;
+}
+
+.blockContainer, .interactiveContainer {
+  margin: 50px;
+}
+
+.block_letter {
+  font-size: 25px;
+  width: 40px;
+  text-align: center;
+}
+
+.exampleContainer {
+  margin-right: 45px; 
+  margin-top: -22px;
+}
+
+.block_pairs {
+  margin-right: 3%;
+}
+
+.block_msg_letter{
+  margin-right: 21px;
+  font-size: 65px;
+}
+
+.update_margin {
+  margin-right: 17px;
+}
+
+.encryption {
+  margin-top: 25px;
+}
+
+#checkbutton {
+  border-radius: 5px;
+  margin-left: 15px;
+  border: 1px solid darkgray;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#shareResult {
+  margin-left: 10px;
+  font-size: 30px;
+}
+
 .timelineContainer {
 	display: flex;
 	height: 600px;

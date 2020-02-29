@@ -6,6 +6,8 @@ const createHistory = require('./create-history');
 const MyClass = require('./my-class');
 const Symmetric = require('./symmetric');
 const mySymmetricInstance = new Symmetric();
+const Asymmetric = require('./asymmetric');
+const myAsymmetricInstance = new Asymmetric();
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();
 
@@ -24,7 +26,7 @@ sections.each(function(d,i) {
 });
 
 //var activateFunctions = [createHistory, createStream, createBlock, createModern, createSchemes, createSymmetric, createAsymmetric, createHashRSA]
-var activateFunctions = [createHistory, createHistory, createHistory, createHistory, createHistory, Symmetric, createHistory, createHistory]
+var activateFunctions = [createHistory, createHistory, createHistory, createHistory, createHistory, Symmetric, Asymmetric, createHistory]
 var currentIndex = -1;
 function position() {
     var pos = window.pageYOffset - 400;

@@ -2,15 +2,13 @@ const d3 = require('d3')
 const Crypto = require('./crypto')
 const lock = require('./images/lock.png')
 const unlock = require('./images/unlock.png')
-const unlocked_key = require('./images/unlocked_key.png')
 const locked_key = require('./images/locked_key.png')
-const key = require('./images/key.png')
+const key = require('./images/white_key.png')
 class Symmetric {
     constructor() {
         this.handleEncrypt = this.handleEncrypt.bind(this)
         this.handleDecrypt = this.handleDecrypt.bind(this)
         this.handleNewMessage = this.handleNewMessage.bind(this)
-        this.delayInMilliseconds = 1000; //1 second
     }
 
     handleEncrypt(){
@@ -149,32 +147,28 @@ class Symmetric {
         d3.select('#second_col1').append("div")
             .attr('id', 'shape1')
             .attr('class', 'row')
-            .on('click', this.handleEncrypt)
-            // .style("display","flex")
-            // .style('margin-left', "-15%")
 
+        d3.select("#shape1").append('div')
+            .attr('class', 'col-2')
         
         d3.select("#shape1").append('img')
             .attr('id', 'unlocked_key')
-            .attr('class', 'col-6')
+            .attr('class', 'col-4')
             .attr("src", key)
-            // .attr('width', '160')
+            .on('click', this.handleEncrypt)
 
         d3.select("#shape1").append('img')
             .attr('id', 'unlock1')
-            .attr('class', 'col-6')
+            .attr('class', 'col-4')
             .attr("src", unlock)
-            // .attr('width', '160')
-            // .style('margin-left', "-15%")
 
+        d3.select("#shape1").append('div')
+            .attr('class', 'col-2')
         
         d3.select('#third_col1').append("div")
             .attr('id', 'text1')
             .style("border", "1px black solid")
             .text("Try typing in a message and click on the lock to encrypt it")
-
-        // d3.select('#randomdiv').append("div")
-        //     .attr('id', 'second')
 
         d3.select('#first_col2').append("div")
             .attr('id', 'encrypted')
@@ -187,13 +181,19 @@ class Symmetric {
 
         d3.select('#second_col2').append("div")
             .attr('id', 'shape2')
+            .attr('class', 'row')
+
+        d3.select("#shape2").append('div')
+            .attr('class', 'col-4')
 
         d3.select("#shape2").append('img')
             .attr('id', 'lock')
             .attr("src", lock)
-            .attr('width', '100')
             .attr('hidden', 'true')
+            .attr('class', 'col-4')
 
+        d3.select("#shape2").append('div')
+            .attr('class', 'col-4')
         
         d3.select('#third_col2').append("div")
             .attr('id', 'text2')
@@ -212,13 +212,20 @@ class Symmetric {
         
         d3.select('#second_col3').append("div")
             .attr('id', 'shape3')
+            .attr('class', 'row')
+
+        d3.select("#shape3").append('div')
+            .attr('class', 'col-4')
 
         d3.select("#shape3").append('img')
             .attr('id', 'decrypt_button')
             .attr("src", locked_key)
-            .attr('width', '100')
+            .attr('class', 'col-4')
             .attr('hidden', 'true')
             .on('click', this.handleDecrypt)
+
+        d3.select("#shape3").append('div')
+            .attr('class', 'col-4')
 
         d3.select('#third_col3').append("div")
             .attr('id', 'text3')

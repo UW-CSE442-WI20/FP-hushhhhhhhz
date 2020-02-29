@@ -3,6 +3,8 @@ const d3 = require('d3')
 
 // You can include local JS files:
 const createHistory = require('./create-history');
+const createStream = require('./create-stream');
+const createBlock = require('./create-block1');
 const MyClass = require('./my-class');
 const Symmetric = require('./symmetric');
 const mySymmetricInstance = new Symmetric();
@@ -25,20 +27,18 @@ sections.each(function(d,i) {
 	sectionPositions.push(top - startPos);
 });
 
-//var activateFunctions = [createHistory, createStream, createBlock, createModern, createSchemes, createSymmetric, createAsymmetric, createHashRSA]
-var activateFunctions = [createHistory, createHistory, createHistory, createHistory, createHistory, Symmetric, Asymmetric, createHistory]
 var currentIndex = -1;
+
+var activateFunctions = [createHistory, createStream, createBlock, createBlock, createBlock, Symmetric, Asymmetric]
 function position() {
-    var pos = window.pageYOffset - 400;
+    var pos = window.pageYOffset - 500;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 
-	console.log(sectionIndex, currentIndex)
+    var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);
-		currentIndex = sectionIndex;
-		// currently selects the grey box, will change as we add visualizations
-		var newInstance = new activateFunctions[sectionIndex]();
+    	currentIndex = sectionIndex;
 		newInstance.start();
     }
 }

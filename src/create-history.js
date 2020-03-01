@@ -31,13 +31,13 @@ class CreateHistory {
            data.push(i)
 	}
 	  
-	var totalLength = 600
+	var totalLength = 625;
 
 	d3.select('.lineDiv').append('svg')
 		  .attr("width", 20)
 		  .append('path')
 		  .attr('d', line(data))
-		  .attr("stroke", "black")
+		  .attr("stroke", "#e53935")
 	          .attr("stroke-width", 2)
 	          .attr("stroke-dasharray", totalLength + " " + totalLength)
 		  .attr("stroke-dashoffset", totalLength)

@@ -433,7 +433,7 @@ class CreateBlock {
 
 						textboxes.append('div')
 							.attr('id', 'checkbutton')
-							.text('check')
+							.text('CHECK')
 
 						textboxes.append('div').attr('id', 'shareResult')
 							

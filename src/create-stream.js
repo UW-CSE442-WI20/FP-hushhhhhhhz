@@ -96,14 +96,17 @@ class CreateStream {
     var plain_text = math_div.append('p').text('P')
                              .style('color', '#fdd835')
                              .attr('id', 'plain')
-    var plus = math_div.append('p').text(' + ')
+							 .attr('class', 'mathSymbol')
+    var plus = math_div.append('p').text('  +  ').attr('class', 'mathSymbol')
     var key = math_div.append('p').text('K')
                              .style('color', '#e53935')
                              .attr('id', 'key')
-    var mod = math_div.append('p').text(' mod 26 = ')
+							 .attr('class', 'mathSymbol')
+    var mod = math_div.append('p').text(' mod 26 = ').attr('class', 'mathSymbol')
     var cipher = math_div.append('p').text('C')
                              .style('color', '#1c87e5')
                              .attr('id', 'cipher')
+							 .attr('class', 'mathSymbol')
 
 	var m = 3000;
 	for (var i = 0; i < initialMessage.length; i++) {
@@ -211,15 +214,17 @@ class CreateStream {
 	var results = inputContainer.append('div').attr('class', 'results');
 	results.append('br')
 	results.append('br')
-    inputs.append('text').text('type your message below and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0')
-	inputs.append('br')
-	inputs.append('br')
-	var textInput = inputs.append('input')
+	results.append('br')
+    inputs.append('h3').text('Now you try!').attr('class', 'instruction').attr('style', 'opacity: 0')
+	inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0')
+	lilDiv = inputs.append('div').attr('class', 'lilDiv')
+	var textInput = lilDiv.append('input')
                         .attr('id', 'textInput')
                         .attr('style', 'text')
 						.attr('style', 'opacity: 0')
-    var inputButton = inputs.append('button')
+    var inputButton = lilDiv.append('div')
                         .attr('id', 'inputButton')
+						.text('SELECT')
 						.attr('style', 'opacity: 0')
 	var textDisplay = results.append('p')
 						.attr('id', 'textDisplay')
@@ -233,11 +238,7 @@ class CreateStream {
                         .attr('id', 'cipherDisplay')
                         .text("ciphertext: ")
 						.attr('style', 'opacity: 0')
-	inputs.append('br')
-	inputs.append('br')
-	inputs.append('text').text('hover over the keys below to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0')
-	inputs.append('br')
-	inputs.append('br')
+	inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0')
 	var row1 = ["RNC","ONQ","CKO","LYY","FGU"];
 	var row2 = ["MIO","CAY","ZUU","KRK","BMW"];
 	var row3 = ["QXG","UXV","HPV","YUH","LDG"];
@@ -297,7 +298,6 @@ class CreateStream {
 			.attr('class', 'keyChoice')
 			.on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut);;
-    d3.select('#inputButton').text("SELECT");
 	d3.select('#inputButton').on('click', function () { 
 		inputMessage = document.getElementById('textInput').value 
 		inputMessage = inputMessage.replace(/\s+/g, '');

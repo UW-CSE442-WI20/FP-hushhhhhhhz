@@ -27,10 +27,11 @@ var currentIndex = -1;
 
 var activateFunctions = [createHistory, createStream, createBlock]
 function position() {
-    var pos = window.pageYOffset - 500;
+    var pos = window.pageYOffset - 700;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
-
+	console.log(pos)
+	console.log(sectionIndex)
     var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);

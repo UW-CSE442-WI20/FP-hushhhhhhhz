@@ -16,7 +16,8 @@
         <section class="step">
           <div id="title1">
             <h2>History of Encryption</h2>
-          </div>
+        	<br>  
+		</div>
         </section>
 
         <section class="step">
@@ -35,6 +36,11 @@
           equation:
           <br /><br />
           C = P + K mod 26
+		  <br /><br />
+		  Keys and messages can be any length, but when encoding/decoding they must be the same length. For example, "message" is 7 letters while "key" 
+		  only 3. We therefore repeat "key" until it is the same length as "message".
+		  <br /><br />
+		  Watch on the right as we calculate our ciphertext.
         </section>
 
         <section class="step">
@@ -46,12 +52,12 @@
           Palmerston.</p>
           <!-- <br /><br /> -->
 
-          <p>The Playfair cipher encrypts pairs of letters, instead of single letters</p>
+          <p>Block ciphers encrypts by pairs of letters, instead of single letters like in a stream cipher.</p>
           <!-- <br /><br /> -->
 
-          <p>The playfair cipher starts with creating a key table. The key table is a 5×5 grid of letters that 
+          <p>Playfair starts with creating a key table. The key table is a 5×5 grid of letters that 
           will act as the key for encrypting your plaintext. Each of the 25 letters must be unique and one letter 
-          of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J</p>
+          of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J.</p>
           <!-- <br /><br /> -->
 
           <p>The message is split into pairs of letters, and we use both letters to encrypt.</p>
@@ -61,7 +67,7 @@
             <li>if the letters are in the same row, take the letter to the right of each one</li>
             <li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the horizontal opposite corner of the rectangle</li>
           </ol>
-
+		  <p> Watch on the right as we walk through these three rules and then encrypt our "secret".</p>
         </section>
 
         <section class="step">

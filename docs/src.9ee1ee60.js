@@ -28666,8 +28666,8 @@ function () {
         data.push(i);
       }
 
-      var totalLength = 600;
-      d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "black").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(8000).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
+      var totalLength = 625;
+      d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "#e53935").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(8000).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
       eventHash = {
         "1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
         "1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
@@ -28784,11 +28784,11 @@ function () {
       }); // MATH CALCULATIONS
 
       var math_div = table_div.append('div').attr('class', 'math');
-      var plain_text = math_div.append('p').text('P').style('color', '#fdd835').attr('id', 'plain');
-      var plus = math_div.append('p').text(' + ');
-      var key = math_div.append('p').text('K').style('color', '#e53935').attr('id', 'key');
-      var mod = math_div.append('p').text(' mod 26 = ');
-      var cipher = math_div.append('p').text('C').style('color', '#1c87e5').attr('id', 'cipher');
+      var plain_text = math_div.append('p').text('P').style('color', '#fdd835').attr('id', 'plain').attr('class', 'mathSymbol');
+      var plus = math_div.append('p').text('  +  ').attr('class', 'mathSymbol');
+      var key = math_div.append('p').text('K').style('color', '#e53935').attr('id', 'key').attr('class', 'mathSymbol');
+      var mod = math_div.append('p').text(' mod 26 = ').attr('class', 'mathSymbol');
+      var cipher = math_div.append('p').text('C').style('color', '#1c87e5').attr('id', 'cipher').attr('class', 'mathSymbol');
       var m = 3000;
 
       for (var i = 0; i < initialMessage.length; i++) {
@@ -28825,19 +28825,16 @@ function () {
       var results = inputContainer.append('div').attr('class', 'results');
       results.append('br');
       results.append('br');
-      inputs.append('text').text('type your message below and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0');
-      inputs.append('br');
-      inputs.append('br');
-      var textInput = inputs.append('input').attr('id', 'textInput').attr('style', 'text').attr('style', 'opacity: 0');
-      var inputButton = inputs.append('button').attr('id', 'inputButton').attr('style', 'opacity: 0');
+      results.append('br');
+      inputs.append('h3').text('Now you try!').attr('class', 'instruction').attr('style', 'opacity: 0');
+      inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0');
+      lilDiv = inputs.append('div').attr('class', 'lilDiv');
+      var textInput = lilDiv.append('input').attr('id', 'textInput').attr('style', 'text').attr('style', 'opacity: 0');
+      var inputButton = lilDiv.append('div').attr('id', 'inputButton').text('SELECT').attr('style', 'opacity: 0');
       var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").attr('style', 'opacity: 0');
       var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").attr('style', 'opacity: 0');
       var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").attr('style', 'opacity: 0');
-      inputs.append('br');
-      inputs.append('br');
-      inputs.append('text').text('hover over the keys below to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0');
-      inputs.append('br');
-      inputs.append('br');
+      inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0');
       var row1 = ["RNC", "ONQ", "CKO", "LYY", "FGU"];
       var row2 = ["MIO", "CAY", "ZUU", "KRK", "BMW"];
       var row3 = ["QXG", "UXV", "HPV", "YUH", "LDG"];
@@ -28902,7 +28899,6 @@ function () {
         return d.value;
       }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
       ;
-      d3.select('#inputButton').text("SELECT");
       d3.select('#inputButton').on('click', function () {
         inputMessage = document.getElementById('textInput').value;
         inputMessage = inputMessage.replace(/\s+/g, '');
@@ -29122,7 +29118,7 @@ function () {
             }
 
             textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput');
-            textboxes.append('div').attr('id', 'checkbutton').text('check');
+            textboxes.append('div').attr('id', 'checkbutton').text('CHECK');
             textboxes.append('div').attr('id', 'shareResult');
             document.getElementById("checkbutton").onclick = forreal.checkanswer;
           });
@@ -29221,9 +29217,11 @@ var currentIndex = -1;
 var activateFunctions = [createHistory, createStream, createBlock];
 
 function position() {
-  var pos = window.pageYOffset - 500;
+  var pos = window.pageYOffset - 700;
   var sectionIndex = d3.bisect(sectionPositions, pos);
   sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+  console.log(pos);
+  console.log(sectionIndex);
   var newInstance = new activateFunctions[sectionIndex]();
 
   if (currentIndex !== sectionIndex) {
@@ -29236,4 +29234,4 @@ function position() {
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-history":"HZPL","./create-stream":"RnAV","./create-block1":"s4iG","./my-class":"elfx"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.38dbd5bd.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.9ee1ee60.js.map

@@ -1,13 +1,15 @@
 #sections {
   position: relative;
   display: inline-block;
-  width: 250px;
+  width: 300px;
   top: 0px;
   z-index: 90;
 }
 
 .step {
-  margin-bottom: 500px;
+	height: 750px;
+	
+	margin-bottom: 50px;
 }
 
 #vis {
@@ -15,13 +17,13 @@
   position: fixed;
   z-index: 1;
   margin: 0 0 0 50px;
-  height: 650px;
+  height: 700px;
   width: 800px;
 }
 
 .message {
 	display: flex;
-	font-size: 30px;
+	font-size: 34px;
 	margin-right: 50px;	
 }
 
@@ -51,7 +53,7 @@ table {
 
 .streamContainer {
   display: flex;
-  margin: 60px 0 0 60px;
+  margin: 0px 0 0 60px;
 }
 
 .inputContainer {
@@ -61,23 +63,29 @@ table {
 }
 
 .inputs,.results {
-	margin: 30px;
+	margin: 0 30px 0 30px;
 }
 
 .results {
 	font-size: 22px;
 }
 
-#inputButton,#textInput {
+.lilDiv {
+	display: flex;
+}
+
+#textInput {
 	font-size:16px;
 	font-family: 'Times New Roman';
-	margin-right: 30px;
+	margin-right: 20px;
+	border-radius: 5px;
 }
 
 .math {
 	display: flex;
-	font-size: 20px;
+	font-size: 26px;
 }
+
 
 h1 {
   text-align: center
@@ -88,8 +96,9 @@ p {
 }
 
 #key, #cipher, #plain {
-  width: 20px;
+  width: 30px;
   text-align: center;
+
 }
 
 .grid_box {
@@ -111,7 +120,7 @@ p {
 }
 
 .blockContainer, .interactiveContainer {
-  margin: 50px;
+  margin: 0 50px 50px 50px;
 }
 
 .block_letter {
@@ -142,7 +151,7 @@ p {
   margin-top: 25px;
 }
 
-#checkbutton {
+#checkbutton, #inputButton {
   border-radius: 5px;
   margin-left: 15px;
   border: 1px solid darkgray;
@@ -157,7 +166,7 @@ p {
 
 .timelineContainer {
 	display: flex;
-	height: 600px;
+	height: 700px;
 }
 
 .line {

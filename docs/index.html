@@ -1,107 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>FP-hushhhhhhhz</title>
-  <link rel="stylesheet" type="text/css" href="https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.6f70def5.css">
-  <link rel="stylesheet" type="text/css" href="https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/bootstrap-iso.48ad7aa8.css">
+  <head>
+    <meta charset="utf-8">
+    <title>FP-hushhhhhhhz</title>
+    <link rel="stylesheet" type="text/css" href="https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.6502ae4c.css">
   </head>
+  <body>
+    <h1>Cryptography Visualized</h1>
 
-<body>
-  <h1>Cryptography Visualized</h1>
+    <div id="container">
+      <div id="graphic">
+        <div id="sections">
+          <section class="step">
+            <div id="title1"><h2>History of Encryption</h2></div>
+          </section>
 
-  <div id="container">
-    <div id="graphic">
-      <div id="sections">
-        <section class="step">
-          <div id="title1">
-            <h2>History of Encryption</h2>
-          </div>
-        </section>
+          <section class="step">
+            <div id="title2"><h3>Stream Ciphers</h3></div>
+   				In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext symbols. 
+				<br><br>
+				One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere. 
+				<br><br>
+				It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1, ... Z = 25
+				<br><br>
+				Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:
+				<br><br>
+				C = P + K mod 26 
+		  </section>
 
-        <section class="step">
-          <div id="title2">
-            <h3>Stream Ciphers</h3>
-          </div>
-          In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext
-          symbols.
-          <br><br>
-          One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere.
-          <br><br>
-          It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1,
-          ... Z = 25
-          <br><br>
-          Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following
-          equation:
-          <br><br>
-          C = P + K mod 26
-        </section>
+          <section class="step">
+            <div class="title3"><h3>Block Ciphers</h3></div>
+            	In a block cipher, you encrypt several plaintext symbols at once in a block.
+				<br><br>
+				A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it demonstrated to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount Palmerston.
+				<br><br>
+				
+          </section>
 
-        <section class="step">
-          <div class="title3">
-            <h3>Block Ciphers</h3>
-          </div>
-          <p>A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it
-          demonstrated to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount
-          Palmerston.</p>
-          <!-- <br /><br /> -->
+          <section class="step">
+            <div class="title4"><h2>Modern Encryption</h2></div>
+          </section>
 
-          <p>The Playfair cipher encrypts pairs of letters, instead of single letters</p>
-          <!-- <br /><br /> -->
+          <section class="step">
+            <div class="title5"><h3>Schemes</h3></div>
+          </section>
 
-          <p>The playfair cipher starts with creating a key table. The key table is a 5×5 grid of letters that 
-          will act as the key for encrypting your plaintext. Each of the 25 letters must be unique and one letter 
-          of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J</p>
-          <!-- <br /><br /> -->
+          <section class="step">
+            <div class="title6"><h4>Symmetric Keys</h4></div>
+          </section>
 
-          <p>The message is split into pairs of letters, and we use both letters to encrypt.</p>
-          <p>There are 3 main rules that are followed:</p>
-          <ol>
-            <li>if the letters are in the same column, take the letter below each one</li>
-            <li>if the letters are in the same row, take the letter to the right of each one</li>
-            <li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the horizontal opposite corner of the rectangle</li>
-          </ol>
+          <section class="step">
+            <div class="title7"><h4>Asymmetric Keys</h4></div>
+          </section>
 
-        </section>
+          <section class="step">
+            <div class="title8"> <h4>Hash Encryption & RSA</h4></div>
+          </section>
 
-        <section class="step">
-          <div class="title4">
-            <h2>Modern Encryption</h2>
-          </div>
-        </section>
+        </div>
+        <div id="vis">
+        </div>
 
-        <section class="step">
-          <div class="title5">
-            <h3>Schemes</h3>
-          </div>
-        </section>
-
-        <section class="step">
-          <div class="title6">
-            <h4>Symmetric Keys</h4>
-          </div>
-        </section>
-
-        <section class="step">
-          <div class="title7">
-            <h4>Asymmetric Keys</h4>
-          </div>
-        </section>
-
-        <section class="step">
-          <div class="title8">
-            <h4>Hash Encryption & RSA</h4>
-          </div>
-        </section>
+        <div id="extra-space">
+        </div>
+        <script src="https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.38dbd5bd.js"></script>
       </div>
-      <div id="vis">
-      </div>
-
-      <div id="extra-space">
-      </div>
-      <script src="https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.4a8a0c1f.js"></script>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

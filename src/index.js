@@ -7,9 +7,7 @@ const createStream = require('./create-stream');
 const createBlock = require('./create-block1');
 const MyClass = require('./my-class');
 const Symmetric = require('./symmetric');
-const mySymmetricInstance = new Symmetric();
 const Asymmetric = require('./asymmetric');
-const myAsymmetricInstance = new Asymmetric();
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();
 
@@ -29,7 +27,7 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createHistory, createStream, createBlock, createBlock, createBlock, Symmetric, Asymmetric]
+var activateFunctions = [createHistory, createStream, createBlock, Symmetric, Asymmetric]
 function position() {
     var pos = window.pageYOffset - 500;
     var sectionIndex = d3.bisect(sectionPositions, pos);

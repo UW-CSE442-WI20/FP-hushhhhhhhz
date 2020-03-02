@@ -6,6 +6,7 @@ class CreateHistory {
   }
 
   start() {
+    document.getElementById('vis').innerHTML = "";
     console.log('[CreateHistory]', 'Hello World 5.');
 	document.getElementById('vis').innerHTML = "";		
 	

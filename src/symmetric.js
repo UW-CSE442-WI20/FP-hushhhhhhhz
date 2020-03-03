@@ -170,6 +170,7 @@ class Symmetric {
         d3.select('#third_col1').append("div")
             .attr('id', 'text1')
             .style("border", "1px black solid")
+			.style("border-radius", "5px")
             .text("Try typing in a message and click on the lock to encrypt it")
 
         d3.select('#first_col2').append("div")
@@ -200,6 +201,7 @@ class Symmetric {
         d3.select('#third_col2').append("div")
             .attr('id', 'text2')
             .style("border", "1px black solid")
+			.style("border-radius", "5px")
             .text("This is the encrypted message, visible to everyone")
             .attr('hidden', 'true')
         
@@ -232,6 +234,7 @@ class Symmetric {
         d3.select('#third_col3').append("div")
             .attr('id', 'text3')
             .style("border", "1px black solid")
+			.style("border-radius", "5px")
             .text("Only with the key that we used to encrypt the message, we can decrypt it! Click on the lock to decrypt")
             .attr('hidden', 'true')
         

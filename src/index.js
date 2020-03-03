@@ -5,6 +5,7 @@ const d3 = require('d3')
 const createHistory = require('./create-history');
 const createStream = require('./create-stream');
 const createBlock = require('./create-block1');
+const modernEncrypt = require('./modern-encryption');
 const MyClass = require('./my-class');
 const Symmetric = require('./symmetric');
 const Asymmetric = require('./asymmetric');
@@ -27,7 +28,7 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createHistory, createStream, createBlock, Symmetric, Asymmetric]
+var activateFunctions = [createHistory, createStream, createBlock, modernEncrypt, Symmetric, Asymmetric]
 function position() {
     var pos = window.pageYOffset - 700;
     var sectionIndex = d3.bisect(sectionPositions, pos);

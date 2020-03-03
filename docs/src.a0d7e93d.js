@@ -29158,7 +29158,33 @@ function () {
 }();
 
 module.exports = CreateBlock;
-},{"d3":"UzF0"}],"elfx":[function(require,module,exports) {
+},{"d3":"UzF0"}],"e50A":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ModernEncrypt =
+/*#__PURE__*/
+function () {
+  function ModernEncrypt() {
+    _classCallCheck(this, ModernEncrypt);
+  }
+
+  _createClass(ModernEncrypt, [{
+    key: "start",
+    value: function start() {
+      document.getElementById('vis').innerHTML = "";
+      document.getElementById('vis').innerHTML = "Coming Soon...";
+    }
+  }]);
+
+  return ModernEncrypt;
+}();
+
+module.exports = ModernEncrypt;
+},{}],"elfx":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -42902,7 +42928,7 @@ module.exports = {
   "_args": [
     [
       "elliptic@6.5.2",
-      "/Users/hmharvey/src/hw/FP-hushhhhhhhz"
+      "/Users/Emma/FP-hushhhhhhhz"
     ]
   ],
   "_development": true,
@@ -42928,7 +42954,7 @@ module.exports = {
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz",
   "_spec": "6.5.2",
-  "_where": "/Users/hmharvey/src/hw/FP-hushhhhhhhz",
+  "_where": "/Users/Emma/FP-hushhhhhhhz",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -58330,21 +58356,21 @@ function () {
       d3.select("#shape1").append('img').attr('id', 'unlocked_key').attr('class', 'col-sm-4 col-md-4 col-lg-4').attr("src", key).on('click', this.handleEncrypt);
       d3.select("#shape1").append('img').attr('id', 'unlock1').attr('class', 'col-sm-4 col-md-4 col-lg-4').attr("src", unlock);
       d3.select("#shape1").append('div').attr('class', 'col-sm-2 col-md-2 col-lg-2');
-      d3.select('#third_col1').append("div").attr('id', 'text1').style("border", "1px black solid").text("Try typing in a message and click on the lock to encrypt it");
+      d3.select('#third_col1').append("div").attr('id', 'text1').style("border", "1px black solid").style("border-radius", "5px").text("Try typing in a message and click on the lock to encrypt it");
       d3.select('#first_col2').append("div").attr('id', 'encrypted');
       d3.select("#encrypted").append('textarea').attr('style', "resize: none;background-color: white;").attr('disabled', 'true').attr('id', 'encryption_display').attr('hidden', 'true');
       d3.select('#second_col2').append("div").attr('id', 'shape2').attr('class', 'row');
       d3.select("#shape2").append('div').attr('class', 'col-sm-4 col-md-4 col-lg-4');
       d3.select("#shape2").append('img').attr('id', 'lock').attr("src", lock).attr('hidden', 'true').attr('class', 'col-sm-4 col-md-4 col-lg-4');
       d3.select("#shape2").append('div').attr('class', 'col-sm-4 col-md-4 col-lg-4');
-      d3.select('#third_col2').append("div").attr('id', 'text2').style("border", "1px black solid").text("This is the encrypted message, visible to everyone").attr('hidden', 'true');
+      d3.select('#third_col2').append("div").attr('id', 'text2').style("border", "1px black solid").style("border-radius", "5px").text("This is the encrypted message, visible to everyone").attr('hidden', 'true');
       d3.select('#first_col3').append("div").attr('id', 'decrypted');
       d3.select("#decrypted").append('textarea').attr('style', "resize: none;background-color: white;").attr('disabled', 'true').attr('id', 'decryption_display').attr('hidden', 'true');
       d3.select('#second_col3').append("div").attr('id', 'shape3').attr('class', 'row');
       d3.select("#shape3").append('div').attr('class', 'col-sm-4 col-md-4 col-lg-4');
       d3.select("#shape3").append('img').attr('id', 'decrypt_button').attr("src", locked_key).attr('class', 'col-sm-4 col-md-4 col-lg-4').attr('hidden', 'true').on('click', this.handleDecrypt);
       d3.select("#shape3").append('div').attr('class', 'col-sm-4 col-md-4 col-lg-4');
-      d3.select('#third_col3').append("div").attr('id', 'text3').style("border", "1px black solid").text("Only with the key that we used to encrypt the message, we can decrypt it! Click on the lock to decrypt").attr('hidden', 'true');
+      d3.select('#third_col3').append("div").attr('id', 'text3').style("border", "1px black solid").style("border-radius", "5px").text("Only with the key that we used to encrypt the message, we can decrypt it! Click on the lock to decrypt").attr('hidden', 'true');
       d3.select('#third_col3').append("div").attr('id', 'text4').style("border", "1px black solid").text("The decrypted message is only visible to the keyholders").attr('hidden', 'true');
       document.onkeypress = this.stopRKey;
     }
@@ -58479,7 +58505,7 @@ function () {
       d3.select("#shape1").append('img').attr('id', 'unlocked_key').attr('class', 'col-sm-4 col-md-4 col-lg-4').attr("src", key2).on('click', this.handleEncrypt);
       d3.select("#shape1").append('img').attr('id', 'unlock1').attr('class', 'col-sm-4 col-md-4 col-lg-4').attr("src", unlock);
       d3.select("#shape1").append('div').attr('class', 'col-sm-2 col-md-2 col-lg-2');
-      d3.select('#third_col1').append("div").attr('id', 'text1').style("border", "1px black solid").text("Try typing in a message");
+      d3.select('#third_col1').append("div").attr('id', 'text1').style("border", "1px black solid").style("border-radius", "5px").text("Try typing in a message");
       d3.select('#first_col2').append("div").attr('id', 'encrypted');
       d3.select("#encrypted").append('textarea').attr('style', "resize: none;background-color: white;").attr('disabled', 'true').attr('id', 'encryption_display').attr('hidden', 'true');
       d3.select('#second_col2').append("div").attr('id', 'shape2').attr('class', 'row');
@@ -58487,15 +58513,15 @@ function () {
       d3.select("#shape2").append('img').attr('id', 'lock').attr('class', 'col-sm-4 col-md-4 col-lg-4').attr("src", lock).attr('hidden', 'true');
       d3.select("#shape2").append('img').attr('id', 'adversary_key').attr("src", key2).attr('class', 'col-sm-4 col-md-4 col-lg-4').attr('hidden', 'true').on('click', this.handleAttacker);
       d3.select("#shape2").append('div').attr('class', 'col-sm-2 col-md-2 col-lg-2');
-      d3.select('#third_col2').append("div").attr('id', 'text2').style("border", "1px black solid").text("This is the encrypted message, visible to everyone").attr('hidden', 'true');
+      d3.select('#third_col2').append("div").attr('id', 'text2').style("border", "1px black solid").style("border-radius", "5px").text("This is the encrypted message, visible to everyone").attr('hidden', 'true');
       d3.select('#first_col3').append("div").attr('id', 'decrypted');
       d3.select("#decrypted").append('textarea').attr('style', "resize: none;background-color: white;").attr('disabled', 'true').attr('id', 'decryption_display').attr('hidden', 'true');
       d3.select('#second_col3').append("div").attr('id', 'shape3').attr('hidden', 'true').attr('class', 'row');
       d3.select("#shape3").append('img').attr('id', 'lock_decrypt').attr("src", lock).attr('class', 'col-sm-4 col-md-4 col-lg-4');
       d3.select("#shape3").append('img').attr('id', 'public_key_decrypt').attr("src", key2).attr('class', 'col-sm-4 col-md-4 col-lg-4').on('click', this.handlePublicKeyDecrypt);
       d3.select("#shape3").append('img').attr('id', 'decrypt_button').attr("src", key).on('click', this.handleDecrypt).attr('class', 'col-sm-4 col-md-4 col-lg-4');
-      d3.select('#third_col3').append("div").attr('id', 'text3').style("border", "1px black solid").text("Only the private key can be used to decrypt the message. Try both keys to test.").attr('hidden', 'true');
-      d3.select('#third_col3').append("div").attr('id', 'text4').style("border", "1px black solid").text("The decrypted message is only visible to the keyholders").attr('hidden', 'true');
+      d3.select('#third_col3').append("div").attr('id', 'text3').style("border", "1px black solid").style("border-radius", "5px").text("Only the private key can be used to decrypt the message. Try both keys to test.").attr('hidden', 'true');
+      d3.select('#third_col3').append("div").attr('id', 'text4').style("border", "1px black solid").style("border-radius", "5px").text("The decrypted message is only visible to the keyholders").attr('hidden', 'true');
       document.onkeypress = this.stopRKey;
     }
   }]);
@@ -58514,6 +58540,8 @@ var createHistory = require('./create-history');
 var createStream = require('./create-stream');
 
 var createBlock = require('./create-block1');
+
+var modernEncrypt = require('./modern-encryption');
 
 var MyClass = require('./my-class');
 
@@ -58538,7 +58566,7 @@ sections.each(function (d, i) {
   sectionPositions.push(top - startPos);
 });
 var currentIndex = -1;
-var activateFunctions = [createHistory, createStream, createBlock, Symmetric, Asymmetric];
+var activateFunctions = [createHistory, createStream, createBlock, modernEncrypt, Symmetric, Asymmetric];
 
 function position() {
   var pos = window.pageYOffset - 700;
@@ -58557,5 +58585,5 @@ function position() {
 
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
-},{"d3":"UzF0","./create-history":"HZPL","./create-stream":"RnAV","./create-block1":"s4iG","./my-class":"elfx","./symmetric":"DHo5","./asymmetric":"tUJe"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.64556685.js.map
+},{"d3":"UzF0","./create-history":"HZPL","./create-stream":"RnAV","./create-block1":"s4iG","./modern-encryption":"e50A","./my-class":"elfx","./symmetric":"DHo5","./asymmetric":"tUJe"}]},{},["Focm"], null)
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.a0d7e93d.js.map

@@ -170,7 +170,8 @@ class Asymmetric {
         d3.select('#third_col1').append("div")
             .attr('id', 'text1')
             .style("border", "1px black solid")
-            .text("Try typing in a message")
+            .style("border-radius", "5px")
+			.text("Try typing in a message")
 
 
         d3.select('#first_col2').append("div")
@@ -208,6 +209,7 @@ class Asymmetric {
         d3.select('#third_col2').append("div")
             .attr('id', 'text2')
             .style("border", "1px black solid")
+            .style("border-radius", "5px")
             .text("This is the encrypted message, visible to everyone")
             .attr('hidden', 'true')
         
@@ -245,12 +247,14 @@ class Asymmetric {
         d3.select('#third_col3').append("div")
             .attr('id', 'text3')
             .style("border", "1px black solid")
+            .style("border-radius", "5px")
             .text("Only the private key can be used to decrypt the message. Try both keys to test.")
             .attr('hidden', 'true')
         
         d3.select('#third_col3').append("div")
             .attr('id', 'text4')
             .style("border", "1px black solid")
+            .style("border-radius", "5px")
             .text("The decrypted message is only visible to the keyholders")
             .attr('hidden', 'true')
 

@@ -13,18 +13,39 @@
 	position: relative;
 }
 
+#historySection {
+	height: 800px;
+	background-color: #a5d6a7;
+	z-index: -1;
+}
+
+#streamAnimation {
+	background-color: white;
+	z-index: 3;
+}
+
 #vis {
 	display: inline-block;
 	position: fixed;
 	z-index: 1;
 	height: 100%;
-	width: 120px;
-	background-color: lightgrey;
+	width: 150px;
+	background-color: black;
+	color: white;
+}
+
+#vis div{
 	padding: 15px;
 }
 
 #vis div:hover {
-   background-color: yellow; 
+	cursor: pointer;
+	border-bottom: 1px solid #509556;
+	border-top: 1px solid #509556;
+}
+
+.selected {
+	color: #509556;
 }
 
 .fullVis {
@@ -80,7 +101,7 @@ table {
 	display: flex;
 	margin: 0px 0 0 60px;
 	position: fixed;
-	top: 100px;
+	top: 50px;
 	left: 500px;
 }
 
@@ -156,6 +177,7 @@ p {
 
 body {
 	margin: unset;
+	font-family: 'Dosis', sans-serif;
 }
 
 #key, #cipher, #plain {
@@ -240,7 +262,7 @@ body {
 	height: 700px;
 	position: fixed;
 	top: 100px;
-	left: 30vw;
+	left: 20vw;
 }
 
 .line {
@@ -260,32 +282,35 @@ body {
 }
 
 .leftDiv, .rightDiv {
-	width: 400px;
+	width: 580px;
 	height: 100%
 }
 
 .eventBox {
-	background-color: #F1F1F1;
-	height: 125px;
+	background-color: white;
+	height: 80px;
+	width: 520px;
 	border-radius: 10px;
 	margin: 30px;
 	color: black;
 }
 
 .year {
-	padding: 10px;
+	padding: 5px;
 	font-size: 30px;
 	text-align: center;
+	color: #75a478;
 }
 
 .event {
 	padding: 10px;
+	text-align: center;
 }
 
 .explanation {
-	width: 300px;
+	width: 350px;
 	text-align: justify;
-	background-color: gray;
+	background-color: #424242;
 	color: white;
 	padding: 40px 20px 0 20px;
 }
@@ -296,7 +321,7 @@ body {
 
 #step1 {
 	color: white;
-	background-image: url(../static/hack-large.gif);
+	background-image: url(../static/hack.gif);
 }
 
 #step2, #step7 {
@@ -305,7 +330,7 @@ body {
 }
 
 #step3, #step5 {
-	background-color: forestgreen;
+	background-color: #509556;
 }
 
 #step4, #step6 {

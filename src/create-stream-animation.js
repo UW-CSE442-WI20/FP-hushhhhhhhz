@@ -9,8 +9,8 @@ class StreamAnimation {
 		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
-		d3.selectAll("#vis div").style("font-weight", "normal")
-		d3.select("#content3").style("font-weight", "bold")
+		d3.selectAll("#vis div").classed("selected", false)
+		d3.select("#content3").classed("selected", true)
 
 		initialMessage = "MESSAGE";
 		initialKey = "KEYKEYK";

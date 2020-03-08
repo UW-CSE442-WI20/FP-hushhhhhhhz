@@ -9,8 +9,8 @@ class BlockAnimation {
 		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
-		d3.selectAll("#vis div").style("font-weight", "normal")
-		d3.select("#content4").style("font-weight", "bold")
+		d3.selectAll("#vis div").classed("selected", false)
+		d3.select("#content4").classed("selected", true)
 
 		// column, row, box
 		plain_text_pairs = ["GR", "MO", "MY"];

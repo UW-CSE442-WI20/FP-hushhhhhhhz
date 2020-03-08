@@ -10,8 +10,8 @@ class Intro {
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 		// highlight in table of contents
-		d3.selectAll("#vis div").style("font-weight", "normal")
-		d3.select("#content1").style("font-weight", "bold")
+		d3.selectAll("#vis div").classed("selected", false)
+		d3.select("#content1").classed("selected", true)
 
 		// a container for any visualizations
 		d3.select("#title1 .fullVis")

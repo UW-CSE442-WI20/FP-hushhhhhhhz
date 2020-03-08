@@ -8,98 +8,164 @@
   </head>
 
 <body>
-  <h1>Cryptography Visualized</h1>
-
   <div id="container">
-    <div id='graphic'>
+      <!-- we are going to make this the table of contents -->
+      <div id='vis'>
+          <p id="content1">Intro</p>
+          <p id="content2">History</p>
+          <p id="content3">Stream Cipher</p>
+          <p id="content4">Block Cipher</p>
+          <p id="content5">Symmetric Encryption</p>
+          <p id="content6">Asymmetric Encryption</p>
+          <p id="content7">RSA and Hashing</p>
+      </div>
+
+      <!-- everything else -->
       <div id='sections'>
+	<!--why encryption -->
         <section class="step">
           <div id="title1">
-            <h2>History of Encryption</h2>
-        	<br>  
-		</div>
+            <h2 class="titles">Why Encryption</h2>
+            <br>  
+	    <div class='fullVis'></div>
+	  </div>
         </section>
 
+	<!-- history of encryption -->
         <section class="step">
           <div id="title2">
-            <h3>Stream Ciphers</h3>
-          </div>
-          In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext
-          symbols.
-          <br /><br />
-          One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere.
-          <br /><br />
-          It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1,
-          ... Z = 25
-          <br /><br />
-          Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following
-          equation:
-          <br /><br />
-          C = P + K mod 26
-		  <br /><br />
-		  Keys and messages can be any length, but when encoding/decoding they must be the same length. For example, "message" is 7 letters while "key" 
-		  only 3. We therefore repeat "key" until it is the same length as "message".
-		  <br /><br />
-		  Watch on the right as we calculate our ciphertext.
+            <h2 class="titles">History of Encryption</h2>
+            <br>  
+	    <div class='fullVis'></div>
+	  </div>
         </section>
 
+	<!-- stream cipher animation -->
         <section class="step">
-          <div class="title3">
-            <h3>Block Ciphers</h3>
+          <h3 class="titles">Stream Ciphers</h3>
+          <div id="title3" class="flexin">
+            <div class="explanation">
+              In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext
+              symbols.
+              <br /><br />
+              One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere.
+              <br /><br />
+              It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1,
+              ... Z = 25
+              <br /><br />
+              Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following
+              equation:
+              <br /><br />
+              C = P + K mod 26
+  	            <br /><br />
+  	            Keys and messages can be any length, but when encoding/decoding they must be the same length. For example, "message" is 7 letters while "key" 
+  	            only 3. We therefore repeat "key" until it is the same length as "message".
+  	            <br /><br />
+  	            Watch on the right as we calculate our ciphertext.
+            </div>
+	    <div class='halfVis'></div>
           </div>
-          <p>A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it
-          demonstrated to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount
-          Palmerston.</p>
-          <!-- <br /><br /> -->
-
-          <p>Block ciphers encrypts by pairs of letters, instead of single letters like in a stream cipher.</p>
-          <!-- <br /><br /> -->
-
-          <p>Playfair starts with creating a key table. The key table is a 5×5 grid of letters that 
-          will act as the key for encrypting your plaintext. Each of the 25 letters must be unique and one letter 
-          of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J.</p>
-          <!-- <br /><br /> -->
-
-          <p>The message is split into pairs of letters, and we use both letters to encrypt.</p>
-          <p>There are 3 main rules that are followed:</p>
-          <ol>
-            <li>if the letters are in the same column, take the letter below each one</li>
-            <li>if the letters are in the same row, take the letter to the right of each one</li>
-            <li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the horizontal opposite corner of the rectangle</li>
-          </ol>
-		  <p> Watch on the right as we walk through these three rules and then encrypt our "secret".</p>
         </section>
 
+	<!-- stream cipher interaction -->
         <section class="step">
-          <div class="title4">
-            <h2>Modern Encryption:</h2> 
-			<h3> Hash & RSA</h3>
+          <div id="title4">
+            <h3 class="titles">Stream Ciphers Interaction</h3>
+	    <div class='fullVis'></div>
           </div>
-		  Explain the math behind RSA and hash encryption 
+	</section>
+
+	<!-- block cipher animation -->
+        <section class="step">
+	  <h3 class="titles">Block Ciphers</h3>
+          <div id="title5">
+	    <div class="halfVis"></div>
+            <div class="explanation">
+              <p>A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it
+              demonstrated to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount
+              Palmerston.</p>
+              <!-- <br /><br /> -->
+
+              <p>Block ciphers encrypts by pairs of letters, instead of single letters like in a stream cipher.</p>
+              <!-- <br /><br /> -->
+
+              <p>Playfair starts with creating a key table. The key table is a 5×5 grid of letters that 
+              will act as the key for encrypting your plaintext. Each of the 25 letters must be unique and one letter 
+              of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J.</p>
+              <!-- <br /><br /> -->
+
+              <p>The message is split into pairs of letters, and we use both letters to encrypt.</p>
+              <p>There are 3 main rules that are followed:</p>
+              <ol>
+                <li>if the letters are in the same column, take the letter below each one</li>
+                <li>if the letters are in the same row, take the letter to the right of each one</li>
+                <li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the horizontal opposite corner of the rectangle</li>
+              </ol>
+              <p> Watch on the right as we walk through these three rules and then encrypt our "secret".</p>
+	    </div>
+          </div>
+        </section>
+
+	<!-- block cipher interaction -->
+        <section class="step">
+          <h3 class="titles">Block Cipher Interaction</h3>
+          <div id="title6">
+	    <div class='fullVis'></div>
+          </div>
+	</section>
+
+	<!-- transition -->
+        <section class="step" id="backgroundTransition">
+          <h2 class="titles">Moving into Modern Encryption:</h2> 
+          <div id="title7">
+          </div>
         </section>
         
-		<section class="step">
-          <div class="title5">
-            <h3>Symmetric Keys</h3>
+	<!-- symmetric keys animation -->
+	<section class="step">
+          <h3 class="titles">Symmetric Keys</h3>
+          <div id="title8">
+	    <div class='halfVis'></div>
           </div>
-		  Explain history/how they work here...
         </section>
 
+	<!-- symmetric keys interaction -->
+	<section class="step">
+          <h3 class="titles">Symmetric Keys Interaction</h3>
+          <div id="title9">
+	    <div class='fullVis'></div>
+          </div>
+        </section>
+
+	<!-- asymmetric keys animation -->
         <section class="step">
-          <div class="title6">
-            <h3>Asymmetric Keys</h3>
+          <h3 class="titles">Asymmetric Keys</h3>
+          <div id="title10">
+	    <div class='halfVis'></div>
           </div>
-		  Explain history/how they work here...
         </section>
 
-      </div>
-      <div id='vis'>
+	<!-- asymmetric keys interaction -->
+	<section class="step">
+          <h3 class="titles">Asymmetric Keys Interaction</h3>
+          <div id="title11">
+	    <div class='fullVis'></div>
+          </div>
+        </section>
+
+	<!-- rsa -->
+	<section class="step">
+	  <h3 class="titles"> Hash & RSA</h3>
+          <div id="title12">
+	    <div class='fullVis'></div>
+          </div>
+        </section>
+
       </div>
 
       <div id="extra-space">
       </div>
       <script src="./index.js"></script>
-    </div>
   </div>
 </body>
 

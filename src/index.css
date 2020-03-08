@@ -1,14 +1,14 @@
 #sections {
   position: relative;
   display: inline-block;
-  width: 300px;
+  width: 100%;
   top: 0px;
   z-index: 90;
+  margin-left: 150px;
 }
 
 .step {
-	height: 750px;
-	
+	height: 100vh;
 	margin-bottom: 50px;
 }
 
@@ -16,9 +16,23 @@
   display: inline-block;
   position: fixed;
   z-index: 1;
-  margin: 0 0 0 50px;
-  height: 700px;
-  width: 800px;
+  height: 100%;
+  width: 150px;
+  background-color: lightgrey;
+}
+
+.fullVis {
+  display: inline-block;
+  z-index: 1;
+  height: 500px;
+  width: 100%;
+}
+
+.halfVis {
+  display: inline-block;
+  z-index: 1;
+  height: 500px;
+  width: 80%;
 }
 
 .message {
@@ -47,19 +61,25 @@ table {
 }
 
 #container {
-  width: 80%;
-  margin: auto;
+  width: 100%;
+  display: flex;
 }
 
 .streamContainer {
   display: flex;
   margin: 0px 0 0 60px;
+	position: fixed;
+	top: 100px;
+	left: 400px;
 }
 
 .inputContainer {
 	display: flex;
 	margin-left: 50px;
 	font-size: 18px;
+	position: fixed;
+	top: 100px;
+	left: 400px;
 }
 
 .inputs,.results {
@@ -88,7 +108,11 @@ table {
 
 
 h1 {
-  text-align: center
+  text-align: center;
+}
+
+.titles {
+  margin: unset;
 }
 
 #form1{
@@ -117,6 +141,10 @@ p {
   padding: 1px;
 }
 
+body {
+  margin: unset;
+}
+
 #key, #cipher, #plain {
   width: 30px;
   text-align: center;
@@ -137,12 +165,16 @@ p {
   float: right;
 }
 
-.example, .rules, .block_message, .cipher_message, .textboxes {
+.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
   display: flex;
 }
 
 .blockContainer, .interactiveContainer {
   margin: 0 50px 50px 50px;
+  width: 42%;
+	position: fixed;
+	top: 200px;
+	left: 200px;
 }
 
 .block_letter {
@@ -189,6 +221,9 @@ p {
 .timelineContainer {
 	display: flex;
 	height: 700px;
+	position: fixed;
+	top: 100px;
+	left: 400px;
 }
 
 .line {
@@ -227,4 +262,13 @@ p {
 
 .event {
 	padding: 10px;
+}
+
+.explanation {
+	width: 250px;
+	text-align: justify;
+}
+
+#backgroundTransition {
+	background-color: black;
 }

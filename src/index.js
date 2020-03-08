@@ -1,16 +1,17 @@
-// You can require libraries
 const d3 = require('d3')
 
-// You can include local JS files:
+const createIntro = require('./create-intro');
 const createHistory = require('./create-history');
-const createStream = require('./create-stream');
-const createBlock = require('./create-block1');
-const modernEncrypt = require('./modern-encryption');
-const MyClass = require('./my-class');
-const Symmetric = require('./symmetric');
-const Asymmetric = require('./asymmetric');
-const myClassInstance = new MyClass();
-myClassInstance.sayHi();
+const createStreamAnimation = require('./create-stream-animation');
+const createStreamInteraction = require('./create-stream-interaction');
+const createBlockAnimation  = require('./create-block-animation');
+const createBlockInteraction  = require('./create-block-interaction');
+const createTransitionSection = require('./create-transition-section');
+const createSymmetricAnimation = require('./create-symmetric-animation');
+const createSymmetricInteraction = require('./create-symmetric-interaction');
+const createAsymmetricAnimation = require('./create-asymmetric-animation');
+const createAsymmetricInteraction = require('./create-asymmetric-interaction');
+const createRSA = require('./create-rsa');
 
 // get scrolling coordinates
 sections = d3.selectAll('.step');
@@ -28,13 +29,11 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createHistory, createStream, createBlock, modernEncrypt, Symmetric, Asymmetric]
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createSymmetricInteraction, createAsymmetricAnimation, createAsymmetricInteraction, createRSA]
 function position() {
     var pos = window.pageYOffset - 700;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
-	console.log(pos)
-	console.log(sectionIndex)
     var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);

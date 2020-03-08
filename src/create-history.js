@@ -1,16 +1,16 @@
 const d3 = require('d3');
   
-class CreateHistory {
+class History {
   constructor() {
-
   }
 
   start() {
-    document.getElementById('vis').innerHTML = "";
-    console.log('[CreateHistory]', 'Hello World 5.');
-	document.getElementById('vis').innerHTML = "";		
+	d3.selectAll('.fullVis').style("background-color", "transparent").html("")
+	d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+	d3.selectAll("#vis p").style("font-weight", "normal")
+	d3.select("#content2").style("font-weight", "bold")
 	
-	var timelineContainer = d3.select('#vis').append('div').attr('class', 'timelineContainer');
+	var timelineContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'timelineContainer');
 	var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
 	var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
 	var rightDiv = timelineContainer.append('div').attr('class', 'rightDiv');
@@ -87,5 +87,4 @@ class CreateHistory {
   }
 }
 
-module.exports = CreateHistory;
-
+module.exports = History;

@@ -7,7 +7,7 @@ class History {
 	start() {
 		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
-		d3.selectAll("#vis p").style("font-weight", "normal")
+		d3.selectAll("#vis div").style("font-weight", "normal")
 		d3.select("#content2").style("font-weight", "bold")
 
 		var timelineContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'timelineContainer');

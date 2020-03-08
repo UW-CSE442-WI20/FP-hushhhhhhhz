@@ -30,8 +30,19 @@ sections.each(function(d,i) {
 var currentIndex = -1;
 
 var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createSymmetricInteraction, createAsymmetricAnimation, createAsymmetricInteraction, createRSA]
+var contentToStep = {
+	"content1": "step1",
+	"content2": "step2",
+	"content3": "step3",
+	"content4": "step5",
+	"content5": "step8",
+	"content6": "step10",
+	"content7": "step12",
+}
+
 function position() {
-	var pos = window.pageYOffset - 700;
+	var height = window.innerHeight - 100;
+	var pos = window.pageYOffset - height;
 	var sectionIndex = d3.bisect(sectionPositions, pos);
 	sectionIndex = Math.min(sections.size() - 1, sectionIndex);
 	var newInstance = new activateFunctions[sectionIndex]();
@@ -41,6 +52,13 @@ function position() {
 		newInstance.start();
 	}
 }
+
+d3.selectAll("#vis div")
+    .style("font-weight", "normal")
+	.on("click", function(d) {
+		location.hash = contentToStep[this.id];
+		d3.select("#" + this.id).style("font-weight", "bold")
+})
 
 var dispatch = d3.dispatch("active", "progress");
 

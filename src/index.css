@@ -23,6 +23,10 @@
 	padding: 15px;
 }
 
+#vis div:hover {
+   background-color: yellow; 
+}
+
 .fullVis {
 	display: inline-block;
 	z-index: 1;

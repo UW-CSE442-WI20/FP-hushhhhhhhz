@@ -10,7 +10,7 @@ class Intro {
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 		// highlight in table of contents
-		d3.selectAll("#vis p").style("font-weight", "normal")
+		d3.selectAll("#vis div").style("font-weight", "normal")
 		d3.select("#content1").style("font-weight", "bold")
 
 		// a container for any visualizations

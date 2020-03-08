@@ -178,6 +178,10 @@ p {
 body {
 	margin: unset;
 	font-family: 'Dosis', sans-serif;
+	--plain-color: #ffcdd2;
+	--key-color: #fff59d;
+	--mix-color: #ffcc80;
+	--cipher-color: #b3e5fc;
 }
 
 #key, #cipher, #plain {

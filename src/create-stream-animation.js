@@ -19,6 +19,11 @@ class StreamAnimation {
 		var alphabet2 = ["N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var alphaAlpha = alphabet.concat(alphabet2)
 
+		var plainColor = "var(--plain-color)";
+		var keyColor = "var(--key-color)";
+		var mixColor = "var(--mix-color)";
+		var cipherColor = "var(--cipher-color)";
+
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
 		var message = stream_container.append('div').attr('class', 'message');
 
@@ -97,17 +102,17 @@ class StreamAnimation {
 		// MATH CALCULATIONS
 		var math_div = table_div.append('div').attr('class', 'math')
 		var plain_text = math_div.append('p').text('P')
-			.style('color', '#fdd835')
+			.style('color', plainColor)
 			.attr('id', 'plain')
 			.attr('class', 'mathSymbol')
 		var plus = math_div.append('p').text('  +  ').attr('class', 'mathSymbol')
 		var key = math_div.append('p').text('K')
-			.style('color', '#e53935')
+			.style('color', keyColor)
 			.attr('id', 'key')
 			.attr('class', 'mathSymbol')
 		var mod = math_div.append('p').text(' mod 26 = ').attr('class', 'mathSymbol')
 		var cipher = math_div.append('p').text('C')
-			.style('color', '#1c87e5')
+			.style('color', cipherColor)
 			.attr('id', 'cipher')
 			.attr('class', 'mathSymbol')
 
@@ -116,12 +121,12 @@ class StreamAnimation {
 			d3.select('#index'+i).select('.letter')
 				.transition()
 				.duration(500)
-				.style('color', '#fdd835')
+				.style('color', plainColor)
 				.delay(m*i);
 			d3.select('#index'+i).select('.key')
 				.transition()
 				.duration(500)
-				.style('color', '#e53935')
+				.style('color', keyColor)
 				.delay(m*i);
 			d3.select('#key')
 				.transition()
@@ -137,24 +142,24 @@ class StreamAnimation {
 				d3.selectAll('.'+initialMessage[i])
 					.transition()
 					.duration(500)
-					.style('background-color', '#fb8c00') 
+					.style('background-color', mixColor) 
 					.delay(m*i);
 			} else {
 				d3.selectAll('.'+initialMessage[i])
 					.transition()
 					.duration(500)
-					.style('background-color', '#fdd835')
+					.style('background-color', plainColor)
 					.delay(m*i);
 				d3.selectAll('.'+initialKey[i])
 					.transition()
 					.duration(500)
-					.style('background-color', '#e53935')
+					.style('background-color', keyColor)
 					.delay(m*i);
 			}
 			d3.select('#index'+i).select('.cipher')
 				.transition()
 				.duration(500)
-				.style('color', '#1c87e5')
+				.style('color', cipherColor)
 				.text(initialCipher[i])
 				.delay(1000+m*i);
 			d3.select('#cipher')
@@ -175,7 +180,7 @@ class StreamAnimation {
 			d3.selectAll('.'+initialCipher[i])
 				.transition()
 				.duration(500)
-				.style('background-color', '#1c87e5')
+				.style('background-color', cipherColor)
 				.delay(1000+m*i);
 
 			d3.select('#index'+i).select('.letter')

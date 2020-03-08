@@ -10,6 +10,10 @@ class StreamInteraction {
 		var alphabet2 = ["N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var alphaAlpha = alphabet.concat(alphabet2)
 
+		var plainColor = "var(--plain-color)";
+		var keyColor = "var(--key-color)";
+		var cipherColor = "var(--cipher-color)";
+
 		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
@@ -37,17 +41,17 @@ class StreamInteraction {
 		var textDisplay = results.append('p')
 			.attr('id', 'textDisplay')
 			.text("plaintext: ")
-			.style('color', '#fdd835')
+			.style('color', plainColor)
 
 		var keyDisplay = results.append('p')
 			.attr('id', 'keyDisplay')
 			.text("keytext: ")
-			.style('color', '#e53935')
+			.style('color', keyColor)
 
 		var cipherDisplay = results.append('p')
 			.attr('id', 'cipherDisplay')
 			.text("ciphertext: ")
-			.style('color', '#1c87e5')
+			.style('color', cipherColor)
 
 		inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction')
 		var row1 = ["RNC","ONQ","CKO","LYY","FGU"];
@@ -72,7 +76,8 @@ class StreamInteraction {
 			}
 		}
 		function handleMouseOver() {  // Add interactivity
-			d3.select(this).style('background-color', '#e53935')
+			d3.select(this).style('background-color', keyColor)
+			               .style('color', 'black')
 			inputKey = this.id
 			var newKey = "" 
 			if (inputMessage.length > 0) {
@@ -87,6 +92,7 @@ class StreamInteraction {
 		}
 		function handleMouseOut() {
 			d3.select(this).style('background-color', 'transparent')      
+			               .style('color', 'white')
 			inputKey = ""
 			resultCipher = ""
 			document.getElementById('keyDisplay').innerHTML = "keytext:    ";

@@ -3,6 +3,9 @@ const d3 = require('d3');
 class BlockAnimation {
 
 	constructor() {
+		this.darkColor = "#b3e5fc";
+		this.lightColor = "#e6ffff";
+		this.cipherColor = "#fff59d";
 	}
 
 	start() {
@@ -11,6 +14,7 @@ class BlockAnimation {
 
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#content4").classed("selected", true)
+		console.log(this.darkColor)
 
 		// column, row, box
 		plain_text_pairs = ["GR", "MO", "MY"];
@@ -63,50 +67,50 @@ class BlockAnimation {
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay(0);
 		d3.select('.block-' + plain_text_pairs[i][1])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay(0);
 
 		// color the plain text letters in the grid (light red)
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#ef9a9a')
+			.style('background-color', this.lightColor)
 			.delay(duration + delay);
 		d3.select('.block-' + plain_text_pairs[i][1])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#ef9a9a')
+			.style('background-color', this.lightColor)
 			.delay(duration + delay);
 
 		// color the cipher text letters in the grid (red)
 		d3.select('.block-' + cipher_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay((duration + delay));
 		d3.select('.block-' + cipher_text_pairs[i][1])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay((duration + delay));
 
 		// add in the ciphered letters at the same time as the cipher text highlight
 		d3.select("#"+ rule + "_cipher_1")
 			.transition()
 			.duration(duration)
-			.style('color', '#1b87e5')
+			.style('color', this.cipherColor)
 			.text(cipher_text_pairs[i][0])
 			.delay((duration + delay) + 500);
 
 		d3.select("#"+ rule + "_cipher_2")
 			.transition()
 			.duration(duration)
-			.style('color', '#1b87e5')
+			.style('color', this.cipherColor)
 			.text(cipher_text_pairs[i][1])
 			.delay((duration + delay) + 500);
 
@@ -176,53 +180,53 @@ class BlockAnimation {
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay(0);
 
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 12)])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay(0);
 
 		// highlight M and Y in pink
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#ef9a9a')
+			.style('background-color', this.lightColor)
 			.delay(delay);
 
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 12)])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#ef9a9a')
+			.style('background-color', this.lightColor)
 			.delay(delay);
 
 		// highlight O and W in red 
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 2)])
 			.transition()
 			.duration(duration)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay(delay + duration);
 
 		d3.select('.block-' + alphabet[(alphabet.indexOf(plain_text_pairs[i][0]) + 10)])
 			.transition()
 			.duration(500)
-			.style('background-color', '#e53935')
+			.style('background-color', this.darkColor)
 			.delay(delay + duration);
 
 		// add in the ciphered letters at the same time as the cipher text highlight
 		d3.select("#box_cipher_1")
 			.transition()
 			.duration(duration)
-			.style('color', '#1b87e5')
+			.style('color', this.cipherColor)
 			.text(cipher_text_pairs[i][0])
 			.delay(delay + duration);
 
 		d3.select("#box_cipher_2")
 			.transition()
 			.duration(duration)
-			.style('color', '#1b87e5')
+			.style('color', this.cipherColor)
 			.text(cipher_text_pairs[i][1])
 			.delay(delay + duration);
 
@@ -284,13 +288,13 @@ class BlockAnimation {
 			d3.select("#encr_block_" + i)
 				.transition()
 				.duration(duration)
-				.style('color', '#e53935')
+				.style('color', this.darkColor)
 				.delay((last * buffer)+(delay + duration));
 
 			d3.select("#encr_block_" + (i+1))
 				.transition()
 				.duration(duration)
-				.style('color', '#e53935')
+				.style('color', this.darkColor)
 				.delay((last * buffer)+(delay + duration));	
 
 
@@ -301,12 +305,12 @@ class BlockAnimation {
 			d3.select('.block-' + alphabet[e_index1])
 				.transition()
 				.duration(duration)
-				.style('background-color', '#e53935')
+				.style('background-color', this.darkColor)
 				.delay((last * buffer)+(delay + duration));
 			d3.select('.block-' + alphabet[e_index2])
 				.transition()
 				.duration(duration)
-				.style('background-color', '#e53935')
+				.style('background-color', this.darkColor)
 				.delay((last * buffer)+(delay + duration));
 
 			delay = (i==0) ? 2000 : (lastTiming - ((i/2) * 1000) - (1000*(i-2)))
@@ -327,12 +331,12 @@ class BlockAnimation {
 			d3.select('.block-' + alphabet[e_index1])
 				.transition()
 				.duration(duration)
-				.style('background-color', '#ef9a9a')
+				.style('background-color', this.lightColor)
 				.delay((last * buffer)+(delay + duration));
 			d3.select('.block-' + alphabet[e_index2])
 				.transition()
 				.duration(duration)
-				.style('background-color', '#ef9a9a')
+				.style('background-color', this.lightColor)
 				.delay((last * buffer)+(delay + duration));
 
 			var c_index1 = alphabet.indexOf(cipherMessage[i])
@@ -342,25 +346,25 @@ class BlockAnimation {
 			d3.select('.block-' + alphabet[c_index1])
 				.transition()
 				.duration(duration)
-				.style('background-color', '#e53935')
+				.style('background-color', this.darkColor)
 				.delay((last * buffer)+(delay + duration));
 			d3.select('.block-' + alphabet[c_index2])
 				.transition()
 				.duration(duration)
-				.style('background-color', '#e53935')
+				.style('background-color', this.darkColor)
 				.delay((last * buffer)+(delay + duration));
 
 			d3.select("#decr_block_" + i)
 				.transition()
 				.duration(duration)
-				.style('color', '#1b87e5')
+				.style('color', this.cipherColor)
 				.text(cipherMessage[i])
 				.delay((last * buffer)+(delay + duration));
 
 			d3.select("#decr_block_" + (i+1))
 				.transition()
 				.duration(duration)
-				.style('color', '#1b87e5')
+				.style('color', this.cipherColor)
 				.text(cipherMessage[i+1])
 				.delay((last * buffer)+(delay + duration));	
 

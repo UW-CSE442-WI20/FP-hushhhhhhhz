@@ -4,7 +4,7 @@ class History {
   constructor() {
   }
 
-  start() {
+  start(d) {
 	d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 	d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 	d3.selectAll("#vis p").style("font-weight", "normal")
@@ -32,38 +32,39 @@ class History {
            data.push(i)
 	}
 	  
-	var totalLength = 625;
+	var totalLength = 670;
 
 	d3.select('.lineDiv').append('svg')
 		  .attr("width", 20)
 		  .append('path')
 		  .attr('d', line(data))
-		  .attr("stroke", "#e53935")
+		  .attr("stroke", "#75a478")
 	          .attr("stroke-width", 2)
 	          .attr("stroke-dasharray", totalLength + " " + totalLength)
 		  .attr("stroke-dashoffset", totalLength)
 		  .transition()
-		  .duration(8000)
+		  .duration(12*d)
 	          .ease(d3.easeLinear)
 		  .attr("stroke-dashoffset", 0);
 
         eventHash = { 
-		"1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
+		"1467": "Leon Battista Alberti (father of western cryptography) invents cipher wheel",
 		"1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
 		"1678": "Robert Hooke publishes first one way function (related to RSA)",
 		"1854": "Playfair cipher invented by Sir Charles Wheatstone",
 		"1863": "first published solution to vigenere cipher, authored by Kasiski",
-		// "1917" : "Gilbert Vernam proposed one time pad modification to a stream cipher",
-		// "1923": "Enigma encoding machine invented by the Germans",
+	    "1917" : "Gilbert Vernam proposed one time pad modification to a stream cipher",
+	    "1923": "Enigma encoding machine invented by the Germans",
 		"1942": "Enigma code cracked by Alan Turing and his fellows at Bletchley Park",
-		"1960": "cryptographic hash functions were first introduced into computer systems for storing passwords",
-		"1975": "DES, or the data encryption standard is introduced (an early symmetric key encryption)",
-		// "2001": "SHA-2 published",
-		// "2015": "SHA-3 published",
+		"1960": "cryptographic hash functions introduced into computer systems",
+		"1975": "DES (data encryption standard) introduced for symmetric key encryption)",
+		"2001": "SHA-2 published",
+		"2015": "SHA-3 published",
 	}
 
 	var i = 0;
-	var delay = 1000;
+	var delay = d;
+	console.log("here")
 	for (var key in eventHash) {
 		var side = (i % 2 == 0) ? leftDiv : rightDiv;
 		var eventBox = side.append('div')

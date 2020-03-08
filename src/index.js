@@ -17,6 +17,7 @@ const createRSA = require('./create-rsa');
 sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
+historyFlag = false;
 var startPos;
 sections.each(function(d,i) {
 	var top = this.getBoundingClientRect().top;
@@ -31,15 +32,24 @@ var currentIndex = -1;
 
 var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createSymmetricInteraction, createAsymmetricAnimation, createAsymmetricInteraction, createRSA]
 function position() {
-    var pos = window.pageYOffset - 700;
+    var pos = window.pageYOffset - 750;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
     var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);
     	currentIndex = sectionIndex;
-		newInstance.start();
-    }
+		if (currentIndex == 1) {
+			if (historyFlag) {
+				newInstance.start(0);
+			} else {
+				newInstance.start(1000);
+				historyFlag = true;
+			}
+		} else {
+			newInstance.start();
+		}
+	}
 }
 
 var dispatch = d3.dispatch("active", "progress");

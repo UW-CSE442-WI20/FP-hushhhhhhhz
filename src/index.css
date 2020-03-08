@@ -64,8 +64,8 @@
 
 .message {
 	display: flex;
-	font-size: 34px;
-	margin-right: 50px;	
+	font-size: 65px;
+	margin-right: 70px;	
 }
 
 .index {
@@ -77,10 +77,11 @@ td,th {
 	border: 1px solid black;
 	padding: 6px;	
 	text-align: center;
-	width: 17px;
+	width: 26px;
 }
 table {
 	border-collapse: collapse;
+	font-size: 25px;
 }
 
 .centerTitle {
@@ -99,7 +100,7 @@ table {
 
 .streamContainer {
 	display: flex;
-	margin: 0px 0 0 60px;
+	margin: 100px 0 0 80px;
 	position: fixed;
 	top: 50px;
 	left: 500px;
@@ -108,9 +109,9 @@ table {
 .inputContainer {
 	display: flex;
 	margin-left: 50px;
-	font-size: 18px;
+	font-size: 25px;
 	position: fixed;
-	top: 100px;
+	top: 150px;
 	left: 400px;
 	background-color: black;
 	width: 50vw;
@@ -118,10 +119,6 @@ table {
 
 .inputs,.results {
 	margin: 0 30px 0 30px;
-}
-
-.results {
-	font-size: 22px;
 }
 
 .lilDiv {
@@ -137,7 +134,7 @@ table {
 
 .math {
 	display: flex;
-	font-size: 26px;
+	font-size: 30px;
 }
 
 
@@ -191,10 +188,16 @@ body {
 }
 
 .grid_box {
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	border: 1px solid black;
 	text-align: center;
+}
+
+.grid_box p {
+	font-size: 30px;
+	margin: 12px;
+	padding: 0px;
 }
 
 .grid {
@@ -212,12 +215,17 @@ body {
 	height: 100%;
 }
 
+.rules h3 {
+    text-align: center;
+}
+
 .blockContainer, .interactiveContainer {
 	margin: 0 50px 50px 50px;
-	width: 42%;
+	width: 52%;
 	position: fixed;
 	top: 200px;
 	left: 200px;
+	font-size: 25px;
 }
 
 .block_letter {
@@ -254,6 +262,7 @@ body {
 	border: 1px solid darkgray;
 	padding: 10px;
 	cursor: pointer;
+	background-color: black;
 }
 
 #shareResult {
@@ -350,6 +359,15 @@ body {
 	background-image: url(../static/hack-still.png);
 	background-size:100% 100%;
 	filter: brightness(50%);
+}
+
+.blackBackground {
+	height: 1000px;
+	width: 1200px;
+	margin-left: 200px;
+	background-color: black;
+	position: relative;
+	margin: auto;
 }
 
 .stepTransition {

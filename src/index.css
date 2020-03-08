@@ -9,7 +9,6 @@
 
 .step {
 	height: 100vh;
-	margin-bottom: 50px;
 }
 
 #vis {
@@ -17,8 +16,9 @@
 	position: fixed;
 	z-index: 1;
 	height: 100%;
-	width: 150px;
+	width: 120px;
 	background-color: lightgrey;
+	padding: 15px;
 }
 
 .fullVis {
@@ -56,6 +56,11 @@ table {
 	border-collapse: collapse;
 }
 
+.centerTitle {
+	text-align: center;
+	padding: 20px;
+}
+
 #textInput {
 	font-size: 10px;
 }
@@ -70,7 +75,7 @@ table {
 	margin: 0px 0 0 60px;
 	position: fixed;
 	top: 100px;
-	left: 400px;
+	left: 500px;
 }
 
 .inputContainer {
@@ -80,6 +85,8 @@ table {
 	position: fixed;
 	top: 100px;
 	left: 400px;
+	background-color: black;
+	width: 50vw;
 }
 
 .inputs,.results {
@@ -169,6 +176,10 @@ body {
 	display: flex;
 }
 
+.flexin {
+	height: 100%;
+}
+
 .blockContainer, .interactiveContainer {
 	margin: 0 50px 50px 50px;
 	width: 42%;
@@ -223,7 +234,7 @@ body {
 	height: 700px;
 	position: fixed;
 	top: 100px;
-	left: 400px;
+	left: 30vw;
 }
 
 .line {
@@ -252,6 +263,7 @@ body {
 	height: 125px;
 	border-radius: 10px;
 	margin: 30px;
+	color: black;
 }
 
 .year {
@@ -265,10 +277,37 @@ body {
 }
 
 .explanation {
-	width: 250px;
+	width: 300px;
 	text-align: justify;
+	background-color: gray;
+	color: white;
+	padding: 40px 20px 0 20px;
 }
 
-#backgroundTransition {
+#title5 {
+	height: 100%;
+}
+
+#step2, #step7 {
+	background-color: black;
+	color: white;
+}
+
+#step3, #step5 {
+	background-color: forestgreen;
+}
+
+#step4, #step6 {
+	color: white;
+	background-image: url(../static/hack-still.png);
+}
+
+#step1 {
+	color: white;
+	background-image: url(../static/hack-large.gif);
+}
+
+.stepTransition {
+	color: white;
 	background-color: black;
 }

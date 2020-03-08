@@ -5,11 +5,16 @@ class Intro {
 	}
 
 	start() {
+		// remove any previous vis
 		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
-		d3.select("#title1 .fullVis").style("background-color", "black")
+
+		// highlight in table of contents
 		d3.selectAll("#vis p").style("font-weight", "normal")
 		d3.select("#content1").style("font-weight", "bold")
+
+		// a container for any visualizations
+		d3.select("#title1 .fullVis")
 	}
 }
 

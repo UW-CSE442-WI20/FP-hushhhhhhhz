@@ -42,8 +42,8 @@ class BlockInteraction {
 			var index = words.indexOf(selected_word);
 
 			console.log(userinput, ciphered[index])
-			
-			
+
+
 			if (userinput.toUpperCase() === ciphered[index]) {
 				console.log("CONGRATS")
 				d3.select("#shareResult").text("congrats!")

@@ -1,10 +1,10 @@
 #sections {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  top: 0px;
-  z-index: 90;
-  margin-left: 150px;
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	top: 0px;
+	z-index: 90;
+	margin-left: 150px;
 }
 
 .step {
@@ -13,26 +13,26 @@
 }
 
 #vis {
-  display: inline-block;
-  position: fixed;
-  z-index: 1;
-  height: 100%;
-  width: 150px;
-  background-color: lightgrey;
+	display: inline-block;
+	position: fixed;
+	z-index: 1;
+	height: 100%;
+	width: 150px;
+	background-color: lightgrey;
 }
 
 .fullVis {
-  display: inline-block;
-  z-index: 1;
-  height: 500px;
-  width: 100%;
+	display: inline-block;
+	z-index: 1;
+	height: 500px;
+	width: 100%;
 }
 
 .halfVis {
-  display: inline-block;
-  z-index: 1;
-  height: 500px;
-  width: 80%;
+	display: inline-block;
+	z-index: 1;
+	height: 500px;
+	width: 80%;
 }
 
 .message {
@@ -61,13 +61,13 @@ table {
 }
 
 #container {
-  width: 100%;
-  display: flex;
+	width: 100%;
+	display: flex;
 }
 
 .streamContainer {
-  display: flex;
-  margin: 0px 0 0 60px;
+	display: flex;
+	margin: 0px 0 0 60px;
 	position: fixed;
 	top: 100px;
 	left: 400px;
@@ -108,114 +108,114 @@ table {
 
 
 h1 {
-  text-align: center;
+	text-align: center;
 }
 
 .titles {
-  margin: unset;
+	margin: unset;
 }
 
 #form1{
-  width: 100%;
+	width: 100%;
 }
 
 #input_boxes {
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 5px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 5px;
 }
 
 textarea {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #encrypted, #decrypted {
-  width: 100%;
-  height: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+	width: 100%;
+	height: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 p {
-  padding: 1px;
+	padding: 1px;
 }
 
 body {
-  margin: unset;
+	margin: unset;
 }
 
 #key, #cipher, #plain {
-  width: 30px;
-  text-align: center;
+	width: 30px;
+	text-align: center;
 
 }
 
 .grid_box {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-  text-align: center;
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	text-align: center;
 }
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  width: 38%;
-  float: right;
+	display: flex;
+	flex-wrap: wrap;
+	width: 38%;
+	float: right;
 }
 
 .example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
-  display: flex;
+	display: flex;
 }
 
 .blockContainer, .interactiveContainer {
-  margin: 0 50px 50px 50px;
-  width: 42%;
+	margin: 0 50px 50px 50px;
+	width: 42%;
 	position: fixed;
 	top: 200px;
 	left: 200px;
 }
 
 .block_letter {
-  font-size: 25px;
-  width: 40px;
-  text-align: center;
+	font-size: 25px;
+	width: 40px;
+	text-align: center;
 }
 
 .exampleContainer {
-  margin-right: 45px; 
-  margin-top: -22px;
+	margin-right: 45px; 
+	margin-top: -22px;
 }
 
 .block_pairs {
-  margin-right: 3%;
+	margin-right: 3%;
 }
 
 .block_msg_letter{
-  margin-right: 21px;
-  font-size: 65px;
+	margin-right: 21px;
+	font-size: 65px;
 }
 
 .update_margin {
-  margin-right: 17px;
+	margin-right: 17px;
 }
 
 .encryption {
-  margin-top: 25px;
+	margin-top: 25px;
 }
 
 #checkbutton, #inputButton {
-  border-radius: 5px;
-  margin-left: 15px;
-  border: 1px solid darkgray;
-  padding: 10px;
-  cursor: pointer;
+	border-radius: 5px;
+	margin-left: 15px;
+	border: 1px solid darkgray;
+	padding: 10px;
+	cursor: pointer;
 }
 
 #shareResult {
-  margin-left: 10px;
-  font-size: 30px;
+	margin-left: 10px;
+	font-size: 30px;
 }
 
 .timelineContainer {

@@ -31,7 +31,7 @@ class BlockAnimation {
 
 		var text_container = block_container.append('div').attr('class', 'text_container')
 		text_container.append('div').attr('class', 'rules');
-		
+
 		this.transitions(plain_text_pairs, cipher_text_pairs, 0);
 
 		var encryption = text_container.append('div').attr('class', 'encryption');
@@ -55,7 +55,7 @@ class BlockAnimation {
 		var cipher_text = column_ex.append('div').attr('class', 'example')
 		cipher_text.append('div').attr('id', rule + '_cipher_1').attr('class', 'block_letter')
 		cipher_text.append('div').attr('id', rule + '_cipher_2').attr('class', 'block_letter')
-		
+
 		var duration = 500;
 		var delay = 1000;
 
@@ -110,7 +110,7 @@ class BlockAnimation {
 			.text(cipher_text_pairs[i][1])
 			.delay((duration + delay) + 500);
 
-		
+
 		// decolor everything 
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
@@ -133,24 +133,24 @@ class BlockAnimation {
 
 		if (i == 0) {
 			d3.select('.block-' + cipher_text_pairs[i][1])
-			.transition()
-			.duration(duration)
-			.style('background-color', 'transparent')
-			.delay(duration + delay + 1500)
-			.on("end", function () {
-				forreal.transitions(plain_text_pairs, cipher_text_pairs, 1)
-			});
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay(duration + delay + 1500)
+				.on("end", function () {
+					forreal.transitions(plain_text_pairs, cipher_text_pairs, 1)
+				});
 		}
 
 		if (i == 1) {
 			d3.select('.block-' + cipher_text_pairs[i][1])
-			.transition()
-			.duration(duration)
-			.style('background-color', 'transparent')
-			.delay(duration + delay + 1500)
-			.on("end", function () {
-				forreal.box_transition(plain_text_pairs, cipher_text_pairs, 2)
-			});
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay(duration + delay + 1500)
+				.on("end", function () {
+					forreal.box_transition(plain_text_pairs, cipher_text_pairs, 2)
+				});
 		}
 	}
 
@@ -171,7 +171,7 @@ class BlockAnimation {
 		var duration = 500;
 		var delay = 1000;
 		var forreal = this;
-		
+
 		// highlight M and Y in red 
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
@@ -184,7 +184,7 @@ class BlockAnimation {
 			.duration(duration)
 			.style('background-color', '#e53935')
 			.delay(0);
-		
+
 		// highlight M and Y in pink
 		d3.select('.block-' + plain_text_pairs[i][0])
 			.transition()
@@ -256,7 +256,7 @@ class BlockAnimation {
 		var initialMessage = "SECRET";
 		var cipherMessage = "UCBSDU"
 		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-		
+
 		var duration = 1000
 		var buffer = 2500;
 
@@ -280,7 +280,7 @@ class BlockAnimation {
 			var delay = (i==0) ? 0 : (lastTiming - ((i/2) * 3000));
 
 			var last = i/2;
-			
+
 			d3.select("#encr_block_" + i)
 				.transition()
 				.duration(duration)
@@ -292,7 +292,7 @@ class BlockAnimation {
 				.duration(duration)
 				.style('color', '#e53935')
 				.delay((last * buffer)+(delay + duration));	
-			
+
 
 			var e_index1 = alphabet.indexOf(initialMessage[i])
 			var e_index2 = alphabet.indexOf(initialMessage[i+1])
@@ -322,7 +322,7 @@ class BlockAnimation {
 				.duration(duration)
 				.style('color', 'black')
 				.delay((last * buffer)+(delay + duration));	
-			
+
 			// make two plain text letters pink
 			d3.select('.block-' + alphabet[e_index1])
 				.transition()
@@ -337,7 +337,7 @@ class BlockAnimation {
 
 			var c_index1 = alphabet.indexOf(cipherMessage[i])
 			var c_index2 = alphabet.indexOf(cipherMessage[i+1])
-			
+
 			// make two cipher text letters red
 			d3.select('.block-' + alphabet[c_index1])
 				.transition()
@@ -365,7 +365,7 @@ class BlockAnimation {
 				.delay((last * buffer)+(delay + duration));	
 
 			delay = (i==0) ? 3000 : (lastTiming - ((i-2) * 500))
-			
+
 			// decolor everything
 			d3.select('.block-' + alphabet[e_index1])
 				.transition()
@@ -382,15 +382,15 @@ class BlockAnimation {
 				.duration(duration)
 				.style('background-color', 'transparent')
 				.delay((last * buffer)+(delay + duration));
-			
+
 			var forreal = this;
-			
+
 			d3.select('.block-' + alphabet[c_index2])
 				.transition()
 				.duration(duration)
 				.style('background-color', 'transparent')
 				.delay((last * buffer)+(delay + duration));
-			
+
 			lastTiming = (last * buffer)+(delay + duration) + duration
 		}
 	}

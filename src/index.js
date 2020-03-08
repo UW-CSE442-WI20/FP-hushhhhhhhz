@@ -31,15 +31,15 @@ var currentIndex = -1;
 
 var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createSymmetricInteraction, createAsymmetricAnimation, createAsymmetricInteraction, createRSA]
 function position() {
-    var pos = window.pageYOffset - 700;
-    var sectionIndex = d3.bisect(sectionPositions, pos);
-    sectionIndex = Math.min(sections.size() - 1, sectionIndex);
-    var newInstance = new activateFunctions[sectionIndex]();
-    if (currentIndex !== sectionIndex) {
-    	dispatch.call('active', this, sectionIndex);
-    	currentIndex = sectionIndex;
+	var pos = window.pageYOffset - 700;
+	var sectionIndex = d3.bisect(sectionPositions, pos);
+	sectionIndex = Math.min(sections.size() - 1, sectionIndex);
+	var newInstance = new activateFunctions[sectionIndex]();
+	if (currentIndex !== sectionIndex) {
+		dispatch.call('active', this, sectionIndex);
+		currentIndex = sectionIndex;
 		newInstance.start();
-    }
+	}
 }
 
 var dispatch = d3.dispatch("active", "progress");

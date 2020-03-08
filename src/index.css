@@ -290,6 +290,11 @@ body {
 	height: 100%;
 }
 
+#step1 {
+	color: white;
+	background-image: url(../static/hack-large.gif);
+}
+
 #step2, #step7 {
 	background-color: black;
 	color: white;
@@ -301,12 +306,17 @@ body {
 
 #step4, #step6 {
 	color: white;
-	background-image: url(../static/hack-still.png);
+	position: relative;
 }
 
-#step1 {
-	color: white;
-	background-image: url(../static/hack-large.gif);
+#step4::before, #step6::before {
+	content: "";
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background-image: url(../static/hack-still.png);
+	background-size:100% 100%;
+	filter: brightness(50%);
 }
 
 .stepTransition {

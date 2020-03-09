@@ -104,15 +104,16 @@ class Intro {
 
 			applicationText = applicationContainer.append('div')
 				.style("width", "700px")
+				.style("height", "230px")
 				.style("opacity", 0)
 				.style("background-color", "black")
 				.style("padding", "10px")
 
 			applicationText.append("h2")
-				.text("Applications of Cryptography")
+				.text("Why is Cryptogology important?")
 
 			applicationText.append('p')
-				.text("Cryptography has had many applications over thousands of years of history. To the left we highlight the major applications that motivate the study and development of cryptography today. As you can see, cryptography comes into our lives in a multitude of ways.")
+				.text("Cryptology has had many applications over thousands of years of history. In fact, the earliest computers were developed in order to break encrypted messages being sent during WWII. But as computers have made their way into every part of our live, cryptology has become increasingly important in protecting the personal data of individuals. To the left we highlight the major applications that motivate the study and development of cryptology today. As you can see, cryptoloy comes into our lives in a multitude of ways.")
 
 			applicationText.transition()
 				.duration(5000)
@@ -129,16 +130,16 @@ class Intro {
 				.text("The three branches")
 
 			typeText.append('p')
-				.text("Cryptology: Cryptology (literally \"the hidden word\") is an umbrella term for the fields of cryptography and cryptanalysis. Researchers who both develop new ciphers and attempt to break others are most properly called cryptologists as they practice both cryptography and cryptanalysis.")
+				.text("Cryptology is an umbrella term for the fields of cryptography and cryptanalysis.") 
 
 			typeText.append('p')
-				.text("Cryptography: Cryptography (\"hidden writing\") is the area of cryptology related to the creation of new codes and ciphers. Cryptographers use mathematical properties to develop cryptographic algorithms. The intent of these algorithms is to encode a message in such a way that the author and intended recipient can easily communicate while it is impossible or computationally infeasible for an unauthorized party to learn any secret information.")
+				.text("Cryptography is the creation of new codes and ciphers. Cryptographers use mathematical properties to encode a message in such a way that the author and intended recipient can easily communicate while it is impossible or computationally infeasible for an unauthorized party to learn any secret information.")
 
 			typeText.append('p')
-				.text("Cryptanalysis: Cryptanalysis (\"the investigation of the hidden\") is the art and science of breaking ciphers. Cryptanalysts perform a variety of different analyses on a cipher to attempt to learn secret information. Among these are mathematical analysis (searching for loopholes or flaws in the mathematical basis of the cipher), logical analysis (confirming that the cipher was designed correctly), and side-channel analysis (testing if the execution time, power consumption, etc. of a system is dependent on-and reveals information about the plaintext or secret key.)")
+				.text("Cryptanalysis is the art and science of breaking ciphers. Cryptanalysts perform a variety of different analyses on a cipher to attempt to learn secret information. Among these are mathematical analysis, logical analysis and side-channel analysis.") 
 
 			var types = [
-				{ id: "Cryptology", cx: 200, cy: 100},
+				{ id: "Cryptology", cx: 200, cy: 90},
 				{ id: "Cryptography", cx: 200, cy: 230},
 				{ id: "Cryptanalysis", cx: 80, cy: 160 },
 			]
@@ -151,7 +152,7 @@ class Intro {
 
 			var typeBubbles = typeContainer.append('svg')
 				.style('width','400')
-				.style('height', '400')
+				.style('height', '300')
 				.append('g');
 
 			var typeElements = typeBubbles.selectAll("circle")

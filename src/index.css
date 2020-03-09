@@ -20,8 +20,8 @@
 .titleBox {
 	color: white;
 	font-size: 48px;
-	background-color: transparent;
-	height: 100px;
+	background-color: black;
+	height: 80px;
     width: 900px;
     z-index: 1;
     position: relative;
@@ -357,7 +357,7 @@ circle {
 
 .timelineContainer {
 	display: flex;
-	height: 700px;
+	height: 620px;
 	position: relative;
 	left: 5vw;
 }
@@ -379,20 +379,21 @@ circle {
 }
 
 .leftDiv, .rightDiv {
-	width: 580px;
+	width: 480px;
 	height: 100%
 }
 
 .eventBox {
-	background-color: white;
-	height: 80px;
+	display: flex;
+	height: 70px;
 	width: 520px;
-	border-radius: 10px;
 	margin: 30px;
 	color: black;
+	font-size: 20px;
 }
 
 .year {
+	margin-right: 20px;
 	padding: 5px;
 	font-size: 30px;
 	text-align: center;
@@ -400,6 +401,9 @@ circle {
 }
 
 .event {
+	width: 300px;
+	background: white;
+	border-radius: 10px;
 	padding: 10px;
 	text-align: center;
 }
@@ -428,7 +432,7 @@ circle {
     width: 100%; height: 100%;
 	background-image: url(../static/hack-still.png);
 	background-size:100% 100%;
-    filter: brightness(70%);
+    filter: brightness(30%);
 	z-index: -1;
 }
 
@@ -453,7 +457,7 @@ circle {
 	width: 100%; height: 100%;
 	background-image: url(../static/hack-still.png);
 	background-size:100% 100%;
-	filter: brightness(50%);
+	filter: brightness(30%);
 }
 
 .blackBackground {

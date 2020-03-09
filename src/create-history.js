@@ -38,7 +38,7 @@ class History {
 				data.push(i)
 			}
 
-			var totalLength = 670;
+			var totalLength = 600;
 
 			d3.select('.lineDiv').append('svg')
 				.attr("width", 20)
@@ -63,7 +63,7 @@ class History {
 				"1923": "Enigma encoding machine invented by the Germans",
 				"1942": "Enigma code cracked by Alan Turing and his fellows at Bletchley Park",
 				"1960": "Cryptographic hash functions introduced into computer systems",
-				"1975": "DES (data encryption standard) introduced for symmetric key encryption)",
+				"1975": "Data Encryption Standard introduced for symmetric key encryption",
 				"2001": "SHA-2 published",
 				"2015": "SHA-3 published",
 			}

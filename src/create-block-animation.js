@@ -24,6 +24,7 @@ class BlockAnimation {
 
 		var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything')
 		var block_container = everything.append("div").attr('class', 'blockContainer')
+		block_container.append("h1").attr("class", "playfairTitles").text("Playfair uses 3 main rules to encrypt a message:")
 
 		var grid = block_container.append('div').attr('class', 'grid');
 
@@ -389,14 +390,31 @@ class BlockAnimation {
 
 			var forreal = this;
 
-			d3.select('.block-' + alphabet[c_index2])
+			if(i==4) {
+				d3.select('.block-' + alphabet[c_index2])
 				.transition()
 				.duration(duration)
 				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration));
+				.delay((last * buffer)+(delay + duration))
+				.on('end', function() {
+					d3.select(".blockContainer").append("h1").attr("class", "playfairTitles").text("To decrypt a message, do the same but in the opposite direction!")
+
+					const decryption = d3.select(".blockContainer").append("div").attr('class', 'decryption');
+					decryption.append('div').attr('class', 'block_message_decr').text("UCBSDU");
+					decryption.append('div').attr('class', 'cipher_message_decr').text("SECRET");
+				});
+			} else {
+				d3.select('.block-' + alphabet[c_index2])
+				.transition()
+				.duration(duration)
+				.style('background-color', 'transparent')
+				.delay((last * buffer)+(delay + duration))
+			}
+			
 
 			lastTiming = (last * buffer)+(delay + duration) + duration
 		}
+
 	}
 
 }

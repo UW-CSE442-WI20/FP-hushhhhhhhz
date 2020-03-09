@@ -10,35 +10,64 @@ class BlockInteraction {
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 		var interactive_container = d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainer')
-		interactive_container.append('h2').text('Test your block cipher skills!')
-		interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
-		var textboxes = interactive_container.append('div').attr('class', 'textboxes')
+		interactive_container.append('h2').attr("class", "block_interactive_title").text('Test your block cipher skills!')
+		
+		// test encryption skills
+		interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to ENCRYPT it. When you are done click on the check button to see if you got it right')
+		var textboxes_and_res = interactive_container.append('div')
+
+		var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes')
 
 		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
-		var dropdown = textboxes.append('select').attr('id', 'dropdown')
+		var dropdown = textboxes.append('select').attr('id', 'encr_dropdown').attr("class", "dropdown")
 
 		for (var i = 0; i < words.length; i++) {
 			dropdown.append('option').text(words[i])
 		}
 
-		textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
+		textboxes.append('input').style('margin-left', '20px').attr("id", 'encr_userinput').attr("class", "userinput")
 
 		textboxes.append('div')
-			.attr('id', 'checkbutton')
+			.attr('id', 'encr_checkbutton')
+			.attr("class", "checkbutton")
 			.text('CHECK')
 
-		textboxes.append('div').attr('id', 'shareResult')
+		textboxes_and_res.append('div').attr('id', 'encr_shareResult').attr("class", "shareresult")
 
-		document.getElementById("checkbutton").onclick = this.checkanswer;
+		document.getElementById("encr_checkbutton").onclick = this.checkencrypt;
+
+		// test decreyption skills
+		interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to DECRYPT it. When you are done click on the check button to see if you got it right')
+		var textboxes_and_res = interactive_container.append('div')
+
+		var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes')
+
+		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+		var dropdown = textboxes.append('select').attr('id', 'decr_dropdown').attr("class", "dropdown")
+
+		for (var i = 0; i < words.length; i++) {
+			dropdown.append('option').text(words[i])
+		}
+
+		textboxes.append('input').style('margin-left', '20px').attr("id", 'decr_userinput').attr("class", "userinput")
+
+		textboxes.append('div')
+			.attr('id', 'decr_checkbutton')
+			.attr("class", "checkbutton")
+			.text('CHECK')
+
+		textboxes_and_res.append('div').attr('id', 'decr_shareResult').attr("class", "shareresult")
+
+		document.getElementById("decr_checkbutton").onclick = this.checkdecrypt;
 	}
 
-	checkanswer() {
-		var selected_word = d3.select('#dropdown option:checked').text();
+	checkencrypt() {
+		var selected_word = d3.select('#encr_dropdown option:checked').text();
 		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
 		var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
 
 		if (selected_word != 'CHOOSE A WORD') {
-			var userinput = document.getElementById("userinput").value
+			var userinput = document.getElementById("encr_userinput").value
 			var index = words.indexOf(selected_word);
 
 			console.log(userinput, ciphered[index])
@@ -46,10 +75,34 @@ class BlockInteraction {
 
 			if (userinput.toUpperCase() === ciphered[index]) {
 				console.log("CONGRATS")
-				d3.select("#shareResult").text("congrats!")
+				d3.select("#encr_shareResult").text("YOU ARE A MASTER, CONGRATS!")
+				// d3.select("#encr_userinput").style("background-color", "green")
 			}else{
 				console.log("try again")
-				d3.select("#shareResult").text("try again!")
+				d3.select("#encr_shareResult").text("TRY AGAIN!")
+				// d3.select("#encr_userinput").style("background-color", "red")
+			}
+		}
+	}
+
+	checkdecrypt() {
+		var selected_word = d3.select('#decr_dropdown option:checked').text();
+		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+		var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
+
+		if (selected_word != 'CHOOSE A WORD') {
+			var userinput = document.getElementById("decr_userinput").value
+			var index = words.indexOf(selected_word);
+
+			console.log(userinput, ciphered[index])
+
+
+			if (userinput.toUpperCase() === ciphered[index]) {
+				console.log("CONGRATS")
+				d3.select("#decr_shareResult").text("YOU ARE A MASTER, CONGRATS!")
+			}else{
+				console.log("try again")
+				d3.select("#decr_shareResult").text("TRY AGAIN!")
 			}
 		}
 	}

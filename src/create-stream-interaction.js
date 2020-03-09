@@ -54,7 +54,7 @@ class StreamInteraction {
 			.style('color', cipherColor)
 
 		inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction')
-		var row1 = ["RNC","ONQ","CKO","LYY","FGU"];
+		var row1 = ["RNC","ONQ","CKO","KEY","FGU"];
 		var row2 = ["MIO","CAY","ZUU","KRK","BMW"];
 		var row3 = ["QXG","UXV","HPV","YUH","LDG"];
 		var row4 = ["STD","HVO","JEQ","PYL","DNO"];
@@ -122,6 +122,84 @@ class StreamInteraction {
 			document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
 			document.getElementById('textInput').value = ""
 		});
+
+		var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
+		var inputs2 = input2Container.append('div').attr('class', 'inputs2'); 
+		inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
+		inputs2.append('h4').text('ciphertext: ISSNMBSX').style('color', cipherColor)
+		inputs2.append('h4').text('keytext: KEYKEYKE').style('color', keyColor)
+		lilDiv2 = inputs2.append('div').attr('class', 'lilDiv2')
+		var textInput2 = lilDiv2.append('input')
+            .attr('id', 'textInput2')
+            .attr('style', 'text')
+		var inputButton2 = lilDiv2.append('div')
+            .attr('id', 'inputButton2')
+            .text('CHECK')
+		var answer = lilDiv2.append('h4').text('')
+								.style('color', 'white')
+								.style('margin', 'auto')
+								.attr('id', 'answer')
+		d3.select('#inputButton2').on('click', function () {
+            guess = document.getElementById('textInput2').value
+            guess = guess.replace(/\s+/g, '');
+			guess = guess.toUpperCase();
+			if (guess == "YOUDIDIT") {
+            	document.getElementById('answer').innerHTML = "Correct!";
+            } else {
+				document.getElementById('answer').innerHTML = "Try again..."
+			}
+        });
+
+
+		var table_div = input2Container.append('div').attr('class', 'tableDiv')
+        var table = table_div.append('table');
+        var thead = table.append('thead');
+        var tbody = table.append('tbody');
+        thead.append('tr')
+            .selectAll('th')
+            .data(alphabet)
+            .enter()
+            .append('th')
+            .text(function(letter) { return letter })
+            .attr('class', function(letter) { return letter });
+        var rows = tbody.selectAll('tr')
+            .data([1])
+            .enter()
+            .append('tr')
+        var cells = rows.selectAll('td')
+            .data(function(row) {
+                return alphabet.map(function(letter) {
+                    return {column: letter, value: alphabet.indexOf(letter)};
+                });
+            })
+            .enter()
+            .append('td')
+            .html(function(d) {return d.value})
+            .attr('class', function(d) { return d.column });
+		 var table2 = table_div.append('table');
+        var thead2 = table2.append('thead');
+        var tbody2 = table2.append('tbody');
+        thead2.append('tr')
+            .selectAll('th')
+            .data(alphabet2)
+            .enter()
+            .append('th')
+            .text(function(letter) { return letter })
+            .attr('class', function(letter) { return letter });
+        var rows2 = tbody2.selectAll('tr')
+            .data([1])
+            .enter()
+            .append('tr')
+        var cells2 = rows2.selectAll('td')
+            .data(function(row) {
+                return alphabet2.map(function(letter) {
+                    return {column: letter, value: alphabet2.indexOf(letter) + 13};
+                });
+            })
+            .enter()
+            .append('td')
+            .html(function(d) {return d.value})
+            .attr('class', function(d) { return d.column });
 	}
 }
 

@@ -199,8 +199,9 @@ body {
     height: 60px;
     border: 1px solid white;
     text-align: center;
-    color: white;
-    z-index: 90;
+	color: white;
+	background-color: black !important;
+    /* z-index: 90; */
 }
 
 .grid_box p, .grid_box_new p {
@@ -224,7 +225,6 @@ body {
     margin-top: 10%;
     margin-left: 8%;
 	align-content: baseline;
-	background-color: black;
 }
 
 .example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
@@ -303,7 +303,8 @@ body {
 	margin-left: 10px;
 	font-size: 30px;
 	text-align: center;
-    margin-top: 3%;
+	margin-top: 3%;
+	width: 57%;
 }
 
 .timelineContainer {

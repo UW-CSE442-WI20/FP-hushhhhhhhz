@@ -9,7 +9,11 @@ class BlockInteraction {
 		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
-		var interactive_container = d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainer')
+		var canvas =  d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer')
+
+		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+		var interactive_container = canvas.append('div').attr('class', 'interactiveContainer')
 		interactive_container.append('h2').attr("class", "block_interactive_title").text('Test your block cipher skills!')
 		
 		// test encryption skills
@@ -42,7 +46,7 @@ class BlockInteraction {
 
 		var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes')
 
-		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
+		var words = ['CHOOSE A WORD', 'EBDQ', 'XSMY', 'GWKHIS', 'LQKHIS', 'CBDSBUFD', 'ESOFLCTW']
 		var dropdown = textboxes.append('select').attr('id', 'decr_dropdown').attr("class", "dropdown")
 
 		for (var i = 0; i < words.length; i++) {
@@ -59,6 +63,14 @@ class BlockInteraction {
 		textboxes_and_res.append('div').attr('id', 'decr_shareResult').attr("class", "shareresult")
 
 		document.getElementById("decr_checkbutton").onclick = this.checkdecrypt;
+
+		var grid = canvas.append('div').attr('class', 'grid_new');
+
+		for (var i = 0; i < 5; i++) {
+			for (var j = 0; j < 5; j++) {
+				grid.append('div').attr('class', 'grid_box_new').append('p').text(alphabet[j + i * 4 + i]);
+			}
+		}
 	}
 
 	checkencrypt() {
@@ -87,8 +99,8 @@ class BlockInteraction {
 
 	checkdecrypt() {
 		var selected_word = d3.select('#decr_dropdown option:checked').text();
-		var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
-		var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
+		var ciphered = ['CHOOSE A WORD', 'DATA', "SNOW", "BRIGHT", "FLIGHT", "BACTERIA", "CULINARY"]
+		var words = ['CHOOSE A WORD', 'EBDQ', 'XSMY', 'GWKHIS', 'LQKHIS', 'CBDSBUFD', 'ESOFLCTW']
 
 		if (selected_word != 'CHOOSE A WORD') {
 			var userinput = document.getElementById("decr_userinput").value

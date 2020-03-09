@@ -98,11 +98,17 @@
 	text-align: center;
 }
 
-td,th {
+#step3 td,#step3 th {
 	border: 1px solid black;
 	padding: 6px;	
 	text-align: center;
 	width: 26px;
+}
+#step4 td, #step4 th {
+	border: 1px solid white;
+    padding: 6px;   
+    text-align: center;
+    width: 26px;
 }
 table {
 	border-collapse: collapse;
@@ -136,25 +142,46 @@ table {
 .inputContainer {
 	display: flex;
 	margin-left: 50px;
-	font-size: 25px;
+	font-size: 20px;
 	position: fixed;
-	top: 150px;
-	left: 400px;
+	top: 10px;
+	left: 300px;
 	background-color: black;
 	width: 50vw;
 }
 
-.inputs,.results {
+.input2Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    position: fixed;
+    top: 500px;
+    left: 300px;
+    background-color: black;
+    width: 50vw;
+}
+
+.results {
+    font-size: 26px;
+    position: fixed;
+    top: 250px;
+    left: 600px;
+    background-color: black;
+    width: 50vw;
+}
+
+.inputs, .inputs2 {
 	margin: 0 30px 0 30px;
 }
 
-.lilDiv {
+.lilDiv, .lilDiv2  {
 	display: flex;
+	width: 380px;
 }
 
-#textInput {
-	font-size:16px;
-	font-family: 'Times New Roman';
+#textInput, #textInput2 {
+	font-size:20px;
+	font-family: 'Dosis', sans-serif;
 	margin-right: 20px;
 	border-radius: 5px;
 }
@@ -283,7 +310,7 @@ body {
 	margin-top: 25px;
 }
 
-#checkbutton, #inputButton {
+#checkbutton, #inputButton, #inputButton2 {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid darkgray;
@@ -401,7 +428,7 @@ body {
 
 .blackBackground {
 	height: 1000px;
-	width: 1200px;
+	width: 1000px;
 	margin-left: 200px;
 	background-color: black;
 	position: relative;

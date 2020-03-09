@@ -98,11 +98,17 @@
 	text-align: center;
 }
 
-td,th {
+#step3 td,#step3 th {
 	border: 1px solid black;
 	padding: 6px;	
 	text-align: center;
 	width: 26px;
+}
+#step4 td, #step4 th {
+	border: 1px solid white;
+    padding: 6px;   
+    text-align: center;
+    width: 26px;
 }
 table {
 	border-collapse: collapse;
@@ -155,12 +161,16 @@ table {
     width: 50vw;
 }
 
-.input2Container table {
-	border-color: white;
-	color: white;
+.results {
+    font-size: 26px;
+    position: fixed;
+    top: 250px;
+    left: 600px;
+    background-color: black;
+    width: 50vw;
 }
 
-.inputs,.results, .inputs2 {
+.inputs, .inputs2 {
 	margin: 0 30px 0 30px;
 }
 

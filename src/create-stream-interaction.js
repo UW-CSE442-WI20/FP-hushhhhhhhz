@@ -22,11 +22,8 @@ class StreamInteraction {
 		resultCipher = "";
 		var inputContainer = d3.select('#title4 .fullVis').append('div').attr('class', 'inputContainer');
 		var inputs = inputContainer.append('div').attr('class', 'inputs');
-		var results = inputContainer.append('div').attr('class', 'results');
+		var results = d3.select('#title4 .fullVis').append('div').attr('class', 'results');
 
-		results.append('br')
-		results.append('br')
-		results.append('br')
 		inputs.append('h3').text('Now you try!').attr('class', 'instruction')
 		inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction')
 		lilDiv = inputs.append('div').attr('class', 'lilDiv')
@@ -60,7 +57,7 @@ class StreamInteraction {
 		var row4 = ["STD","HVO","JEQ","PYL","DNO"];
 		var row5 = ["QDA","HZQ","WKV","XDF","UPR"];
 		var keys = [row1, row2, row3, row4, row5];
-		var keyTable = inputs.append('table').attr('class', 'keyTable')
+		var keyTable = inputContainer.append('table').attr('class', 'keyTable')
 		var theadKey = keyTable.append('thead');
 		var tbodyKey = keyTable.append('tbody');
 		function calculateCipher() {
@@ -123,33 +120,8 @@ class StreamInteraction {
 			document.getElementById('textInput').value = ""
 		});
 
-		var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
-		var inputs2 = input2Container.append('div').attr('class', 'inputs2'); 
-		inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
-		inputs2.append('h4').text('ciphertext: ISSNMBSX').style('color', cipherColor)
-		inputs2.append('h4').text('keytext: KEYKEYKE').style('color', keyColor)
-		lilDiv2 = inputs2.append('div').attr('class', 'lilDiv2')
-		var textInput2 = lilDiv2.append('input')
-            .attr('id', 'textInput2')
-            .attr('style', 'text')
-		var inputButton2 = lilDiv2.append('div')
-            .attr('id', 'inputButton2')
-            .text('CHECK')
-		var answer = lilDiv2.append('h4').text('')
-								.style('color', 'white')
-								.style('margin', 'auto')
-								.attr('id', 'answer')
-		d3.select('#inputButton2').on('click', function () {
-            guess = document.getElementById('textInput2').value
-            guess = guess.replace(/\s+/g, '');
-			guess = guess.toUpperCase();
-			if (guess == "YOUDIDIT") {
-            	document.getElementById('answer').innerHTML = "Correct!";
-            } else {
-				document.getElementById('answer').innerHTML = "Try again..."
-			}
-        });
 
+		var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
 
 		var table_div = input2Container.append('div').attr('class', 'tableDiv')
         var table = table_div.append('table');
@@ -200,6 +172,32 @@ class StreamInteraction {
             .append('td')
             .html(function(d) {return d.value})
             .attr('class', function(d) { return d.column });
+		
+		var inputs2 = input2Container.append('div').attr('class', 'inputs2'); 
+		inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
+		inputs2.append('h4').text('ciphertext: ISSNMBSX').style('color', cipherColor)
+		inputs2.append('h4').text('keytext: KEYKEYKE').style('color', keyColor)
+		lilDiv2 = inputs2.append('div').attr('class', 'lilDiv2')
+		var textInput2 = lilDiv2.append('input')
+            .attr('id', 'textInput2')
+            .attr('style', 'text')
+		var inputButton2 = lilDiv2.append('div')
+            .attr('id', 'inputButton2')
+            .text('CHECK')
+		var answer = lilDiv2.append('h4').text('')
+								.style('color', 'white')
+								.style('margin', 'auto')
+								.attr('id', 'answer')
+		d3.select('#inputButton2').on('click', function () {
+            guess = document.getElementById('textInput2').value
+            guess = guess.replace(/\s+/g, '');
+			guess = guess.toUpperCase();
+			if (guess == "YOUDIDIT") {
+            	document.getElementById('answer').innerHTML = "Correct!";
+            } else {
+				document.getElementById('answer').innerHTML = "Try again..."
+			}
+        });
 	}
 }
 

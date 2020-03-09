@@ -228,3 +228,87 @@ p {
 .event {
 	padding: 10px;
 }
+
+#outter {
+  display: flex;
+}
+
+#senders {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.person {
+  width: 30%;
+  margin-bottom: 5%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+}
+
+#outter {
+  align-items: center;
+}
+
+.keys {
+  width: 30%;
+}
+
+.publickey {
+  width: 15%;
+}
+
+#sender1_key, #sender2_key, #sender3_key, #receiver_key {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#sender1_image, #sender2_image, #sender3_image, #receiver_images {
+  width: 150px;
+}
+
+#receiver_images {
+  margin: auto;
+}
+
+#receiver_key {
+  width: 50%;
+  margin: auto;
+}
+
+.perdoc {
+  display: flex;
+  align-items: center;
+}
+
+.sender_doc {
+  width: 35%;
+  height: 50%;
+}
+
+#receiver_outer {
+  display: flex;
+  align-items: center;
+
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+
+.locked_doc {
+  margin-bottom: 30%;
+}
+
+#receiver {
+  margin-left: -100px;
+}

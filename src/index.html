@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>FP-hushhhhhhhz</title>
   <link rel="stylesheet" type="text/css" href="./index.css">
   <link rel="stylesheet" type="text/css" href="./bootstrap-iso.css">
-  </head>
+</head>
 
 <body>
   <h1>Cryptography Visualized</h1>
@@ -16,48 +17,41 @@
         <section class="step">
           <div id="title1">
             <h2>History of Encryption</h2>
-        	<br>  
-		</div>
+            <br>
+          </div>
         </section>
 
         <section class="step">
           <div id="title2">
             <h3>Stream Ciphers</h3>
           </div>
-          In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext
-          symbols.
-          <br /><br />
-          One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere.
-          <br /><br />
-          It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1,
-          ... Z = 25
-          <br /><br />
-          Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following
+          In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext symbols.
+          <br /><br /> One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere.
+          <br /><br /> It follows the convention where letters are labeled based on their position within the alphabet: A
+          = 0, B = 1, ... Z = 25
+          <br /><br /> Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following
           equation:
-          <br /><br />
-          C = P + K mod 26
-		  <br /><br />
-		  Keys and messages can be any length, but when encoding/decoding they must be the same length. For example, "message" is 7 letters while "key" 
-		  only 3. We therefore repeat "key" until it is the same length as "message".
-		  <br /><br />
-		  Watch on the right as we calculate our ciphertext.
+          <br /><br /> C = P + K mod 26
+          <br /><br /> Keys and messages can be any length, but when encoding/decoding they must be the same length. For
+          example, "message" is 7 letters while "key" only 3. We therefore repeat "key" until it is the same length as "message".
+          <br /><br /> Watch on the right as we calculate our ciphertext.
         </section>
 
         <section class="step">
           <div class="title3">
             <h3>Block Ciphers</h3>
           </div>
-          <p>A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it
-          demonstrated to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount
-          Palmerston.</p>
+          <p>A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it demonstrated
+            to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount Palmerston.
+          </p>
           <!-- <br /><br /> -->
 
           <p>Block ciphers encrypts by pairs of letters, instead of single letters like in a stream cipher.</p>
           <!-- <br /><br /> -->
 
-          <p>Playfair starts with creating a key table. The key table is a 5×5 grid of letters that 
-          will act as the key for encrypting your plaintext. Each of the 25 letters must be unique and one letter 
-          of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J.</p>
+          <p>Playfair starts with creating a key table. The key table is a 5×5 grid of letters that will act as the key for
+            encrypting your plaintext. Each of the 25 letters must be unique and one letter of the alphabet (one that is
+            least common like Q) is omitted from the table - we chose to ommit J.</p>
           <!-- <br /><br /> -->
 
           <p>The message is split into pairs of letters, and we use both letters to encrypt.</p>
@@ -65,31 +59,45 @@
           <ol>
             <li>if the letters are in the same column, take the letter below each one</li>
             <li>if the letters are in the same row, take the letter to the right of each one</li>
-            <li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the horizontal opposite corner of the rectangle</li>
+            <li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the
+              horizontal opposite corner of the rectangle</li>
           </ol>
-		  <p> Watch on the right as we walk through these three rules and then encrypt our "secret".</p>
+          <p> Watch on the right as we walk through these three rules and then encrypt our "secret".</p>
         </section>
 
         <section class="step">
           <div class="title4">
-            <h2>Modern Encryption:</h2> 
-			<h3> Hash & RSA</h3>
+            <h2>Modern Encryption:</h2>
+            <h3> Hash & RSA</h3>
           </div>
-		  Explain the math behind RSA and hash encryption 
+          Explain the math behind RSA and hash encryption
         </section>
-        
-		<section class="step">
+
+        <section class="step">
           <div class="title5">
             <h3>Symmetric Keys</h3>
           </div>
-		  Explain history/how they work here...
+          Explain history/how they work here...
         </section>
 
         <section class="step">
           <div class="title6">
+            <h3>Asymmetric Tutorial</h3>
+          </div>
+          Explain history/how they work here...
+        </section>
+
+        <section class="step">
+          <div class="title7">
             <h3>Asymmetric Keys</h3>
           </div>
-		  Explain history/how they work here...
+          Explain history/how they work here...
+        </section>
+
+        <section class="step">
+          <div class="title8">
+            <h3>EXTRA</h3>
+          </div>
         </section>
 
       </div>

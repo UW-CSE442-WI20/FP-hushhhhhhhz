@@ -312,3 +312,46 @@ img {
 #receiver {
   margin-left: -100px;
 }
+
+#people_images,#people_keys, #document {
+  display: flex;
+  justify-content: space-between;
+}
+
+.colorme {
+  fill: blue;
+}
+
+#sender_sym, #receiver_sym {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.people_sender_sym {
+  width: 40%;
+}
+
+.sender_document {
+  width: 25%;
+  padding: 15px;
+}
+
+#symmetric_container {
+  display: flex;
+}
+
+.symmetric_key {
+  width: 25%;
+  display: flex;
+}
+
+.symmetric_key img{
+  width: 35%;
+}
+
+#sender_personAndKey, #receiver_personAndKey {
+  display: flex;
+  justify-content: center;
+}
+

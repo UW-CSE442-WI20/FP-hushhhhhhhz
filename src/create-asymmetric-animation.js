@@ -10,8 +10,8 @@ const purple = require('./images/purple_key.png')
 const public_key = require('./images/public_key_blue.png')
 const private_key = require('./images/private.png')
 const doc = require('./images/regular.png')
-const locked_doc = require('./images/locked.png')
-const unlocked_doc = require('./images/unlocked.png')
+const locked_doc = require('./images/lock_doc.png')
+const unlocked_doc = require('./images/unlock_doc.png')
 
 
 class AsymmetricAnimation {
@@ -210,6 +210,9 @@ class AsymmetricAnimation {
             .on('end', function(){
                 d3.selectAll(".sender_doc")
                     .attr("src", locked_doc)
+                    .style("width", "60%")
+                    .style("height", "60%")
+                    .style("margin-left", "-10%")
                     .transition()
                     .duration(1000)
                     .delay(1000)

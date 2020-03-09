@@ -9,6 +9,7 @@ const modernEncrypt = require('./modern-encryption');
 const MyClass = require('./my-class');
 const Symmetric = require('./symmetric');
 const Asymmetric = require('./asymmetric');
+const RSA = require('./RSA');
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();
 
@@ -28,13 +29,11 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createHistory, createStream, createBlock, modernEncrypt, Symmetric, Asymmetric]
+var activateFunctions = [createHistory, createStream, createBlock, RSA, Symmetric, Asymmetric]
 function position() {
     var pos = window.pageYOffset - 700;
     var sectionIndex = d3.bisect(sectionPositions, pos);
     sectionIndex = Math.min(sections.size() - 1, sectionIndex);
-	console.log(pos)
-	console.log(sectionIndex)
     var newInstance = new activateFunctions[sectionIndex]();
     if (currentIndex !== sectionIndex) {
     	dispatch.call('active', this, sectionIndex);

@@ -14,7 +14,7 @@ class StreamInteraction {
 		var keyColor = "var(--key-color)";
 		var cipherColor = "var(--cipher-color)";
 
-		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
+		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 		inputMessage = "";

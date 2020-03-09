@@ -62,7 +62,7 @@ class SymmetricInteraction {
 	}
 
 	start() {
-		d3.selectAll('.fullVis').style("background-color", "transparent").html("")
+		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 		this.vis = d3.select('#title9 .fullVis')

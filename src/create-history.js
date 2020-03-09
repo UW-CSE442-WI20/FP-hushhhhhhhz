@@ -6,11 +6,11 @@ class History {
 
 	start(flag) {
 		if (flag) {
-			d3.selectAll(".fullVis:not(#step1):not(#step2)").style("background-color", "transparent").html("")
+			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 		} else {
 			d = 1000
-			d3.selectAll(".fullVis:not(#step1)").style("background-color", "transparent").html("")
+			 d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 			d3.selectAll("#vis div").classed("selected", false)

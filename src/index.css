@@ -38,7 +38,7 @@
 }
 
 .introContainer div {
-	margin: 50px;
+	margin: 50px 50px 0 50px;
 }
 
 .step {
@@ -358,9 +358,8 @@ circle {
 .timelineContainer {
 	display: flex;
 	height: 700px;
-	position: fixed;
-	top: 100px;
-	left: 20vw;
+	position: relative;
+	left: 5vw;
 }
 
 .line {

@@ -6,14 +6,12 @@ class Intro {
 
 	start(flag) {
 		if (flag) {
-			console.log("!")
-			console.log(d3.selectAll(".fullVis:not(#step1 .fullvis):not(#step2 .fullvis)"))
-			d3.selectAll(".fullVis:not(#step1):not(#step2)").style("background-color", "transparent").html("")
+			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 		} else {
 			// remove any previous vis
-			d3.selectAll('.fullVis').style("background-color", "transparent").html("")
-			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+			//d3.selectAll('.fullVis').style("background-color", "transparent").html("")
+			//d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 			// highlight in table of contents
 			d3.selectAll("#vis div").classed("selected", false)
@@ -49,7 +47,7 @@ class Intro {
 
 			var bubbleContainer = applicationContainer.append('svg')
 				.style('width','400')
-				.style('height', '400')
+				.style('height', '320')
 				.append('g');
 
 			var nodeElements = bubbleContainer.selectAll("circle")

@@ -18,7 +18,6 @@ sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
 historyFlag = false;
-introFlag = false;
 var startPos;
 sections.each(function(d,i) {
 	var top = this.getBoundingClientRect().top;
@@ -66,6 +65,7 @@ function position() {
 				newInstance.start(true);
 			} else {
 				newInstance.start(false);
+				console.log("got here");
 				historyFlag = true;
 			}
 		} else if (currentIndex == 0) {

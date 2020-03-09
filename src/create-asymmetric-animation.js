@@ -16,7 +16,6 @@ const unlocked_doc = require('./images/unlocked.png')
 
 class AsymmetricAnimation {
     constructor() {
-        console.log("Hello")
     }
 
     start(){

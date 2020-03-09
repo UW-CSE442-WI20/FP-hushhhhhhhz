@@ -145,7 +145,7 @@ table {
 	font-size: 20px;
 	position: fixed;
 	top: 5vh;
-	left: 28vw;
+	left: 25vw;
 	background-color: black;
 	width: 50vw;
 }
@@ -156,7 +156,7 @@ table {
     font-size: 20px;
     position: fixed;
     top: 60vh;
-    left: 28vw;
+    left: 25vw;
     background-color: black;
     width: 50vw;
 }
@@ -166,13 +166,29 @@ table {
     position: fixed;
 	margin-left: 50px;
     top: 34vh;
-    left: 28vw;
+    left: 25vw;
     background-color: black;
     width: 50vw;
 }
 
 .inputs2 {
 	margin: 0 30px 0 30px;
+}
+
+.inputs {
+    margin: 0 50px 0 0;
+}
+
+.tableDiv {
+	margin: 40px 0 0 0;
+}
+
+.instruction {
+	width: 320px;
+}
+
+#answer {
+	margin: 10px 0 0 50px;
 }
 
 .lilDiv, .lilDiv2  {

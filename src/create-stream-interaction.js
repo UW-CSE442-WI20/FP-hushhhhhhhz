@@ -184,9 +184,8 @@ class StreamInteraction {
 		var inputButton2 = lilDiv2.append('div')
             .attr('id', 'inputButton2')
             .text('CHECK')
-		var answer = lilDiv2.append('h4').text('')
+		var answer = inputs2.append('h4').text('')
 								.style('color', 'white')
-								.style('margin', 'auto')
 								.attr('id', 'answer')
 		d3.select('#inputButton2').on('click', function () {
             guess = document.getElementById('textInput2').value

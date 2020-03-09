@@ -43,7 +43,7 @@ class Intro {
 		var nodeElements = bubbleContainer.selectAll("circle")
 			.data(nodes)
 			.enter().append("circle")
-			.attr('r', '1')
+			.attr('r', '2')
 			.attr('fill', 'white')
 			.attr('cx', function (d) { return d.x; })
 			.attr('cy', function (d) { return d.y; });
@@ -76,7 +76,7 @@ class Intro {
 		nodeElements.transition("grow")
 			.duration(2000)
 			.attr('r', 50)
-			.delay(4000)
+			.delay(3000)
 
 		bubbleContainer.selectAll("text")
 			.data(nodes).enter()

@@ -4,7 +4,8 @@ class BlockAnimation {
 
 	constructor() {
 		this.darkColor = "#b3e5fc";
-		this.lightColor = "#e6ffff";
+		// this.lightColor = "#e6ffff";
+		this.lightColor = "white";
 		this.cipherColor = "#fff59d";
 	}
 

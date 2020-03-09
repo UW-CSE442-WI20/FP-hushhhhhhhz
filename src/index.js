@@ -41,6 +41,16 @@ var contentToStep = {
 	"content7": "step12",
 }
 
+d3.select("#cover")
+	.transition()
+	.duration(2500)
+	.delay(800)
+	.style("opacity", '0')
+	.on("end", function() { d3.select("#cover").remove()});
+
+var newInstance = new activateFunctions[0]();
+newInstance.start();
+
 function position() {
 	var height = window.innerHeight - 100;
 	var pos = window.pageYOffset - height;

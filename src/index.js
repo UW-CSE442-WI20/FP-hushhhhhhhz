@@ -18,6 +18,7 @@ sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
 historyFlag = false;
+introFlag = false;
 var startPos;
 sections.each(function(d,i) {
 	var top = this.getBoundingClientRect().top;
@@ -49,7 +50,7 @@ d3.select("#cover")
 	.on("end", function() { d3.select("#cover").remove()});
 
 var newInstance = new activateFunctions[0]();
-newInstance.start();
+newInstance.start(false);
 
 function position() {
 	var height = window.innerHeight - 100;
@@ -62,11 +63,13 @@ function position() {
 		currentIndex = sectionIndex;
 		if (currentIndex == 1) {
 			if (historyFlag) {
-				newInstance.start(0);
+				newInstance.start(true);
 			} else {
-				newInstance.start(1000);
+				newInstance.start(false);
 				historyFlag = true;
 			}
+		} else if (currentIndex == 0) {
+			newInstance.start(true);
 		} else {
 			newInstance.start();
 		}

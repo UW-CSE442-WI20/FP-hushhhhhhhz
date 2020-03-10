@@ -3,10 +3,9 @@ const d3 = require('d3');
 class BlockAnimation {
 
 	constructor() {
-		this.darkColor = "#b3e5fc";
-		// this.lightColor = "#e6ffff";
-		this.lightColor = "white";
-		this.cipherColor = "#fff59d";
+		this.darkColor = "#FF5733";
+		this.lightColor = "#D99E91";
+		this.cipherColor = "#C70039";
 	}
 
 	start() {

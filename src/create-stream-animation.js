@@ -22,7 +22,6 @@ class StreamAnimation {
 
 		var plainColor = "var(--plain-color)";
 		var keyColor = "var(--key-color)";
-		var mixColor = "var(--mix-color)";
 		var cipherColor = "var(--cipher-color)";
 
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
@@ -195,24 +194,18 @@ class StreamAnimation {
 				.duration(500)
 				.text(alphaAlpha.indexOf(initialMessage[i]))
 				.delay(m*i);
-			if (initialMessage[i] === initialKey[i]) {
-				d3.selectAll('.'+initialMessage[i])
-					.transition()
-					.duration(500)
-					.style('background-color', mixColor) 
-					.delay(m*i);
-			} else {
-				d3.selectAll('.'+initialMessage[i])
-					.transition()
-					.duration(500)
-					.style('background-color', plainColor)
-					.delay(m*i);
-				d3.selectAll('.'+initialKey[i])
-					.transition()
-					.duration(500)
-					.style('background-color', keyColor)
-					.delay(m*i);
-			}
+			d3.selectAll('.'+initialMessage[i])
+				.transition()
+				.duration(500)
+				.style('background-color', plainColor)
+				.style('color', 'white')
+				.delay(m*i);
+			d3.selectAll('.'+initialKey[i])
+				.transition()
+				.duration(500)
+				.style('background-color', keyColor)
+				.style('color', 'white')
+				.delay(m*i);
 			d3.select('#index'+i).select('.cipher')
 				.transition()
 				.duration(500)
@@ -228,16 +221,19 @@ class StreamAnimation {
 				.transition()
 				.duration(500)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(1000+m*i);
 			d3.selectAll('.'+initialKey[i])
 				.transition()
 				.duration(500)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(1000+m*i);
 			d3.selectAll('.'+initialCipher[i])
 				.transition()
 				.duration(500)
 				.style('background-color', cipherColor)
+				.style('color', 'white')
 				.delay(1000+m*i);
 
 			d3.select('#index'+i).select('.letter')
@@ -254,6 +250,7 @@ class StreamAnimation {
 				.transition()
 				.duration(500)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(2000+m*i);
 		}
 		d3.select('#plain')

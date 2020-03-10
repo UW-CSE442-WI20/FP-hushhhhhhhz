@@ -108,7 +108,7 @@
 }
 
 #step3 td,#step3 th {
-	border: 1px solid black;
+	border: 1px solid #9a9a9a;
 	padding: 6px;	
 	text-align: center;
 	width: 26px;
@@ -122,6 +122,7 @@
 table {
 	border-collapse: collapse;
 	font-size: 25px;
+	border-color: #9a9a9a;
 }
 
 .centerTitle {
@@ -190,7 +191,7 @@ table {
 	margin: 40px 0 0 0;
 }
 
-.instruction {
+.inFFD700 {
 	width: 320px;
 }
 
@@ -254,10 +255,9 @@ p {
 body {
 	margin: unset;
 	font-family: 'Dosis', sans-serif;
-	--plain-color: #ffcdd2;
-	--key-color: #fff59d;
-	--mix-color: #ffcc80;
-	--cipher-color: #b3e5fc;
+	--plain-color: #C70039;
+	--key-color: #FF5733;
+	--cipher-color: #FFD700;
 }
 
 .title1 circle {
@@ -313,6 +313,10 @@ body {
 
 .example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
 	display: flex;
+}
+
+.message {
+	font-family: 'Roboto', sans-serif;
 }
 
 .flexin {
@@ -478,14 +482,14 @@ body {
 	z-index: -1;
 }
 
-#step2, #step7 {
+#step2, #step7, #step9 {
 	background-color: black;
 	color: white;
 }
 
-#step3, #step5, #step8, #step9 {
+#step3, #step5, #step8, #step10 {
 	background-color: #1f2833;
-	color: white;
+	color: #9a9a9a;
 }
 
 #step4, #step6 {

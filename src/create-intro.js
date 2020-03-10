@@ -9,10 +9,6 @@ class Intro {
 			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 		} else {
-			// remove any previous vis
-			//d3.selectAll('.fullVis').style("background-color", "transparent").html("")
-			//d3.selectAll('.halfVis').style("background-color", "transparent").html("")
-
 			// highlight in table of contents
 			d3.selectAll("#vis div").classed("selected", false)
 			d3.select("#content1").classed("selected", true)
@@ -57,25 +53,6 @@ class Intro {
 				.attr('fill', 'white')
 				.attr('cx', function (d) { return d.x; })
 				.attr('cy', function (d) { return d.y; });
-
-			// nodeElements.exit().remove()
-
-			// constants used in the simulation
-			// var simulation = d3.forceSimulation(nodeElements)
-			// 	.velocityDecay(0.2)
-			// 	.force('charge', d3.forceManyBody().strength(30))
-			// 	.force('center', d3.forceCenter(200, 200))
-			// 	.force('collision', d3.forceCollide().radius(50))
-
-			// function ticked() {
-			// 	console.log("!")
-			// 	console.log(this)
-			// 	bubbleContainer.selectAll("circle")
-			// 		.attr('cx', function (d) { return d.x; })
-			// 		.attr('cy', function (d) { return d.y; });
-			// }
-
-			// simulation.nodes(nodeElements).on('tick', ticked);
 
 			nodeElements.transition("move")
 				.duration(4000)

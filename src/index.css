@@ -74,12 +74,12 @@
 
 #vis div:hover {
 	cursor: pointer;
-	border-bottom: 1px solid #509556;
-	border-top: 1px solid #509556;
+	border-bottom: 1px solid #4EB7B2;
+	border-top: 1px solid #4EB7B2;
 }
 
 .selected {
-	color: #509556;
+	color: #4EB7B2;
 }
 
 .fullVis {
@@ -108,7 +108,7 @@
 }
 
 #step3 td,#step3 th {
-	border: 1px solid black;
+	border: 1px solid #9a9a9a;
 	padding: 6px;	
 	text-align: center;
 	width: 26px;
@@ -122,6 +122,7 @@
 table {
 	border-collapse: collapse;
 	font-size: 25px;
+	border-color: #9a9a9a;
 }
 
 .centerTitle {
@@ -144,7 +145,6 @@ table {
 	margin: 0px 0 0 80px;
 	position: fixed;
 	top: 50px;
-	left: 500px;
 }
 
 .inputContainer {
@@ -191,7 +191,7 @@ table {
 	margin: 40px 0 0 0;
 }
 
-.instruction {
+.inFFD700 {
 	width: 320px;
 }
 
@@ -255,13 +255,12 @@ p {
 body {
 	margin: unset;
 	font-family: 'Dosis', sans-serif;
-	--plain-color: #ffcdd2;
-	--key-color: #fff59d;
-	--mix-color: #ffcc80;
-	--cipher-color: #b3e5fc;
+	--plain-color: #C70039;
+	--key-color: #FF5733;
+	--cipher-color: #FFD700;
 }
 
-circle {
+.title1 circle {
 	stroke: #509556;
 	stroke-width: 3px;
 }
@@ -316,6 +315,10 @@ circle {
 	display: flex;
 }
 
+.message {
+	font-family: 'Roboto', sans-serif;
+}
+
 .flexin {
 	height: 100%;
 }
@@ -328,14 +331,9 @@ circle {
 	margin: 0 50px 50px 50px;
 	width: 60%;
 	position: fixed;
-	/* top: 200px;
-	left: 200px; */
-	font-size: 25px;
-}
-
-.blockContainer, .interactiveContainerContainer {
 	top: 20px;
-    left: 180px;
+    left: 600px;
+	font-size: 25px;
 }
 
 .interactiveContainer {
@@ -446,11 +444,22 @@ circle {
 }
 
 .explanation {
-	width: 350px;
+	width: 600px;
 	text-align: justify;
-	background-color: #45a29e;
-	color: black;
+	color: transparent;
 	padding: 40px 20px 0 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.explanationCircle {
+	background-color: white;
+	border-radius: 50%;
+}
+
+.explanationCircle div {
+	justify-content: center;
+	padding: 50px;
 }
 
 #title5 {
@@ -473,14 +482,14 @@ circle {
 	z-index: -1;
 }
 
-#step2, #step7 {
+#step2, #step7, #step9 {
 	background-color: black;
 	color: white;
 }
 
-#step3, #step5, #step8, #step9 {
+#step3, #step5, #step8, #step10 {
 	background-color: #1f2833;
-	color: white;
+	color: #9a9a9a;
 }
 
 #step4, #step6 {

@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="./index.css">
 		<link rel="stylesheet" type="text/css" href="./bootstrap-iso.css">
 		<link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	</head>
 
 	<body>
@@ -43,27 +44,8 @@
 				<!-- stream cipher animation -->
 				<section class="step" id="step3">
 					<div id="title3" class="flexin">
-						<div class="explanation">
-							<h3 class="titles">Stream Ciphers</h3>
-							<p>In a stream cipher, the encryption rule depends on a plaintext symbol's position in the stream of plaintext
-							symbols.</p>
-
-							<p>One early stream cipher is the Vigenere, credited to the diplomat of King Charles IX, Blaise de Vigenere.
-
-							<p>It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1,
-							... Z = 25</p>
-
-							<p>Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following
-							equation:</p>
-
-							<p>C = P + K mod 26</p>
-
-							<p>Keys and messages can be any length, but when encoding/decoding they must be the same length. For example, "message" is 7 letters while "key" 
-							only 3. We therefore repeat "key" until it is the same length as "message".</p>
-
-							<p>Watch on the left as we calculate our ciphertext.</p>
-						</div>
 						<div class='halfVis'></div>
+						<div class="explanation"></div>
 					</div>
 				</section>
 
@@ -78,29 +60,8 @@
 				<!-- block cipher animation -->
 				<section class="step" id="step5">
 					<div id="title5">
+						<div class="explanation"></div>
 						<div class="halfVis"></div>
-						<div class="explanation">
-							<h3 class="titles">Block Ciphers: Playfair</h3>
-							<p>A famous block cipher is Playfair, which was invented in England in 1854 by Sir Charles Wheatstone, who it
-							demonstrated to Baron Playfair, who then explained it to Prince Albert and future Prime Minister Viscount
-							Palmerston.</p>
-
-							<p>Block ciphers encrypts by pairs of letters, instead of single letters like in a stream cipher.</p>
-
-							<p>Playfair starts with creating a key table. The key table is a 5×5 grid of letters that 
-							will act as the key for encrypting your plaintext. Each of the 25 letters must be unique and one letter 
-							of the alphabet (one that is least common like Q) is omitted from the table - we chose to ommit J.</p>
-
-							<p>The message is split into pairs of letters, and we use both letters to encrypt.</p>
-							<p>There are 3 main rules that are followed in <strong>encryption</strong>:</p>
-							<ol>
-								<li>if the letters are in the same column, take the letter below each one</li>
-								<li>if the letters are in the same row, take the letter to the right of each one</li>
-								<li>if neighter of the proceeding rules are true, form a rectangle with the two letters and take the letters on the horizontal opposite corner of the rectangle</li>
-							</ol>
-							<p><strong>Decryption</strong> follows the same rules but in the opposite direction</p>
-							<p> Watch on the right as we walk through these three rules, encrypt our "secret," and then decrypt it.</p>
-						</div>
 					</div>
 				</section>
 
@@ -138,14 +99,6 @@
 				<section class="step" id="step10">
 					<h3 class="titles"> Hash & RSA</h3>
 					<div id="title10">
-						<div class='fullVis'></div>
-					</div>
-				</section>
-
-				<!-- asymmetric keys interaction -->
-				<section class="step" id="step11">
-					<h3 class="titles">Asymmetric Keys Interaction</h3>
-					<div id="title11">
 						<div class='fullVis'></div>
 					</div>
 				</section>

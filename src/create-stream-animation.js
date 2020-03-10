@@ -8,6 +8,7 @@ class StreamAnimation {
 	start() {
 		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+		d3.selectAll('.explanation').html("")
 
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#content3").classed("selected", true)
@@ -21,12 +22,67 @@ class StreamAnimation {
 
 		var plainColor = "var(--plain-color)";
 		var keyColor = "var(--key-color)";
-		var mixColor = "var(--mix-color)";
 		var cipherColor = "var(--cipher-color)";
 
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
 		var table_div = stream_container.append('div').attr('class', 'tableDiv')
 		var message = stream_container.append('div').attr('class', 'message');
+
+		var explanation = d3.select('#title3 .explanation')
+
+		historyBubble = explanation.append('div')
+			.style("width", "0px")
+			.style("height", "0px")
+			.style("background-color", "#BCF2F0")
+			.attr("class", "explanationCircle")
+
+		historyBubble
+			.append('div')
+			.append("text")
+			.text("Stream Cipher: Vigenere")
+
+		historyBubble.transition()
+			.duration(1000)
+			.style("width", "300px")
+			.style("height", "300px")
+			.style("color", "black")
+
+		processBubble = explanation.append('div')
+			.style("width", "0px")
+			.style("height", "0px")
+			.style("background-color", "#4EB7B2")
+			.attr("class", "explanationCircle")
+			.style("margin-left", "auto")
+
+		processBubble
+			.append('div')
+			.append("text")
+			.text("How does it work?")
+
+		processBubble.transition()
+			.duration(1000)
+			.style("width", "300px")
+			.style("height", "300px")
+			.delay(500)
+			.style("color", "black")
+
+		decryptBubble = explanation.append('div')
+			.style("width", "0px")
+			.style("height", "0px")
+			.style("background-color", "#2B7A78")
+			.attr("class", "explanationCircle")
+
+		decryptBubble
+			.append('div')
+			.append("text")
+			.text("Decryption")
+
+		decryptBubble.transition()
+			.duration(1000)
+			.style("width", "300px")
+			.style("height", "300px")
+			.delay(1000)
+			.style("color", "black")
 
 		for(var i = 0; i < initialMessage.length; i++) {
 			var index = message.append('div') 
@@ -138,24 +194,18 @@ class StreamAnimation {
 				.duration(500)
 				.text(alphaAlpha.indexOf(initialMessage[i]))
 				.delay(m*i);
-			if (initialMessage[i] === initialKey[i]) {
-				d3.selectAll('.'+initialMessage[i])
-					.transition()
-					.duration(500)
-					.style('background-color', mixColor) 
-					.delay(m*i);
-			} else {
-				d3.selectAll('.'+initialMessage[i])
-					.transition()
-					.duration(500)
-					.style('background-color', plainColor)
-					.delay(m*i);
-				d3.selectAll('.'+initialKey[i])
-					.transition()
-					.duration(500)
-					.style('background-color', keyColor)
-					.delay(m*i);
-			}
+			d3.selectAll('.'+initialMessage[i])
+				.transition()
+				.duration(500)
+				.style('background-color', plainColor)
+				.style('color', 'white')
+				.delay(m*i);
+			d3.selectAll('.'+initialKey[i])
+				.transition()
+				.duration(500)
+				.style('background-color', keyColor)
+				.style('color', 'white')
+				.delay(m*i);
 			d3.select('#index'+i).select('.cipher')
 				.transition()
 				.duration(500)
@@ -171,16 +221,19 @@ class StreamAnimation {
 				.transition()
 				.duration(500)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(1000+m*i);
 			d3.selectAll('.'+initialKey[i])
 				.transition()
 				.duration(500)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(1000+m*i);
 			d3.selectAll('.'+initialCipher[i])
 				.transition()
 				.duration(500)
 				.style('background-color', cipherColor)
+				.style('color', 'white')
 				.delay(1000+m*i);
 
 			d3.select('#index'+i).select('.letter')
@@ -197,6 +250,7 @@ class StreamAnimation {
 				.transition()
 				.duration(500)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(2000+m*i);
 		}
 		d3.select('#plain')

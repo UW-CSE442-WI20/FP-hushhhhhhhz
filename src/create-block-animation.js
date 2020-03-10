@@ -3,15 +3,15 @@ const d3 = require('d3');
 class BlockAnimation {
 
 	constructor() {
-		this.darkColor = "#b3e5fc";
-		// this.lightColor = "#e6ffff";
-		this.lightColor = "white";
-		this.cipherColor = "#fff59d";
+		this.darkColor = "#FF5733";
+		this.lightColor = "#D99E91";
+		this.cipherColor = "#C70039";
 	}
 
 	start() {
 		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+		d3.selectAll('.explanation').html("")
 
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#content4").classed("selected", true)
@@ -45,6 +45,62 @@ class BlockAnimation {
 		encryption.append('div').attr('class', 'cipher_message').text("");		
 
 		var interactive_container = everything.append("div").attr('class', 'interactiveContainer')
+		var explanation = d3.select('#title5 .explanation')
+
+		historyBubble = explanation.append('div')
+			.style("width", "0px")
+			.style("height", "0px")
+			.style("background-color", "#2B7A78")
+			.attr("class", "explanationCircle")
+			.style("margin-left", "auto")
+
+		historyBubble
+			.append('div')
+			.append("text")
+			.text("Stream Cipher: Vigenere")
+
+		historyBubble.transition()
+			.duration(1000)
+			.style("width", "300px")
+			.style("height", "300px")
+			.style("color", "black")
+
+		processBubble = explanation.append('div')
+			.style("width", "0px")
+			.style("height", "0px")
+			.style("background-color", "#4EB7B2")
+			.attr("class", "explanationCircle")
+
+		processBubble
+			.append('div')
+			.append("text")
+			.text("How does it work?")
+
+		processBubble.transition()
+			.duration(1000)
+			.style("width", "300px")
+			.style("height", "300px")
+			.delay(500)
+			.style("color", "black")
+
+		decryptBubble = explanation.append('div')
+			.style("width", "0px")
+			.style("height", "0px")
+			.style("background-color", "#BCF2F0")
+			.attr("class", "explanationCircle")
+			.style("margin-left", "auto")
+
+		decryptBubble
+			.append('div')
+			.append("text")
+			.text("Decryption")
+
+		decryptBubble.transition()
+			.duration(1000)
+			.style("width", "300px")
+			.style("height", "300px")
+			.delay(1000)
+			.style("color", "black")
 	}
 
 

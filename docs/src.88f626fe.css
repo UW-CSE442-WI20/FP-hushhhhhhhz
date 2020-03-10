@@ -1,0 +1,678 @@
+#sections {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	top: 0px;
+	z-index: 90;
+	margin-left: 150px;
+}
+
+#cover {
+    background-image: url(https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/hack-slow.8a7e098b.gif);
+	background-size:100% 100%;
+	filter: brightness(100%);
+	height: 100%;
+    width: 100%;
+    z-index: 5;
+    position: absolute;
+}
+
+.titleBox {
+	color: white;
+	font-size: 48px;
+	background-color: black;
+	height: 80px;
+    width: 900px;
+    z-index: 1;
+    position: relative;
+    margin: auto;
+	margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.introContainer {
+	display: flex;
+	margin-left: 80px;
+}
+
+.introContainer div {
+	margin: 50px 50px 0 50px;
+}
+
+.step {
+	height: 100vh;
+	z-index: 2;
+	position: relative;
+}
+
+#historySection {
+	height: 800px;
+	background-color: #a5d6a7;
+	z-index: -1;
+}
+
+#streamAnimation {
+	background-color: white;
+	z-index: 3;
+}
+
+#vis {
+	display: inline-block;
+	position: fixed;
+	z-index: 1;
+	height: 100%;
+	width: 150px;
+	background-color: black;
+	color: white;
+}
+
+#vis div{
+	padding: 15px;
+}
+
+#vis div:hover {
+	cursor: pointer;
+	border-bottom: 1px solid #509556;
+	border-top: 1px solid #509556;
+}
+
+.selected {
+	color: #509556;
+}
+
+.fullVis {
+	display: inline-block;
+	z-index: 1;
+	height: 500px;
+	width: 100%;
+}
+
+.halfVis {
+	display: inline-block;
+	z-index: 1;
+	height: 500px;
+	width: 80%;
+}
+
+.message {
+	display: flex;
+	justify-content: center;
+	font-size: 65px;
+}
+
+.index {
+	margin: 5px;
+	text-align: center;
+}
+
+#step3 td,#step3 th {
+	border: 1px solid black;
+	padding: 6px;	
+	text-align: center;
+	width: 26px;
+}
+#step4 td, #step4 th {
+	border: 1px solid white;
+    padding: 6px;   
+    text-align: center;
+    width: 26px;
+}
+table {
+	border-collapse: collapse;
+	font-size: 25px;
+}
+
+.centerTitle {
+	text-align: center;
+	padding: 20px;
+}
+
+#textInput {
+	font-size: 10px;
+}
+
+#container {
+	width: 100%;
+	position: absolute;
+	display: flex;
+	z-index: 0;
+}
+
+.streamContainer {
+	margin: 0px 0 0 80px;
+	position: fixed;
+	top: 50px;
+	left: 500px;
+}
+
+.inputContainer {
+	display: flex;
+	margin-left: 50px;
+	font-size: 20px;
+	position: fixed;
+	top: 5vh;
+	left: 25vw;
+	background-color: black;
+	width: 50vw;
+}
+
+.input2Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    position: fixed;
+    top: 60vh;
+    left: 25vw;
+    background-color: black;
+    width: 50vw;
+}
+
+.results {
+    font-size: 26px;
+    position: fixed;
+	margin-left: 50px;
+    top: 34vh;
+    left: 25vw;
+    background-color: black;
+    width: 50vw;
+}
+
+.inputs2 {
+	margin: 0 30px 0 30px;
+}
+
+.inputs {
+    margin: 0 50px 0 0;
+}
+
+.tableDiv {
+	margin: 40px 0 0 0;
+}
+
+.instruction {
+	width: 320px;
+}
+
+#answer {
+	margin: 10px 0 0 50px;
+}
+
+.lilDiv, .lilDiv2  {
+	display: flex;
+	width: 380px;
+}
+
+#textInput, #textInput2 {
+	font-size:20px;
+	font-family: 'Dosis', sans-serif;
+	margin-right: 20px;
+	border-radius: 5px;
+}
+
+.math {
+	display: flex;
+	justify-content: center;
+	font-size: 30px;
+}
+
+
+h1 {
+	text-align: center;
+}
+
+.titles {
+	margin: unset;
+}
+
+#form1{
+	width: 100%;
+}
+
+#input_boxes {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+textarea {
+	width: 100%;
+	height: 100%;
+}
+
+#encrypted, #decrypted {
+	width: 100%;
+	height: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+p {
+	padding: 1px;
+}
+
+body {
+	margin: unset;
+	font-family: 'Dosis', sans-serif;
+	--plain-color: #ffcdd2;
+	--key-color: #fff59d;
+	--mix-color: #ffcc80;
+	--cipher-color: #b3e5fc;
+}
+
+circle {
+	stroke: #509556;
+	stroke-width: 3px;
+}
+
+#key, #cipher, #plain {
+	width: 30px;
+	text-align: center;
+
+}
+
+.grid_box {
+	width: 60px;
+	height: 60px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.grid_box_new {
+	width: 60px;
+    height: 60px;
+    border: 1px solid white;
+    text-align: center;
+	color: white;
+	background-color: black !important;
+    /* z-index: 90; */
+}
+
+.grid_box p, .grid_box_new p {
+	font-size: 30px;
+	margin: 12px;
+	padding: 0px;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	width: 36%;
+	float: right;
+}
+
+.grid_new {
+	display: flex;
+    flex-wrap: wrap;
+    width: 21%;
+    float: right;
+    margin-top: 10%;
+    margin-left: 8%;
+	align-content: baseline;
+}
+
+.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
+	display: flex;
+}
+
+.flexin {
+	height: 100%;
+}
+
+.rules h3 {
+    text-align: center;
+}
+
+.blockContainer, .interactiveContainerContainer {
+	margin: 0 50px 50px 50px;
+	width: 60%;
+	position: fixed;
+	/* top: 200px;
+	left: 200px; */
+	font-size: 25px;
+}
+
+.blockContainer, .interactiveContainerContainer {
+	top: 20px;
+    left: 180px;
+}
+
+.interactiveContainer {
+	width: 51%;
+}
+
+.interactiveContainerContainer {
+	display: flex;
+	width: 100%;
+}
+
+.block_letter {
+	font-size: 25px;
+	width: 40px;
+	text-align: center;
+}
+
+.exampleContainer {
+	margin-right: 45px; 
+	margin-top: -22px;
+}
+
+.block_pairs {
+	margin-right: 3%;
+}
+
+.block_msg_letter{
+	margin-right: 21px;
+	font-size: 65px;
+}
+
+.update_margin {
+	margin-right: 17px;
+}
+
+.encryption {
+	margin-top: 25px;
+}
+
+#checkbutton, #inputButton, #inputButton2 {
+	border-radius: 5px;
+	margin-left: 15px;
+	border: 1px solid darkgray;
+	padding: 10px;
+	cursor: pointer;
+	background-color: black;
+}
+
+.shareresult {
+	margin-left: 10px;
+	font-size: 30px;
+	text-align: center;
+	margin-top: 3%;
+	width: 57%;
+}
+
+.timelineContainer {
+	display: flex;
+	height: 620px;
+	position: relative;
+	left: 5vw;
+}
+
+.line {
+	background-color: gray;
+	align: center;
+	width: 4px;
+	height: 100%;
+	margin-top: 15px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+}
+
+.lineDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.leftDiv, .rightDiv {
+	width: 480px;
+	height: 100%
+}
+
+.eventBox {
+	display: flex;
+	height: 70px;
+	width: 520px;
+	margin: 30px;
+	color: black;
+	font-size: 20px;
+}
+
+.year {
+	margin-right: 20px;
+	padding: 5px;
+	font-size: 30px;
+	text-align: center;
+	color: #75a478;
+}
+
+.event {
+	width: 300px;
+	background: white;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: center;
+}
+
+.explanation {
+	width: 350px;
+	text-align: justify;
+	background-color: #45a29e;
+	color: black;
+	padding: 40px 20px 0 20px;
+}
+
+#title5 {
+	height: 100%;
+}
+
+#step1 {
+    color: white;
+    position: relative;
+}
+
+#step1::before {
+	content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+	background-image: url(https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/hack-still.7df2deae.png);
+	background-size:100% 100%;
+    filter: brightness(30%);
+	z-index: -1;
+}
+
+#step2, #step7 {
+	background-color: black;
+	color: white;
+}
+
+#step3, #step5, #step8, #step9 {
+	background-color: #1f2833;
+	color: white;
+}
+
+#step4, #step6 {
+	color: white;
+	position: relative;
+}
+
+#step4::before, #step6::before {
+	content: "";
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background-image: url(https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/hack-still.7df2deae.png);
+	background-size:100% 100%;
+	filter: brightness(30%);
+}
+
+.blackBackground {
+	height: 1000px;
+	width: 1000px;
+	margin-left: 200px;
+	background-color: black;
+	position: relative;
+	margin: auto;
+}
+
+.stepTransition {
+	color: white;
+	background-color: black;
+}
+
+#outter {
+  display: flex;
+}
+
+#senders {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.person {
+  width: 30%;
+  margin-bottom: 5%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+}
+
+#outter {
+  align-items: center;
+}
+
+.keys {
+  width: 30%;
+}
+
+.publickey {
+  width: 15%;
+}
+
+#sender1_key, #sender2_key, #sender3_key, #receiver_key {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#sender1_image, #sender2_image, #sender3_image, #receiver_images {
+  width: 150px;
+}
+
+#receiver_images {
+  margin: auto;
+}
+
+#receiver_key {
+  width: 50%;
+  margin: auto;
+}
+
+.perdoc {
+  display: flex;
+  align-items: center;
+}
+
+.sender_doc {
+  width: 35%;
+  height: 50%;
+}
+
+#receiver_outer {
+  display: flex;
+  align-items: center;
+
+}
+
+#messages {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+
+.locked_doc {
+  margin-bottom: 30%;
+}
+
+#receiver {
+  margin-left: -100px;
+}
+
+#people_images,#people_keys, #document {
+  display: flex;
+  justify-content: space-between;
+}
+
+.colorme {
+  fill: blue;
+}
+
+#sender_sym, #receiver_sym {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.people_sender_sym {
+  width: 40%;
+}
+
+.sender_document {
+  width: 25%;
+  padding: 15px;
+      margin-right: 15%;
+}
+
+#symmetric_container {
+  display: flex;
+}
+
+.symmetric_key {
+  width: 25%;
+  display: flex;
+}
+
+.symmetric_key img{
+  width: 35%;
+}
+
+#sender_personAndKey, #receiver_personAndKey {
+  display: flex;
+  justify-content: center;
+}
+
+#story_text, #warning{
+  text-align: center;
+}
+
+#warning {
+  font-weight: bold;
+  color: red;
+  font-size: 25px;
+}
+
+.label {
+  margin-right: 25%;
+}
+
+.playfairTitles {
+	text-align: unset;
+}
+
+.decryption {
+	font-size: 65px;
+    letter-spacing: 19px;
+}
+
+.block_message_decr {
+	color: var(--key-color);
+}
+
+/* .textboxes {
+	justify-content: left;
+}
+
+.block_interactive_title {
+	text-align: left;
+} */
+
+
+/*# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.88f626fe.css.map */

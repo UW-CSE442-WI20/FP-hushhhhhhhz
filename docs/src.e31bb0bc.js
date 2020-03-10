@@ -28884,7 +28884,7 @@ Object.keys(_d3Zoom).forEach(function (key) {
     }
   });
 });
-},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"create-history.js":[function(require,module,exports) {
+},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"create-intro.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -28893,69 +28893,156 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var d3 = require('d3');
 
-var CreateHistory =
+var Intro =
 /*#__PURE__*/
 function () {
-  function CreateHistory() {
-    _classCallCheck(this, CreateHistory);
+  function Intro() {
+    _classCallCheck(this, Intro);
   }
 
-  _createClass(CreateHistory, [{
+  _createClass(Intro, [{
     key: "start",
-    value: function start() {
-      document.getElementById('vis').innerHTML = "";
-      console.log('[CreateHistory]', 'Hello World 5.');
-      document.getElementById('vis').innerHTML = "";
-      var timelineContainer = d3.select('#vis').append('div').attr('class', 'timelineContainer');
-      var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
-      var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
-      var rightDiv = timelineContainer.append('div').attr('class', 'rightDiv');
-      rightDiv.append('br');
-      y = d3.scaleLinear().domain([1450, 1975]).range([0, 700]);
-      var line = d3.line().curve(d3.curveCatmullRom.alpha(0.5)).x(10).y(function (d) {
-        return y(d);
-      });
-      var data = [];
+    value: function start(flag) {
+      if (flag) {
+        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      } else {
+        // remove any previous vis
+        //d3.selectAll('.fullVis').style("background-color", "transparent").html("")
+        //d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+        // highlight in table of contents
+        d3.selectAll("#vis div").classed("selected", false);
+        d3.select("#content1").classed("selected", true);
+        container = d3.select("#title1 .fullVis");
+        title = container.append('div').attr("class", "titleBox").text("Cryptography: Keeping Your Information Safe");
+        applicationContainer = container.append('div').attr('class', 'introContainer');
+        typeContainer = container.append('div').attr('class', 'introContainer');
+        var nodes = [{
+          id: "Government",
+          cx: 90,
+          cy: 100
+        }, {
+          id: "Internet",
+          cx: 80,
+          cy: 200
+        }, {
+          id: "Passwords",
+          cx: 180,
+          cy: 60
+        }, {
+          id: "Email",
+          cx: 170,
+          cy: 160
+        }, {
+          id: "Mobile",
+          cx: 260,
+          cy: 120
+        }, {
+          id: "Business",
+          cx: 250,
+          cy: 220
+        }, {
+          id: "Military",
+          cx: 160,
+          cy: 260
+        }]; // starting positions for the nodes
 
-      for (var i = 1467; i < 1975; i++) {
-        data.push(i);
-      }
+        nodes.forEach(function (node) {
+          node.x = Math.random() * 500;
+          node.y = Math.random() * 500;
+        });
+        var bubbleContainer = applicationContainer.append('svg').style('width', '400').style('height', '320').append('g');
+        var nodeElements = bubbleContainer.selectAll("circle").data(nodes).enter().append("circle").attr('r', '2').attr('fill', 'white').attr('cx', function (d) {
+          return d.x;
+        }).attr('cy', function (d) {
+          return d.y;
+        }); // nodeElements.exit().remove()
+        // constants used in the simulation
+        // var simulation = d3.forceSimulation(nodeElements)
+        // 	.velocityDecay(0.2)
+        // 	.force('charge', d3.forceManyBody().strength(30))
+        // 	.force('center', d3.forceCenter(200, 200))
+        // 	.force('collision', d3.forceCollide().radius(50))
+        // function ticked() {
+        // 	console.log("!")
+        // 	console.log(this)
+        // 	bubbleContainer.selectAll("circle")
+        // 		.attr('cx', function (d) { return d.x; })
+        // 		.attr('cy', function (d) { return d.y; });
+        // }
+        // simulation.nodes(nodeElements).on('tick', ticked);
 
-      var totalLength = 625;
-      d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "#e53935").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(8000).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
-      eventHash = {
-        "1467": "Leon Battista Alberti, the father of western cryptography, invented cipher wheel",
-        "1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
-        "1678": "Robert Hooke publishes first one way function (related to RSA)",
-        "1854": "Playfair cipher invented by Sir Charles Wheatstone",
-        "1863": "first published solution to vigenere cipher, authored by Kasiski",
-        // "1917" : "Gilbert Vernam proposed one time pad modification to a stream cipher",
-        // "1923": "Enigma encoding machine invented by the Germans",
-        "1942": "Enigma code cracked by Alan Turing and his fellows at Bletchley Park",
-        "1960": "cryptographic hash functions were first introduced into computer systems for storing passwords",
-        "1975": "DES, or the data encryption standard is introduced (an early symmetric key encryption)" // "2001": "SHA-2 published",
-        // "2015": "SHA-3 published",
+        nodeElements.transition("move").duration(4000).attr('cx', function (d) {
+          return d.cx;
+        }).attr('cy', function (d) {
+          return d.cy;
+        }).delay(1000);
+        nodeElements.transition("grow").duration(2000).attr('r', 50).delay(3000);
+        bubbleContainer.selectAll("text").data(nodes).enter().append("text").text(function (d) {
+          return d.id;
+        }).attr('x', function (d) {
+          return d.cx - 30;
+        }).attr('y', function (d) {
+          return d.cy;
+        }).attr('fill', 'green').attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(5000);
+        applicationText = applicationContainer.append('div').style("width", "700px").style("height", "230px").style("opacity", 0).style("background-color", "black").style("padding", "10px");
+        applicationText.append("h2").text("Why is Cryptogology important?");
+        applicationText.append('p').text("Cryptology has had many applications over thousands of years of history. In fact, the earliest computers were developed in order to break encrypted messages being sent during WWII. But as computers have made their way into every part of our live, cryptology has become increasingly important in protecting the personal data of individuals. To the left we highlight the major applications that motivate the study and development of cryptology today. As you can see, cryptoloy comes into our lives in a multitude of ways.");
+        applicationText.transition().duration(5000).style("opacity", 1).delay(2000);
+        typeText = typeContainer.append('div').style("width", "700px").style("opacity", 0).style("background-color", "black").style("padding", "10px");
+        typeText.append("h2").text("The three branches");
+        typeText.append('p').text("Cryptology is an umbrella term for the fields of cryptography and cryptanalysis.");
+        typeText.append('p').text("Cryptography is the creation of new codes and ciphers. Cryptographers use mathematical properties to encode a message in such a way that the author and intended recipient can easily communicate while it is impossible or computationally infeasible for an unauthorized party to learn any secret information.");
+        typeText.append('p').text("Cryptanalysis is the art and science of breaking ciphers. Cryptanalysts perform a variety of different analyses on a cipher to attempt to learn secret information. Among these are mathematical analysis, logical analysis and side-channel analysis.");
+        var types = [{
+          id: "Cryptology",
+          cx: 200,
+          cy: 90
+        }, {
+          id: "Cryptography",
+          cx: 200,
+          cy: 230
+        }, {
+          id: "Cryptanalysis",
+          cx: 80,
+          cy: 160
+        }]; // starting positions for the nodes
 
-      };
-      var i = 0;
-      var delay = 1000;
-
-      for (var key in eventHash) {
-        var side = i % 2 == 0 ? leftDiv : rightDiv;
-        var eventBox = side.append('div');
-        eventBox.transition().attr('class', 'eventBox').attr('id', 'eventBox' + i).delay(delay * i);
-        eventBox.append('div').transition().attr('class', 'year').text(key).delay(delay * i);
-        eventBox.append('div').transition().attr('class', 'event').text(eventHash[key]).delay(delay * i);
-        i += 1;
+        types.forEach(function (node) {
+          node.x = Math.random() * 500;
+          node.y = Math.random() * 500;
+        });
+        var typeBubbles = typeContainer.append('svg').style('width', '400').style('height', '300').append('g');
+        var typeElements = typeBubbles.selectAll("circle").data(types).enter().append("circle").attr('r', '0').attr('fill', 'white').attr('cx', function (d) {
+          return d.x;
+        }).attr('cy', function (d) {
+          return d.y;
+        });
+        typeElements.transition("move").duration(3000).attr('cx', function (d) {
+          return d.cx;
+        }).attr('cy', function (d) {
+          return d.cy;
+        }).delay(4000);
+        typeElements.transition("grow").duration(1500).attr('r', 4).delay(4000).on("end", function () {
+          typeElements.transition("grow2").duration(3000).attr("r", 70);
+        });
+        typeBubbles.selectAll("text").data(types).enter().append("text").text(function (d) {
+          return d.id;
+        }).attr('x', function (d) {
+          return d.cx - 30;
+        }).attr('y', function (d) {
+          return d.cy;
+        }).attr('fill', 'green').attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(9000);
+        typeText.transition().duration(3000).style("opacity", 1).delay(4000);
       }
     }
   }]);
 
-  return CreateHistory;
+  return Intro;
 }();
 
-module.exports = CreateHistory;
-},{"d3":"../node_modules/d3/index.js"}],"create-stream.js":[function(require,module,exports) {
+module.exports = Intro;
+},{"d3":"../node_modules/d3/index.js"}],"create-history.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -28964,25 +29051,111 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var d3 = require('d3');
 
-var CreateStream =
+var History =
 /*#__PURE__*/
 function () {
-  function CreateStream() {
-    _classCallCheck(this, CreateStream);
+  function History() {
+    _classCallCheck(this, History);
   }
 
-  _createClass(CreateStream, [{
+  _createClass(History, [{
+    key: "start",
+    value: function start(flag) {
+      if (flag) {
+        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      } else {
+        d = 1000;
+        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+        d3.selectAll("#vis div").classed("selected", false);
+        d3.select("#content2").classed("selected", true);
+        var timelineContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'timelineContainer');
+        var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
+        var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
+        var rightDiv = timelineContainer.append('div').attr('class', 'rightDiv');
+        rightDiv.append('br');
+        y = d3.scaleLinear().domain([1450, 1975]).range([0, 700]);
+        var line = d3.line().curve(d3.curveCatmullRom.alpha(0.5)).x(10).y(function (d) {
+          return y(d);
+        });
+        var data = [];
+
+        for (var i = 1467; i < 1975; i++) {
+          data.push(i);
+        }
+
+        var totalLength = 600;
+        d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "#75a478").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(12 * d).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
+        eventHash = {
+          "1467": "Leon Battista Alberti (father of western cryptography) invents cipher wheel",
+          "1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
+          "1678": "Robert Hooke publishes first one way function (related to RSA)",
+          "1854": "Playfair cipher invented by Sir Charles Wheatstone",
+          "1863": "First published solution to vigenere cipher, authored by Kasiski",
+          "1917": "Gilbert Vernam proposed one time pad modification to a stream cipher",
+          "1923": "Enigma encoding machine invented by the Germans",
+          "1942": "Enigma code cracked by Alan Turing and his fellows at Bletchley Park",
+          "1960": "Cryptographic hash functions introduced into computer systems",
+          "1975": "Data Encryption Standard introduced for symmetric key encryption",
+          "2001": "SHA-2 published",
+          "2015": "SHA-3 published"
+        };
+        var i = 0;
+        var delay = d;
+        console.log("here");
+
+        for (var key in eventHash) {
+          var side = i % 2 == 0 ? leftDiv : rightDiv;
+          var eventBox = side.append('div');
+          eventBox.transition().attr('class', 'eventBox').attr('id', 'eventBox' + i).delay(delay * i);
+          eventBox.append('div').transition().attr('class', 'year').text(key).delay(delay * i);
+          eventBox.append('div').transition().attr('class', 'event').text(eventHash[key]).delay(delay * i);
+          i += 1;
+        }
+      }
+    }
+  }]);
+
+  return History;
+}();
+
+module.exports = History;
+},{"d3":"../node_modules/d3/index.js"}],"create-stream-animation.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var StreamAnimation =
+/*#__PURE__*/
+function () {
+  function StreamAnimation() {
+    _classCallCheck(this, StreamAnimation);
+  }
+
+  _createClass(StreamAnimation, [{
     key: "start",
     value: function start() {
-      console.log('[CreateStream]', 'Hello World 5.');
-      initialMessage = "MESSAGE";
-      initialKey = "KEYKEYK";
-      initialCipher = "WIQCEEO";
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content3").classed("selected", true);
+      initialMessage = "PLAINTEXT";
+      initialKey = "KEYKEYKEY";
+      initialCipher = "ZPYSRROBR";
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
       var alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var alphaAlpha = alphabet.concat(alphabet2);
-      document.getElementById('vis').innerHTML = "";
-      var stream_container = d3.select('#vis').append('div').attr('class', 'streamContainer');
+      var plainColor = "var(--plain-color)";
+      var keyColor = "var(--key-color)";
+      var mixColor = "var(--mix-color)";
+      var cipherColor = "var(--cipher-color)";
+      var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
+      var table_div = stream_container.append('div').attr('class', 'tableDiv');
       var message = stream_container.append('div').attr('class', 'message');
 
       for (var i = 0; i < initialMessage.length; i++) {
@@ -28993,7 +29166,6 @@ function () {
       } // TABLE 1
 
 
-      var table_div = stream_container.append('div').attr('class', 'tableDiv');
       var table = table_div.append('table');
       var thead = table.append('thead');
       var tbody = table.append('tbody');
@@ -29039,31 +29211,31 @@ function () {
       }); // MATH CALCULATIONS
 
       var math_div = table_div.append('div').attr('class', 'math');
-      var plain_text = math_div.append('p').text('P').style('color', '#fdd835').attr('id', 'plain').attr('class', 'mathSymbol');
+      var plain_text = math_div.append('p').text('P').style('color', plainColor).attr('id', 'plain').attr('class', 'mathSymbol');
       var plus = math_div.append('p').text('  +  ').attr('class', 'mathSymbol');
-      var key = math_div.append('p').text('K').style('color', '#e53935').attr('id', 'key').attr('class', 'mathSymbol');
+      var key = math_div.append('p').text('K').style('color', keyColor).attr('id', 'key').attr('class', 'mathSymbol');
       var mod = math_div.append('p').text(' mod 26 = ').attr('class', 'mathSymbol');
-      var cipher = math_div.append('p').text('C').style('color', '#1c87e5').attr('id', 'cipher').attr('class', 'mathSymbol');
+      var cipher = math_div.append('p').text('C').style('color', cipherColor).attr('id', 'cipher').attr('class', 'mathSymbol');
       var m = 3000;
 
       for (var i = 0; i < initialMessage.length; i++) {
-        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', '#fdd835').delay(m * i);
-        d3.select('#index' + i).select('.key').transition().duration(500).style('color', '#e53935').delay(m * i);
+        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', plainColor).delay(m * i);
+        d3.select('#index' + i).select('.key').transition().duration(500).style('color', keyColor).delay(m * i);
         d3.select('#key').transition().duration(500).text(alphaAlpha.indexOf(initialKey[i])).delay(m * i);
         d3.select('#plain').transition().duration(500).text(alphaAlpha.indexOf(initialMessage[i])).delay(m * i);
 
         if (initialMessage[i] === initialKey[i]) {
-          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#fb8c00').delay(m * i);
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', mixColor).delay(m * i);
         } else {
-          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', '#fdd835').delay(m * i);
-          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', '#e53935').delay(m * i);
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', plainColor).delay(m * i);
+          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', keyColor).delay(m * i);
         }
 
-        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', '#1c87e5').text(initialCipher[i]).delay(1000 + m * i);
+        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', cipherColor).text(initialCipher[i]).delay(1000 + m * i);
         d3.select('#cipher').transition().duration(500).text(alphaAlpha.indexOf(initialCipher[i])).delay(1000 + m * i);
         d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'transparent').delay(1000 + m * i);
         d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'transparent').delay(1000 + m * i);
-        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', '#1c87e5').delay(1000 + m * i);
+        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', cipherColor).delay(1000 + m * i);
         d3.select('#index' + i).select('.letter').transition().duration(500).style('color', 'black').delay(1000 + m * i);
         d3.select('#index' + i).select('.key').transition().duration(500).style('color', 'black').delay(1000 + m * i);
         d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'transparent').delay(2000 + m * i);
@@ -29072,31 +29244,62 @@ function () {
       d3.select('#plain').transition().duration(50).text('P').delay(20000);
       d3.select('#cipher').transition().duration(50).text('C').delay(20000);
       d3.select('#key').transition().duration(50).text('K').delay(20000);
+    }
+  }]);
+
+  return StreamAnimation;
+}();
+
+module.exports = StreamAnimation;
+},{"d3":"../node_modules/d3/index.js"}],"create-stream-interaction.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var StreamInteraction =
+/*#__PURE__*/
+function () {
+  function StreamInteraction() {
+    _classCallCheck(this, StreamInteraction);
+  }
+
+  _createClass(StreamInteraction, [{
+    key: "start",
+    value: function start() {
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+      var alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var alphaAlpha = alphabet.concat(alphabet2);
+      var plainColor = "var(--plain-color)";
+      var keyColor = "var(--key-color)";
+      var cipherColor = "var(--cipher-color)";
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
       inputMessage = "";
       inputKey = "";
       resultCipher = "";
-      var inputContainer = d3.select('#vis').append('div').attr('class', 'inputContainer');
+      var inputContainer = d3.select('#title4 .fullVis').append('div').attr('class', 'inputContainer');
       var inputs = inputContainer.append('div').attr('class', 'inputs');
-      var results = inputContainer.append('div').attr('class', 'results');
-      results.append('br');
-      results.append('br');
-      results.append('br');
-      inputs.append('h3').text('Now you try!').attr('class', 'instruction').attr('style', 'opacity: 0');
-      inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction').attr('style', 'opacity: 0');
+      var results = d3.select('#title4 .fullVis').append('div').attr('class', 'results');
+      inputs.append('h3').text('Now you try!').attr('class', 'instruction');
+      inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction');
       lilDiv = inputs.append('div').attr('class', 'lilDiv');
-      var textInput = lilDiv.append('input').attr('id', 'textInput').attr('style', 'text').attr('style', 'opacity: 0');
-      var inputButton = lilDiv.append('div').attr('id', 'inputButton').text('SELECT').attr('style', 'opacity: 0');
-      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").attr('style', 'opacity: 0');
-      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").attr('style', 'opacity: 0');
-      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").attr('style', 'opacity: 0');
-      inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction').attr('style', 'opacity: 0');
-      var row1 = ["RNC", "ONQ", "CKO", "LYY", "FGU"];
+      var textInput = lilDiv.append('input').attr('id', 'textInput').attr('style', 'text');
+      var inputButton = lilDiv.append('div').attr('id', 'inputButton').text('SELECT');
+      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").style('color', plainColor);
+      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").style('color', keyColor);
+      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").style('color', cipherColor);
+      inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction');
+      var row1 = ["RNC", "ONQ", "CKO", "KEY", "FGU"];
       var row2 = ["MIO", "CAY", "ZUU", "KRK", "BMW"];
       var row3 = ["QXG", "UXV", "HPV", "YUH", "LDG"];
       var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
       var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
       var keys = [row1, row2, row3, row4, row5];
-      var keyTable = inputs.append('table').attr('class', 'keyTable').attr('style', 'opacity: 0');
+      var keyTable = inputContainer.append('table').attr('class', 'keyTable');
       var theadKey = keyTable.append('thead');
       var tbodyKey = keyTable.append('tbody');
 
@@ -29115,7 +29318,7 @@ function () {
 
       function handleMouseOver() {
         // Add interactivity
-        d3.select(this).style('background-color', '#e53935');
+        d3.select(this).style('background-color', keyColor).style('color', 'black');
         inputKey = this.id;
         var newKey = "";
 
@@ -29133,7 +29336,7 @@ function () {
       }
 
       function handleMouseOut() {
-        d3.select(this).style('background-color', 'transparent');
+        d3.select(this).style('background-color', 'transparent').style('color', 'white');
         inputKey = "";
         resultCipher = "";
         document.getElementById('keyDisplay').innerHTML = "keytext:    ";
@@ -29161,21 +29364,77 @@ function () {
         document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
         document.getElementById('textInput').value = "";
       });
-      d3.selectAll('.instruction').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
-      d3.select('#textInput').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
-      d3.select('#inputButton').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
-      d3.select('#textDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#fdd835');
-      d3.select('#keyDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#e53935');
-      d3.select('#cipherDisplay').transition().duration(200).attr('style', 'opacity: 1').delay(20000).style('color', '#1c87e5');
-      d3.select('.keyTable').transition().duration(200).attr('style', 'opacity: 1').delay(20000);
+      var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
+      var table_div = input2Container.append('div').attr('class', 'tableDiv');
+      var table = table_div.append('table');
+      var thead = table.append('thead');
+      var tbody = table.append('tbody');
+      thead.append('tr').selectAll('th').data(alphabet).enter().append('th').text(function (letter) {
+        return letter;
+      }).attr('class', function (letter) {
+        return letter;
+      });
+      var rows = tbody.selectAll('tr').data([1]).enter().append('tr');
+      var cells = rows.selectAll('td').data(function (row) {
+        return alphabet.map(function (letter) {
+          return {
+            column: letter,
+            value: alphabet.indexOf(letter)
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('class', function (d) {
+        return d.column;
+      });
+      var table2 = table_div.append('table');
+      var thead2 = table2.append('thead');
+      var tbody2 = table2.append('tbody');
+      thead2.append('tr').selectAll('th').data(alphabet2).enter().append('th').text(function (letter) {
+        return letter;
+      }).attr('class', function (letter) {
+        return letter;
+      });
+      var rows2 = tbody2.selectAll('tr').data([1]).enter().append('tr');
+      var cells2 = rows2.selectAll('td').data(function (row) {
+        return alphabet2.map(function (letter) {
+          return {
+            column: letter,
+            value: alphabet2.indexOf(letter) + 13
+          };
+        });
+      }).enter().append('td').html(function (d) {
+        return d.value;
+      }).attr('class', function (d) {
+        return d.column;
+      });
+      var inputs2 = input2Container.append('div').attr('class', 'inputs2');
+      inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction');
+      inputs2.append('h4').text('ciphertext: ISSNMBSX').style('color', cipherColor);
+      inputs2.append('h4').text('keytext: KEYKEYKE').style('color', keyColor);
+      lilDiv2 = inputs2.append('div').attr('class', 'lilDiv2');
+      var textInput2 = lilDiv2.append('input').attr('id', 'textInput2').attr('style', 'text');
+      var inputButton2 = lilDiv2.append('div').attr('id', 'inputButton2').text('CHECK');
+      var answer = inputs2.append('h4').text('').style('color', 'white').attr('id', 'answer');
+      d3.select('#inputButton2').on('click', function () {
+        guess = document.getElementById('textInput2').value;
+        guess = guess.replace(/\s+/g, '');
+        guess = guess.toUpperCase();
+
+        if (guess == "YOUDIDIT") {
+          document.getElementById('answer').innerHTML = "Correct!";
+        } else {
+          document.getElementById('answer').innerHTML = "Try again...";
+        }
+      });
     }
   }]);
 
-  return CreateStream;
+  return StreamInteraction;
 }();
 
-module.exports = CreateStream;
-},{"d3":"../node_modules/d3/index.js"}],"create-block1.js":[function(require,module,exports) {
+module.exports = StreamInteraction;
+},{"d3":"../node_modules/d3/index.js"}],"create-block-animation.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -29184,26 +29443,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var d3 = require('d3');
 
-var CreateBlock =
+var BlockAnimation =
 /*#__PURE__*/
 function () {
-  function CreateBlock() {// this.checkanswer = this.checkanswer.bind(this)
+  function BlockAnimation() {
+    _classCallCheck(this, BlockAnimation);
 
-    _classCallCheck(this, CreateBlock);
+    this.darkColor = "#b3e5fc"; // this.lightColor = "#e6ffff";
+
+    this.lightColor = "white";
+    this.cipherColor = "#fff59d";
   }
 
-  _createClass(CreateBlock, [{
+  _createClass(BlockAnimation, [{
     key: "start",
     value: function start() {
-      console.log('[CreateBlock]'); // need this in order to clear out the previous section's visualization
-
-      document.getElementById('vis').innerHTML = ""; // column, row, box
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content4").classed("selected", true);
+      console.log(this.darkColor); // column, row, box
 
       plain_text_pairs = ["GR", "MO", "MY"];
       cipher_text_pairs = ["MW", "NP", "OW"];
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-      var everything = d3.select("#vis").append("div").attr('class', 'everything');
+      var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything');
       var block_container = everything.append("div").attr('class', 'blockContainer');
+      block_container.append("h1").attr("class", "playfairTitles").text("Playfair uses 3 main rules to encrypt a message:");
       var grid = block_container.append('div').attr('class', 'grid');
 
       for (var i = 0; i < 5; i++) {
@@ -29218,22 +29484,7 @@ function () {
       var encryption = text_container.append('div').attr('class', 'encryption');
       encryption.append('div').attr('class', 'block_message').text("");
       encryption.append('div').attr('class', 'cipher_message').text("");
-      var interactive_container = everything.append("div").attr('class', 'interactiveContainer'); // var interactive_container = d3.select('.interactiveContainer')
-      // interactive_container.append('h2').text('Test your block cipher skills!')
-      // interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)')
-      // var textboxes = interactive_container.append('div').attr('class', 'textboxes')
-      // var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST']
-      // var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU']
-      // var dropdown = textboxes.append('select').attr('id', 'dropdown')
-      // for (var i = 0; i < words.length; i++) {
-      // 	dropdown.append('option').text(words[i])
-      // }
-      // textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput')
-      // textboxes.append('div')
-      // 	.attr('id', 'checkbutton')
-      // 	.text('check')
-      // textboxes.append('div').attr('id', 'shareResult')
-      // document.getElementById("checkbutton").onclick = this.checkanswer;
+      var interactive_container = everything.append("div").attr('class', 'interactiveContainer');
     }
   }, {
     key: "transitions",
@@ -29249,17 +29500,17 @@ function () {
       var duration = 500;
       var delay = 1000; // color the plain text letters in the grid (red)
 
-      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(0);
-      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', '#e53935').delay(0); // color the plain text letters in the grid (light red)
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).delay(0);
+      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', this.darkColor).delay(0); // color the plain text letters in the grid (light red)
 
-      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#ef9a9a').delay(duration + delay);
-      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', '#ef9a9a').delay(duration + delay); // color the cipher text letters in the grid (red)
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.lightColor).delay(duration + delay);
+      d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', this.lightColor).delay(duration + delay); // color the cipher text letters in the grid (red)
 
-      d3.select('.block-' + cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(duration + delay);
-      d3.select('.block-' + cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', '#e53935').delay(duration + delay); // add in the ciphered letters at the same time as the cipher text highlight
+      d3.select('.block-' + cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).delay(duration + delay);
+      d3.select('.block-' + cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', this.darkColor).delay(duration + delay); // add in the ciphered letters at the same time as the cipher text highlight
 
-      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][0]).delay(duration + delay + 500);
-      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
+      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', this.cipherColor).text(cipher_text_pairs[i][0]).delay(duration + delay + 500);
+      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', this.cipherColor).text(cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
 
       d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
       d3.select('.block-' + plain_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
@@ -29293,17 +29544,17 @@ function () {
       var delay = 1000;
       var forreal = this; // highlight M and Y in red 
 
-      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#e53935').delay(0);
-      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', '#e53935').delay(0); // highlight M and Y in pink
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).delay(0);
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', this.darkColor).delay(0); // highlight M and Y in pink
 
-      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', '#ef9a9a').delay(delay);
-      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', '#ef9a9a').delay(delay); // highlight O and W in red 
+      d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.lightColor).delay(delay);
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', this.lightColor).delay(delay); // highlight O and W in red 
 
-      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', '#e53935').delay(delay + duration);
-      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 10]).transition().duration(500).style('background-color', '#e53935').delay(delay + duration); // add in the ciphered letters at the same time as the cipher text highlight
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', this.darkColor).delay(delay + duration);
+      d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 10]).transition().duration(500).style('background-color', this.darkColor).delay(delay + duration); // add in the ciphered letters at the same time as the cipher text highlight
 
-      d3.select("#box_cipher_1").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][0]).delay(delay + duration);
-      d3.select("#box_cipher_2").transition().duration(duration).style('color', '#1b87e5').text(cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
+      d3.select("#box_cipher_1").transition().duration(duration).style('color', this.cipherColor).text(cipher_text_pairs[i][0]).delay(delay + duration);
+      d3.select("#box_cipher_2").transition().duration(duration).style('color', this.cipherColor).text(cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
 
       d3.select('.block-' + plain_text_pairs[i][0]).transition().duration(duration).style('background-color', "transparent").delay(2 * (delay + duration));
       d3.select('.block-' + alphabet[alphabet.indexOf(plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', 'transparent').delay(2 * (delay + duration));
@@ -29332,26 +29583,26 @@ function () {
       for (var i = 0; i < initialMessage.length; i += 2) {
         var delay = i == 0 ? 0 : lastTiming - i / 2 * 3000;
         var last = i / 2;
-        d3.select("#encr_block_" + i).transition().duration(duration).style('color', '#e53935').delay(last * buffer + (delay + duration));
-        d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', '#e53935').delay(last * buffer + (delay + duration));
+        d3.select("#encr_block_" + i).transition().duration(duration).style('color', this.darkColor).delay(last * buffer + (delay + duration));
+        d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', this.darkColor).delay(last * buffer + (delay + duration));
         var e_index1 = alphabet.indexOf(initialMessage[i]);
         var e_index2 = alphabet.indexOf(initialMessage[i + 1]); // make two plain text letters red 
 
-        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
-        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
         delay = i == 0 ? 2000 : lastTiming - i / 2 * 1000 - 1000 * (i - 2);
         d3.select("#encr_block_" + i).transition().duration(duration).style('color', 'black').delay(last * buffer + (delay + duration));
         d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', 'black').delay(last * buffer + (delay + duration)); // make two plain text letters pink
 
-        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', '#ef9a9a').delay(last * buffer + (delay + duration));
-        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', '#ef9a9a').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', this.lightColor).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[e_index2]).transition().duration(duration).style('background-color', this.lightColor).delay(last * buffer + (delay + duration));
         var c_index1 = alphabet.indexOf(cipherMessage[i]);
         var c_index2 = alphabet.indexOf(cipherMessage[i + 1]); // make two cipher text letters red
 
-        d3.select('.block-' + alphabet[c_index1]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
-        d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', '#e53935').delay(last * buffer + (delay + duration));
-        d3.select("#decr_block_" + i).transition().duration(duration).style('color', '#1b87e5').text(cipherMessage[i]).delay(last * buffer + (delay + duration));
-        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', '#1b87e5').text(cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[c_index1]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + i).transition().duration(duration).style('color', this.cipherColor).text(cipherMessage[i]).delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', this.cipherColor).text(cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
         delay = i == 0 ? 3000 : lastTiming - (i - 2) * 500; // decolor everything
 
         d3.select('.block-' + alphabet[e_index1]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
@@ -29361,21 +29612,10 @@ function () {
 
         if (i == 4) {
           d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration)).on('end', function () {
-            var interactive_container = d3.select('.interactiveContainer');
-            interactive_container.append('h2').text('Test your block cipher skills!');
-            interactive_container.append('h3').text('Choose a word from the dropdown below, and try to cipher it. When you are done click on the check button to see if you got it right :)');
-            var textboxes = interactive_container.append('div').attr('class', 'textboxes');
-            var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST'];
-            var dropdown = textboxes.append('select').attr('id', 'dropdown');
-
-            for (var i = 0; i < words.length; i++) {
-              dropdown.append('option').text(words[i]);
-            }
-
-            textboxes.append('input').style('margin-left', '20px').attr("id", 'userinput');
-            textboxes.append('div').attr('id', 'checkbutton').text('CHECK');
-            textboxes.append('div').attr('id', 'shareResult');
-            document.getElementById("checkbutton").onclick = forreal.checkanswer;
+            d3.select(".blockContainer").append("h1").attr("class", "playfairTitles").text("To decrypt a message, do the same but in the opposite direction!");
+            var decryption = d3.select(".blockContainer").append("div").attr('class', 'decryption');
+            decryption.append('div').attr('class', 'block_message_decr').text("UCBSDU");
+            decryption.append('div').attr('class', 'cipher_message_decr').text("SECRET");
           });
         } else {
           d3.select('.block-' + alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
@@ -29384,88 +29624,153 @@ function () {
         lastTiming = last * buffer + (delay + duration) + duration;
       }
     }
+  }]);
+
+  return BlockAnimation;
+}();
+
+module.exports = BlockAnimation;
+},{"d3":"../node_modules/d3/index.js"}],"create-block-interaction.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var BlockInteraction =
+/*#__PURE__*/
+function () {
+  function BlockInteraction() {
+    _classCallCheck(this, BlockInteraction);
+  }
+
+  _createClass(BlockInteraction, [{
+    key: "start",
+    value: function start() {
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      var canvas = d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer');
+      var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var interactive_container = canvas.append('div').attr('class', 'interactiveContainer');
+      interactive_container.append('h2').attr("class", "block_interactive_title").text('Test your block cipher skills!'); // test encryption skills
+
+      interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to ENCRYPT it. When you are done click on the check button to see if you got it right');
+      var textboxes_and_res = interactive_container.append('div');
+      var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes');
+      var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST'];
+      var dropdown = textboxes.append('select').attr('id', 'encr_dropdown').attr("class", "dropdown");
+
+      for (var i = 0; i < words.length; i++) {
+        dropdown.append('option').text(words[i]);
+      }
+
+      textboxes.append('input').style('margin-left', '20px').attr("id", 'encr_userinput').attr("class", "userinput");
+      textboxes.append('div').attr('id', 'encr_checkbutton').attr("class", "checkbutton").text('CHECK');
+      textboxes_and_res.append('div').attr('id', 'encr_shareResult').attr("class", "shareresult");
+      document.getElementById("encr_checkbutton").onclick = this.checkencrypt; // test decreyption skills
+
+      interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to DECRYPT it. When you are done click on the check button to see if you got it right');
+      var textboxes_and_res = interactive_container.append('div');
+      var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes');
+      var words = ['CHOOSE A WORD', 'EBDQ', 'XSMY', 'GWKHIS', 'LQKHIS', 'CBDSBUFD', 'ESOFLCTW'];
+      var dropdown = textboxes.append('select').attr('id', 'decr_dropdown').attr("class", "dropdown");
+
+      for (var i = 0; i < words.length; i++) {
+        dropdown.append('option').text(words[i]);
+      }
+
+      textboxes.append('input').style('margin-left', '20px').attr("id", 'decr_userinput').attr("class", "userinput");
+      textboxes.append('div').attr('id', 'decr_checkbutton').attr("class", "checkbutton").text('CHECK');
+      textboxes_and_res.append('div').attr('id', 'decr_shareResult').attr("class", "shareresult");
+      document.getElementById("decr_checkbutton").onclick = this.checkdecrypt;
+      var grid = canvas.append('div').attr('class', 'grid_new');
+
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5; j++) {
+          grid.append('div').attr('class', 'grid_box_new').append('p').text(alphabet[j + i * 4 + i]);
+        }
+      }
+    }
   }, {
-    key: "checkanswer",
-    value: function checkanswer() {
-      console.log("YO");
-      var selected_word = d3.select('#dropdown option:checked').text();
+    key: "checkencrypt",
+    value: function checkencrypt() {
+      var selected_word = d3.select('#encr_dropdown option:checked').text();
       var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST'];
       var ciphered = ['CHOOSE A WORD', 'CBUC', 'MPZA', 'KBOCBU', 'GKMHBU', 'BDBEBPHD', 'BDYOYFTU'];
 
       if (selected_word != 'CHOOSE A WORD') {
-        var userinput = document.getElementById("userinput").value;
+        var userinput = document.getElementById("encr_userinput").value;
         var index = words.indexOf(selected_word);
         console.log(userinput, ciphered[index]);
 
         if (userinput.toUpperCase() === ciphered[index]) {
           console.log("CONGRATS");
-          d3.select("#shareResult").text("congrats!");
+          d3.select("#encr_shareResult").text("YOU ARE A MASTER, CONGRATS!"); // d3.select("#encr_userinput").style("background-color", "green")
         } else {
           console.log("try again");
-          d3.select("#shareResult").text("try again!");
+          d3.select("#encr_shareResult").text("TRY AGAIN!"); // d3.select("#encr_userinput").style("background-color", "red")
+        }
+      }
+    }
+  }, {
+    key: "checkdecrypt",
+    value: function checkdecrypt() {
+      var selected_word = d3.select('#decr_dropdown option:checked').text();
+      var ciphered = ['CHOOSE A WORD', 'DATA', "SNOW", "BRIGHT", "FLIGHT", "BACTERIA", "CULINARY"];
+      var words = ['CHOOSE A WORD', 'EBDQ', 'XSMY', 'GWKHIS', 'LQKHIS', 'CBDSBUFD', 'ESOFLCTW'];
+
+      if (selected_word != 'CHOOSE A WORD') {
+        var userinput = document.getElementById("decr_userinput").value;
+        var index = words.indexOf(selected_word);
+        console.log(userinput, ciphered[index]);
+
+        if (userinput.toUpperCase() === ciphered[index]) {
+          console.log("CONGRATS");
+          d3.select("#decr_shareResult").text("YOU ARE A MASTER, CONGRATS!");
+        } else {
+          console.log("try again");
+          d3.select("#decr_shareResult").text("TRY AGAIN!");
         }
       }
     }
   }]);
 
-  return CreateBlock;
+  return BlockInteraction;
 }();
 
-module.exports = CreateBlock;
-},{"d3":"../node_modules/d3/index.js"}],"modern-encryption.js":[function(require,module,exports) {
+module.exports = BlockInteraction;
+},{"d3":"../node_modules/d3/index.js"}],"create-transition-section.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var ModernEncrypt =
+var d3 = require('d3');
+
+var TransitionSection =
 /*#__PURE__*/
 function () {
-  function ModernEncrypt() {
-    _classCallCheck(this, ModernEncrypt);
+  function TransitionSection() {
+    _classCallCheck(this, TransitionSection);
   }
 
-  _createClass(ModernEncrypt, [{
+  _createClass(TransitionSection, [{
     key: "start",
     value: function start() {
-      document.getElementById('vis').innerHTML = "";
-      document.getElementById('vis').innerHTML = "Coming Soon...";
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll(".halfVis").style("background-color", "transparent").html("");
+      d3.select("#title7").text("coming soon?");
     }
   }]);
 
-  return ModernEncrypt;
+  return TransitionSection;
 }();
 
-module.exports = ModernEncrypt;
-},{}],"my-class.js":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-// You can separate your code out into modules to
-// keep code clean.
-var MyClass =
-/*#__PURE__*/
-function () {
-  function MyClass() {
-    _classCallCheck(this, MyClass);
-  }
-
-  _createClass(MyClass, [{
-    key: "sayHi",
-    value: function sayHi() {
-      console.log('[MyClass]', 'Hello World.');
-    }
-  }]);
-
-  return MyClass;
-}();
-
-module.exports = MyClass;
-},{}],"../node_modules/base64-js/index.js":[function(require,module,exports) {
+module.exports = TransitionSection;
+},{"d3":"../node_modules/d3/index.js"}],"../node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -43182,7 +43487,7 @@ module.exports = {
   "_args": [
     [
       "elliptic@6.5.2",
-      "/Users/Emma/FP-hushhhhhhhz"
+      "/Users/hmharvey/src/hw/FP-hushhhhhhhz"
     ]
   ],
   "_development": true,
@@ -43208,7 +43513,7 @@ module.exports = {
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz",
   "_spec": "6.5.2",
-  "_where": "/Users/Emma/FP-hushhhhhhhz",
+  "_where": "/Users/hmharvey/src/hw/FP-hushhhhhhhz",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -58496,9 +58801,114 @@ module.exports = "/lock.6bb2817a.png";
 module.exports = "/unlock.d0384cdb.png";
 },{}],"images/locked_key.png":[function(require,module,exports) {
 module.exports = "/locked_key.52418b15.png";
-},{}],"images/white_key.png":[function(require,module,exports) {
+},{}],"images/blue_key_svg.svg":[function(require,module,exports) {
+module.exports = "/blue_key_svg.25e358b3.svg";
+},{}],"images/boy.png":[function(require,module,exports) {
+module.exports = "/boy.f7ed41b5.png";
+},{}],"images/girl2.png":[function(require,module,exports) {
+module.exports = "/girl2.46bdb37a.png";
+},{}],"images/regular.png":[function(require,module,exports) {
+module.exports = "/regular.5ba62fe0.png";
+},{}],"images/lock_doc.png":[function(require,module,exports) {
+module.exports = "/lock_doc.10400114.png";
+},{}],"images/unlock_doc.png":[function(require,module,exports) {
+module.exports = "/unlock_doc.06e3b606.png";
+},{}],"images/highlighted_blue_key.png":[function(require,module,exports) {
+module.exports = "/highlighted_blue_key.f3ac913d.png";
+},{}],"create-symmetric-animation.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var Crypto = require('./crypto');
+
+var lock = require('./images/lock.png');
+
+var unlock = require('./images/unlock.png');
+
+var locked_key = require('./images/locked_key.png');
+
+var key = require('./images/blue_key_svg.svg');
+
+var receiver = require('./images/boy.png');
+
+var sender = require('./images/girl2.png');
+
+var doc = require('./images/regular.png');
+
+var locked_doc = require('./images/lock_doc.png');
+
+var unlocked_doc = require('./images/unlock_doc.png');
+
+var selected_key = require('./images/highlighted_blue_key.png');
+
+var SymmetricTutorial =
+/*#__PURE__*/
+function () {
+  function SymmetricTutorial() {
+    _classCallCheck(this, SymmetricTutorial);
+  }
+
+  _createClass(SymmetricTutorial, [{
+    key: "start",
+    value: function start() {
+      document.getElementById('vis').innerHTML = "";
+      this.vis = d3.select('#title8 .halfVis');
+      this.vis.append('div').attr('id', 'symmetric_container');
+      d3.select('#symmetric_container').append("div").attr('id', 'sender_sym').append("h3").attr("class", "label").text("TA");
+      d3.select('#symmetric_container').append("div").attr('id', 'receiver_sym').append("h3").attr("class", "label").text("Matt");
+      d3.select("#sender_sym").append("div").attr("id", "sender_personAndKey");
+      d3.select("#receiver_sym").append("div").attr("id", "receiver_personAndKey");
+      d3.select("#sender_personAndKey").append("div").attr("class", "people_sender_sym").append("img").attr("src", sender);
+      d3.select("#sender_personAndKey").append("div").attr("class", "symmetric_key").append("img").attr("src", key).attr("id", "encrypt");
+      d3.select("#sender_sym").append("div").attr("class", "sender_document").style("width", "22%").append("img").attr("src", doc).attr("id", "doc1");
+      d3.select("#receiver_personAndKey").append("div").attr("class", "people_sender_sym").append("img").attr("src", receiver);
+      d3.select("#receiver_personAndKey").append("div").attr("class", "symmetric_key").append("img").attr("src", key).attr("id", "decrypt");
+      d3.select("#receiver_sym").append("div").attr("class", "sender_document").append("img").attr("src", locked_doc).attr("id", "doc2").style("opacity", "0");
+      this.vis.append("div").attr("id", "story_text");
+      this.vis.append("div").attr("id", "warning");
+      d3.select("#story_text").text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted").transition().duration(1000).delay(1000).on('end', function () {
+        d3.select("#encrypt").transition().duration(1000).delay(1000).on('end', function () {
+          // increasing size of encrypt key & changine its src
+          d3.select("#encrypt").attr("src", selected_key).style("width", "65%").transition().duration(1000).delay(1000);
+          d3.select("#story_text").text("The TA will encrypt the information using a key that only Matt and her have.").transition().duration(2000).delay(1000).on('end', function () {
+            // sender document becomes locked document
+            d3.select("#doc1").attr("src", locked_doc).transition().duration(1000).delay(2000);
+            d3.select("#story_text").text("The information is now encrypted and ready to be sent").transition().duration(2000).delay(700).on('end', function () {
+              // sender key goes back to normal 
+              d3.select("#encrypt").attr("src", key).style("width", "35%").transition().duration(0).delay(0);
+              d3.select("#doc1").style("opacity", "0");
+              d3.select("#doc2").style("opacity", "1").transition().duration(1000).delay(1000);
+              d3.select("#story_text").text("Matt receives the encrypted document").transition().duration(2000).delay(1000).on('end', function () {
+                // increasing size of decrypt key & changine its src
+                d3.select("#decrypt").attr("src", selected_key).style("width", "65%").transition().duration(1000).delay(1000);
+                d3.select("#story_text").text("and uses his key to decrypt the information").transition().duration(2000).delay(1000).on('end', function () {
+                  // locked doc becomes unlocked doc
+                  d3.select("#doc2").attr("src", unlocked_doc).transition().duration(1000).delay(1000);
+                  d3.select("#decrypt").attr("src", key).style("width", "35%");
+                  d3.select("#story_text").text("Matt is now happy that he can look at the information and no one else can").transition().duration(2000).delay(1000).on('end', function () {
+                    d3.select("#warning").text("Warning!! If a student gets a hold of the shared key between Matt and the TA, they will also be able to decrypt the sensitive information.");
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+  }]);
+
+  return SymmetricTutorial;
+}();
+
+module.exports = SymmetricTutorial;
+},{"d3":"../node_modules/d3/index.js","./crypto":"crypto.js","./images/lock.png":"images/lock.png","./images/unlock.png":"images/unlock.png","./images/locked_key.png":"images/locked_key.png","./images/blue_key_svg.svg":"images/blue_key_svg.svg","./images/boy.png":"images/boy.png","./images/girl2.png":"images/girl2.png","./images/regular.png":"images/regular.png","./images/lock_doc.png":"images/lock_doc.png","./images/unlock_doc.png":"images/unlock_doc.png","./images/highlighted_blue_key.png":"images/highlighted_blue_key.png"}],"images/white_key.png":[function(require,module,exports) {
 module.exports = "/white_key.db31f3ce.png";
-},{}],"symmetric.js":[function(require,module,exports) {
+},{}],"create-symmetric-interaction.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -58517,18 +58927,18 @@ var locked_key = require('./images/locked_key.png');
 
 var key = require('./images/white_key.png');
 
-var Symmetric =
+var SymmetricInteraction =
 /*#__PURE__*/
 function () {
-  function Symmetric() {
-    _classCallCheck(this, Symmetric);
+  function SymmetricInteraction() {
+    _classCallCheck(this, SymmetricInteraction);
 
     this.handleEncrypt = this.handleEncrypt.bind(this);
     this.handleDecrypt = this.handleDecrypt.bind(this);
     this.handleNewMessage = this.handleNewMessage.bind(this);
   }
 
-  _createClass(Symmetric, [{
+  _createClass(SymmetricInteraction, [{
     key: "handleEncrypt",
     value: function handleEncrypt() {
       d3.event.preventDefault();
@@ -58583,8 +58993,9 @@ function () {
   }, {
     key: "start",
     value: function start() {
-      document.getElementById('vis').innerHTML = "";
-      this.vis = d3.select('#vis');
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      this.vis = d3.select('#title9 .fullVis');
       this.vis.append('div').attr('class', "bootstrap-iso").append('div').attr('id', 'randomdiv').attr('class', 'container'); // .attr("style", "margin-top:20%")
 
       d3.select('#randomdiv').append("div").attr('id', 'first_row').attr('class', 'row');
@@ -58630,13 +59041,138 @@ function () {
     }
   }]);
 
-  return Symmetric;
+  return SymmetricInteraction;
 }();
 
-module.exports = Symmetric;
-},{"d3":"../node_modules/d3/index.js","./crypto":"crypto.js","./images/lock.png":"images/lock.png","./images/unlock.png":"images/unlock.png","./images/locked_key.png":"images/locked_key.png","./images/white_key.png":"images/white_key.png"}],"images/dark_key.png":[function(require,module,exports) {
+module.exports = SymmetricInteraction;
+},{"d3":"../node_modules/d3/index.js","./crypto":"crypto.js","./images/lock.png":"images/lock.png","./images/unlock.png":"images/unlock.png","./images/locked_key.png":"images/locked_key.png","./images/white_key.png":"images/white_key.png"}],"images/girl1.png":[function(require,module,exports) {
+module.exports = "/girl1.dad678d0.png";
+},{}],"images/man.png":[function(require,module,exports) {
+module.exports = "/man.1ca747b1.png";
+},{}],"images/blue_key.png":[function(require,module,exports) {
+module.exports = "/blue_key.8193a518.png";
+},{}],"images/pink_key.png":[function(require,module,exports) {
+module.exports = "/pink_key.f5dc5e44.png";
+},{}],"images/yellow_key.png":[function(require,module,exports) {
+module.exports = "/yellow_key.2f61506e.png";
+},{}],"images/purple_key.png":[function(require,module,exports) {
+module.exports = "/purple_key.f0e3cc6b.png";
+},{}],"images/public_key_blue.png":[function(require,module,exports) {
+module.exports = "/public_key_blue.7dbcb47a.png";
+},{}],"images/private.png":[function(require,module,exports) {
+module.exports = "/private.67cc2665.png";
+},{}],"create-asymmetric-animation.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var receiver = require('./images/boy.png');
+
+var sender1 = require('./images/girl2.png');
+
+var sender2 = require('./images/girl1.png');
+
+var sender3 = require('./images/man.png');
+
+var blue = require('./images/blue_key.png');
+
+var pink = require('./images/pink_key.png');
+
+var yellow = require('./images/yellow_key.png');
+
+var purple = require('./images/purple_key.png');
+
+var public_key = require('./images/public_key_blue.png');
+
+var private_key = require('./images/private.png');
+
+var doc = require('./images/regular.png');
+
+var locked_doc = require('./images/lock_doc.png');
+
+var unlocked_doc = require('./images/unlock_doc.png');
+
+var AsymmetricAnimation =
+/*#__PURE__*/
+function () {
+  function AsymmetricAnimation() {
+    _classCallCheck(this, AsymmetricAnimation);
+  }
+
+  _createClass(AsymmetricAnimation, [{
+    key: "start",
+    value: function start() {
+      document.getElementById('vis').innerHTML = "";
+      this.vis = d3.select('#vis');
+      this.vis = d3.select('#title9 .halfVis');
+      this.vis.append('div').attr("id", "outter");
+      d3.select("#outter").append('div').attr("id", "senders");
+      d3.select("#senders").append('div').attr("id", "sender1").attr("class", "person");
+      d3.select("#senders").append('div').attr("id", "sender2").attr("class", "person");
+      d3.select("#senders").append('div').attr("id", "sender3").attr("class", "person");
+      d3.select("#outter").append('div').attr("id", "receiver_outer");
+      d3.select("#receiver_outer").append('div').attr("id", "messages");
+      d3.select("#messages").append("img").attr("src", locked_doc).attr("class", "locked_doc");
+      d3.select("#messages").append("img").attr("src", locked_doc).attr("class", "locked_doc");
+      d3.select("#messages").append("img").attr("src", locked_doc).attr("class", "locked_doc");
+      d3.selectAll(".locked_doc").attr('hidden', 'true');
+      d3.select("#receiver_outer").append('div').attr("id", "receiver");
+      d3.select("#sender1").append("div").attr("id", "sender1_image").attr("class", "perdoc");
+      d3.select("#sender1_image").append('img').attr("src", sender1);
+      d3.select("#sender1_image").append('img').attr("src", doc).attr("class", "sender_doc"); // div with keys in it (senders only)
+
+      d3.select("#sender1").append('div').attr("id", "sender1_key");
+      d3.select("#sender1_key").append('img').attr("src", yellow).attr("class", "keys");
+      d3.select("#sender1_key").append('img').attr("src", public_key).attr("class", "keys").attr('class', 'publickey');
+      d3.select("#sender2").append("div").attr("id", "sender2_image").attr("class", "perdoc");
+      d3.select("#sender2_image").append('img').attr("src", sender2).attr("class", "perdoc");
+      d3.select("#sender2_image").append('img').attr("src", doc).attr("class", "sender_doc");
+      d3.select("#sender2").append('div').attr("id", "sender2_key");
+      d3.select("#sender2_key").append('img').attr("src", pink).attr("class", "keys");
+      d3.select("#sender2_key").append('img').attr("src", public_key).attr("class", "keys").attr('class', 'publickey');
+      d3.select("#sender3").append("div").attr("id", "sender3_image").attr("class", "perdoc");
+      d3.select("#sender3_image").append('img').attr("src", sender3);
+      d3.select("#sender3_image").append('img').attr("src", doc).attr("id", "doc1").attr("class", "sender_doc");
+      d3.select("#sender3").append('div').attr("id", "sender3_key");
+      d3.select("#sender3_key").append('img').attr("src", purple).attr("class", "keys");
+      d3.select("#sender3_key").append('img').attr("src", public_key).attr("class", "keys").attr('class', 'publickey');
+      d3.select("#receiver").append("div").attr("id", "receiver_images");
+      d3.select("#receiver").append("div").attr("id", "receiver_key");
+      d3.select("#receiver_images").append("img").attr("src", receiver);
+      d3.select("#receiver_key").append('img').attr("src", public_key).attr("class", "keys").style('width', '15%').style("padding", "10px");
+      d3.select("#receiver_key").append('img').attr("src", private_key).attr("class", "keys").style('width', '15%').style("padding", "10px").attr("id", "private");
+      this.move();
+    }
+  }, {
+    key: "move",
+    value: function move() {
+      var foreal = this;
+      d3.selectAll(".publickey").style("padding", "10px").transition().duration(1000).style("border", "solid").delay(1000).on('end', function () {
+        d3.selectAll(".sender_doc").attr("src", locked_doc).style("width", "60%").style("height", "60%").style("margin-left", "-10%").transition().duration(1000).delay(1000).on('end', function () {
+          d3.selectAll(".sender_doc").attr("hidden", true).transition().duration(1000).delay(1000);
+          d3.selectAll(".publickey").style("border", null);
+          d3.selectAll(".locked_doc").attr('hidden', null).transition().duration(1000).delay(1000).on('end', function () {
+            d3.select("#private").transition().duration(1000).style("border", "solid").delay(500).on('end', function () {
+              d3.selectAll(".locked_doc").attr('src', unlocked_doc).transition().duration(1000).delay(1000);
+              d3.select("#private").style("border", null);
+            });
+          });
+        });
+      });
+    }
+  }]);
+
+  return AsymmetricAnimation;
+}();
+
+module.exports = AsymmetricAnimation;
+},{"d3":"../node_modules/d3/index.js","./images/boy.png":"images/boy.png","./images/girl2.png":"images/girl2.png","./images/girl1.png":"images/girl1.png","./images/man.png":"images/man.png","./images/blue_key.png":"images/blue_key.png","./images/pink_key.png":"images/pink_key.png","./images/yellow_key.png":"images/yellow_key.png","./images/purple_key.png":"images/purple_key.png","./images/public_key_blue.png":"images/public_key_blue.png","./images/private.png":"images/private.png","./images/regular.png":"images/regular.png","./images/lock_doc.png":"images/lock_doc.png","./images/unlock_doc.png":"images/unlock_doc.png"}],"images/dark_key.png":[function(require,module,exports) {
 module.exports = "/dark_key.ad284315.png";
-},{}],"asymmetric.js":[function(require,module,exports) {
+},{}],"create-asymmetric-interaction.js":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -58657,11 +59193,11 @@ var key = require('./images/white_key.png');
 
 var key2 = require('./images/dark_key.png');
 
-var Asymmetric =
+var AsymmetricInteraction =
 /*#__PURE__*/
 function () {
-  function Asymmetric() {
-    _classCallCheck(this, Asymmetric);
+  function AsymmetricInteraction() {
+    _classCallCheck(this, AsymmetricInteraction);
 
     this.handleEncrypt = this.handleEncrypt.bind(this);
     this.handleDecrypt = this.handleDecrypt.bind(this);
@@ -58670,7 +59206,7 @@ function () {
     this.handlePublicKeyDecrypt = this.handlePublicKeyDecrypt.bind(this);
   }
 
-  _createClass(Asymmetric, [{
+  _createClass(AsymmetricInteraction, [{
     key: "handleEncrypt",
     value: function handleEncrypt() {
       d3.event.preventDefault();
@@ -58734,8 +59270,9 @@ function () {
   }, {
     key: "start",
     value: function start() {
-      document.getElementById('vis').innerHTML = "";
-      this.vis = d3.select('#vis');
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      this.vis = d3.select('#title11 .fullVis');
       this.vis.append('div').attr('class', "bootstrap-iso").append('div').attr('id', 'randomdiv').attr('class', 'container');
       d3.select('#randomdiv').append("div").attr('id', 'first_row').attr('class', 'row');
       d3.select('#randomdiv').append("div").attr('id', 'second_row').attr('class', 'row');
@@ -58780,35 +59317,73 @@ function () {
     }
   }]);
 
-  return Asymmetric;
+  return AsymmetricInteraction;
 }();
 
-module.exports = Asymmetric;
-},{"d3":"../node_modules/d3/index.js","./crypto":"crypto.js","./images/lock.png":"images/lock.png","./images/unlock.png":"images/unlock.png","./images/locked_key.png":"images/locked_key.png","./images/white_key.png":"images/white_key.png","./images/dark_key.png":"images/dark_key.png"}],"index.js":[function(require,module,exports) {
-// You can require libraries
-var d3 = require('d3'); // You can include local JS files:
+module.exports = AsymmetricInteraction;
+},{"d3":"../node_modules/d3/index.js","./crypto":"crypto.js","./images/lock.png":"images/lock.png","./images/unlock.png":"images/unlock.png","./images/locked_key.png":"images/locked_key.png","./images/white_key.png":"images/white_key.png","./images/dark_key.png":"images/dark_key.png"}],"create-rsa.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var RSA =
+/*#__PURE__*/
+function () {
+  function RSA() {
+    _classCallCheck(this, RSA);
+  }
+
+  _createClass(RSA, [{
+    key: "start",
+    value: function start() {
+      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
+      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content7").classed("selected", true);
+      this.vis = d3.select('#title12 .fullVis');
+    }
+  }]);
+
+  return RSA;
+}();
+
+module.exports = RSA;
+},{"d3":"../node_modules/d3/index.js"}],"index.js":[function(require,module,exports) {
+var d3 = require('d3');
+
+var createIntro = require('./create-intro');
 
 var createHistory = require('./create-history');
 
-var createStream = require('./create-stream');
+var createStreamAnimation = require('./create-stream-animation');
 
-var createBlock = require('./create-block1');
+var createStreamInteraction = require('./create-stream-interaction');
 
-var modernEncrypt = require('./modern-encryption');
+var createBlockAnimation = require('./create-block-animation');
 
-var MyClass = require('./my-class');
+var createBlockInteraction = require('./create-block-interaction');
 
-var Symmetric = require('./symmetric');
+var createTransitionSection = require('./create-transition-section');
 
-var Asymmetric = require('./asymmetric');
+var createSymmetricAnimation = require('./create-symmetric-animation');
 
-var myClassInstance = new MyClass();
-myClassInstance.sayHi(); // get scrolling coordinates
+var createSymmetricInteraction = require('./create-symmetric-interaction');
+
+var createAsymmetricAnimation = require('./create-asymmetric-animation');
+
+var createAsymmetricInteraction = require('./create-asymmetric-interaction');
+
+var createRSA = require('./create-rsa'); // get scrolling coordinates
+
 
 sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
+historyFlag = false;
 var startPos;
 sections.each(function (d, i) {
   var top = this.getBoundingClientRect().top;
@@ -58820,26 +59395,59 @@ sections.each(function (d, i) {
   sectionPositions.push(top - startPos);
 });
 var currentIndex = -1;
-var activateFunctions = [createHistory, createStream, createBlock, modernEncrypt, Symmetric, Asymmetric];
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createAsymmetricInteraction]; // also bug with intro and history on up scroll
+// and maybe with it disappearing ?
+
+var contentToStep = {
+  "content1": "step1",
+  "content2": "step2",
+  "content3": "step3",
+  "content4": "step5",
+  "content5": "step8",
+  "content6": "step9",
+  "content7": "step10"
+};
+d3.select("#cover").transition().duration(2500).delay(800).style("opacity", '0').on("end", function () {
+  d3.select("#cover").remove();
+});
+var newInstance = new activateFunctions[0]();
+newInstance.start(false);
 
 function position() {
-  var pos = window.pageYOffset - 700;
+  var height = window.innerHeight - 100;
+  var pos = window.pageYOffset - height;
   var sectionIndex = d3.bisect(sectionPositions, pos);
   sectionIndex = Math.min(sections.size() - 1, sectionIndex);
-  console.log(pos);
-  console.log(sectionIndex);
   var newInstance = new activateFunctions[sectionIndex]();
 
   if (currentIndex !== sectionIndex) {
     dispatch.call('active', this, sectionIndex);
     currentIndex = sectionIndex;
-    newInstance.start();
+
+    if (currentIndex == 1) {
+      if (historyFlag) {
+        newInstance.start(true);
+      } else {
+        newInstance.start(false);
+        console.log("got here");
+        historyFlag = true;
+      }
+    } else if (currentIndex == 0) {
+      newInstance.start(true);
+    } else {
+      newInstance.start();
+    }
   }
 }
 
+d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d) {
+  location.hash = contentToStep[this.id];
+  d3.selectAll("#vis div").classed("selected", false);
+  d3.select("#" + this.id).classed("selected", true);
+});
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
-},{"d3":"../node_modules/d3/index.js","./create-history":"create-history.js","./create-stream":"create-stream.js","./create-block1":"create-block1.js","./modern-encryption":"modern-encryption.js","./my-class":"my-class.js","./symmetric":"symmetric.js","./asymmetric":"asymmetric.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"d3":"../node_modules/d3/index.js","./create-intro":"create-intro.js","./create-history":"create-history.js","./create-stream-animation":"create-stream-animation.js","./create-stream-interaction":"create-stream-interaction.js","./create-block-animation":"create-block-animation.js","./create-block-interaction":"create-block-interaction.js","./create-transition-section":"create-transition-section.js","./create-symmetric-animation":"create-symmetric-animation.js","./create-symmetric-interaction":"create-symmetric-interaction.js","./create-asymmetric-animation":"create-asymmetric-animation.js","./create-asymmetric-interaction":"create-asymmetric-interaction.js","./create-rsa":"create-rsa.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -58867,7 +59475,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61958" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55658" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

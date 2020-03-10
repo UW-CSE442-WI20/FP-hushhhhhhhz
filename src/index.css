@@ -20,7 +20,7 @@
 .titleBox {
 	color: white;
 	font-size: 48px;
-	background-color: black;
+	background-color: transparent;
 	height: 80px;
     width: 900px;
     z-index: 1;
@@ -262,7 +262,7 @@ body {
 }
 
 circle {
-	stroke: #509556;
+	stroke: black;
 	stroke-width: 3px;
 }
 
@@ -473,12 +473,12 @@ circle {
 	z-index: -1;
 }
 
-#step2, #step7 {
+#step2, {
 	background-color: black;
 	color: white;
 }
 
-#step3, #step5, #step8, #step9 {
+#step3, #step5, #step7, #step8, #step9 {
 	background-color: #1f2833;
 	color: white;
 }

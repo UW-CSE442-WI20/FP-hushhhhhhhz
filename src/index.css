@@ -20,10 +20,9 @@
 .titleBox {
 	color: white;
 	font-size: 48px;
-	background-color: transparent;
 	height: 80px;
     width: 900px;
-    z-index: 1;
+    z-index: 5;
     position: relative;
     margin: auto;
 	margin-top: 20px;
@@ -478,17 +477,17 @@ circle {
 	color: white;
 }
 
-#step3, #step5, #step7, #step8, #step9 {
+#step3, #step5, #step8, #step9 {
 	background-color: #1f2833;
 	color: white;
 }
 
-#step4, #step6 {
+#step4, #step6 ,#step7{
 	color: white;
 	position: relative;
 }
 
-#step4::before, #step6::before {
+#step4::before, #step6::before, #step7::before {
 	content: "";
 	position: absolute;
 	top: 0; left: 0;
@@ -496,6 +495,7 @@ circle {
 	background-image: url(../static/hack-still.png);
 	background-size:100% 100%;
 	filter: brightness(30%);
+	z-index: -1;
 }
 
 .blackBackground {

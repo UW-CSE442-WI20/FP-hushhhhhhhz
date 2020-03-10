@@ -13,14 +13,34 @@ class TransitionSection {
 
 		colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
 
-        container = d3.select("#title7 .fullVis")
-        title = container.append('div')
+        futureContainer = d3.select("#title7 .fullVis")
+        title = futureContainer.append('div')
                 .attr("class", "titleBox")
                 .text("Moving into modern cryptology...");
 
-        futureContainer = container.append('div')
-                .attr('class', 'futureContainer')
+		var nodes = [
+            { id: "1", r: 1000, cx: 750, cy: 400, color: "#2B7A78"}
+		];
 
+		var futureContainer = futureContainer.append('svg')
+                .style('width','3000')
+                .style('height', '1000')
+                .append('g');
+
+		var nodeElements = futureContainer.selectAll("circle")
+                .data(nodes)
+                .enter().append("circle")
+                .attr('r', '2')
+                .attr('fill',  function (d) { return d.color; })
+                .attr('cx', function (d) { return d.cx; })
+                .attr('cy', function (d) { return d.cy; })
+				.style('opacity', 0.5);
+
+		nodeElements.transition("grow")
+                .duration(2000)
+                .attr('r', (d) => {return d.r})
+
+/*
         var nodes = [
             { id: "1", r: 5, cx: 162, cy: 350, color: 0},
             { id: "2", r: 10, cx: 175, cy: 350, color: 0},
@@ -59,6 +79,7 @@ class TransitionSection {
                 .duration(2000)
                 .attr('r', (d) => {return d.r})
                 .delay(2000)
+*/
 	}
 }
 

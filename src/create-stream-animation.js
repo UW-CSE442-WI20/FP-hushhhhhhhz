@@ -37,15 +37,24 @@ class StreamAnimation {
 			.style("background-color", "#BCF2F0")
 			.attr("class", "explanationCircle")
 
-		historyText = historyBubble
-			.append('div')
-		historyText.append("text")
+		historyBubble.append("div")
+			.attr('class', 'textDiv')
+			.attr('class', 'textDivTitle')
 			.text("Stream Cipher: Vigenere")
-			.style('font-size', '26px')
-		historyText.append('br')
-		historyText.append('br')
-		historyText.append('text')
-			.text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols. One of the most famous early stream ciphers is the Vigenere, created by the diplomat of King Charles IX. It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1, ... Z = 25')
+		historyBubble
+			.append('div')
+			.attr('class', 'textDiv')
+			.text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols.') 
+		
+		historyBubble
+            .append('div')
+            .attr('class', 'textDiv')
+            .text('It follows the convention where letters are labeled based on their position within the alphabet:')
+		
+		historyBubble
+            .append('div')
+            .attr('class', 'textDiv')
+            .text(' A = 0, B = 1, ... Z = 25')
 
 		historyBubble.transition()
 			.duration(1000)
@@ -60,26 +69,23 @@ class StreamAnimation {
 			.attr("class", "explanationCircle")
 			.style("margin-left", "auto")
 
-		processText = processBubble
+		processBubble.append("div")
+            .attr('class', 'textDiv')
+            .attr('class', 'textDivTitle')
+            .text("Encryption")
+		processBubble
 			.append('div')
-		processText.append("text")
-			.text("Encryption")
-			.style('font-size', '26px')
-		processText.append('br')
-		processText.append('br')
-		processText.append('text')
+			.attr('class', 'textDiv')
             .text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:')
-		processText.append('br')
-		processText.append('br')
-		processText.append('text')
+		processBubble
+            .append('div')
+            .attr('class', 'textDiv')
             .text('C = P + K mod 26')
-		processText.append('br')
-        processText.append('br')
-		processText.append('text')
+		processBubble
+            .append('div')
+            .attr('class', 'textDiv')
             .text('Click start and follow along on the left as we encrypt our plaintext message')
-		processText.append('br')
-		processText.append('br')
-		var startButton = processText.append('div')
+		processBubble.append('div')
 			.attr('id', 'startButton')
 			.text("START ANIMATION")
 			.style('width', '120px')
@@ -98,10 +104,19 @@ class StreamAnimation {
 			.style("background-color", "#2B7A78")
 			.attr("class", "explanationCircle")
 
-		decryptBubble
-			.append('div')
-			.append("text")
-			.text("Decryption")
+		decryptBubble.append("div")
+            .attr('class', 'textDiv')
+            .attr('class', 'textDivTitle')
+            .text("Decryption")
+        decryptBubble
+            .append('div')
+            .attr('class', 'textDiv')
+            .text('Decryption works similarly to encryption, except that it follows the equation in reverse:')
+        
+        decryptBubble
+            .append('div')
+            .attr('class', 'textDiv')
+            .text('P = C - K mod 26')
 
 		decryptBubble.transition()
 			.duration(1000)

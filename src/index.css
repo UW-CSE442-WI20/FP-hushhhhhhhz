@@ -721,7 +721,7 @@ img {
 }
 
 .textDiv {
-	padding: 6% !important;
+	padding: 3% 6% 3% 6% !important;
 	text-align: center;
 }
 
@@ -731,6 +731,6 @@ img {
 }
 
 .textDivTitle, .textDivTitle2 {
-	padding: 50px 0 0 0 !important;
+	padding: 50px 0 10px 0 !important;
 	font-size: 26px;
 }

@@ -321,12 +321,20 @@ body {
     text-align: center;
 }
 
-.blockContainer, .interactiveContainerContainer {
+.blockContainer {
+	margin: 0 50px 50px 50px;
+    width: 60%;
+    position: fixed;
+    top: 20px;
+    left: 600px;
+    font-size: 25px;
+}
+.interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
 	width: 60%;
 	position: fixed;
 	top: 20px;
-    left: 600px;
+    left: 200px;
 	font-size: 25px;
 }
 
@@ -367,13 +375,15 @@ body {
 	margin-top: 25px;
 }
 
-#checkbutton, #inputButton, #inputButton2 {
+#checkbutton, #inputButton, #inputButton2, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid darkgray;
 	padding: 10px;
 	cursor: pointer;
+	text-align: center;
 	background-color: black;
+	color: white;
 }
 
 .shareresult {
@@ -426,7 +436,7 @@ body {
 	padding: 5px;
 	font-size: 30px;
 	text-align: center;
-	color: #75a478;
+	color: #BCF2F0;
 }
 
 .event {
@@ -460,12 +470,13 @@ body {
 	height: 100%;
 }
 
-#step1 {
+#step1, #step7 {
     color: white;
+	background-color: #1f2833;
     position: relative;
 }
 
-#step1::before {
+#step1::before, #step7::before {
 	content: "";
     position: absolute;
     top: 0; left: 0;
@@ -477,22 +488,22 @@ body {
 	z-index: -1;
 }
 
-#step2, #step7, #step9 {
+#step2, #step8, #step10 {
 	background-color: #314155;
 	color: white;
 }
 
-#step3, #step5, #step8, #step10 {
+#step3, #step5, #step9 {
 	background-color: #1f2833;
 	color: #9a9a9a;
 }
 
-#step4, #step6 ,#step7 {
+#step4, #step6 {
 	color: white;
 	position: relative;
 }
 
-#step4::before, #step6::before, #step7::before {
+#step4::before, #step6::before {
 	content: "";
 	position: absolute;
 	top: 0; left: 0;

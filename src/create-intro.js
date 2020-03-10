@@ -9,6 +9,7 @@ class Intro {
 			d3.selectAll(".fullVis:not(.special)").html("")
         	d3.selectAll('.halfVis').html("")
 		} else {
+			var colors = ['#2B7A78', '#4EB7B2', '#BCF2F0']
 			// highlight in table of contents
 			d3.selectAll("#vis div").classed("selected", false)
 			d3.select("#content1").classed("selected", true)
@@ -26,13 +27,13 @@ class Intro {
 
 
 			var nodes = [
-				{ id: "Government", cx: 90, cy: 100},
-				{ id: "Internet", cx: 80, cy: 200},
-				{ id: "Passwords", cx: 180, cy: 60 },
-				{ id: "Email", cx: 170, cy: 160 },
-				{ id: "Mobile", cx: 260, cy: 120},
-				{ id: "Business", cx: 250, cy: 220 },
-				{ id: "Military", cx: 160, cy: 260 }  
+				{ id: "Government", cx: 90, cy: 100, color: 2},
+				{ id: "Internet", cx: 80, cy: 200, color: 1},
+				{ id: "Passwords", cx: 180, cy: 60, color: 1 },
+				{ id: "Email", cx: 170, cy: 160, color: 0 },
+				{ id: "Mobile", cx: 260, cy: 120, color: 2},
+				{ id: "Business", cx: 250, cy: 220, color: 1 },
+				{ id: "Military", cx: 160, cy: 260, color: 2 }  
 			]
 
 			// starting positions for the nodes
@@ -50,7 +51,7 @@ class Intro {
 				.data(nodes)
 				.enter().append("circle")
 				.attr('r', '2')
-				.attr('fill', 'white')
+				.attr('fill', function (d) { return colors[d.color]; })
 				.attr('cx', function (d) { return d.x; })
 				.attr('cy', function (d) { return d.y; });
 
@@ -71,11 +72,11 @@ class Intro {
 				.text((d) => {return d.id})
 				.attr('x', (d) => {return d.cx - 30})
 				.attr('y', (d) => {return d.cy})
-				.attr('fill', 'green')
+				.attr('fill', 'black')
 				.attr('opacity', 0)
 				.transition()
 				.duration(2000)
-				.attr('opacity', 100)
+				.attr('opacity', 1)
 				.delay(5000)
 
 
@@ -116,9 +117,9 @@ class Intro {
 				.text("Cryptanalysis is the art and science of breaking ciphers. Cryptanalysts perform a variety of different analyses on a cipher to attempt to learn secret information. Among these are mathematical analysis, logical analysis and side-channel analysis.") 
 
 			var types = [
-				{ id: "Cryptology", cx: 200, cy: 90},
-				{ id: "Cryptography", cx: 200, cy: 230},
-				{ id: "Cryptanalysis", cx: 80, cy: 160 },
+				{ id: "Cryptology", cx: 200, cy: 90, color: 0 },
+				{ id: "Cryptography", cx: 200, cy: 230, color: 1 },
+				{ id: "Cryptanalysis", cx: 80, cy: 160, color:2 },
 			]
 
 			// starting positions for the nodes
@@ -136,7 +137,7 @@ class Intro {
 				.data(types)
 				.enter().append("circle")
 				.attr('r', '0')
-				.attr('fill', 'white')
+				.attr('fill', function (d) { return colors[d.color]; })
 				.attr('cx', function (d) { return d.x; })
 				.attr('cy', function (d) { return d.y; });
 
@@ -162,11 +163,11 @@ class Intro {
 				.text((d) => {return d.id})
 				.attr('x', (d) => {return d.cx - 30})
 				.attr('y', (d) => {return d.cy})
-				.attr('fill', 'green')
+				.attr('fill', 'black')
 				.attr('opacity', 0)
 				.transition()
 				.duration(2000)
-				.attr('opacity', 100)
+				.attr('opacity', 1)
 				.delay(9000)
 
 			typeText.transition()

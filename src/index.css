@@ -291,7 +291,7 @@ body {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 45%;
+	width: 36%;
 	float: right;
 	margin-top: 25px;
 }

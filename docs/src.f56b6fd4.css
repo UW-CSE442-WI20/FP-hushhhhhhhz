@@ -293,6 +293,7 @@ body {
 	flex-wrap: wrap;
 	width: 36%;
 	float: right;
+	margin-top: 25px;
 }
 
 .grid_new {
@@ -305,8 +306,17 @@ body {
 	align-content: baseline;
 }
 
-.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
+.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5, .encryption{
 	display: flex;
+}
+
+.rules {
+	flex-direction: column;
+}
+
+.text_container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .message {
@@ -317,9 +327,6 @@ body {
 	height: 100%;
 }
 
-.rules h3 {
-    text-align: center;
-}
 
 .blockContainer {
 	margin: 0 50px 50px 50px;
@@ -331,7 +338,7 @@ body {
 }
 .interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
-	width: 60%;
+	width: 50%;
 	position: fixed;
 	top: 20px;
     left: 200px;
@@ -373,9 +380,11 @@ body {
 
 .encryption {
 	margin-top: 25px;
+	flex-direction: column;
+	align-items: center;
 }
 
-#checkbutton, #inputButton, #inputButton2, #startButton {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid darkgray;
@@ -383,6 +392,12 @@ body {
 	cursor: pointer;
 	text-align: center;
 	background-color: black;
+	color: white;
+}
+
+#startAnimation {
+	width: 32%;
+	margin: auto;
 	color: white;
 }
 
@@ -451,7 +466,7 @@ body {
 	width: 800px;
 	text-align: justify;
 	color: transparent;
-	padding: 40px 20px 0 20px;
+	padding: 5px 20px 5px 20px;
 	display: flex;
 	flex-direction: column;
 }
@@ -462,7 +477,6 @@ body {
 }
 
 .explanationCircle div {
-	justify-content: center;
 	padding: 50px;
 }
 
@@ -706,5 +720,23 @@ img {
   font-size: 25px;
 }
 
+.textDiv {
+	padding: 6% !important;
+	text-align: center;
+}
 
-/*# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.27280853.css.map */
+#history_part2 {
+	width: 70%;
+    padding: 0px 0 0 45px !important;
+}
+
+.textDivTitle {
+	padding: 50px 0 0 25% !important;
+}
+
+.textDivTitle2 {
+	padding: 50px 0 0 38% !important;
+}
+
+
+/*# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.f56b6fd4.css.map */

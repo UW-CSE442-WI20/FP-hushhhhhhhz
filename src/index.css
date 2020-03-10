@@ -387,11 +387,11 @@ body {
 #encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
-	border: 1px solid darkgray;
+	border: 1px solid white;
 	padding: 10px;
 	cursor: pointer;
 	text-align: center;
-	background-color: black;
+	background-color: #1F2833;
 	color: white;
 }
 
@@ -413,7 +413,8 @@ body {
 	display: flex;
 	height: 620px;
 	position: relative;
-	left: 5vw;
+	/* left: 5vw; */
+	justify-content: center;
 }
 
 .line {

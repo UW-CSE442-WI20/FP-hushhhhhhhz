@@ -69,7 +69,6 @@ class Symmetric {
             .append('div')
             .attr('id', 'randomdiv')
             .attr('class', 'container')
-            // .attr("style", "margin-top:20%")
 
         d3.select('#randomdiv')
             .append("div")

@@ -105,7 +105,7 @@
 	text-align: center;
 }
 
-#step3 td,#step3 th {
+#step3 td,#step3 th,#step10 td, #step10 th {
 	border: 1px solid #9a9a9a;
 	padding: 6px;	
 	text-align: center;
@@ -384,7 +384,7 @@ body {
 	align-items: center;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid darkgray;
@@ -395,7 +395,7 @@ body {
 	color: white;
 }
 
-#startAnimation {
+#startAnimation, #startButton {
 	width: 32%;
 	margin: auto;
 	color: white;
@@ -464,7 +464,7 @@ body {
 
 .explanation {
 	width: 800px;
-	text-align: justify;
+	text-align: center;
 	color: transparent;
 	padding: 5px 20px 5px 20px;
 	display: flex;
@@ -730,13 +730,32 @@ img {
     padding: 0px 0 0 45px !important;
 }
 
-.textDivTitle {
-	padding: 50px 0 0 25% !important;
+.textDivTitle, .textDivTitle2 {
+	padding: 50px 0 0 0 !important;
+	font-size: 26px;
 }
 
-.textDivTitle2 {
-	padding: 50px 0 0 38% !important;
+.rsaContainer {
+  display: flex;
+  /* margin: 0px 0 0 60px; */
 }
+
+.sender_div, .receiver_div {
+	display: flex;
+  /* width: 50%; */
+	/* font-size: 34px; */
+	margin-right: 50px;	
+}
+
+.letter, .decipher_letter {
+  font-size: 34px;
+}
+
+/* 
+#cipher_calc, #cipher_final, #decipher_calc, #decipher_final {
+  text-align: center;
+  display: block;
+} */
 
 
 /*# sourceMappingURL=/src.9ad09f98.css.map */

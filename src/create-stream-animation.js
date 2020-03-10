@@ -42,16 +42,22 @@ class StreamAnimation {
 			.style("background-color", "#BCF2F0")
 			.attr("class", "explanationCircle")
 
-		historyBubble
+		historyText = historyBubble
 			.append('div')
-			.append("text")
+		historyText.append("text")
 			.text("Stream Cipher: Vigenere")
+			.style('font-size', '26px')
+		historyText.append('br')
+		historyText.append('br')
+		historyText.append('text')
+			.text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols. One of the most famous early stream ciphers is the Vigenere, created by the diplomat of King Charles IX. It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1, ... Z = 25')
 
 		historyBubble.transition()
 			.duration(1000)
-			.style("width", "300px")
-			.style("height", "300px")
+			.style("width", "350px")
+			.style("height", "350px")
 			.style("color", "black")
+			.style("margin-top", '-10px')
 
 		processBubble = explanation.append('div')
 			.style("width", "0px")
@@ -60,17 +66,31 @@ class StreamAnimation {
 			.attr("class", "explanationCircle")
 			.style("margin-left", "auto")
 
-		processBubble
+		processText = processBubble
 			.append('div')
-			.append("text")
+		processText.append("text")
 			.text("How does it work?")
+			.style('font-size', '26px')
+		processText.append('br')
+		processText.append('br')
+		processText.append('text')
+            .text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:')
+		processText.append('br')
+		processText.append('br')
+		processText.append('text')
+            .text('C = P + K mod 26')
+		processText.append('br')
+        processText.append('br')
+		processText.append('text')
+            .text('Click start and follow along on the left as we encrypt our plaintext message')
 
 		processBubble.transition()
 			.duration(1000)
-			.style("width", "300px")
-			.style("height", "300px")
+			.style("width", "350px")
+			.style("height", "350px")
 			.delay(500)
 			.style("color", "black")
+			.style("margin-top", '-100px')
 
 		decryptBubble = explanation.append('div')
 			.style("width", "0px")
@@ -85,10 +105,11 @@ class StreamAnimation {
 
 		decryptBubble.transition()
 			.duration(1000)
-			.style("width", "300px")
-			.style("height", "300px")
+			.style("width", "350px")
+			.style("height", "350px")
 			.delay(1000)
 			.style("color", "black")
+			.style("margin-top", '-100px')
 
 		for(var i = 0; i < initialMessage.length; i++) {
 			var index = message.append('div') 

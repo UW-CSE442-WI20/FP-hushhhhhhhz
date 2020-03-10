@@ -234,12 +234,12 @@ p {
   /* margin: 0px 0 0 60px; */
 }
 
-/* .sender_div, .receiver_div {
+.sender_div, .receiver_div {
 	display: flex;
-  width: 50%;
+  /* width: 50%; */
 	font-size: 34px;
 	margin-right: 50px;	
-} */
+}
 
 /* 
 #cipher_calc, #cipher_final, #decipher_calc, #decipher_final {

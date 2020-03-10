@@ -6,8 +6,8 @@ class Intro {
 
 	start(flag) {
 		if (flag) {
-			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+			d3.selectAll(".fullVis:not(.special)").html("")
+        	d3.selectAll('.halfVis').html("")
 		} else {
 			// highlight in table of contents
 			d3.selectAll("#vis div").classed("selected", false)

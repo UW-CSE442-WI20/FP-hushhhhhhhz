@@ -28650,8 +28650,8 @@ function () {
     key: "start",
     value: function start(flag) {
       if (flag) {
-        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+        d3.selectAll(".fullVis:not(.special)").html("");
+        d3.selectAll('.halfVis').html("");
       } else {
         // highlight in table of contents
         d3.selectAll("#vis div").classed("selected", false);
@@ -28790,8 +28790,8 @@ function () {
     key: "start",
     value: function start(flag) {
       if (flag) {
-        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+        d3.selectAll(".fullVis:not(.special)").html("");
+        d3.selectAll('.halfVis').html("");
       } else {
         d = 1000;
         d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
@@ -28868,8 +28868,8 @@ function () {
   _createClass(StreamAnimation, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       d3.selectAll('.explanation').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content3").classed("selected", true);
@@ -29008,8 +29008,8 @@ function () {
       var plainColor = "var(--plain-color)";
       var keyColor = "var(--key-color)";
       var cipherColor = "var(--cipher-color)";
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       inputMessage = "";
       inputKey = "";
       resultCipher = "";
@@ -29189,8 +29189,8 @@ function () {
   _createClass(BlockAnimation, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       d3.selectAll('.explanation').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content4").classed("selected", true);
@@ -29391,8 +29391,8 @@ function () {
   _createClass(BlockInteraction, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       var canvas = d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer');
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var interactive_container = canvas.append('div').attr('class', 'interactiveContainer');
@@ -29502,9 +29502,76 @@ function () {
   _createClass(TransitionSection, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll(".halfVis").style("background-color", "transparent").html("");
-      d3.select("#title7").text("coming soon?");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content7").classed("selected", true);
+      colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
+      futureContainer = d3.select("#title7 .fullVis");
+      /*        title = futureContainer.append('div')
+                      .attr("class", "titleBox")
+                      .text("Moving into modern cryptology...");
+      */
+
+      var nodes = [{
+        id: "1",
+        r: 1000,
+        cx: 750,
+        cy: 400,
+        color: "#2B7A78"
+      }];
+      var futureContainer = futureContainer.append('svg').style('width', '3000').style('height', '1000').append('g');
+      var nodeElements = futureContainer.selectAll("circle").data(nodes).enter().append("circle").attr('r', '2').attr('fill', function (d) {
+        return d.color;
+      }).attr('cx', function (d) {
+        return d.cx;
+      }).attr('cy', function (d) {
+        return d.cy;
+      }).style('opacity', 0.5);
+      nodeElements.transition("grow").duration(2000).attr('r', function (d) {
+        return d.r;
+      });
+      futureTitle = futureContainer.append("text").text("Moving into modern cryptology...").attr('x', 500).attr('y', 100).attr('fill', 'white').style("font-size", "40px").attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(1000);
+      /*
+              var nodes = [
+                  { id: "1", r: 5, cx: 162, cy: 350, color: 0},
+                  { id: "2", r: 10, cx: 175, cy: 350, color: 0},
+                  { id: "3", r: 20, cx: 200, cy: 350, color: 1},
+                  { id: "4", r: 40, cx: 250, cy: 350, color: 1},
+                  { id: "5", r: 80, cx: 350, cy: 350, color: 2},
+                  { id: "6", r: 160, cx: 550, cy: 350, color: 2},
+                  { id: "final", r: 320, cx: 950, cy: 350, color: 3}
+             ]
+      //1f2833;
+      // starting positions for the nodes
+                  nodes.forEach(function(node) {
+                      node.x = 0;
+                      node.y = 350;
+                  })
+      
+                  var futureContainer = futureContainer.append('svg')
+                      .style('width','1300')
+                      .style('height', '800')
+                      .append('g');
+      
+                  var nodeElements = futureContainer.selectAll("circle")
+                      .data(nodes)
+                      .enter().append("circle")
+                      .attr('r', '2')
+                      .attr('fill',  function (d) { return colors[d.color]; })
+                      .attr('cx', function (d) { return d.x; })
+                      .attr('cy', function (d) { return d.y; });
+      			
+      			nodeElements.transition("move")
+                      .duration(4000)
+                      .attr('cx', (d) => { return d.cx })
+                      .attr('cy', (d) => { return d.cy })
+      
+                  nodeElements.transition("grow")
+                      .duration(2000)
+                      .attr('r', (d) => {return d.r})
+                      .delay(2000)
+      */
     }
   }]);
 
@@ -29866,4 +29933,4 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.cb9d1fa4.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.8ddab727.js.map

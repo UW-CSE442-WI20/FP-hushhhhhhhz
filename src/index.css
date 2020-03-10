@@ -74,12 +74,12 @@
 
 #vis div:hover {
 	cursor: pointer;
-	border-bottom: 1px solid #509556;
-	border-top: 1px solid #509556;
+	border-bottom: 1px solid #4EB7B2;
+	border-top: 1px solid #4EB7B2;
 }
 
 .selected {
-	color: #509556;
+	color: #4EB7B2;
 }
 
 .fullVis {
@@ -144,7 +144,6 @@ table {
 	margin: 0px 0 0 80px;
 	position: fixed;
 	top: 50px;
-	left: 500px;
 }
 
 .inputContainer {
@@ -261,7 +260,7 @@ body {
 	--cipher-color: #b3e5fc;
 }
 
-circle {
+.title1 circle {
 	stroke: #509556;
 	stroke-width: 3px;
 }
@@ -328,14 +327,9 @@ circle {
 	margin: 0 50px 50px 50px;
 	width: 60%;
 	position: fixed;
-	/* top: 200px;
-	left: 200px; */
-	font-size: 25px;
-}
-
-.blockContainer, .interactiveContainerContainer {
 	top: 20px;
-    left: 180px;
+    left: 600px;
+	font-size: 25px;
 }
 
 .interactiveContainer {
@@ -446,11 +440,22 @@ circle {
 }
 
 .explanation {
-	width: 350px;
+	width: 600px;
 	text-align: justify;
-	background-color: #45a29e;
-	color: black;
+	color: transparent;
 	padding: 40px 20px 0 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.explanationCircle {
+	background-color: white;
+	border-radius: 50%;
+}
+
+.explanationCircle div {
+	justify-content: center;
+	padding: 50px;
 }
 
 #title5 {

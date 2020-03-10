@@ -26,11 +26,6 @@ class StreamAnimation {
 		var cipherColor = "var(--cipher-color)";
 
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
-		stream_container.append('h2').text("to start the tutorial click the button below")
-		var startButton = stream_container.append('div')
-			.attr('id', 'startButton')
-			.text("START")
-			.style('width', '50px')
 		var table_div = stream_container.append('div').attr('class', 'tableDiv')
 		var message = stream_container.append('div').attr('class', 'message');
 
@@ -68,7 +63,7 @@ class StreamAnimation {
 		processText = processBubble
 			.append('div')
 		processText.append("text")
-			.text("How does it work?")
+			.text("Encryption")
 			.style('font-size', '26px')
 		processText.append('br')
 		processText.append('br')
@@ -82,6 +77,12 @@ class StreamAnimation {
         processText.append('br')
 		processText.append('text')
             .text('Click start and follow along on the left as we encrypt our plaintext message')
+		processText.append('br')
+		processText.append('br')
+		var startButton = processText.append('div')
+			.attr('id', 'startButton')
+			.text("START ANIMATION")
+			.style('width', '120px')
 
 		processBubble.transition()
 			.duration(1000)

@@ -55,7 +55,6 @@ class BlockAnimation {
 			.attr("class", "textDiv")
 			.attr("class", "textDivTitle")
 			.append("text")
-			.style("font-weight", "bold")
 			.text("Block Cipher: Playfair")
 		
 		historyBubble
@@ -87,7 +86,6 @@ class BlockAnimation {
 			.attr("class", "textDivTitle2")
 			.attr("id", "blockEncryptionBubble")
 			.append("text")
-			.style("font-weight", "bold")
 			.text("Encryption")
 		
 		processBubble
@@ -100,7 +98,7 @@ class BlockAnimation {
 			.attr("class", "textDiv")
 			.text("Click the button below to see how it works.")
 
-		processBubble.append('div').attr('id', 'startAnimation').text("Start Animation")
+		processBubble.append('div').attr('id', 'startAnimation').text("START ANIMATION")
 
 		// you gotta do what you gotta do \_(-_-)_/
 		const forreal = this;
@@ -127,7 +125,6 @@ class BlockAnimation {
 			.append('div')
 			.attr("class", "textDiv")
 			.attr("class", "textDivTitle2")
-			.style("font-weight", "bold")
 			.text("Decryption")
 		
 		decryptBubble

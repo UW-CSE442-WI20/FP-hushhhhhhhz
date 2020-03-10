@@ -384,7 +384,7 @@ body {
 	align-items: center;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid darkgray;
@@ -395,7 +395,7 @@ body {
 	color: white;
 }
 
-#startAnimation {
+#startAnimation, #startButton {
 	width: 32%;
 	margin: auto;
 	color: white;
@@ -464,7 +464,7 @@ body {
 
 .explanation {
 	width: 800px;
-	text-align: justify;
+	text-align: center;
 	color: transparent;
 	padding: 5px 20px 5px 20px;
 	display: flex;
@@ -730,10 +730,7 @@ img {
     padding: 0px 0 0 45px !important;
 }
 
-.textDivTitle {
-	padding: 50px 0 0 25% !important;
-}
-
-.textDivTitle2 {
-	padding: 50px 0 0 38% !important;
+.textDivTitle, .textDivTitle2 {
+	padding: 50px 0 0 0 !important;
+	font-size: 26px;
 }

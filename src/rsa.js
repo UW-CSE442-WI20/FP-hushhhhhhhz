@@ -48,7 +48,7 @@ class RSA {
         //         .text(q_calculation[i]);
         // }
 
-        let timeDuration = 100
+        let timeDuration = 500
 
         calc.append('div')
             .attr('id', 'p_data')
@@ -142,44 +142,45 @@ class RSA {
 
         let rsa_container = d3.select('#vis').append('div').attr('class', 'rsaContainer');
         let sender_div = rsa_container.append('div').attr('class', 'sender_div');
-        // let sender_div = d3.select('#vis').append('div').attr('class', 'sender_div');
-        // let receiver_div = d3.select('#vis').append('div').attr('class', 'receiver_div');
+        let receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
 
-        for (let i = 0; i < initialMessage.length; i++) {
-            let index = sender_div.append('div')
-                .attr('id', 'index' + i)
-                .attr('class', 'index');
+        let index = sender_div.append('div')
+            .attr('id', 'index')
+            .attr('class', 'index');
 
-            index.append('div')
-                .attr('class', 'letter')
-                .transition()
-                .duration(200)
-                .text(initialMessage[i]);
-            index.append('div')
-                .attr('class', 'cipher')
+        index.append('div')
+            .attr('class', 'letter')
+            .transition()
+            .duration(0)
+            .text(initialMessage[i]);
+        index.append('div')
+            .attr('class', 'cipher')
 
-            index.append('img')
-                .attr('class', 'cipher_calc')
-            index.append('img')
-                .attr('class', 'cipher_final')
+        let images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
 
-            // index = receiver_div.append('div')
-            //     .attr('id', 'index' + i)
-            //     .attr('class', 'index');
+        images.append('img')
+            .attr('class', 'cipher_calc')
+        images.append('img')
+            .attr('class', 'cipher_final')
 
-            index.append('img')
-                .attr('class', 'decipher_calc')
-            index.append('img')
-                .attr('class', 'decipher_final')
+        index = receiver_div.append('div')
+            .attr('id', 'rec_index' + i)
+            .attr('class', 'index');
 
-            index.append('div')
-                .attr('class', 'decipher_letter')
-                .style('color', 'red')
-                .transition()
-                .duration(200)
-                .text(initialMessage[i])
-                .attr('hidden', true)
-        }
+        images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
+
+        images.append('img')
+            .attr('class', 'decipher_calc')
+        images.append('img')
+            .attr('class', 'decipher_final')
+
+        index.append('div')
+            .attr('class', 'decipher_letter')
+            .style('color', 'red')
+            .transition()
+            .duration(200)
+            .text(initialMessage[i])
+            .attr('hidden', true)
 
         // TABLE 1
         let table = table_div.append('table');
@@ -233,23 +234,15 @@ class RSA {
             .attr('class', d => d.column);
 
         let duration = 500
-        let timeout = 3000;
+        let timeout = 4000;
         for (let i = 0; i < initialMessage.length; i++) {
-            let d3_index = d3.select('#index' + i)
+            let d3_index = d3.select('#index')
+
             d3_index.select('.letter')
                 .transition()
                 .duration(duration)
                 .style('color', '#fdd835')
-                .delay(timeout * i);
-            d3_index.select('.key')
-                .transition()
-                .duration(duration)
-                .style('color', '#e53935')
-                .delay(timeout * i);
-            d3.select('#plain')
-                .transition()
-                .duration(duration)
-                .text(alphaAlpha.indexOf(initialMessage[i]))
+                .text(initialMessage[i])
                 .delay(timeout * i);
 
             d3.selectAll('.' + initialMessage[i])
@@ -264,11 +257,7 @@ class RSA {
                 .style('color', '#1c87e5')
                 .text(initialCipher[i])
                 .delay(1000 + timeout * i);
-            d3.select('#cipher')
-                .transition()
-                .duration(duration)
-                .text(alphaAlpha.indexOf(initialCipher[i]))
-                .delay(1000 + timeout * i);
+
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
@@ -282,7 +271,6 @@ class RSA {
                 .delay(1000 + timeout * i);
 
             // Sending the message
-
             let m = initialCipher[i]
             var latex_raw = "\\text{c}=\\text{" + m + "}^\\text{" + this.e + "}\\mod{" + this.n + "}";
             var latex_query = this.latex_render_url + latex_raw;
@@ -305,7 +293,9 @@ class RSA {
 
             // Receiving the message
 
-            // d3_index = receiver_div.select('index' + i)
+            d3_index = d3.select('#rec_index')
+
+            console.log(d3_index)
 
             var latex_raw = "\\text{m}=\\text{" + c + "}^\\text{" + this.d + "}\\mod{" + this.n + "}";
             var latex_query = this.latex_render_url + latex_raw;
@@ -330,20 +320,20 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .attr('hidden', null)
-                .delay(2000 + timeout * i) // twice the delay for the receiver
-            
+                .text(String.fromCharCode(initialCipher[i]))
+                .delay(3000 + timeout * i) // twice the delay for the receiver
+
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'red')
-                .delay(2000 + timeout * i);
+                .delay(3000 + timeout * i);
 
-            
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'white')
-                .delay(3000 + timeout * i);
+                .delay(4000 + timeout * i);
         }
     }
 }

@@ -71,8 +71,8 @@ class BlockAnimation {
 
 		historyBubble.transition()
 			.duration(1000)
-			.style("width", "300px")
-			.style("height", "300px")
+			.style("width", "350px")
+			.style("height", "350px")
 			.style("color", "black")
 
 		processBubble = explanation.append('div')
@@ -110,10 +110,11 @@ class BlockAnimation {
 
 		processBubble.transition()
 			.duration(1000)
-			.style("width", "300px")
-			.style("height", "300px")
+			.style("width", "350px")
+			.style("height", "350px")
 			.delay(500)
 			.style("color", "black")
+			.style("margin-top", '-90px')
 
 		decryptBubble = explanation.append('div')
 			.style("width", "0px")
@@ -136,10 +137,11 @@ class BlockAnimation {
 
 		decryptBubble.transition()
 			.duration(1000)
-			.style("width", "300px")
-			.style("height", "300px")
+			.style("width", "350px")
+			.style("height", "350px")
 			.delay(1000)
 			.style("color", "black")
+			.style("margin-top", '-90px')
 	}
 
 

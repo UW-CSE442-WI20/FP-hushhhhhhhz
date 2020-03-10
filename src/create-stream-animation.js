@@ -57,7 +57,6 @@ class StreamAnimation {
 			.style("width", "350px")
 			.style("height", "350px")
 			.style("color", "black")
-			.style("margin-top", '-10px')
 
 		processBubble = explanation.append('div')
 			.style("width", "0px")
@@ -90,7 +89,7 @@ class StreamAnimation {
 			.style("height", "350px")
 			.delay(500)
 			.style("color", "black")
-			.style("margin-top", '-100px')
+			.style("margin-top", '-90px')
 
 		decryptBubble = explanation.append('div')
 			.style("width", "0px")
@@ -109,7 +108,7 @@ class StreamAnimation {
 			.style("height", "350px")
 			.delay(1000)
 			.style("color", "black")
-			.style("margin-top", '-100px')
+			.style("margin-top", '-90px')
 
 		for(var i = 0; i < initialMessage.length; i++) {
 			var index = message.append('div') 

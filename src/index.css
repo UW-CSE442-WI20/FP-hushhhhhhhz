@@ -279,7 +279,17 @@ circle {
 	text-align: center;
 }
 
-.grid_box p {
+.grid_box_new {
+	width: 60px;
+    height: 60px;
+    border: 1px solid white;
+    text-align: center;
+	color: white;
+	background-color: black !important;
+    /* z-index: 90; */
+}
+
+.grid_box p, .grid_box_new p {
 	font-size: 30px;
 	margin: 12px;
 	padding: 0px;
@@ -288,8 +298,18 @@ circle {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 38%;
+	width: 36%;
 	float: right;
+}
+
+.grid_new {
+	display: flex;
+    flex-wrap: wrap;
+    width: 21%;
+    float: right;
+    margin-top: 10%;
+    margin-left: 8%;
+	align-content: baseline;
 }
 
 .example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
@@ -304,13 +324,27 @@ circle {
     text-align: center;
 }
 
-.blockContainer, .interactiveContainer {
+.blockContainer, .interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
-	width: 52%;
+	width: 60%;
 	position: fixed;
-	top: 200px;
-	left: 200px;
+	/* top: 200px;
+	left: 200px; */
 	font-size: 25px;
+}
+
+.blockContainer, .interactiveContainerContainer {
+	top: 20px;
+    left: 180px;
+}
+
+.interactiveContainer {
+	width: 51%;
+}
+
+.interactiveContainerContainer {
+	display: flex;
+	width: 100%;
 }
 
 .block_letter {
@@ -350,9 +384,12 @@ circle {
 	background-color: black;
 }
 
-#shareResult {
+.shareresult {
 	margin-left: 10px;
 	font-size: 30px;
+	text-align: center;
+	margin-top: 3%;
+	width: 57%;
 }
 
 .timelineContainer {
@@ -615,3 +652,24 @@ img {
 .label {
   margin-right: 25%;
 }
+
+.playfairTitles {
+	text-align: unset;
+}
+
+.decryption {
+	font-size: 65px;
+    letter-spacing: 19px;
+}
+
+.block_message_decr {
+	color: var(--key-color);
+}
+
+/* .textboxes {
+	justify-content: left;
+}
+
+.block_interactive_title {
+	text-align: left;
+} */

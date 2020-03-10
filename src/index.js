@@ -33,6 +33,7 @@ var currentIndex = -1;
 var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createAsymmetricInteraction]
 
 // also bug with intro and history on up scroll
+// and maybe with it disappearing ?
 var contentToStep = {
 	"content1": "step1",
 	"content2": "step2",

@@ -94,7 +94,14 @@ class SymmetricTutorial {
             .attr("id", "warning")
 
         d3.select("#story_text")
-            .text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted")
+            .append("text")
+            .attr("dy", "0em")
+            .text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.")
+            .append("br")
+
+        d3.select("#story_text").append("text")
+            .attr("dy", "1em")
+            .text("Because they are using symmetric keys, Matt and the TA will use the same exact key to encrypt and decrypt.")
             .transition()
             .duration(1000)
             .delay(1000)
@@ -176,7 +183,7 @@ class SymmetricTutorial {
                                                             .attr("src", key)
 
                                                         d3.select("#story_text")
-                                                            .text("Matt is now happy that he can look at the information and no one else can")
+                                                            .text("Matt is now happy that he can look at the information")
                                                             .transition()
                                                             .duration(2000)
                                                             .delay(1000)

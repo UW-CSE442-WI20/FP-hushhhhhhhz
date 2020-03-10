@@ -98,8 +98,8 @@
 
 .message {
 	display: flex;
+	justify-content: center;
 	font-size: 65px;
-	margin-right: 70px;	
 }
 
 .index {
@@ -141,8 +141,7 @@ table {
 }
 
 .streamContainer {
-	display: flex;
-	margin: 100px 0 0 80px;
+	margin: 0px 0 0 80px;
 	position: fixed;
 	top: 50px;
 	left: 500px;
@@ -214,6 +213,7 @@ table {
 
 .math {
 	display: flex;
+	justify-content: center;
 	font-size: 30px;
 }
 

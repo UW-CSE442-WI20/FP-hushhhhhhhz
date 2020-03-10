@@ -25,6 +25,7 @@ class StreamAnimation {
 		var cipherColor = "var(--cipher-color)";
 
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
+		var table_div = stream_container.append('div').attr('class', 'tableDiv')
 		var message = stream_container.append('div').attr('class', 'message');
 
 		for(var i = 0; i < initialMessage.length; i++) {
@@ -47,7 +48,6 @@ class StreamAnimation {
 		}
 
 		// TABLE 1
-		var table_div = stream_container.append('div').attr('class', 'tableDiv')
 		var table = table_div.append('table');
 		var thead = table.append('thead');
 		var tbody = table.append('tbody');

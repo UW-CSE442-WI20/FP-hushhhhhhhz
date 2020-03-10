@@ -3,11 +3,12 @@
 	display: inline-block;
 	width: 100%;
 	top: 0px;
+	z-index: 90;
 	margin-left: 150px;
 }
 
 #cover {
-    background-image: url(../static/hack-slow.gif);
+    background-image: url(https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/hack-slow.8a7e098b.gif);
 	background-size:100% 100%;
 	filter: brightness(100%);
 	height: 100%;
@@ -19,9 +20,10 @@
 .titleBox {
 	color: white;
 	font-size: 48px;
+	background-color: black;
 	height: 80px;
     width: 900px;
-    z-index: 5;
+    z-index: 1;
     position: relative;
     margin: auto;
 	margin-top: 20px;
@@ -82,7 +84,7 @@
 
 .fullVis {
 	display: inline-block;
-	z-index: 0;
+	z-index: 1;
 	height: 500px;
 	width: 100%;
 }
@@ -152,6 +154,7 @@ table {
 	position: fixed;
 	top: 5vh;
 	left: 25vw;
+	background-color: black;
 	width: 50vw;
 }
 
@@ -162,6 +165,7 @@ table {
     position: fixed;
     top: 60vh;
     left: 25vw;
+    background-color: black;
     width: 50vw;
 }
 
@@ -171,6 +175,7 @@ table {
 	margin-left: 50px;
     top: 34vh;
     left: 25vw;
+    background-color: black;
     width: 50vw;
 }
 
@@ -280,6 +285,7 @@ body {
     text-align: center;
 	color: white;
 	background-color: black !important;
+    /* z-index: 90; */
 }
 
 .grid_box p, .grid_box_new p {
@@ -470,15 +476,14 @@ body {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-	background-image: url(../static/hack-still.png);
+	background-image: url(https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/hack-still.7df2deae.png);
 	background-size:100% 100%;
-    -webkit-filter: grayscale(1) opacity(1);
-    filter: grayscale(1) opacity(0.3);
+    filter: brightness(30%);
 	z-index: -1;
 }
 
 #step2, #step7, #step9 {
-	background-color: #314155;
+	background-color: black;
 	color: white;
 }
 
@@ -487,17 +492,19 @@ body {
 	color: #9a9a9a;
 }
 
-#step4, #step6 ,#step7 {
+#step4, #step6 {
 	color: white;
 	position: relative;
 }
 
-#step4::before, #step6::before, #step7::before {
+#step4::before, #step6::before {
 	content: "";
 	position: absolute;
 	top: 0; left: 0;
 	width: 100%; height: 100%;
-	background-color: #314155;
+	background-image: url(https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/hack-still.7df2deae.png);
+	background-size:100% 100%;
+	filter: brightness(30%);
 }
 
 .blackBackground {
@@ -684,3 +691,6 @@ img {
   color: red;
   font-size: 25px;
 }
+
+
+/*# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.eb89e64b.css.map */

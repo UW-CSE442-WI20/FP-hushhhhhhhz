@@ -3,10 +3,18 @@ const d3 = require('d3');
 class RSA {
 
     constructor() {
-
+        this.p = 11
+        this.q = 17
+        this.n = 187
+        this.phi = 160
+        this.e = 3
+        this.d = 107
+        this.latex_render_url = "http://latex.codecogs.com/svg.latex?"
+        this.senderMessage = this.senderMessage.bind(this)
     }
 
     start() {
+        console.log(this.e)
         document.getElementById('vis').innerHTML = "";
 
         let overall_container = d3.select('#vis').append('div').attr('class', 'overall_Container');
@@ -40,17 +48,19 @@ class RSA {
         //         .text(q_calculation[i]);
         // }
 
+        let timeDuration = 100
+
         calc.append('div')
             .attr('id', 'p_data')
             .transition()
-            .duration(2000)
+            .duration(timeDuration)
             .on('start', () => {
                 d3.select('#p_data').text('p = 11')
             })
             .on('end', () => {
                 d3.select('.calculation')
                     .transition()
-                    .duration(2000)
+                    .duration(timeDuration)
                     .on('start', () => {
                         d3.select('.calculation')
                             .append('div')
@@ -59,7 +69,7 @@ class RSA {
                     .on('end', () => {
                         d3.select('.calculation')
                             .transition()
-                            .duration(2000)
+                            .duration(timeDuration)
                             .on('start', () => {
                                 d3.select('.calculation')
                                     .append('div')
@@ -68,7 +78,7 @@ class RSA {
                             .on('end', () => {
                                 d3.select('.calculation')
                                     .transition()
-                                    .duration(2000)
+                                    .duration(timeDuration)
                                     .on('start', () => {
                                         d3.select('.calculation')
                                             .append('div')
@@ -77,16 +87,16 @@ class RSA {
                                     .on('end', () => {
                                         d3.select('.calculation')
                                             .transition()
-                                            .duration(2000)
+                                            .duration(timeDuration)
                                             .on('start', () => {
                                                 d3.select('.calculation')
                                                     .append('div')
-                                                    .attr('id', 'e_data').text('e = 3 such that e is relatively prime to ϕ(n)')
+                                                    .attr('id', 'e_data').text('Select an e such that e is relatively prime to ϕ(n). e = 3 works!')
                                             })
                                             .on('end', () => {
                                                 d3.select('.calculation')
                                                     .transition()
-                                                    .duration(2000)
+                                                    .duration(timeDuration)
                                                     .on('start', () => {
                                                         d3.select('.calculation')
                                                             .append('div')
@@ -95,7 +105,7 @@ class RSA {
                                                     .on('end', () => {
                                                         d3.select('.calculation')
                                                             .transition()
-                                                            .duration(2000)
+                                                            .duration(timeDuration)
                                                             .on('start', () => {
                                                                 d3.select('.calculation')
                                                                     .append('div')
@@ -110,22 +120,33 @@ class RSA {
             })
     }
 
-    senderMessage() {
-                // Sender Step 1
-                initialMessage = "SECRET";
-                initialCipher = Array.from(initialMessage).map((x) => x.charCodeAt(0));
+    getCipherLetter(m) {
+        return (m ** this.e) % this.n;
+    }
 
-                let alphabet =["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
-                let alphabet2 =["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-                let alphaAlpha = alphabet.concat(alphabet2)
+    decipherLetter(c) {
+        return (c ** this.d) % this.n;
+    }
+
+    senderMessage() {
+        // Sender Step 1
+        initialMessage = "SECRET";
+        initialCipher = Array.from(initialMessage).map((x) => x.charCodeAt(0));
+
+        let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+        let alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        let alphaAlpha = alphabet.concat(alphabet2)
+        let table_div = d3.select('#vis').append('div').attr('class', 'tableDiv')
 
         d3.select('#vis').append('div').text('Sender\'s workflow');
 
-                let rsa_container = d3.select('#vis').append('div').attr('class', 'rsaContainer');
-                let message = rsa_container.append('div').attr('class', 'message');
+        let rsa_container = d3.select('#vis').append('div').attr('class', 'rsaContainer');
+        let sender_div = rsa_container.append('div').attr('class', 'sender_div');
+        // let sender_div = d3.select('#vis').append('div').attr('class', 'sender_div');
+        // let receiver_div = d3.select('#vis').append('div').attr('class', 'receiver_div');
 
-                for(let i = 0; i<initialMessage.length; i++) {
-            let index = message.append('div')
+        for (let i = 0; i < initialMessage.length; i++) {
+            let index = sender_div.append('div')
                 .attr('id', 'index' + i)
                 .attr('class', 'index');
 
@@ -136,10 +157,31 @@ class RSA {
                 .text(initialMessage[i]);
             index.append('div')
                 .attr('class', 'cipher')
+
+            index.append('img')
+                .attr('class', 'cipher_calc')
+            index.append('img')
+                .attr('class', 'cipher_final')
+
+            // index = receiver_div.append('div')
+            //     .attr('id', 'index' + i)
+            //     .attr('class', 'index');
+
+            index.append('img')
+                .attr('class', 'decipher_calc')
+            index.append('img')
+                .attr('class', 'decipher_final')
+
+            index.append('div')
+                .attr('class', 'decipher_letter')
+                .style('color', 'red')
+                .transition()
+                .duration(200)
+                .text(initialMessage[i])
+                .attr('hidden', true)
         }
 
         // TABLE 1
-        let table_div = rsa_container.append('div').attr('class', 'tableDiv')
         let table = table_div.append('table');
         let thead = table.append('thead');
         let tbody = table.append('tbody');
@@ -148,22 +190,22 @@ class RSA {
             .data(alphabet)
             .enter()
             .append('th')
-            .text(function (letter) { return letter })
-            .attr('class', function (letter) { return letter });
+            .text((letter) => letter)
+            .attr('class', (letter) => letter);
         let rows = tbody.selectAll('tr')
             .data([1])
             .enter()
             .append('tr')
-        let cells = rows.selectAll('td')
-            .data(function (row) {
-                return alphabet.map(function (letter) {
-                    return { column: letter, value: alphabet.indexOf(letter) + 65 };
-                });
-            })
+        rows.selectAll('td')
+            .data(() => (
+                alphabet.map((letter) =>
+                    ({ column: letter, value: letter.charCodeAt(0) })
+                )
+            ))
             .enter()
             .append('td')
-            .html(function (d) { return d.value })
-            .attr('class', function (d) { return d.column });
+            .html(d => d.value)
+            .attr('class', d => d.column);
         //TABLE 2
         let table2 = table_div.append('table');
         let thead2 = table2.append('thead');
@@ -179,68 +221,129 @@ class RSA {
             .data([1])
             .enter()
             .append('tr')
-        let cells2 = rows2.selectAll('td')
-            .data(function (row) {
-                return alphabet2.map(function (letter) {
-                    return { column: letter, value: alphabet2.indexOf(letter) + 13 + 65 };
-                });
-            })
+        rows2.selectAll('td')
+            .data(() => (
+                alphabet2.map((letter) =>
+                    ({ column: letter, value: letter.charCodeAt(0) })
+                )
+            ))
             .enter()
             .append('td')
-            .html(function (d) { return d.value })
-            .attr('class', function (d) { return d.column });
+            .html(d => d.value)
+            .attr('class', d => d.column);
 
-        let m = 3000;
+        let duration = 500
+        let timeout = 3000;
         for (let i = 0; i < initialMessage.length; i++) {
-            d3.select('#index' + i).select('.letter')
+            let d3_index = d3.select('#index' + i)
+            d3_index.select('.letter')
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .style('color', '#fdd835')
-                .delay(m * i);
-            d3.select('#index' + i).select('.key')
+                .delay(timeout * i);
+            d3_index.select('.key')
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .style('color', '#e53935')
-                .delay(m * i);
+                .delay(timeout * i);
             d3.select('#plain')
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .text(alphaAlpha.indexOf(initialMessage[i]))
-                .delay(m * i);
+                .delay(timeout * i);
 
             d3.selectAll('.' + initialMessage[i])
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .style('background-color', '#fdd835')
-                .delay(m * i);
+                .delay(timeout * i);
 
-            d3.select('#index' + i).select('.cipher')
+            d3_index.select('.cipher')
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .style('color', '#1c87e5')
                 .text(initialCipher[i])
-                .delay(1000 + m * i);
+                .delay(1000 + timeout * i);
             d3.select('#cipher')
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .text(alphaAlpha.indexOf(initialCipher[i]))
-                .delay(1000 + m * i);
+                .delay(1000 + timeout * i);
             d3.selectAll('.' + initialMessage[i])
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .style('background-color', 'transparent')
-                .delay(1000 + m * i);
+                .delay(1000 + timeout * i);
 
-            d3.select('#index' + i).select('.letter')
+            d3_index.select('.letter')
                 .transition()
-                .duration(500)
+                .duration(duration)
                 .style('color', 'black')
-                .delay(1000 + m * i);
-            d3.select('#index' + i).select('.key')
+                .delay(1000 + timeout * i);
+
+            // Sending the message
+
+            let m = initialCipher[i]
+            var latex_raw = "\\text{c}=\\text{" + m + "}^\\text{" + this.e + "}\\mod{" + this.n + "}";
+            var latex_query = this.latex_render_url + latex_raw;
+
+            d3_index.select('.cipher_calc')
                 .transition()
-                .duration(500)
-                .style('color', 'black')
-                .delay(1000 + m * i);
+                .duration(duration)
+                .attr('src', latex_query)
+                .delay(1000 + timeout * i)
+
+            let c = this.getCipherLetter(initialCipher[i])
+            latex_raw = "\\text{c}=" + c;
+            latex_query = this.latex_render_url + latex_raw;
+
+            d3_index.select('.cipher_final')
+                .transition()
+                .duration(duration)
+                .attr('src', latex_query)
+                .delay(1000 + timeout * i)
+
+            // Receiving the message
+
+            // d3_index = receiver_div.select('index' + i)
+
+            var latex_raw = "\\text{m}=\\text{" + c + "}^\\text{" + this.d + "}\\mod{" + this.n + "}";
+            var latex_query = this.latex_render_url + latex_raw;
+
+            d3_index.select('.decipher_calc')
+                .transition()
+                .duration(duration)
+                .attr('src', latex_query)
+                .delay(2000 + timeout * i) // twice the delay for the receiver
+
+            // latex_raw = "\\text{m}=" + this.decipherLetter(c);
+            latex_raw = "\\text{m}=" + initialCipher[i];
+            latex_query = this.latex_render_url + latex_raw;
+
+            d3_index.select('.decipher_final')
+                .transition()
+                .duration(duration)
+                .attr('src', latex_query)
+                .delay(2000 + timeout * i) // twice the delay for the receiver
+
+            d3_index.select('.decipher_letter')
+                .transition()
+                .duration(duration)
+                .attr('hidden', null)
+                .delay(2000 + timeout * i) // twice the delay for the receiver
+            
+            d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
+                .transition()
+                .duration(duration)
+                .style('background-color', 'red')
+                .delay(2000 + timeout * i);
+
+            
+            d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
+                .transition()
+                .duration(duration)
+                .style('background-color', 'white')
+                .delay(3000 + timeout * i);
         }
     }
 }

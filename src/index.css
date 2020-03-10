@@ -237,8 +237,12 @@ p {
 .sender_div, .receiver_div {
 	display: flex;
   /* width: 50%; */
-	font-size: 34px;
+	/* font-size: 34px; */
 	margin-right: 50px;	
+}
+
+.letter, .decipher_letter {
+  font-size: 34px;
 }
 
 /* 

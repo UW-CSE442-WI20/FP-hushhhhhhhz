@@ -1,4 +1,6 @@
 const d3 = require('d3');
+const man = require('./images/man.png')
+const woman = require('./images/woman.png')
 
 class RSA {
 
@@ -19,52 +21,26 @@ class RSA {
 
         let overall_container = d3.select('#vis').append('div').attr('class', 'overall_Container');
 
-        overall_container.append('div').attr('class', 'receiver_intro').text('Receiver\'s workflow');
-        overall_container.append('div').text('Select 2 primes')
+        overall_container.append('div').attr('class', 'receiver_intro').text('The setup of the keys');
 
         // RECEIVER
 
         let calc = overall_container.append('div').attr('class', 'calculation')
 
-        // Block for transition left to right (if needed)
-        // let p_calculation = ['p', '=', '11']
-        // let q_calculation = ['q', '=', '17']
-        // for (let i = 0; i < p_calculation.length; i++) {
-        //     let index = calc.append('div')
-        //         .attr('id', 'p_index' + i)
-        //         .attr('class', 'p_index')
-        //         .style('display', 'block');
-
-        //     index.append('div')
-        //         .attr('class', 'p_data')
-        //         .transition()
-        //         // .duration(20000)
-        //         .text(p_calculation[i]);
-
-        //     index.append('div')
-        //         .attr('class', 'q_data')
-        //         .transition()
-        //         // .duration(10000)
-        //         .text(q_calculation[i]);
-        // }
-
         let timeDuration = 500
 
-        calc.append('div')
-            .attr('id', 'p_data')
-            .transition()
+        calc.transition()
             .duration(timeDuration)
             .on('start', () => {
-                d3.select('#p_data').text('p = 11')
+                calc.append('div').text('Select 2 primes')
             })
             .on('end', () => {
-                d3.select('.calculation')
+                calc.append('div')
+                    .attr('id', 'p_data')
                     .transition()
                     .duration(timeDuration)
                     .on('start', () => {
-                        d3.select('.calculation')
-                            .append('div')
-                            .attr('id', 'q_data').text('q = 17')
+                        d3.select('#p_data').text('p = 11')
                     })
                     .on('end', () => {
                         d3.select('.calculation')
@@ -73,7 +49,7 @@ class RSA {
                             .on('start', () => {
                                 d3.select('.calculation')
                                     .append('div')
-                                    .attr('id', 'n_data').text('n = pq = 11 * 17 = 187')
+                                    .attr('id', 'q_data').text('q = 17')
                             })
                             .on('end', () => {
                                 d3.select('.calculation')
@@ -82,7 +58,7 @@ class RSA {
                                     .on('start', () => {
                                         d3.select('.calculation')
                                             .append('div')
-                                            .attr('id', 'phi_data').text('ϕ(n) = (p-1)(q-1) = 10 * 16 = 160')
+                                            .attr('id', 'n_data').text('n = pq = 11 * 17 = 187')
                                     })
                                     .on('end', () => {
                                         d3.select('.calculation')
@@ -91,7 +67,7 @@ class RSA {
                                             .on('start', () => {
                                                 d3.select('.calculation')
                                                     .append('div')
-                                                    .attr('id', 'e_data').text('Select an e such that e is relatively prime to ϕ(n). e = 3 works!')
+                                                    .attr('id', 'phi_data').text('ϕ(n) = (p-1)(q-1) = 10 * 16 = 160')
                                             })
                                             .on('end', () => {
                                                 d3.select('.calculation')
@@ -100,7 +76,7 @@ class RSA {
                                                     .on('start', () => {
                                                         d3.select('.calculation')
                                                             .append('div')
-                                                            .attr('id', 'd_data').text('d = 107 such that d * e ≡ 1 (mod ϕ(n))')
+                                                            .attr('id', 'e_data').text('Select an e such that e is relatively prime to ϕ(n). e = 3 works!')
                                                     })
                                                     .on('end', () => {
                                                         d3.select('.calculation')
@@ -109,9 +85,19 @@ class RSA {
                                                             .on('start', () => {
                                                                 d3.select('.calculation')
                                                                     .append('div')
-                                                                    .attr('id', 'public_data').text('n and e are made public and d is the secret privately held by the receiver')
+                                                                    .attr('id', 'd_data').text('d = 107 such that d * e ≡ 1 (mod ϕ(n))')
                                                             })
-                                                            .on('end', this.senderMessage)
+                                                            .on('end', () => {
+                                                                d3.select('.calculation')
+                                                                    .transition()
+                                                                    .duration(timeDuration)
+                                                                    .on('start', () => {
+                                                                        d3.select('.calculation')
+                                                                            .append('div')
+                                                                            .attr('id', 'public_data').text('n and e are made public and d is the secret privately held by the receiver')
+                                                                    })
+                                                                    .on('end', this.senderMessage)
+                                                            })
                                                     })
                                             })
                                     })
@@ -135,8 +121,6 @@ class RSA {
 
         let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
         let alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-        let alphaAlpha = alphabet.concat(alphabet2)
-        let table_div = d3.select('#vis').append('div').attr('class', 'tableDiv')
 
         d3.select('#vis').append('div').text('Sender\'s workflow');
 
@@ -144,15 +128,23 @@ class RSA {
         let sender_div = rsa_container.append('div').attr('class', 'sender_div');
         let receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
 
+        let table_div = d3.select('#vis').append('div').attr('class', 'tableDiv')
+
         let index = sender_div.append('div')
             .attr('id', 'index')
             .attr('class', 'index');
 
+        index.append('img')
+            .attr('src', man)
+            .style('width', '120px')
+            .style('font-weight', 'bold')
+
+        index.append('div')
+            .text('Sender gets n and e')
+
         index.append('div')
             .attr('class', 'letter')
             .transition()
-            .duration(0)
-            .text(initialMessage[i]);
         index.append('div')
             .attr('class', 'cipher')
 
@@ -160,17 +152,29 @@ class RSA {
 
         images.append('img')
             .attr('class', 'cipher_calc')
+            .style('padding', '10px')
         images.append('img')
             .attr('class', 'cipher_final')
 
         index = receiver_div.append('div')
-            .attr('id', 'rec_index' + i)
+            .attr('id', 'rec_index')
             .attr('class', 'index');
+
+        index.append('img')
+            .attr('src', woman)
+            .style('width', '120px')
+            .style('font-weight', 'bold')
+
+
+        index.append('div')
+            .text('They only require n and d')
+        // Receiver already has n, d and e.
 
         images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
 
         images.append('img')
             .attr('class', 'decipher_calc')
+            .style('padding', '10px')
         images.append('img')
             .attr('class', 'decipher_final')
 
@@ -178,9 +182,7 @@ class RSA {
             .attr('class', 'decipher_letter')
             .style('color', 'red')
             .transition()
-            .duration(200)
-            .text(initialMessage[i])
-            .attr('hidden', true)
+        // .attr('hidden', true)
 
         // TABLE 1
         let table = table_div.append('table');
@@ -234,7 +236,8 @@ class RSA {
             .attr('class', d => d.column);
 
         let duration = 500
-        let timeout = 4000;
+        let timeout = 8000;
+        let interval = timeout / 8
         for (let i = 0; i < initialMessage.length; i++) {
             let d3_index = d3.select('#index')
 
@@ -256,19 +259,19 @@ class RSA {
                 .duration(duration)
                 .style('color', '#1c87e5')
                 .text(initialCipher[i])
-                .delay(1000 + timeout * i);
+                .delay(interval + timeout * i);
 
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
                 .style('background-color', 'transparent')
-                .delay(1000 + timeout * i);
+                .delay(interval + timeout * i);
 
             d3_index.select('.letter')
                 .transition()
                 .duration(duration)
                 .style('color', 'black')
-                .delay(1000 + timeout * i);
+                .delay(interval + timeout * i);
 
             // Sending the message
             let m = initialCipher[i]
@@ -279,7 +282,7 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .attr('src', latex_query)
-                .delay(1000 + timeout * i)
+                .delay((2 * interval) + timeout * i)
 
             let c = this.getCipherLetter(initialCipher[i])
             latex_raw = "\\text{c}=" + c;
@@ -289,7 +292,7 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .attr('src', latex_query)
-                .delay(1000 + timeout * i)
+                .delay((3 * interval) + timeout * i)
 
             // Receiving the message
 
@@ -304,7 +307,7 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .attr('src', latex_query)
-                .delay(2000 + timeout * i) // twice the delay for the receiver
+                .delay((4 * interval) + timeout * i) // twice the delay for the receiver
 
             // latex_raw = "\\text{m}=" + this.decipherLetter(c);
             latex_raw = "\\text{m}=" + initialCipher[i];
@@ -314,26 +317,26 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .attr('src', latex_query)
-                .delay(2000 + timeout * i) // twice the delay for the receiver
+                .delay((5 * interval) + timeout * i) // twice the delay for the receiver
 
             d3_index.select('.decipher_letter')
                 .transition()
                 .duration(duration)
                 .attr('hidden', null)
                 .text(String.fromCharCode(initialCipher[i]))
-                .delay(3000 + timeout * i) // twice the delay for the receiver
+                .delay((6 * interval) + timeout * i) // twice the delay for the receiver
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'red')
-                .delay(3000 + timeout * i);
+                .delay((6 * interval) + timeout * i);
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'white')
-                .delay(4000 + timeout * i);
+                .delay((7 * interval) + timeout * i);
         }
     }
 }

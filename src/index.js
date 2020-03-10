@@ -9,7 +9,7 @@ const modernEncrypt = require('./modern-encryption');
 const MyClass = require('./my-class');
 const Symmetric = require('./symmetric');
 const Asymmetric = require('./asymmetric');
-const RSA = require('./RSA');
+const RSA = require('./rsa');
 const myClassInstance = new MyClass();
 myClassInstance.sayHi();
 

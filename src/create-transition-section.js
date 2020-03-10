@@ -14,10 +14,10 @@ class TransitionSection {
 		colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
 
         futureContainer = d3.select("#title7 .fullVis")
-        title = futureContainer.append('div')
+/*        title = futureContainer.append('div')
                 .attr("class", "titleBox")
                 .text("Moving into modern cryptology...");
-
+*/
 		var nodes = [
             { id: "1", r: 1000, cx: 750, cy: 400, color: "#2B7A78"}
 		];
@@ -34,12 +34,22 @@ class TransitionSection {
                 .attr('fill',  function (d) { return d.color; })
                 .attr('cx', function (d) { return d.cx; })
                 .attr('cy', function (d) { return d.cy; })
-				.style('opacity', 0.5);
+				.style('opacity', 0.8);
 
 		nodeElements.transition("grow")
                 .duration(2000)
                 .attr('r', (d) => {return d.r})
-
+		futureTitle = futureContainer.append("text")
+                .text("Moving into modern cryptology...")
+                .attr('x', 500)
+                .attr('y', 100)
+                .attr('fill', 'white')
+				.style("font-size", "40px")
+                .attr('opacity', 0)
+                .transition()
+                .duration(2000)
+                .attr('opacity', 100)
+                .delay(1000)
 /*
         var nodes = [
             { id: "1", r: 5, cx: 162, cy: 350, color: 0},

@@ -6,8 +6,8 @@ class Intro {
 
 	start(flag) {
 		if (flag) {
-			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+			d3.selectAll(".fullVis:not(.special)").html("")
+        	d3.selectAll('.halfVis').html("")
 		} else {
 			// remove any previous vis
 			//d3.selectAll('.fullVis').style("background-color", "transparent").html("")

@@ -69,9 +69,8 @@ class AsymmetricInteraction {
 	}
 
 	start() {
-		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
-
+		d3.selectAll(".fullVis:not(.special)").html("")
+        d3.selectAll('.halfVis').html("")
 		this.vis = d3.select('#title11 .fullVis')
 
 		this.vis.append('div')

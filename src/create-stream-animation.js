@@ -6,9 +6,8 @@ class StreamAnimation {
 	}
 
 	start() {
-		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
-
+		d3.selectAll(".fullVis:not(.special)").html("")
+        d3.selectAll('.halfVis').html("")
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#content3").classed("selected", true)
 

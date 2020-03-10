@@ -5,8 +5,8 @@ class TransitionSection {
 	}
 
 	start() {
-		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-		d3.selectAll(".halfVis").style("background-color", "transparent").html("")
+		d3.selectAll(".fullVis:not(.special)").html("")
+        d3.selectAll('.halfVis').html("")
 
 		d3.selectAll("#vis div").classed("selected", false)
         d3.select("#content7").classed("selected", true)
@@ -34,7 +34,7 @@ class TransitionSection {
                 .attr('fill',  function (d) { return d.color; })
                 .attr('cx', function (d) { return d.cx; })
                 .attr('cy', function (d) { return d.cy; })
-				.style('opacity', 0.8);
+				.style('opacity', 0.5);
 
 		nodeElements.transition("grow")
                 .duration(2000)

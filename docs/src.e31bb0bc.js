@@ -29158,14 +29158,28 @@ function () {
       var message = stream_container.append('div').attr('class', 'message');
       var explanation = d3.select('#title3 .explanation');
       historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
-      historyBubble.append('div').append("text").text("Stream Cipher: Vigenere");
-      historyBubble.transition().duration(1000).style("width", "300px").style("height", "300px").style("color", "black");
+      historyText = historyBubble.append('div');
+      historyText.append("text").text("Stream Cipher: Vigenere").style('font-size', '26px');
+      historyText.append('br');
+      historyText.append('br');
+      historyText.append('text').text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols. One of the most famous early stream ciphers is the Vigenere, created by the diplomat of King Charles IX. It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1, ... Z = 25');
+      historyBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black").style("margin-top", '-10px');
       processBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#4EB7B2").attr("class", "explanationCircle").style("margin-left", "auto");
-      processBubble.append('div').append("text").text("How does it work?");
-      processBubble.transition().duration(1000).style("width", "300px").style("height", "300px").delay(500).style("color", "black");
+      processText = processBubble.append('div');
+      processText.append("text").text("How does it work?").style('font-size', '26px');
+      processText.append('br');
+      processText.append('br');
+      processText.append('text').text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:');
+      processText.append('br');
+      processText.append('br');
+      processText.append('text').text('C = P + K mod 26');
+      processText.append('br');
+      processText.append('br');
+      processText.append('text').text('Click start and follow along on the left as we encrypt our plaintext message');
+      processBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(500).style("color", "black").style("margin-top", '-100px');
       decryptBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle");
       decryptBubble.append('div').append("text").text("Decryption");
-      decryptBubble.transition().duration(1000).style("width", "300px").style("height", "300px").delay(1000).style("color", "black");
+      decryptBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(1000).style("color", "black").style("margin-top", '-100px');
 
       for (var i = 0; i < initialMessage.length; i++) {
         var index = message.append('div').attr('id', 'index' + i).attr('class', 'index');
@@ -29909,14 +29923,15 @@ function () {
       d3.select("#receiver_sym").append("div").attr("id", "receiver_personAndKey");
       d3.select("#sender_personAndKey").append("div").attr("class", "people_sender_sym").append("img").attr("src", sender);
       d3.select("#sender_personAndKey").append("div").attr("class", "symmetric_key").append("img").attr("src", key).attr("id", "encrypt").style("width", "65%");
-      d3.select("#sender_sym").append("div").attr("class", "sender_document").style("width", "22%").append("img").attr("src", doc).attr("id", "doc1");
+      d3.select("#sender_sym").append("div").attr("class", "sender_document").append("img").attr("src", doc).attr("id", "doc1");
       d3.select("#receiver_personAndKey").append("div").attr("class", "people_sender_sym").append("img").attr("src", receiver);
       d3.select("#receiver_personAndKey").append("div").attr("class", "symmetric_key").append("img").attr("src", key).attr("id", "decrypt").style("width", "65%");
       d3.select("#receiver_sym").append("div").attr("class", "sender_document").append("img").attr("src", locked_doc).attr("id", "doc2").style("opacity", "0");
       this.vis.append("div").attr("id", "story_text");
       this.vis.append("div").attr("id", "warning");
-      d3.select("#story_text").append("text").attr("dy", "0em").text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.").append("br");
-      d3.select("#story_text").append("text").attr("dy", "1em").text("Because they are using symmetric keys, Matt and the TA will use the same exact key to encrypt and decrypt.").transition().duration(1000).delay(1000).on('end', function () {
+      d3.select("#story_text").append("text").attr("dy", "0em").text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.").style("opacity", 0).transition().duration(500).style("opacity", 1);
+      d3.select("#story_text").append("br");
+      d3.select("#story_text").append("text").attr("dy", "1em").text("Because they are using symmetric keys, Matt and the TA will use the same exact key to encrypt and decrypt.").style("opacity", 0).transition().duration(1000).style("opacity", 1).delay(2000).on('end', function () {
         d3.select("#encrypt").transition().duration(1000).delay(1000).on('end', function () {
           // increasing size of encrypt key & changine its src
           d3.select("#encrypt").attr("src", selected_key).transition().duration(1000).delay(1000);
@@ -30234,7 +30249,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49556" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49804" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

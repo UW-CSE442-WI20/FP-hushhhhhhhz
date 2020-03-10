@@ -250,7 +250,7 @@ p {
 body {
 	margin: unset;
 	font-family: 'Dosis', sans-serif;
-	--plain-color: #C70039;
+	--plain-color: #DA2C5E;
 	--key-color: #FF5733;
 	--cipher-color: #FFD700;
 }
@@ -387,11 +387,11 @@ body {
 #encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
-	border: 1px solid darkgray;
+	border: 1px solid white;
 	padding: 10px;
 	cursor: pointer;
 	text-align: center;
-	background-color: black;
+	background-color: #1F2833;
 	color: white;
 }
 
@@ -413,7 +413,8 @@ body {
 	display: flex;
 	height: 620px;
 	position: relative;
-	left: 5vw;
+	/* left: 5vw; */
+	justify-content: center;
 }
 
 .line {
@@ -460,6 +461,9 @@ body {
 	border-radius: 10px;
 	padding: 10px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .explanation {
@@ -482,6 +486,10 @@ body {
 
 #title5 {
 	height: 100%;
+}
+
+#title2 h1 {
+	font-size: 40px;
 }
 
 #step1, #step7 {

@@ -208,8 +208,22 @@ class AsymmetricAnimation {
     move() {
         const foreal = this
         d3.select("#story")
+            .append("text")
+            .attr("dy", "0em")
             .text("Matt is waiting for all of his TAs to send him sensitive information which needs to be encrypted")
-            .text("This time, each TA will have their own prublic and private keys, as well as Matt's public key")
+            .append("br")
+            
+        d3.select("#story")
+            .append("text")
+            .attr("dy", "1em")
+            .text("Because they are using asymmetric keys this time, each TA will need Matt's public key")
+            .append("br")
+            
+        d3.select("#story")
+            .append("text")
+            .attr("dy", "2em")
+            .text("If Matt wanted to send an encrypted message back to each of the TAs, he would need to use each of their unique public keys")
+        
         d3.selectAll(".publickey")
             .transition()
             .duration(1000)
@@ -224,7 +238,7 @@ class AsymmetricAnimation {
                     .delay(1000)
                     .on('end', function() {
                         d3.select("#story")
-                            .text("document is locked----------------------")
+                            .text("The information is now encrypted and ready to be sent")
                         d3.selectAll(".sender_doc")
                             .attr("src", locked_doc)
                             .style("width", "60%")
@@ -245,7 +259,7 @@ class AsymmetricAnimation {
                                     .attr("src", public_key)
                                     .style('width', '15%')
                                 d3.select("#story")
-                                    .text("document is sent----------------------")
+                                    .text("Matt receives the encrypted documents, which only HE can decrypt using his private key")
                                 d3.selectAll(".locked_doc")
                                     .attr('hidden', null)
                                     .transition()
@@ -253,7 +267,7 @@ class AsymmetricAnimation {
                                     .delay(1000)
                                     .on('end', function() {
                                         d3.select("#story")
-                                            .text("matt uses his private key----------------------")
+                                            .text("Matt uses his private key to decrypt the documents")
                                         d3.select("#private")
                                             .attr("src", selected_key)
                                             .transition()
@@ -261,7 +275,7 @@ class AsymmetricAnimation {
                                             .delay(500)
                                             .on('end', function() {
                                                 d3.select("#story")
-                                                    .text("documets are unlocked----------------------")
+                                                    .text("Matt is now happy that he can look at the information and can be rest assured that no one else can")
                                                 d3.selectAll(".locked_doc")
                                                     .attr('src', unlocked_doc)
                                                     .transition()
@@ -272,7 +286,7 @@ class AsymmetricAnimation {
                                                     .attr('src', private_key)
 
                                                 d3.select("#attention")
-                                                    .text("Note that since there is key exchance, it is impossible for a student to decrypt the the senititve information even with the public key.")
+                                                    .text("Note that it is impossible for a student to decrypt the senititve information with Matt's public key, because his private key is the only thing that can decrypt the message")
                                             })
                                     })
                             })

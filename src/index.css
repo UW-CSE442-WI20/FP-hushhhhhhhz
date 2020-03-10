@@ -621,21 +621,23 @@ img {
 }
 
 .people_sender_sym {
-  width: 40%;
+  width: 25%;
 }
 
 .sender_document {
-  width: 25%;
+  width: 15%;
   padding: 15px;
   margin-right: 20%;
 }
 
 #symmetric_container {
   display: flex;
+  margin-top: 8vh;
 }
 
 .symmetric_key {
-  width: 25%;
+  width: 10%;
+  height: fit-content;
   display: flex;
 }
 
@@ -650,12 +652,20 @@ img {
 
 #story_text, #warning{
   text-align: center;
+  margin: auto;
+  width: 85%;
+  font-size: 35px;
+}
+
+#story_text {
+	padding: 20px 0px 12px 0px;
 }
 
 #warning {
   font-weight: bold;
   color: red;
   font-size: 25px;
+  width: 65%;
 }
 
 .label {

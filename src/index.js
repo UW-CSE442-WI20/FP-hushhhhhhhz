@@ -30,15 +30,17 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createSymmetricInteraction, createAsymmetricAnimation, createAsymmetricInteraction, createRSA]
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createAsymmetricInteraction]
+
+// also bug with intro and history on up scroll
 var contentToStep = {
 	"content1": "step1",
 	"content2": "step2",
 	"content3": "step3",
 	"content4": "step5",
 	"content5": "step8",
-	"content6": "step10",
-	"content7": "step12",
+	"content6": "step9",
+	"content7": "step10",
 }
 
 d3.select("#cover")
@@ -77,12 +79,12 @@ function position() {
 }
 
 d3.selectAll("#vis div")
-    .style("font-weight", "normal")
+	.style("font-weight", "normal")
 	.on("click", function(d) {
 		location.hash = contentToStep[this.id];
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#" + this.id).classed("selected", true)
-})
+	})
 
 var dispatch = d3.dispatch("active", "progress");
 

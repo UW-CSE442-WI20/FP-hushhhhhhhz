@@ -91,7 +91,7 @@
 	display: inline-block;
 	z-index: 1;
 	height: 500px;
-	width: 80%;
+	width: 70%;
 }
 
 .message {
@@ -448,7 +448,7 @@ body {
 }
 
 .explanation {
-	width: 600px;
+	width: 800px;
 	text-align: justify;
 	color: transparent;
 	padding: 40px 20px 0 20px;

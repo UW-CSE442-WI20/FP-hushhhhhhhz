@@ -373,13 +373,17 @@ body {
 	margin-top: 25px;
 }
 
-#checkbutton, #inputButton, #inputButton2 {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid darkgray;
 	padding: 10px;
 	cursor: pointer;
 	background-color: black;
+}
+
+#startAnimation {
+	width: 17%;
 }
 
 .shareresult {
@@ -447,7 +451,7 @@ body {
 	width: 600px;
 	text-align: justify;
 	color: transparent;
-	padding: 40px 20px 0 20px;
+	padding: 5px 20px 5px 20px;
 	display: flex;
 	flex-direction: column;
 }

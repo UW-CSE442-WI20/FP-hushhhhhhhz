@@ -137,10 +137,10 @@ class RSA {
         index.append('img')
             .attr('src', man)
             .style('width', '120px')
-            .style('font-weight', 'bold')
 
         index.append('div')
             .text('Sender gets n and e')
+            .style('font-weight', 'bold')
 
         index.append('div')
             .attr('class', 'letter')
@@ -163,11 +163,11 @@ class RSA {
         index.append('img')
             .attr('src', woman)
             .style('width', '120px')
-            .style('font-weight', 'bold')
 
 
         index.append('div')
             .text('They only require n and d')
+            .style('font-weight', 'bold')
         // Receiver already has n, d and e.
 
         images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')

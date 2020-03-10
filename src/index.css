@@ -297,8 +297,9 @@ body {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 36%;
+	width: 45%;
 	float: right;
+	margin-top: 25px;
 }
 
 .grid_new {
@@ -311,8 +312,17 @@ body {
 	align-content: baseline;
 }
 
-.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5{
+.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5, .encryption{
 	display: flex;
+}
+
+.rules {
+	flex-direction: column;
+}
+
+.text_container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .message {
@@ -323,13 +333,10 @@ body {
 	height: 100%;
 }
 
-.rules h3 {
-    text-align: center;
-}
 
 .blockContainer, .interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
-	width: 60%;
+	width: 50%;
 	position: fixed;
 	top: 20px;
     left: 600px;
@@ -371,6 +378,8 @@ body {
 
 .encryption {
 	margin-top: 25px;
+	flex-direction: column;
+	align-items: center;
 }
 
 #encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation {
@@ -383,7 +392,9 @@ body {
 }
 
 #startAnimation {
-	width: 17%;
+	width: 32%;
+	margin: auto;
+	color: white;
 }
 
 .shareresult {
@@ -462,7 +473,6 @@ body {
 }
 
 .explanationCircle div {
-	justify-content: center;
 	padding: 50px;
 }
 
@@ -694,4 +704,22 @@ img {
   font-weight: bold;
   color: red;
   font-size: 25px;
+}
+
+.textDiv {
+	padding: 6% !important;
+	text-align: center;
+}
+
+#history_part2 {
+	width: 70%;
+    padding: 0px 0 0 45px !important;
+}
+
+.textDivTitle {
+	padding: 50px 0 0 25% !important;
+}
+
+.textDivTitle2 {
+	padding: 50px 0 0 38% !important;
 }

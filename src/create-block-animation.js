@@ -24,7 +24,6 @@ class BlockAnimation {
 
 		var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything')
 		var block_container = everything.append("div").attr('class', 'blockContainer')
-		block_container.append("h1").attr("class", "playfairTitles").text("Playfair uses 3 main rules to encrypt a message:")
 
 		var grid = block_container.append('div').attr('class', 'grid');
 
@@ -37,15 +36,7 @@ class BlockAnimation {
 		var text_container = block_container.append('div').attr('class', 'text_container')
 		text_container.append('div').attr('class', 'rules');
 
-		text_container.append('div').attr('id', 'startAnimation').text("Start Animation")
-		
-		// you gotta do what you gotta do \_(-_-)_/
-		const forreal = this;
-		document.getElementById("startAnimation").onclick = function () {
-			forreal.transitions(0);
-		};
-
-		var encryption = text_container.append('div').attr('class', 'encryption');
+		var encryption = block_container.append('div').attr('class', 'encryption');
 		encryption.append('div').attr('class', 'block_message').text("");
 		encryption.append('div').attr('class', 'cipher_message').text("");		
 
@@ -61,8 +52,22 @@ class BlockAnimation {
 
 		historyBubble
 			.append('div')
+			.attr("class", "textDiv")
+			.attr("class", "textDivTitle")
 			.append("text")
+			.style("font-weight", "bold")
 			.text("Block Cipher: Playfair")
+		
+		historyBubble
+			.append('div')
+			.attr("class", "textDiv")
+			.text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.")
+		
+		historyBubble
+			.append('div')
+			.attr("class", "textDiv")
+			.attr("id", "history_part2")
+			.text("The alphabet has 26 letters and the key table only uses 25, which means we must ommit one letter from our alphabet!")
 
 		historyBubble.transition()
 			.duration(1000)
@@ -78,8 +83,30 @@ class BlockAnimation {
 
 		processBubble
 			.append('div')
+			.attr("class", "textDiv")
+			.attr("class", "textDivTitle2")
+			.attr("id", "blockEncryptionBubble")
 			.append("text")
-			.text("How does it work?")
+			.style("font-weight", "bold")
+			.text("Encryption")
+		
+		processBubble
+			.append('div')
+			.attr("class", "textDiv")
+			.text("The message is split into pairs of letters, and we use both letters to encrypt.")
+		
+		processBubble
+			.append('div')
+			.attr("class", "textDiv")
+			.text("Click the button below to see how it works.")
+
+		processBubble.append('div').attr('id', 'startAnimation').text("Start Animation")
+
+		// you gotta do what you gotta do \_(-_-)_/
+		const forreal = this;
+		document.getElementById("startAnimation").onclick = function () {
+			forreal.transitions(0);
+		};
 
 		processBubble.transition()
 			.duration(1000)
@@ -97,16 +124,15 @@ class BlockAnimation {
 
 		decryptBubble
 			.append('div')
-			.attr("id", "block_decr_bubble")
-			.append("h2")
+			.attr("class", "textDiv")
+			.attr("class", "textDivTitle2")
+			.style("font-weight", "bold")
 			.text("Decryption")
-			.append("br")
 		
-		d3.select("#block_decr_bubble")
-			.append("div")
-			.append("text")
-			.attr("dy", "1em")
-			.text("Decryption works the same way, just the opposite")
+		decryptBubble
+			.append('div')
+			.attr("class", "textDiv")
+			.text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.")
 
 		decryptBubble.transition()
 			.duration(1000)
@@ -465,29 +491,11 @@ class BlockAnimation {
 				.style('background-color', 'transparent')
 				.delay((last * buffer)+(delay + duration));
 
-			var forreal = this;
-
-			// if(i==4) {
-			// 	d3.select('.block-' + alphabet[c_index2])
-			// 	.transition()
-			// 	.duration(duration)
-			// 	.style('background-color', 'transparent')
-			// 	.delay((last * buffer)+(delay + duration))
-			// 	.on('end', function() {
-			// 		d3.select(".blockContainer").append("h1").attr("class", "playfairTitles").text("To decrypt a message, do the same but in the opposite direction!")
-
-			// 		const decryption = d3.select(".blockContainer").append("div").attr('class', 'decryption');
-			// 		decryption.append('div').attr('class', 'block_message_decr').text("UCBSDU");
-			// 		decryption.append('div').attr('class', 'cipher_message_decr').text("SECRET");
-			// 	});
-			// } else {
 			d3.select('.block-' + this.alphabet[c_index2])
 				.transition()
 				.duration(duration)
 				.style('background-color', 'transparent')
 				.delay((last * buffer)+(delay + duration))
-			// }
-			
 
 			lastTiming = (last * buffer)+(delay + duration) + duration
 		}

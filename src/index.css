@@ -641,7 +641,7 @@ img {
 .sender_document {
   width: 15%;
   padding: 15px;
-  margin-right: 20%;
+  margin-right: 8%;
 }
 
 #symmetric_container {
@@ -683,7 +683,7 @@ img {
 }
 
 .label {
-  margin-right: 25%;
+  margin-right: 10%;
 }
 
 .playfairTitles {

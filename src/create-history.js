@@ -6,8 +6,8 @@ class History {
 
 	start(flag) {
 		if (flag) {
-			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+			d3.selectAll(".fullVis:not(.special)").html("")
+        	d3.selectAll('.halfVis').html("")
 		} else {
 			d = 1000
 			 d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
@@ -44,7 +44,7 @@ class History {
 				.attr("width", 20)
 				.append('path')
 				.attr('d', line(data))
-				.attr("stroke", "#75a478")
+				.attr("stroke", "#2B7A78")
 				.attr("stroke-width", 2)
 				.attr("stroke-dasharray", totalLength + " " + totalLength)
 				.attr("stroke-dashoffset", totalLength)

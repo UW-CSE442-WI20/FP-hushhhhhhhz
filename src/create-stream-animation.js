@@ -5,9 +5,10 @@ class StreamAnimation {
 	constructor() {
 	}
 
+
 	start() {
-		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+		d3.selectAll(".fullVis:not(.special)").html("")
+        d3.selectAll('.halfVis').html("")
 		d3.selectAll('.explanation').html("")
 
 		d3.selectAll("#vis div").classed("selected", false)
@@ -25,6 +26,11 @@ class StreamAnimation {
 		var cipherColor = "var(--cipher-color)";
 
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
+		stream_container.append('h2').text("to start the tutorial click the button below")
+		var startButton = stream_container.append('div')
+			.attr('id', 'startButton')
+			.text("START")
+			.style('width', '50px')
 		var table_div = stream_container.append('div').attr('class', 'tableDiv')
 		var message = stream_container.append('div').attr('class', 'message');
 
@@ -172,6 +178,7 @@ class StreamAnimation {
 			.attr('id', 'cipher')
 			.attr('class', 'mathSymbol')
 
+		d3.select('#startButton').on('click', function () {
 		var m = 3000;
 		for (var i = 0; i < initialMessage.length; i++) {
 			d3.select('#index'+i).select('.letter')
@@ -268,7 +275,9 @@ class StreamAnimation {
 			.duration(50)
 			.text('K')
 			.delay(20000);
+        });
 	}
+	
 }
 
 module.exports = StreamAnimation;

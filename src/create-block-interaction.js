@@ -6,8 +6,8 @@ class BlockInteraction {
 	}
 
 	start() {
-		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+		d3.selectAll(".fullVis:not(.special)").html("")
+		d3.selectAll('.halfVis').html("")
 
 		var canvas =  d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer')
 

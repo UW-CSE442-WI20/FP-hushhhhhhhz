@@ -28650,10 +28650,11 @@ function () {
     key: "start",
     value: function start(flag) {
       if (flag) {
-        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+        d3.selectAll(".fullVis:not(.special)").html("");
+        d3.selectAll('.halfVis').html("");
       } else {
-        // highlight in table of contents
+        var colors = ['#2B7A78', '#4EB7B2', '#BCF2F0']; // highlight in table of contents
+
         d3.selectAll("#vis div").classed("selected", false);
         d3.select("#content1").classed("selected", true);
         container = d3.select("#title1 .fullVis");
@@ -28663,31 +28664,38 @@ function () {
         var nodes = [{
           id: "Government",
           cx: 90,
-          cy: 100
+          cy: 100,
+          color: 2
         }, {
           id: "Internet",
           cx: 80,
-          cy: 200
+          cy: 200,
+          color: 1
         }, {
           id: "Passwords",
           cx: 180,
-          cy: 60
+          cy: 60,
+          color: 1
         }, {
           id: "Email",
           cx: 170,
-          cy: 160
+          cy: 160,
+          color: 0
         }, {
           id: "Mobile",
           cx: 260,
-          cy: 120
+          cy: 120,
+          color: 2
         }, {
           id: "Business",
           cx: 250,
-          cy: 220
+          cy: 220,
+          color: 1
         }, {
           id: "Military",
           cx: 160,
-          cy: 260
+          cy: 260,
+          color: 2
         }]; // starting positions for the nodes
 
         nodes.forEach(function (node) {
@@ -28695,7 +28703,9 @@ function () {
           node.y = Math.random() * 500;
         });
         var bubbleContainer = applicationContainer.append('svg').style('width', '400').style('height', '320').append('g');
-        var nodeElements = bubbleContainer.selectAll("circle").data(nodes).enter().append("circle").attr('r', '2').attr('fill', 'white').attr('cx', function (d) {
+        var nodeElements = bubbleContainer.selectAll("circle").data(nodes).enter().append("circle").attr('r', '2').attr('fill', function (d) {
+          return colors[d.color];
+        }).attr('cx', function (d) {
           return d.x;
         }).attr('cy', function (d) {
           return d.y;
@@ -28712,7 +28722,7 @@ function () {
           return d.cx - 30;
         }).attr('y', function (d) {
           return d.cy;
-        }).attr('fill', 'green').attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(5000);
+        }).attr('fill', 'black').attr('opacity', 0).transition().duration(2000).attr('opacity', 1).delay(5000);
         applicationText = applicationContainer.append('div').style("width", "700px").style("height", "230px").style("opacity", 0).style("background-color", "black").style("padding", "10px");
         applicationText.append("h2").text("Why is Cryptogology important?");
         applicationText.append('p').text("Cryptology has had many applications over thousands of years of history. In fact, the earliest computers were developed in order to break encrypted messages being sent during WWII. But as computers have made their way into every part of our live, cryptology has become increasingly important in protecting the personal data of individuals. To the left we highlight the major applications that motivate the study and development of cryptology today. As you can see, cryptoloy comes into our lives in a multitude of ways.");
@@ -28725,15 +28735,18 @@ function () {
         var types = [{
           id: "Cryptology",
           cx: 200,
-          cy: 90
+          cy: 90,
+          color: 0
         }, {
           id: "Cryptography",
           cx: 200,
-          cy: 230
+          cy: 230,
+          color: 1
         }, {
           id: "Cryptanalysis",
           cx: 80,
-          cy: 160
+          cy: 160,
+          color: 2
         }]; // starting positions for the nodes
 
         types.forEach(function (node) {
@@ -28741,7 +28754,9 @@ function () {
           node.y = Math.random() * 500;
         });
         var typeBubbles = typeContainer.append('svg').style('width', '400').style('height', '300').append('g');
-        var typeElements = typeBubbles.selectAll("circle").data(types).enter().append("circle").attr('r', '0').attr('fill', 'white').attr('cx', function (d) {
+        var typeElements = typeBubbles.selectAll("circle").data(types).enter().append("circle").attr('r', '0').attr('fill', function (d) {
+          return colors[d.color];
+        }).attr('cx', function (d) {
           return d.x;
         }).attr('cy', function (d) {
           return d.y;
@@ -28760,7 +28775,7 @@ function () {
           return d.cx - 30;
         }).attr('y', function (d) {
           return d.cy;
-        }).attr('fill', 'green').attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(9000);
+        }).attr('fill', 'black').attr('opacity', 0).transition().duration(2000).attr('opacity', 1).delay(9000);
         typeText.transition().duration(3000).style("opacity", 1).delay(4000);
       }
     }
@@ -28790,8 +28805,8 @@ function () {
     key: "start",
     value: function start(flag) {
       if (flag) {
-        d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-        d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+        d3.selectAll(".fullVis:not(.special)").html("");
+        d3.selectAll('.halfVis').html("");
       } else {
         d = 1000;
         d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
@@ -28814,7 +28829,7 @@ function () {
         }
 
         var totalLength = 600;
-        d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "#75a478").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(12 * d).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
+        d3.select('.lineDiv').append('svg').attr("width", 20).append('path').attr('d', line(data)).attr("stroke", "#2B7A78").attr("stroke-width", 2).attr("stroke-dasharray", totalLength + " " + totalLength).attr("stroke-dashoffset", totalLength).transition().duration(12 * d).ease(d3.easeLinear).attr("stroke-dashoffset", 0);
         eventHash = {
           "1467": "Leon Battista Alberti (father of western cryptography) invents cipher wheel",
           "1553": "Giovan Battista Bellaso describes Vigenere's early stream cipher",
@@ -28868,8 +28883,8 @@ function () {
   _createClass(StreamAnimation, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       d3.selectAll('.explanation').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content3").classed("selected", true);
@@ -28883,6 +28898,8 @@ function () {
       var keyColor = "var(--key-color)";
       var cipherColor = "var(--cipher-color)";
       var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
+      stream_container.append('h2').text("to start the tutorial click the button below");
+      var startButton = stream_container.append('div').attr('id', 'startButton').text("START").style('width', '50px');
       var table_div = stream_container.append('div').attr('class', 'tableDiv');
       var message = stream_container.append('div').attr('class', 'message');
       var explanation = d3.select('#title3 .explanation');
@@ -28954,28 +28971,30 @@ function () {
       var key = math_div.append('p').text('K').style('color', keyColor).attr('id', 'key').attr('class', 'mathSymbol');
       var mod = math_div.append('p').text(' mod 26 = ').attr('class', 'mathSymbol');
       var cipher = math_div.append('p').text('C').style('color', cipherColor).attr('id', 'cipher').attr('class', 'mathSymbol');
-      var m = 3000;
+      d3.select('#startButton').on('click', function () {
+        var m = 3000;
 
-      for (var i = 0; i < initialMessage.length; i++) {
-        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', plainColor).delay(m * i);
-        d3.select('#index' + i).select('.key').transition().duration(500).style('color', keyColor).delay(m * i);
-        d3.select('#key').transition().duration(500).text(alphaAlpha.indexOf(initialKey[i])).delay(m * i);
-        d3.select('#plain').transition().duration(500).text(alphaAlpha.indexOf(initialMessage[i])).delay(m * i);
-        d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', plainColor).style('color', 'white').delay(m * i);
-        d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', keyColor).style('color', 'white').delay(m * i);
-        d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', cipherColor).text(initialCipher[i]).delay(1000 + m * i);
-        d3.select('#cipher').transition().duration(500).text(alphaAlpha.indexOf(initialCipher[i])).delay(1000 + m * i);
-        d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(1000 + m * i);
-        d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(1000 + m * i);
-        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', cipherColor).style('color', 'white').delay(1000 + m * i);
-        d3.select('#index' + i).select('.letter').transition().duration(500).style('color', 'black').delay(1000 + m * i);
-        d3.select('#index' + i).select('.key').transition().duration(500).style('color', 'black').delay(1000 + m * i);
-        d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(2000 + m * i);
-      }
+        for (var i = 0; i < initialMessage.length; i++) {
+          d3.select('#index' + i).select('.letter').transition().duration(500).style('color', plainColor).delay(m * i);
+          d3.select('#index' + i).select('.key').transition().duration(500).style('color', keyColor).delay(m * i);
+          d3.select('#key').transition().duration(500).text(alphaAlpha.indexOf(initialKey[i])).delay(m * i);
+          d3.select('#plain').transition().duration(500).text(alphaAlpha.indexOf(initialMessage[i])).delay(m * i);
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', plainColor).style('color', 'white').delay(m * i);
+          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', keyColor).style('color', 'white').delay(m * i);
+          d3.select('#index' + i).select('.cipher').transition().duration(500).style('color', cipherColor).text(initialCipher[i]).delay(1000 + m * i);
+          d3.select('#cipher').transition().duration(500).text(alphaAlpha.indexOf(initialCipher[i])).delay(1000 + m * i);
+          d3.selectAll('.' + initialMessage[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(1000 + m * i);
+          d3.selectAll('.' + initialKey[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(1000 + m * i);
+          d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', cipherColor).style('color', 'white').delay(1000 + m * i);
+          d3.select('#index' + i).select('.letter').transition().duration(500).style('color', 'black').delay(1000 + m * i);
+          d3.select('#index' + i).select('.key').transition().duration(500).style('color', 'black').delay(1000 + m * i);
+          d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(2000 + m * i);
+        }
 
-      d3.select('#plain').transition().duration(50).text('P').delay(20000);
-      d3.select('#cipher').transition().duration(50).text('C').delay(20000);
-      d3.select('#key').transition().duration(50).text('K').delay(20000);
+        d3.select('#plain').transition().duration(50).text('P').delay(20000);
+        d3.select('#cipher').transition().duration(50).text('C').delay(20000);
+        d3.select('#key').transition().duration(50).text('K').delay(20000);
+      });
     }
   }]);
 
@@ -29008,8 +29027,8 @@ function () {
       var plainColor = "var(--plain-color)";
       var keyColor = "var(--key-color)";
       var cipherColor = "var(--cipher-color)";
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       inputMessage = "";
       inputKey = "";
       resultCipher = "";
@@ -29024,14 +29043,15 @@ function () {
       var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").style('color', plainColor);
       var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").style('color', keyColor);
       var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").style('color', cipherColor);
-      inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction');
       var row1 = ["RNC", "ONQ", "CKO", "KEY", "FGU"];
       var row2 = ["MIO", "CAY", "ZUU", "KRK", "BMW"];
       var row3 = ["QXG", "UXV", "HPV", "YUH", "LDG"];
       var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
       var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
       var keys = [row1, row2, row3, row4, row5];
-      var keyTable = inputContainer.append('table').attr('class', 'keyTable');
+      var table_div = inputContainer.append('div').attr('class', 'tableDiv');
+      table_div.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction');
+      var keyTable = table_div.append('table').attr('class', 'keyTable');
       var theadKey = keyTable.append('thead');
       var tbodyKey = keyTable.append('tbody');
 
@@ -29097,8 +29117,8 @@ function () {
         document.getElementById('textInput').value = "";
       });
       var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
-      var table_div = input2Container.append('div').attr('class', 'tableDiv');
-      var table = table_div.append('table');
+      var table_div2 = input2Container.append('div').attr('class', 'tableDiv');
+      var table = table_div2.append('table');
       var thead = table.append('thead');
       var tbody = table.append('tbody');
       thead.append('tr').selectAll('th').data(alphabet).enter().append('th').text(function (letter) {
@@ -29119,7 +29139,7 @@ function () {
       }).attr('class', function (d) {
         return d.column;
       });
-      var table2 = table_div.append('table');
+      var table2 = table_div2.append('table');
       var thead2 = table2.append('thead');
       var tbody2 = table2.append('tbody');
       thead2.append('tr').selectAll('th').data(alphabet2).enter().append('th').text(function (letter) {
@@ -29189,8 +29209,8 @@ function () {
   _createClass(BlockAnimation, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       d3.selectAll('.explanation').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content4").classed("selected", true);
@@ -29391,8 +29411,8 @@ function () {
   _createClass(BlockInteraction, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll('.halfVis').style("background-color", "transparent").html("");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
       var canvas = d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer');
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var interactive_container = canvas.append('div').attr('class', 'interactiveContainer');
@@ -29502,9 +29522,76 @@ function () {
   _createClass(TransitionSection, [{
     key: "start",
     value: function start() {
-      d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
-      d3.selectAll(".halfVis").style("background-color", "transparent").html("");
-      d3.select("#title7").text("coming soon?");
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content7").classed("selected", true);
+      colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
+      futureContainer = d3.select("#title7 .fullVis");
+      /*        title = futureContainer.append('div')
+                      .attr("class", "titleBox")
+                      .text("Moving into modern cryptology...");
+      */
+
+      var nodes = [{
+        id: "1",
+        r: 1000,
+        cx: 750,
+        cy: 400,
+        color: "#2B7A78"
+      }];
+      var futureContainer = futureContainer.append('svg').style('width', '3000').style('height', '1000').append('g');
+      var nodeElements = futureContainer.selectAll("circle").data(nodes).enter().append("circle").attr('r', '2').attr('fill', function (d) {
+        return d.color;
+      }).attr('cx', function (d) {
+        return d.cx;
+      }).attr('cy', function (d) {
+        return d.cy;
+      }).style('opacity', 0.5);
+      nodeElements.transition("grow").duration(2000).attr('r', function (d) {
+        return d.r;
+      });
+      futureTitle = futureContainer.append("text").text("Moving into modern cryptology...").attr('x', 500).attr('y', 100).attr('fill', 'white').style("font-size", "40px").attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(1000);
+      /*
+              var nodes = [
+                  { id: "1", r: 5, cx: 162, cy: 350, color: 0},
+                  { id: "2", r: 10, cx: 175, cy: 350, color: 0},
+                  { id: "3", r: 20, cx: 200, cy: 350, color: 1},
+                  { id: "4", r: 40, cx: 250, cy: 350, color: 1},
+                  { id: "5", r: 80, cx: 350, cy: 350, color: 2},
+                  { id: "6", r: 160, cx: 550, cy: 350, color: 2},
+                  { id: "final", r: 320, cx: 950, cy: 350, color: 3}
+             ]
+      //1f2833;
+      // starting positions for the nodes
+                  nodes.forEach(function(node) {
+                      node.x = 0;
+                      node.y = 350;
+                  })
+      
+                  var futureContainer = futureContainer.append('svg')
+                      .style('width','1300')
+                      .style('height', '800')
+                      .append('g');
+      
+                  var nodeElements = futureContainer.selectAll("circle")
+                      .data(nodes)
+                      .enter().append("circle")
+                      .attr('r', '2')
+                      .attr('fill',  function (d) { return colors[d.color]; })
+                      .attr('cx', function (d) { return d.x; })
+                      .attr('cy', function (d) { return d.y; });
+      			
+      			nodeElements.transition("move")
+                      .duration(4000)
+                      .attr('cx', (d) => { return d.cx })
+                      .attr('cy', (d) => { return d.cy })
+      
+                  nodeElements.transition("grow")
+                      .duration(2000)
+                      .attr('r', (d) => {return d.r})
+                      .delay(2000)
+      */
     }
   }]);
 
@@ -29866,4 +29953,4 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.cb9d1fa4.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.faca6fbb.js.map

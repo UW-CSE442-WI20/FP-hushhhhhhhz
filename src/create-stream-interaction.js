@@ -14,8 +14,8 @@ class StreamInteraction {
 		var keyColor = "var(--key-color)";
 		var cipherColor = "var(--cipher-color)";
 
-		d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
-		d3.selectAll('.halfVis').style("background-color", "transparent").html("")
+		d3.selectAll(".fullVis:not(.special)").html("")
+        d3.selectAll('.halfVis').html("")
 
 		inputMessage = "";
 		inputKey = "";
@@ -50,14 +50,15 @@ class StreamInteraction {
 			.text("ciphertext: ")
 			.style('color', cipherColor)
 
-		inputs.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction')
 		var row1 = ["RNC","ONQ","CKO","KEY","FGU"];
 		var row2 = ["MIO","CAY","ZUU","KRK","BMW"];
 		var row3 = ["QXG","UXV","HPV","YUH","LDG"];
 		var row4 = ["STD","HVO","JEQ","PYL","DNO"];
 		var row5 = ["QDA","HZQ","WKV","XDF","UPR"];
 		var keys = [row1, row2, row3, row4, row5];
-		var keyTable = inputContainer.append('table').attr('class', 'keyTable')
+		var table_div = inputContainer.append('div').attr('class', 'tableDiv')	
+		table_div.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction')
+		var keyTable = table_div.append('table').attr('class', 'keyTable')
 		var theadKey = keyTable.append('thead');
 		var tbodyKey = keyTable.append('tbody');
 		function calculateCipher() {
@@ -123,8 +124,8 @@ class StreamInteraction {
 
 		var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
 
-		var table_div = input2Container.append('div').attr('class', 'tableDiv')
-        var table = table_div.append('table');
+		var table_div2 = input2Container.append('div').attr('class', 'tableDiv')
+        var table = table_div2.append('table');
         var thead = table.append('thead');
         var tbody = table.append('tbody');
         thead.append('tr')
@@ -148,7 +149,7 @@ class StreamInteraction {
             .append('td')
             .html(function(d) {return d.value})
             .attr('class', function(d) { return d.column });
-		 var table2 = table_div.append('table');
+		 var table2 = table_div2.append('table');
         var thead2 = table2.append('thead');
         var tbody2 = table2.append('tbody');
         thead2.append('tr')

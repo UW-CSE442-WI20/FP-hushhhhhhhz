@@ -44,7 +44,7 @@ class History {
 				.attr("width", 20)
 				.append('path')
 				.attr('d', line(data))
-				.attr("stroke", "#75a478")
+				.attr("stroke", "#2B7A78")
 				.attr("stroke-width", 2)
 				.attr("stroke-dasharray", totalLength + " " + totalLength)
 				.attr("stroke-dashoffset", totalLength)

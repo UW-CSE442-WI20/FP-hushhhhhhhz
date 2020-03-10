@@ -461,6 +461,9 @@ body {
 	border-radius: 10px;
 	padding: 10px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .explanation {
@@ -483,6 +486,10 @@ body {
 
 #title5 {
 	height: 100%;
+}
+
+#title2 h1 {
+	font-size: 40px;
 }
 
 #step1, #step7 {

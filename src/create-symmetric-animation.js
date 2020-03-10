@@ -1,15 +1,11 @@
 const d3 = require('d3')
-const Crypto = require('./crypto')
-const lock = require('./images/lock.png')
-const unlock = require('./images/unlock.png')
-const locked_key = require('./images/locked_key.png')
-const key = require('./images/blue_key_svg.svg')
+const key = require('./images/public_key.png')
 const receiver = require('./images/boy.png')
 const sender = require('./images/girl2.png')
 const doc = require('./images/regular.png')
 const locked_doc = require('./images/lock_doc.png')
 const unlocked_doc = require('./images/unlock_doc.png')
-const selected_key = require('./images/highlighted_blue_key.png')
+const selected_key = require('./images/highlighted_key.png')
 
 class SymmetricTutorial {
     constructor() {
@@ -58,6 +54,8 @@ class SymmetricTutorial {
             .append("img")
             .attr("src", key)
             .attr("id", "encrypt")
+            .style("width", "65%")
+
 
         d3.select("#sender_sym")
             .append("div")
@@ -66,7 +64,7 @@ class SymmetricTutorial {
             .append("img")
             .attr("src", doc)
             .attr("id", "doc1")
-
+            
         d3.select("#receiver_personAndKey")
             .append("div")
             .attr("class", "people_sender_sym")
@@ -79,7 +77,8 @@ class SymmetricTutorial {
             .append("img")
             .attr("src", key)
             .attr("id", "decrypt")
-
+            .style("width", "65%")
+            
         d3.select("#receiver_sym")
             .append("div")
             .attr("class", "sender_document")
@@ -108,7 +107,6 @@ class SymmetricTutorial {
                         // increasing size of encrypt key & changine its src
                         d3.select("#encrypt")
                             .attr("src", selected_key)
-                            .style("width", "65%")
                             .transition()
                             .duration(1000)
                             .delay(1000)
@@ -134,7 +132,6 @@ class SymmetricTutorial {
                                         // sender key goes back to normal 
                                         d3.select("#encrypt")
                                             .attr("src", key)
-                                            .style("width", "35%")
                                             .transition()
                                             .duration(0)
                                             .delay(0)
@@ -157,7 +154,6 @@ class SymmetricTutorial {
                                                 // increasing size of decrypt key & changine its src
                                                 d3.select("#decrypt")
                                                     .attr("src", selected_key)
-                                                    .style("width", "65%")
                                                     .transition()
                                                     .duration(1000)
                                                     .delay(1000)
@@ -178,7 +174,6 @@ class SymmetricTutorial {
                                                         
                                                         d3.select("#decrypt")
                                                             .attr("src", key)
-                                                            .style("width", "35%")
 
                                                         d3.select("#story_text")
                                                             .text("Matt is now happy that he can look at the information and no one else can")

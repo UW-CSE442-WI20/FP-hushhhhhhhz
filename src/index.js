@@ -8,9 +8,7 @@ const createBlockAnimation  = require('./create-block-animation');
 const createBlockInteraction  = require('./create-block-interaction');
 const createTransitionSection = require('./create-transition-section');
 const createSymmetricAnimation = require('./create-symmetric-animation');
-const createSymmetricInteraction = require('./create-symmetric-interaction');
 const createAsymmetricAnimation = require('./create-asymmetric-animation');
-const createAsymmetricInteraction = require('./create-asymmetric-interaction');
 const createRSA = require('./create-rsa');
 
 // get scrolling coordinates
@@ -30,7 +28,7 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createAsymmetricInteraction]
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA]
 
 // also bug with intro and history on up scroll
 // and maybe with it disappearing ?

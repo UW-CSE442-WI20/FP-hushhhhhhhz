@@ -592,10 +592,6 @@ img {
   margin-bottom: 30%;
 }
 
-#receiver {
-  margin-left: -100px;
-}
-
 #people_images,#people_keys, #document {
   display: flex;
   justify-content: space-between;
@@ -618,7 +614,7 @@ img {
 .sender_document {
   width: 25%;
   padding: 15px;
-      margin-right: 15%;
+  margin-right: 20%;
 }
 
 #symmetric_container {
@@ -666,10 +662,23 @@ img {
 	color: var(--key-color);
 }
 
-/* .textboxes {
-	justify-content: left;
+#messages img {
+  width: 81%;
 }
 
-.block_interactive_title {
-	text-align: left;
-} */
+#messages {
+  width: 100px;
+}
+#receiver {
+  width: 150px;
+}
+
+#story, #attention{
+  text-align: center;
+}
+
+#attention {
+  font-weight: bold;
+  color: red;
+  font-size: 25px;
+}

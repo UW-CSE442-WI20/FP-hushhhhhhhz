@@ -19,8 +19,7 @@ class AsymmetricAnimation {
     }
 
     start(){
-        document.getElementById('vis').innerHTML = "";
-        this.vis = d3.select('#vis')
+        d3.select('#title9 .halfVis').html("")
         this.vis = d3.select('#title9 .halfVis')
         this.vis.append('div')
             .attr("id", "outter")

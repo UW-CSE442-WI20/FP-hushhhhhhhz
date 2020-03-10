@@ -16,7 +16,7 @@ class SymmetricTutorial {
     }
 
     start() {
-        document.getElementById('vis').innerHTML = "";
+        d3.select('#title8 .halfVis').html("")
         this.vis = d3.select('#title8 .halfVis')
 
         this.vis.append('div')

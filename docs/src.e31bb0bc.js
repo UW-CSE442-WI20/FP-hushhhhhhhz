@@ -29377,6 +29377,33 @@ function () {
         }
       }
 
+      savedId = "";
+      savedKey = "";
+      savedCipher = "";
+
+      function handleClick() {
+        d3.select(this).style('color', 'white');
+
+        if (savedId != "") {
+          d3.select("#" + savedId).style('color', 'white');
+        }
+
+        inputKey = this.id;
+        savedId = inputKey;
+        var newKey = "";
+
+        if (inputMessage.length > 0) {
+          for (var i = 0; i < inputMessage.length; i++) {
+            newKey = newKey + inputKey[i % 3];
+          }
+
+          inputKey = newKey;
+        }
+
+        savedKey = inputKey;
+        savedCipher = resultCipher;
+      }
+
       function handleMouseOver() {
         // Add interactivity
         d3.select(this).style('background-color', keyColor).style('color', 'black');
@@ -29400,8 +29427,9 @@ function () {
         d3.select(this).style('background-color', 'transparent').style('color', 'white');
         inputKey = "";
         resultCipher = "";
-        document.getElementById('keyChoice').innerHTML = "";
-        document.getElementById('cipherChoice').innerHTML = "";
+        d3.select("#" + savedId).style('color', keyColor);
+        document.getElementById('keyChoice').innerHTML = savedKey;
+        document.getElementById('cipherChoice').innerHTML = savedCipher;
       }
 
       var rowsKey = tbodyKey.selectAll('tr').data(keys).enter().append('tr');
@@ -29416,8 +29444,7 @@ function () {
         return d.value;
       }).attr('id', function (d) {
         return d.value;
-      }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
-      ;
+      }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut).on("click", handleClick);
       d3.select('#inputButton').on('click', function () {
         inputMessage = document.getElementById('textInput').value;
         inputMessage = inputMessage.replace(/\s+/g, '');
@@ -30483,7 +30510,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52645" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50468" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

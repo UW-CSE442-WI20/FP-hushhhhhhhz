@@ -29123,6 +29123,33 @@ function () {
         }
       }
 
+      savedId = "";
+      savedKey = "";
+      savedCipher = "";
+
+      function handleClick() {
+        d3.select(this).style('color', 'white');
+
+        if (savedId != "") {
+          d3.select("#" + savedId).style('color', 'white');
+        }
+
+        inputKey = this.id;
+        savedId = inputKey;
+        var newKey = "";
+
+        if (inputMessage.length > 0) {
+          for (var i = 0; i < inputMessage.length; i++) {
+            newKey = newKey + inputKey[i % 3];
+          }
+
+          inputKey = newKey;
+        }
+
+        savedKey = inputKey;
+        savedCipher = resultCipher;
+      }
+
       function handleMouseOver() {
         // Add interactivity
         d3.select(this).style('background-color', keyColor).style('color', 'black');
@@ -29146,8 +29173,9 @@ function () {
         d3.select(this).style('background-color', 'transparent').style('color', 'white');
         inputKey = "";
         resultCipher = "";
-        document.getElementById('keyChoice').innerHTML = "";
-        document.getElementById('cipherChoice').innerHTML = "";
+        d3.select("#" + savedId).style('color', keyColor);
+        document.getElementById('keyChoice').innerHTML = savedKey;
+        document.getElementById('cipherChoice').innerHTML = savedCipher;
       }
 
       var rowsKey = tbodyKey.selectAll('tr').data(keys).enter().append('tr');
@@ -29162,8 +29190,7 @@ function () {
         return d.value;
       }).attr('id', function (d) {
         return d.value;
-      }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut);
-      ;
+      }).attr('class', 'keyChoice').on("mouseover", handleMouseOver).on("mouseout", handleMouseOut).on("click", handleClick);
       d3.select('#inputButton').on('click', function () {
         inputMessage = document.getElementById('textInput').value;
         inputMessage = inputMessage.replace(/\s+/g, '');
@@ -30202,4 +30229,4 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.d5f3fc73.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.f0ff1e6e.js.map

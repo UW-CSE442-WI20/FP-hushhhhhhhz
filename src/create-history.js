@@ -13,12 +13,20 @@ class History {
 			d3.select("#content2").classed("selected", true)
 		} else {
 			d = 1000
-			 d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
+			d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")
 			d3.selectAll('.halfVis').style("background-color", "transparent").html("")
 
 			d3.selectAll("#vis div").classed("selected", false)
 			d3.select("#content2").classed("selected", true)
-
+		
+			var infoContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'infoContainer')
+			infoContainer.append('text')
+				.text("The study and advancement of cryptology goes back centuries.")
+				.style('font-size', '20px')
+			var infoContainer2 = d3.select('#title2 .fullVis').append('div').attr('class', 'infoContainer')
+			infoContainer2.append('text')
+                .text("Below we outline some of the most major discoveries and improvements in the field:")
+				.style('font-size', '20px')
 			var timelineContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'timelineContainer');
 			var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
 			var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
@@ -77,7 +85,7 @@ class History {
 			for (var key in eventHash) {
 				var side = (i % 2 == 0) ? leftDiv : rightDiv;
 				var eventBox = side.append('div')
-
+				
 				eventBox.transition()
 					.attr('class', 'eventBox')
 					.attr('id', 'eventBox' + i)

@@ -24,8 +24,13 @@ class StreamAnimation {
 		var keyColor = "var(--key-color)";
 		var cipherColor = "var(--cipher-color)";
 
+		d3.select('#title3 .halfVis').append('h1')
+			.text('A naive form of cipher...')
+			.style('color', 'white')
+			.style('padding', '20px')
+			.style('font-size', '36px');
 		var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
-		var table_div = stream_container.append('div').attr('class', 'tableDiv')
+		var table_div = stream_container.append('div').attr('class', 'tableDiv');
 		var message = stream_container.append('div').attr('class', 'message');
 
 		var explanation = d3.select('#title3 .explanation')

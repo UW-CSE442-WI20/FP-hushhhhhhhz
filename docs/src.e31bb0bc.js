@@ -28906,6 +28906,8 @@ function () {
       if (flag) {
         d3.selectAll(".fullVis:not(.special)").html("");
         d3.selectAll('.halfVis').html("");
+        d3.selectAll("#vis div").classed("selected", false);
+        d3.select("#content1").classed("selected", true);
       } else {
         var colors = ['#2B7A78', '#4EB7B2', '#BCF2F0']; // highlight in table of contents
 
@@ -28919,37 +28921,51 @@ function () {
           id: "Government",
           cx: 90,
           cy: 100,
-          color: 2
+          color: 2,
+          textx: 53,
+          texty: 105
         }, {
           id: "Internet",
           cx: 80,
           cy: 200,
-          color: 1
+          color: 1,
+          textx: 55,
+          texty: 205
         }, {
           id: "Passwords",
           cx: 180,
           cy: 60,
-          color: 1
+          color: 1,
+          textx: 148,
+          texty: 65
         }, {
           id: "Email",
           cx: 170,
           cy: 160,
-          color: 0
+          color: 0,
+          textx: 152,
+          texty: 165
         }, {
           id: "Mobile",
           cx: 260,
           cy: 120,
-          color: 2
+          color: 2,
+          textx: 238,
+          texty: 126
         }, {
           id: "Business",
           cx: 250,
           cy: 220,
-          color: 1
+          color: 1,
+          textx: 223,
+          texty: 225
         }, {
           id: "Military",
           cx: 160,
           cy: 260,
-          color: 2
+          color: 2,
+          textx: 138,
+          texty: 265
         }]; // starting positions for the nodes
 
         nodes.forEach(function (node) {
@@ -28973,10 +28989,10 @@ function () {
         bubbleContainer.selectAll("text").data(nodes).enter().append("text").text(function (d) {
           return d.id;
         }).attr('x', function (d) {
-          return d.cx - 30;
+          return d.textx;
         }).attr('y', function (d) {
-          return d.cy;
-        }).attr('fill', 'black').attr('opacity', 0).transition().duration(2000).attr('opacity', 1).delay(5000);
+          return d.texty;
+        }).attr('fill', 'black').attr('opacity', 0).transition().duration(3000).attr('opacity', 1).delay(3000);
         applicationText = applicationContainer.append('div').style("width", "700px").style("height", "230px").style("opacity", 0).style("background-color", "black").style("padding", "10px");
         applicationText.append("h2").text("Why is Cryptogology important?");
         applicationText.append('p').text("Cryptology has had many applications over thousands of years of history. In fact, the earliest computers were developed in order to break encrypted messages being sent during WWII. But as computers have made their way into every part of our live, cryptology has become increasingly important in protecting the personal data of individuals. To the left we highlight the major applications that motivate the study and development of cryptology today. As you can see, cryptoloy comes into our lives in a multitude of ways.");
@@ -28990,17 +29006,23 @@ function () {
           id: "Cryptology",
           cx: 200,
           cy: 90,
-          color: 0
+          color: 0,
+          textx: 167,
+          texty: 95
         }, {
           id: "Cryptography",
           cx: 200,
           cy: 230,
-          color: 1
+          color: 1,
+          textx: 160,
+          texty: 235
         }, {
           id: "Cryptanalysis",
           cx: 80,
           cy: 160,
-          color: 2
+          color: 2,
+          textx: 40,
+          texty: 165
         }]; // starting positions for the nodes
 
         types.forEach(function (node) {
@@ -29026,10 +29048,10 @@ function () {
         typeBubbles.selectAll("text").data(types).enter().append("text").text(function (d) {
           return d.id;
         }).attr('x', function (d) {
-          return d.cx - 30;
+          return d.textx;
         }).attr('y', function (d) {
-          return d.cy;
-        }).attr('fill', 'black').attr('opacity', 0).transition().duration(2000).attr('opacity', 1).delay(9000);
+          return d.texty;
+        }).attr('fill', 'black').attr('opacity', 0).transition().duration(3000).attr('opacity', 1).delay(6000);
         typeText.transition().duration(3000).style("opacity", 1).delay(4000);
       }
     }
@@ -29061,12 +29083,18 @@ function () {
       if (flag) {
         d3.selectAll(".fullVis:not(.special)").html("");
         d3.selectAll('.halfVis').html("");
+        d3.selectAll("#vis div").classed("selected", false);
+        d3.select("#content2").classed("selected", true);
       } else {
         d = 1000;
         d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("");
         d3.selectAll('.halfVis').style("background-color", "transparent").html("");
         d3.selectAll("#vis div").classed("selected", false);
         d3.select("#content2").classed("selected", true);
+        var infoContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'infoContainer');
+        infoContainer.append('text').text("The study and advancement of cryptology goes back centuries.").style('font-size', '20px');
+        var infoContainer2 = d3.select('#title2 .fullVis').append('div').attr('class', 'infoContainer');
+        infoContainer2.append('text').text("Below we outline some of the most major discoveries and improvements in the field:").style('font-size', '20px');
         var timelineContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'timelineContainer');
         var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
         var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');
@@ -29136,10 +29164,9 @@ function () {
 
   _createClass(StreamAnimation, [{
     key: "start",
-    value: function start() {
+    value: function start(flag) {
       d3.selectAll(".fullVis:not(.special)").html("");
       d3.selectAll('.halfVis').html("");
-      d3.selectAll('.explanation').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content3").classed("selected", true);
       initialMessage = "PLAINTEXT";
@@ -29151,36 +29178,39 @@ function () {
       var plainColor = "var(--plain-color)";
       var keyColor = "var(--key-color)";
       var cipherColor = "var(--cipher-color)";
+      d3.select('#title3 .halfVis').append('h1').text('A naive form of cipher...').style('color', 'white').style('padding', '20px').style('font-size', '36px');
       var stream_container = d3.select('#title3 .halfVis').append('div').attr('class', 'streamContainer');
       var table_div = stream_container.append('div').attr('class', 'tableDiv');
       var message = stream_container.append('div').attr('class', 'message');
       var explanation = d3.select('#title3 .explanation');
-      historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
-      historyText = historyBubble.append('div');
-      historyText.append("text").text("Stream Cipher: Vigenere").style('font-size', '26px');
-      historyText.append('br');
-      historyText.append('br');
-      historyText.append('text').text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols. One of the most famous early stream ciphers is the Vigenere, created by the diplomat of King Charles IX. It follows the convention where letters are labeled based on their position within the alphabet: A = 0, B = 1, ... Z = 25');
-      historyBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black");
-      processBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#4EB7B2").attr("class", "explanationCircle").style("margin-left", "auto");
-      processText = processBubble.append('div');
-      processText.append("text").text("Encryption").style('font-size', '26px');
-      processText.append('br');
-      processText.append('br');
-      processText.append('text').text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:');
-      processText.append('br');
-      processText.append('br');
-      processText.append('text').text('C = P + K mod 26');
-      processText.append('br');
-      processText.append('br');
-      processText.append('text').text('Click start and follow along on the left as we encrypt our plaintext message');
-      processText.append('br');
-      processText.append('br');
-      var startButton = processText.append('div').attr('id', 'startButton').text("START ANIMATION").style('width', '120px');
-      processBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(500).style("color", "black").style("margin-top", '-90px');
-      decryptBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle");
-      decryptBubble.append('div').append("text").text("Decryption");
-      decryptBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(1000).style("color", "black").style("margin-top", '-90px');
+
+      if (!flag) {
+        historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
+        historyBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Stream Cipher: Vigenere").style("opacity", 0);
+        historyBubble.append('div').attr('class', 'textDiv').text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols.').style("opacity", 0);
+        historyBubble.append('div').attr('class', 'textDiv').text('It follows the convention where letters are labeled based on their position within the alphabet:').style("opacity", 0);
+        historyBubble.append('div').attr('class', 'textDiv').text(' A = 0, B = 1, ... Z = 25').style("opacity", 0);
+        historyBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black");
+        historyBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(700);
+        historyBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(700);
+        processBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#4EB7B2").attr("class", "explanationCircle").style("margin-left", "auto");
+        processBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Encryption").style("opacity", 0);
+        processBubble.append('div').attr('class', 'textDiv').text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:').style("opacity", 0);
+        processBubble.append('div').attr('class', 'textDiv').text('C = P + K mod 26').style("opacity", 0);
+        processBubble.append('div').attr('class', 'textDiv').text('Click start and follow along on the left as we encrypt our plaintext message').style("opacity", 0);
+        processBubble.append('div').attr('id', 'startButton').text("START ANIMATION").style('width', '120px').style("opacity", 0);
+        processBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(500).style("color", "black").style("margin-top", '-90px');
+        processBubble.selectAll("#startButton").transition().duration(500).style("opacity", 1).delay(1000);
+        processBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1000);
+        processBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(1000);
+        decryptBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle");
+        decryptBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Decryption").style("opacity", 0);
+        decryptBubble.append('div').attr('class', 'textDiv').text('Decryption works similarly to encryption, except that it follows the equation in reverse:').style("opacity", 0);
+        decryptBubble.append('div').attr('class', 'textDiv').text('P = C - K mod 26').style("opacity", 0);
+        decryptBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(1000).style("color", "black").style("margin-top", '-90px');
+        decryptBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1500);
+        decryptBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(1500);
+      }
 
       for (var i = 0; i < initialMessage.length; i++) {
         var index = message.append('div').attr('id', 'index' + i).attr('class', 'index');
@@ -29301,25 +29331,35 @@ function () {
       inputMessage = "";
       inputKey = "";
       resultCipher = "";
+      var title = d3.select('#title4 .fullVis').append('div').attr('class', 'title1Container');
+      title.append('h1').text('Now you try!').style('font-color', 'white');
+      var title2 = d3.select('#title4 .fullVis').append('div').attr('class', 'title2Container');
+      title2.append('h2').text('Encryption:').style('font-color', 'white');
       var inputContainer = d3.select('#title4 .fullVis').append('div').attr('class', 'inputContainer');
       var inputs = inputContainer.append('div').attr('class', 'inputs');
-      var results = d3.select('#title4 .fullVis').append('div').attr('class', 'results');
-      inputs.append('h3').text('Now you try!').attr('class', 'instruction');
+      var table_div = inputContainer.append('div').attr('class', 'tableDiv');
+      var results = inputContainer.append('div').attr('class', 'results');
+      results.append('text').text('see the results below:');
       inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction');
       lilDiv = inputs.append('div').attr('class', 'lilDiv');
       var textInput = lilDiv.append('input').attr('id', 'textInput').attr('style', 'text');
       var inputButton = lilDiv.append('div').attr('id', 'inputButton').text('SELECT');
-      var textDisplay = results.append('p').attr('id', 'textDisplay').text("plaintext: ").style('color', plainColor);
-      var keyDisplay = results.append('p').attr('id', 'keyDisplay').text("keytext: ").style('color', keyColor);
-      var cipherDisplay = results.append('p').attr('id', 'cipherDisplay').text("ciphertext: ").style('color', cipherColor);
+      var plainDiv = results.append('div').attr('class', 'resultsDivs');
+      var textDisplay = plainDiv.append('div').attr('id', 'textDisplay').append('h2').text("plaintext: ").style('color', plainColor);
+      var plainChoice = plainDiv.append('div').append('h2').text("").attr('id', 'plainChoice').style('color', plainColor);
+      var keyDiv = results.append('div').attr('class', 'resultsDivs');
+      var keyDisplay = keyDiv.append('div').attr('id', 'keyDisplay').append('h2').text("keytext: ").style('color', keyColor);
+      var keyChoice = keyDiv.append('div').append('h2').text("").attr('id', 'keyChoice').style('color', keyColor);
+      var cipherDiv = results.append('div').attr('class', 'resultsDivs');
+      var cipherDisplay = cipherDiv.append('div').attr('id', 'cipherDisplay').append('h2').text("ciphertext: ").style('color', cipherColor);
+      var cipherChoice = cipherDiv.append('div').append('h2').text("").attr('id', 'cipherChoice').style('color', cipherColor);
       var row1 = ["RNC", "ONQ", "CKO", "KEY", "FGU"];
       var row2 = ["MIO", "CAY", "ZUU", "KRK", "BMW"];
       var row3 = ["QXG", "UXV", "HPV", "YUH", "LDG"];
       var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
       var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
       var keys = [row1, row2, row3, row4, row5];
-      var table_div = inputContainer.append('div').attr('class', 'tableDiv');
-      table_div.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction');
+      table_div.append('h4').text('hover below to choose a key:').attr('class', 'instruction');
       var keyTable = table_div.append('table').attr('class', 'keyTable');
       var theadKey = keyTable.append('thead');
       var tbodyKey = keyTable.append('tbody');
@@ -29351,17 +29391,17 @@ function () {
           inputKey = newKey;
         }
 
-        document.getElementById('keyDisplay').innerHTML = "keytext:     " + inputKey;
+        document.getElementById('keyChoice').innerHTML = inputKey;
         calculateCipher();
-        document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
+        document.getElementById('cipherChoice').innerHTML = resultCipher;
       }
 
       function handleMouseOut() {
         d3.select(this).style('background-color', 'transparent').style('color', 'white');
         inputKey = "";
         resultCipher = "";
-        document.getElementById('keyDisplay').innerHTML = "keytext:    ";
-        document.getElementById('cipherDisplay').innerHTML = "ciphertext: ";
+        document.getElementById('keyChoice').innerHTML = "";
+        document.getElementById('cipherChoice').innerHTML = "";
       }
 
       var rowsKey = tbodyKey.selectAll('tr').data(keys).enter().append('tr');
@@ -29382,11 +29422,19 @@ function () {
         inputMessage = document.getElementById('textInput').value;
         inputMessage = inputMessage.replace(/\s+/g, '');
         inputMessage = inputMessage.toUpperCase();
-        document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
+        document.getElementById('plainChoice').innerHTML = inputMessage;
         document.getElementById('textInput').value = "";
       });
+      var title3 = d3.select('#title4 .fullVis').append('div').attr('class', 'title3Container');
+      title3.append('h2').text('Decryption:');
       var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
+      var inputs2 = input2Container.append('div').attr('class', 'inputs2');
+      inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction');
+      inputs2.append('h2').text('ciphertext: ISSNMBSX').style('color', cipherColor);
+      inputs2.append('h2').text('keytext: KEYKEYKE').style('color', keyColor);
       var table_div2 = input2Container.append('div').attr('class', 'tableDiv');
+      lilDiv2 = input2Container.append('div').attr('class', 'lilDiv2');
+      table_div2.append('h4').text('use this table to compute the values of C and K:').style('margin', '0 0 30px 0');
       var table = table_div2.append('table');
       var thead = table.append('thead');
       var tbody = table.append('tbody');
@@ -29429,23 +29477,19 @@ function () {
       }).attr('class', function (d) {
         return d.column;
       });
-      var inputs2 = input2Container.append('div').attr('class', 'inputs2');
-      inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction');
-      inputs2.append('h4').text('ciphertext: ISSNMBSX').style('color', cipherColor);
-      inputs2.append('h4').text('keytext: KEYKEYKE').style('color', keyColor);
-      lilDiv2 = inputs2.append('div').attr('class', 'lilDiv2');
+      lilDiv2.append('text').text('try your answer below:');
       var textInput2 = lilDiv2.append('input').attr('id', 'textInput2').attr('style', 'text');
       var inputButton2 = lilDiv2.append('div').attr('id', 'inputButton2').text('CHECK');
-      var answer = inputs2.append('h4').text('').style('color', 'white').attr('id', 'answer');
+      var answer = lilDiv2.append('h4').text('').style('color', 'white').attr('id', 'answer');
       d3.select('#inputButton2').on('click', function () {
         guess = document.getElementById('textInput2').value;
         guess = guess.replace(/\s+/g, '');
         guess = guess.toUpperCase();
 
         if (guess == "YOUDIDIT") {
-          document.getElementById('answer').innerHTML = "Correct!";
+          document.getElementById('answer').innerHTML = "correct!";
         } else {
-          document.getElementById('answer').innerHTML = "Try again...";
+          document.getElementById('answer').innerHTML = "try again...";
         }
       });
     }
@@ -29482,13 +29526,13 @@ function () {
 
   _createClass(BlockAnimation, [{
     key: "start",
-    value: function start() {
+    value: function start(flag) {
       d3.selectAll(".fullVis:not(.special)").html("");
       d3.selectAll('.halfVis').html("");
-      d3.selectAll('.explanation').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content4").classed("selected", true);
       var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything');
+      everything.append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px');
       var block_container = everything.append("div").attr('class', 'blockContainer');
       var grid = block_container.append('div').attr('class', 'grid');
 
@@ -29505,28 +29549,38 @@ function () {
       encryption.append('div').attr('class', 'cipher_message').text("");
       var interactive_container = everything.append("div").attr('class', 'interactiveContainer');
       var explanation = d3.select('#title5 .explanation');
-      historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle").style("margin-left", "auto");
-      historyBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle").append("text").text("Block Cipher: Playfair");
-      historyBubble.append('div').attr("class", "textDiv").text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.");
-      historyBubble.append('div').attr("class", "textDiv").attr("id", "history_part2").text("The alphabet has 26 letters and the key table only uses 25, which means we must ommit one letter from our alphabet!");
-      historyBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black");
-      processBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#4EB7B2").attr("class", "explanationCircle");
-      processBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle2").attr("id", "blockEncryptionBubble").append("text").text("Encryption");
-      processBubble.append('div').attr("class", "textDiv").text("The message is split into pairs of letters, and we use both letters to encrypt.");
-      processBubble.append('div').attr("class", "textDiv").text("Click the button below to see how it works.");
-      processBubble.append('div').attr('id', 'startAnimation').text("START ANIMATION"); // you gotta do what you gotta do \_(-_-)_/
 
-      var forreal = this;
+      if (!flag) {
+        historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle").style("margin-left", "auto");
+        historyBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle").style("opacity", 0).append("text").text("Block Cipher: Playfair");
+        historyBubble.append('div').attr("class", "textDiv").text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.").style("opacity", 0);
+        historyBubble.append('div').attr("class", "textDiv").attr("id", "history_part2").text("The alphabet has 26 letters and the key table only uses 25, which means we must ommit one letter from our alphabet!").style("opacity", 0);
+        historyBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black");
+        historyBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(700);
+        historyBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(700);
+        processBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#4EB7B2").attr("class", "explanationCircle");
+        processBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle2").style("opacity", 0).attr("id", "blockEncryptionBubble").append("text").text("Encryption");
+        processBubble.append('div').attr("class", "textDiv").text("The message is split into pairs of letters, and we use both letters to encrypt.").style("opacity", 0);
+        processBubble.append('div').attr("class", "textDiv").text("Click the button below to see how it works.").style("opacity", 0);
+        processBubble.append('div').attr('id', 'startAnimation').text("START ANIMATION").style("opacity", 0); // you gotta do what you gotta do \_(-_-)_/
 
-      document.getElementById("startAnimation").onclick = function () {
-        forreal.transitions(0);
-      };
+        var forreal = this;
 
-      processBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(500).style("color", "black").style("margin-top", '-90px');
-      decryptBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle").style("margin-left", "auto");
-      decryptBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle2").text("Decryption");
-      decryptBubble.append('div').attr("class", "textDiv").text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.");
-      decryptBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(1000).style("color", "black").style("margin-top", '-90px');
+        document.getElementById("startAnimation").onclick = function () {
+          forreal.transitions(0);
+        };
+
+        processBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(500).style("color", "black").style("margin-top", '-90px');
+        processBubble.selectAll("#startAnimation").transition().duration(500).style("opacity", 1).delay(1000);
+        processBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1000);
+        processBubble.selectAll(".textDivTitle2").transition().duration(500).style("opacity", 1).delay(1000);
+        decryptBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle").style("margin-left", "auto");
+        decryptBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle2").text("Decryption").style("opacity", 0);
+        decryptBubble.append('div').attr("class", "textDiv").text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.").style("opacity", 0);
+        decryptBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(1000).style("color", "black").style("margin-top", '-90px');
+        decryptBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1500);
+        decryptBubble.selectAll(".textDivTitle2").transition().duration(500).style("opacity", 1).delay(1500);
+      }
     }
   }, {
     key: "transitions",
@@ -29796,15 +29850,8 @@ function () {
     value: function start() {
       d3.selectAll(".fullVis:not(.special)").html("");
       d3.selectAll('.halfVis').html("");
-      d3.selectAll("#vis div").classed("selected", false);
-      d3.select("#content7").classed("selected", true);
       colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
       futureContainer = d3.select("#title7 .fullVis");
-      /*        title = futureContainer.append('div')
-                      .attr("class", "titleBox")
-                      .text("Moving into modern cryptology...");
-      */
-
       var nodes = [{
         id: "1",
         r: 1000,
@@ -29919,6 +29966,8 @@ function () {
     key: "start",
     value: function start() {
       d3.select('#title8 .halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content5").classed("selected", true);
       this.vis = d3.select('#title8 .halfVis');
       this.vis.append('div').attr('id', 'symmetric_container');
       d3.select('#symmetric_container').append("div").attr('id', 'sender_sym').append("h3").attr("class", "label").text("TA");
@@ -30028,6 +30077,8 @@ function () {
     key: "start",
     value: function start() {
       d3.select('#title9 .halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content6").classed("selected", true);
       this.vis = d3.select('#title9 .halfVis');
       this.vis.append('div').attr("id", "outter");
       d3.select("#outter").append('div').attr("id", "senders");
@@ -30141,6 +30192,8 @@ function () {
 
       d3.selectAll(".fullVis:not(.special)").html("");
       d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content7").classed("selected", true);
       var overall_container = d3.select('#title10 .fullVis').append('div').attr('class', 'overall_Container');
       overall_container.append('div').attr('class', 'receiver_intro').text('The setup of the keys'); // RECEIVER
 
@@ -30336,6 +30389,8 @@ sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
 historyFlag = false;
+blockFlag = false;
+streamFlag = false;
 var startPos;
 sections.each(function (d, i) {
   var top = this.getBoundingClientRect().top;
@@ -30377,13 +30432,14 @@ function position() {
     currentIndex = sectionIndex;
 
     if (currentIndex == 1) {
-      if (historyFlag) {
-        newInstance.start(true);
-      } else {
-        newInstance.start(false);
-        console.log("got here");
-        historyFlag = true;
-      }
+      newInstance.start(historyFlag);
+      historyFlag = true;
+    } else if (currentIndex == 2) {
+      newInstance.start(streamFlag);
+      streamFlag = true;
+    } else if (currentIndex == 4) {
+      newInstance.start(blockFlag);
+      blockFlag = true;
     } else if (currentIndex == 0) {
       newInstance.start(true);
     } else {
@@ -30427,7 +30483,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64517" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52645" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

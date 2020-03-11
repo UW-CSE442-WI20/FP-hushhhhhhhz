@@ -200,6 +200,15 @@ table {
     width: 50vw;
 }
 
+.interactiveContainer h2 {
+	margin-bottom: 10%;
+}
+
+#encr_shareResult {
+	margin-bottom: 10%;
+	height: 40px;
+}
+
 
 .input2Container {
     display: flex;
@@ -347,7 +356,6 @@ p {
     border: 1px solid white;
     text-align: center;
 	color: white;
-	background-color: black !important;
 }
 
 .grid_box p, .grid_box_new p {
@@ -369,7 +377,7 @@ p {
     flex-wrap: wrap;
     width: 21%;
     float: right;
-    margin-top: 10%;
+    margin-top: 13%;
     margin-left: 8%;
 	align-content: baseline;
 }

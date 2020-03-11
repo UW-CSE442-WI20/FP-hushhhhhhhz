@@ -3,6 +3,9 @@ const d3 = require('d3');
 class BlockInteraction {
 
 	constructor() {
+		this.darkColor = "#DA2C5E";
+		this.lightColor = "#CA9AA7";
+		this.cipherColor = "#FFD700";
 	}
 
 	start() {
@@ -17,7 +20,18 @@ class BlockInteraction {
 		interactive_container.append('h2').attr("class", "block_interactive_title").text('Test your block cipher skills!')
 		
 		// test encryption skills
-		interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to ENCRYPT it. When you are done click on the check button to see if you got it right')
+		interactive_container.append('h3')
+						.attr("class", "block_interactive_title")
+						.append("text")
+						.text('Choose a word from the dropdown below, and try to ')
+						.append("text")
+						.style("color", this.darkColor)
+						.text('ENCRYPT ')
+						.append("text")
+						.style("color", "white")
+						.text( "it. When you are done click on the check button to see if you got it right")
+		
+		
 		var textboxes_and_res = interactive_container.append('div')
 
 		var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes')
@@ -41,7 +55,17 @@ class BlockInteraction {
 		document.getElementById("encr_checkbutton").onclick = this.checkencrypt;
 
 		// test decreyption skills
-		interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to DECRYPT it. When you are done click on the check button to see if you got it right')
+		interactive_container.append('h3')
+			.attr("class", "block_interactive_title")
+			.append("text")
+			.text('Choose a word from the dropdown below, and try to ')
+			.append("text")
+			.style("color", this.cipherColor)
+			.text('DECRYPT ')
+			.append("text")
+			.style("color", "white")
+			.text( "it. When you are done click on the check button to see if you got it right")		
+		
 		var textboxes_and_res = interactive_container.append('div')
 
 		var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes')

@@ -16,6 +16,8 @@ sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
 historyFlag = false;
+blockFlag = false;
+streamFlag = false;
 var startPos;
 sections.each(function(d,i) {
 	var top = this.getBoundingClientRect().top;
@@ -62,14 +64,15 @@ function position() {
 		dispatch.call('active', this, sectionIndex);
 		currentIndex = sectionIndex;
 		if (currentIndex == 1) {
-			if (historyFlag) {
-				newInstance.start(true);
-			} else {
-				newInstance.start(false);
-				console.log("got here");
-				historyFlag = true;
-			}
-		} else if (currentIndex == 0) {
+			newInstance.start(historyFlag);
+			historyFlag = true
+		} else if (currentIndex == 2) {
+			newInstance.start(streamFlag);
+			streamFlag = true
+		} else if (currentIndex == 4) {
+			newInstance.start(blockFlag);
+			blockFlag = true
+		}else if (currentIndex == 0) {
 			newInstance.start(true);
 		} else {
 			newInstance.start();

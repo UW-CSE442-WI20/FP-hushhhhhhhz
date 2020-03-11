@@ -6,10 +6,9 @@ class StreamAnimation {
 	}
 
 
-	start() {
+	start(flag) {
 		d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
-		d3.selectAll('.explanation').html("")
 
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#content3").classed("selected", true)
@@ -31,100 +30,102 @@ class StreamAnimation {
 
 		var explanation = d3.select('#title3 .explanation')
 
-		historyBubble = explanation.append('div')
-			.style("width", "0px")
-			.style("height", "0px")
-			.style("background-color", "#BCF2F0")
-			.attr("class", "explanationCircle")
+		if (!flag) {
+			historyBubble = explanation.append('div')
+				.style("width", "0px")
+				.style("height", "0px")
+				.style("background-color", "#BCF2F0")
+				.attr("class", "explanationCircle")
 
-		historyBubble.append("div")
-			.attr('class', 'textDiv')
-			.attr('class', 'textDivTitle')
-			.text("Stream Cipher: Vigenere")
-		historyBubble
-			.append('div')
-			.attr('class', 'textDiv')
-			.text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols.') 
-		
-		historyBubble
-            .append('div')
-            .attr('class', 'textDiv')
-            .text('It follows the convention where letters are labeled based on their position within the alphabet:')
-		
-		historyBubble
-            .append('div')
-            .attr('class', 'textDiv')
-            .text(' A = 0, B = 1, ... Z = 25')
+			historyBubble.append("div")
+				.attr('class', 'textDiv')
+				.attr('class', 'textDivTitle')
+				.text("Stream Cipher: Vigenere")
+			historyBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols.')
 
-		historyBubble.transition()
-			.duration(1000)
-			.style("width", "350px")
-			.style("height", "350px")
-			.style("color", "black")
+			historyBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('It follows the convention where letters are labeled based on their position within the alphabet:')
 
-		processBubble = explanation.append('div')
-			.style("width", "0px")
-			.style("height", "0px")
-			.style("background-color", "#4EB7B2")
-			.attr("class", "explanationCircle")
-			.style("margin-left", "auto")
+			historyBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text(' A = 0, B = 1, ... Z = 25')
 
-		processBubble.append("div")
-            .attr('class', 'textDiv')
-            .attr('class', 'textDivTitle')
-            .text("Encryption")
-		processBubble
-			.append('div')
-			.attr('class', 'textDiv')
-            .text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:')
-		processBubble
-            .append('div')
-            .attr('class', 'textDiv')
-            .text('C = P + K mod 26')
-		processBubble
-            .append('div')
-            .attr('class', 'textDiv')
-            .text('Click start and follow along on the left as we encrypt our plaintext message')
-		processBubble.append('div')
-			.attr('id', 'startButton')
-			.text("START ANIMATION")
-			.style('width', '120px')
+			historyBubble.transition()
+				.duration(1000)
+				.style("width", "350px")
+				.style("height", "350px")
+				.style("color", "black")
 
-		processBubble.transition()
-			.duration(1000)
-			.style("width", "350px")
-			.style("height", "350px")
-			.delay(500)
-			.style("color", "black")
-			.style("margin-top", '-90px')
+			processBubble = explanation.append('div')
+				.style("width", "0px")
+				.style("height", "0px")
+				.style("background-color", "#4EB7B2")
+				.attr("class", "explanationCircle")
+				.style("margin-left", "auto")
 
-		decryptBubble = explanation.append('div')
-			.style("width", "0px")
-			.style("height", "0px")
-			.style("background-color", "#2B7A78")
-			.attr("class", "explanationCircle")
+			processBubble.append("div")
+				.attr('class', 'textDiv')
+				.attr('class', 'textDivTitle')
+				.text("Encryption")
+			processBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:')
+			processBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('C = P + K mod 26')
+			processBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('Click start and follow along on the left as we encrypt our plaintext message')
+			processBubble.append('div')
+				.attr('id', 'startButton')
+				.text("START ANIMATION")
+				.style('width', '120px')
 
-		decryptBubble.append("div")
-            .attr('class', 'textDiv')
-            .attr('class', 'textDivTitle')
-            .text("Decryption")
-        decryptBubble
-            .append('div')
-            .attr('class', 'textDiv')
-            .text('Decryption works similarly to encryption, except that it follows the equation in reverse:')
-        
-        decryptBubble
-            .append('div')
-            .attr('class', 'textDiv')
-            .text('P = C - K mod 26')
+			processBubble.transition()
+				.duration(1000)
+				.style("width", "350px")
+				.style("height", "350px")
+				.delay(500)
+				.style("color", "black")
+				.style("margin-top", '-90px')
 
-		decryptBubble.transition()
-			.duration(1000)
-			.style("width", "350px")
-			.style("height", "350px")
-			.delay(1000)
-			.style("color", "black")
-			.style("margin-top", '-90px')
+			decryptBubble = explanation.append('div')
+				.style("width", "0px")
+				.style("height", "0px")
+				.style("background-color", "#2B7A78")
+				.attr("class", "explanationCircle")
+
+			decryptBubble.append("div")
+				.attr('class', 'textDiv')
+				.attr('class', 'textDivTitle')
+				.text("Decryption")
+			decryptBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('Decryption works similarly to encryption, except that it follows the equation in reverse:')
+
+			decryptBubble
+				.append('div')
+				.attr('class', 'textDiv')
+				.text('P = C - K mod 26')
+
+			decryptBubble.transition()
+				.duration(1000)
+				.style("width", "350px")
+				.style("height", "350px")
+				.delay(1000)
+				.style("color", "black")
+				.style("margin-top", '-90px')
+		}
 
 		for(var i = 0; i < initialMessage.length; i++) {
 			var index = message.append('div') 

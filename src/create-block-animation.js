@@ -14,10 +14,9 @@ class BlockAnimation {
 
 	}
 
-	start() {
+	start(flag) {
 		d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
-		d3.selectAll('.explanation').html("")
 
 		d3.selectAll("#vis div").classed("selected", false)
 		d3.select("#content4").classed("selected", true)
@@ -43,102 +42,104 @@ class BlockAnimation {
 		var interactive_container = everything.append("div").attr('class', 'interactiveContainer')
 		var explanation = d3.select('#title5 .explanation')
 
-		historyBubble = explanation.append('div')
-			.style("width", "0px")
-			.style("height", "0px")
-			.style("background-color", "#2B7A78")
-			.attr("class", "explanationCircle")
-			.style("margin-left", "auto")
+		if (!flag) {
+			historyBubble = explanation.append('div')
+				.style("width", "0px")
+				.style("height", "0px")
+				.style("background-color", "#2B7A78")
+				.attr("class", "explanationCircle")
+				.style("margin-left", "auto")
 
-		historyBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.attr("class", "textDivTitle")
-			.append("text")
-			.text("Block Cipher: Playfair")
-		
-		historyBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.")
-		
-		historyBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.attr("id", "history_part2")
-			.text("The alphabet has 26 letters and the key table only uses 25, which means we must ommit one letter from our alphabet!")
+			historyBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.attr("class", "textDivTitle")
+				.append("text")
+				.text("Block Cipher: Playfair")
 
-		historyBubble.transition()
-			.duration(1000)
-			.style("width", "350px")
-			.style("height", "350px")
-			.style("color", "black")
+			historyBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.")
 
-		processBubble = explanation.append('div')
-			.style("width", "0px")
-			.style("height", "0px")
-			.style("background-color", "#4EB7B2")
-			.attr("class", "explanationCircle")
+			historyBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.attr("id", "history_part2")
+				.text("The alphabet has 26 letters and the key table only uses 25, which means we must ommit one letter from our alphabet!")
 
-		processBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.attr("class", "textDivTitle2")
-			.attr("id", "blockEncryptionBubble")
-			.append("text")
-			.text("Encryption")
-		
-		processBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.text("The message is split into pairs of letters, and we use both letters to encrypt.")
-		
-		processBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.text("Click the button below to see how it works.")
+			historyBubble.transition()
+				.duration(1000)
+				.style("width", "350px")
+				.style("height", "350px")
+				.style("color", "black")
 
-		processBubble.append('div').attr('id', 'startAnimation').text("START ANIMATION")
+			processBubble = explanation.append('div')
+				.style("width", "0px")
+				.style("height", "0px")
+				.style("background-color", "#4EB7B2")
+				.attr("class", "explanationCircle")
 
-		// you gotta do what you gotta do \_(-_-)_/
-		const forreal = this;
-		document.getElementById("startAnimation").onclick = function () {
-			forreal.transitions(0);
-		};
+			processBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.attr("class", "textDivTitle2")
+				.attr("id", "blockEncryptionBubble")
+				.append("text")
+				.text("Encryption")
 
-		processBubble.transition()
-			.duration(1000)
-			.style("width", "350px")
-			.style("height", "350px")
-			.delay(500)
-			.style("color", "black")
-			.style("margin-top", '-90px')
+			processBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.text("The message is split into pairs of letters, and we use both letters to encrypt.")
 
-		decryptBubble = explanation.append('div')
-			.style("width", "0px")
-			.style("height", "0px")
-			.style("background-color", "#BCF2F0")
-			.attr("class", "explanationCircle")
-			.style("margin-left", "auto")
+			processBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.text("Click the button below to see how it works.")
 
-		decryptBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.attr("class", "textDivTitle2")
-			.text("Decryption")
-		
-		decryptBubble
-			.append('div')
-			.attr("class", "textDiv")
-			.text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.")
+			processBubble.append('div').attr('id', 'startAnimation').text("START ANIMATION")
 
-		decryptBubble.transition()
-			.duration(1000)
-			.style("width", "350px")
-			.style("height", "350px")
-			.delay(1000)
-			.style("color", "black")
-			.style("margin-top", '-90px')
+			// you gotta do what you gotta do \_(-_-)_/
+			const forreal = this;
+			document.getElementById("startAnimation").onclick = function () {
+				forreal.transitions(0);
+			};
+
+			processBubble.transition()
+				.duration(1000)
+				.style("width", "350px")
+				.style("height", "350px")
+				.delay(500)
+				.style("color", "black")
+				.style("margin-top", '-90px')
+
+			decryptBubble = explanation.append('div')
+				.style("width", "0px")
+				.style("height", "0px")
+				.style("background-color", "#BCF2F0")
+				.attr("class", "explanationCircle")
+				.style("margin-left", "auto")
+
+			decryptBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.attr("class", "textDivTitle2")
+				.text("Decryption")
+
+			decryptBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.")
+
+			decryptBubble.transition()
+				.duration(1000)
+				.style("width", "350px")
+				.style("height", "350px")
+				.delay(1000)
+				.style("color", "black")
+				.style("margin-top", '-90px')
+		}
 	}
 
 

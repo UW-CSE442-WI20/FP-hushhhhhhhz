@@ -10,7 +10,7 @@ const createTransitionSection = require('./create-transition-section');
 const createSymmetricAnimation = require('./create-symmetric-animation');
 const createAsymmetricAnimation = require('./create-asymmetric-animation');
 const createRSA = require('./create-rsa');
-
+const createConclusion = require('./create-conclusion');
 // get scrolling coordinates
 sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
@@ -30,7 +30,7 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA]
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createConclusion]
 
 // also bug with intro and history on up scroll
 // and maybe with it disappearing ?
@@ -42,6 +42,7 @@ var contentToStep = {
 	"content5": "step8",
 	"content6": "step9",
 	"content7": "step10",
+	"content8": "step11",
 }
 
 d3.select("#cover")

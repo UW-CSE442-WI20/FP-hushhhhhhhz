@@ -16,6 +16,22 @@ class RSA {
     }
 
     start() {
+        const allSteps = [
+            'The setup of RSA',
+            'Step 1: Select 2 large primes, p and q',
+            'p = 11, q = 17',
+            'Step 2: Calculate n = pq',
+            'n = 11 * 17 = 187',
+            'Step 3: Calculate ϕ(n) = (p-1)(q-1)',
+            'ϕ(n) = (p-1)(q-1) = 10 * 16 = 160',
+            'Step 4: Select an e such that e is relatively prime to ϕ(n)',
+            'e = 3 works!',
+            'Step 5: Calculate d such that de ≡ 1 (mod ϕ(n))',
+            'd = 107',
+            'Final step: n and e are made public',
+            'd is the secret privately held by the receiver'
+        ]
+
         d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
 
@@ -23,87 +39,40 @@ class RSA {
         d3.select("#content7").classed("selected", true)
         let vizContainer = d3.select('#content7').append('div').attr('class', 'rsa_container');
         let rsa_calc_explanation = vizContainer.append('div').attr('class', 'rsa_calc_explanation');
-        rsa_calc_explanation.append('div').attr('class', 'receiver_intro').text('The setup of RSA');
 
         // RECEIVER
         let calc = rsa_calc_explanation.append('div').attr('class', 'calculation')
-        let timeDuration = 2000
+        let timeDuration = 1500
 
+        let number = -1;
         calc.transition()
-            .duration(timeDuration)
-            .on('start', () => {
-                calc.append('div').text('Select 2 primes')
+            .duration(timeDuration * allSteps.length)
+            .on('start', function printLine() {
+                number++
+                console.log(number, allSteps[number])
+                if (number == allSteps.length - 1) {
+                    d3.select('.calculation')
+                        .append('div')
+                        .transition()
+                        .duration(timeDuration)
+                        .attr('class', 'rsa_steps')
+                        .style('font-weight', 'bold')
+                        .attr('id', 'step' + number)
+                        .text(allSteps[number])
+                        // .on('end', this.senderMessage)
+                } else if (number < allSteps.length) {
+                    d3.select('.calculation')
+                        .append('div')
+                        .transition()
+                        .duration(timeDuration)
+                        .attr('class', 'rsa_steps')
+                        .style('font-weight', (number % 2 == 1) ? 'bold' : null)
+                        .attr('id', 'rsa_step' + number)
+                        .text(allSteps[number])
+                        .on('end', printLine)
+                }
             })
-            .on('end', () => {
-                calc.append('div')
-                    .attr('id', 'p_data')
-                    .transition()
-                    .duration(timeDuration)
-                    .on('start', () => {
-                        d3.select('#p_data').text('p = 11')
-                    })
-                    .on('end', () => {
-                        d3.select('.calculation')
-                            .transition()
-                            .duration(timeDuration)
-                            .on('start', () => {
-                                d3.select('.calculation')
-                                    .append('div')
-                                    .attr('id', 'q_data').text('q = 17')
-                            })
-                            .on('end', () => {
-                                d3.select('.calculation')
-                                    .transition()
-                                    .duration(timeDuration)
-                                    .on('start', () => {
-                                        d3.select('.calculation')
-                                            .append('div')
-                                            .attr('id', 'n_data').text('n = pq = 11 * 17 = 187')
-                                    })
-                                    .on('end', () => {
-                                        d3.select('.calculation')
-                                            .transition()
-                                            .duration(timeDuration)
-                                            .on('start', () => {
-                                                d3.select('.calculation')
-                                                    .append('div')
-                                                    .attr('id', 'phi_data').text('ϕ(n) = (p-1)(q-1) = 10 * 16 = 160')
-                                            })
-                                            .on('end', () => {
-                                                d3.select('.calculation')
-                                                    .transition()
-                                                    .duration(timeDuration)
-                                                    .on('start', () => {
-                                                        d3.select('.calculation')
-                                                            .append('div')
-                                                            .attr('id', 'e_data').text('Select an e such that e is relatively prime to ϕ(n). e = 3 works!')
-                                                    })
-                                                    .on('end', () => {
-                                                        d3.select('.calculation')
-                                                            .transition()
-                                                            .duration(timeDuration)
-                                                            .on('start', () => {
-                                                                d3.select('.calculation')
-                                                                    .append('div')
-                                                                    .attr('id', 'd_data').text('d = 107 such that d * e ≡ 1 (mod ϕ(n))')
-                                                            })
-                                                            .on('end', () => {
-                                                                d3.select('.calculation')
-                                                                    .transition()
-                                                                    .duration(timeDuration)
-                                                                    .on('start', () => {
-                                                                        d3.select('.calculation')
-                                                                            .append('div')
-                                                                            .attr('id', 'public_data').text('n and e are made public and d is the secret privately held by the receiver')
-                                                                    })
-                                                                    .on('end', this.senderMessage)
-                                                            })
-                                                    })
-                                            })
-                                    })
-                            })
-                    })
-            })
+            .on('end', this.senderMessage)
     }
 
     getCipherLetter(m) {
@@ -363,7 +332,7 @@ class RSA {
                 .duration(duration)
                 .attr('hidden', null)
                 .text(String.fromCharCode(initialCipher[i]))
-                .delay((6 * interval) + timeout * i) // twice the delay for the receiver
+                .delay((6 * interval) + timeout * i)
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()

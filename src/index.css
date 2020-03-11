@@ -152,7 +152,7 @@ table {
 	position: fixed;
 	top: 25vh;
 	left: 15vw;
-	width: 50vw;
+	width: 70vw;
 }
 
 .title1Container {
@@ -198,7 +198,26 @@ table {
 
 .results {
 	margin-left: 100px;
-	font-size: 30px;
+}
+
+.resultsDivs {
+	display: flex;
+	width: 100px;
+}
+
+#keyDisplay {
+    width: 120px;
+    margin-right: 48px;
+}
+
+#textDisplay{
+    width: 120px;
+    margin-right: 32px;
+}
+
+#cipherDisplay {
+	width: 120px;
+	margin-right: 15px;
 }
 
 .inputs2 {
@@ -230,19 +249,22 @@ table {
 }
 
 .lilDiv2  {
-    width: 150px;
+    width: 200px;
     height: 50px;
-	margin-right: 50px;
+	margin: 0 0 0 50px;
 }
 
 
 #textInput, #textInput2 {
 	font-size:20px;
 	font-family: 'Dosis', sans-serif;
-	margin-right: 20px;
 	border-radius: 5px;
 	width: 150px;
 	height: 45px
+}
+
+#textInput2 {
+	margin-top: 25px;
 }
 
 .math {
@@ -436,7 +458,7 @@ body {
 
 #inputButton2 {
 	width: 70px;
-	margin: 20px 0 0 30px;
+	margin: 20px 0 0 0px;
 	border-radius: 5px;
 	border: 1px solid white;
 	cursor: pointer;

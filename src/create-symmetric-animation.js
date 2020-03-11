@@ -13,6 +13,10 @@ class SymmetricTutorial {
 
     start() {
         d3.select('#title8 .halfVis').html("")
+
+        d3.selectAll("#vis div").classed("selected", false)
+        d3.select("#content5").classed("selected", true)
+
         this.vis = d3.select('#title8 .halfVis')
 
         this.vis.append('div')

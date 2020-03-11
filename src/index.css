@@ -578,13 +578,13 @@ p {
 	font-size: 40px;
 }
 
-#step1, #step7 {
+#step1, #step7, #step11 {
     color: white;
 	background-color: #1f2833;
     position: relative;
 }
 
-#step1::before, #step7::before {
+#step1::before, #step7::before, #step11::before {
 	content: "";
     position: absolute;
     top: 0; left: 0;

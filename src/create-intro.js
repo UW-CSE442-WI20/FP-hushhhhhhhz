@@ -27,13 +27,13 @@ class Intro {
 
 
 			var nodes = [
-				{ id: "Government", cx: 90, cy: 100, color: 2},
-				{ id: "Internet", cx: 80, cy: 200, color: 1},
-				{ id: "Passwords", cx: 180, cy: 60, color: 1 },
-				{ id: "Email", cx: 170, cy: 160, color: 0 },
-				{ id: "Mobile", cx: 260, cy: 120, color: 2},
-				{ id: "Business", cx: 250, cy: 220, color: 1 },
-				{ id: "Military", cx: 160, cy: 260, color: 2 }  
+				{ id: "Government", cx: 90, cy: 100, color: 2, textx: 53, texty: 105 },
+				{ id: "Internet", cx: 80, cy: 200, color: 1, textx: 55, texty: 205},
+				{ id: "Passwords", cx: 180, cy: 60, color: 1, textx: 148, texty: 65 },
+				{ id: "Email", cx: 170, cy: 160, color: 0, textx: 152, texty: 165 },
+				{ id: "Mobile", cx: 260, cy: 120, color: 2, textx: 238, texty: 126 },
+				{ id: "Business", cx: 250, cy: 220, color: 1, textx: 223, texty: 225 },
+				{ id: "Military", cx: 160, cy: 260, color: 2, textx: 138, texty: 265 }  
 			]
 
 			// starting positions for the nodes
@@ -70,8 +70,8 @@ class Intro {
 				.data(nodes).enter()
 				.append("text")
 				.text((d) => {return d.id})
-				.attr('x', (d) => {return d.cx - 30})
-				.attr('y', (d) => {return d.cy})
+				.attr('x', (d) => {return d.textx})
+				.attr('y', (d) => {return d.texty})
 				.attr('fill', 'black')
 				.attr('opacity', 0)
 				.transition()
@@ -117,9 +117,9 @@ class Intro {
 				.text("Cryptanalysis is the art and science of breaking ciphers. Cryptanalysts perform a variety of different analyses on a cipher to attempt to learn secret information. Among these are mathematical analysis, logical analysis and side-channel analysis.") 
 
 			var types = [
-				{ id: "Cryptology", cx: 200, cy: 90, color: 0 },
-				{ id: "Cryptography", cx: 200, cy: 230, color: 1 },
-				{ id: "Cryptanalysis", cx: 80, cy: 160, color:2 },
+				{ id: "Cryptology", cx: 200, cy: 90, color: 0, textx: 167, texty: 95  },
+				{ id: "Cryptography", cx: 200, cy: 230, color: 1, textx: 160, texty: 235  },
+				{ id: "Cryptanalysis", cx: 80, cy: 160, color: 2, textx: 40, texty: 165  },
 			]
 
 			// starting positions for the nodes
@@ -160,9 +160,9 @@ class Intro {
 			typeBubbles.selectAll("text")
 				.data(types).enter()
 				.append("text")
-				.text((d) => {return d.id})
-				.attr('x', (d) => {return d.cx - 30})
-				.attr('y', (d) => {return d.cy})
+				.text((d) => { return d.id })
+				.attr('x', (d) => { return d.textx })
+				.attr('y', (d) => { return d.texty })
 				.attr('fill', 'black')
 				.attr('opacity', 0)
 				.transition()

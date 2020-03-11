@@ -22,6 +22,7 @@ class BlockAnimation {
 		d3.select("#content4").classed("selected", true)
 
 		var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything')
+		everything.append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
 		var block_container = everything.append("div").attr('class', 'blockContainer')
 
 		var grid = block_container.append('div').attr('class', 'grid');

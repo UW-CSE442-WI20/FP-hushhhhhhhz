@@ -155,7 +155,7 @@ table {
 }
 
 .streamContainer {
-	margin: 0px 0 0 80px;
+	margin: 90px 0 0 130px;
 	position: fixed;
 	top: 50px;
 }
@@ -165,60 +165,121 @@ table {
 	margin-left: 50px;
 	font-size: 20px;
 	position: fixed;
-	top: 5vh;
-	left: 25vw;
-	width: 50vw;
+	top: 25vh;
+	left: 15vw;
+	width: 70vw;
 }
+
+.title1Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 26px;
+    position: fixed;
+    top: 5vh;
+    left: 15vw;
+    width: 50vw;
+}
+
+.title2Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    position: fixed;
+    top: 15vh;
+    left: 15vw;
+    width: 50vw;
+}
+
+.title3Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    position: fixed;
+    top: 55vh;
+    left: 15vw;
+    width: 50vw;
+}
+
 
 .input2Container {
     display: flex;
     margin-left: 50px;
     font-size: 20px;
     position: fixed;
-    top: 60vh;
-    left: 25vw;
-    width: 50vw;
+    top: 65vh;
+    left: 15vw;
+    width: 200vw;
 }
 
 .results {
-    font-size: 26px;
-    position: fixed;
-	margin-left: 50px;
-    top: 34vh;
-    left: 25vw;
-    width: 50vw;
+	margin-left: 100px;
+}
+
+.resultsDivs {
+	display: flex;
+	width: 100px;
+}
+
+#keyDisplay {
+    width: 120px;
+    margin-right: 48px;
+}
+
+#textDisplay{
+    width: 120px;
+    margin-right: 32px;
+}
+
+#cipherDisplay {
+	width: 120px;
+	margin-right: 15px;
 }
 
 .inputs2 {
-	margin: 0 30px 0 30px;
+	margin: 0 40px 0 0;
+	width: 315px;
+}
+
+.instruction {
+	margin: 0 0 30px 0;
 }
 
 .inputs {
     margin: 0 50px 0 0;
 }
 
-.tableDiv {
-	margin: 40px 0 0 0;
-}
 
 .inFFD700 {
 	width: 320px;
 }
 
 #answer {
-	margin: 10px 0 0 50px;
+	margin: 20px 0 0445px;
 }
 
-.lilDiv, .lilDiv2  {
+.lilDiv {
 	display: flex;
-	width: 380px;
+	width: 300px;
+	height: 50px;
 }
+
+.lilDiv2  {
+    width: 200px;
+    height: 50px;
+	margin: 0 0 0 50px;
+}
+
 
 #textInput, #textInput2 {
 	font-size:20px;
 	font-family: 'Dosis', sans-serif;
-	margin-right: 20px;
 	border-radius: 5px;
+	width: 150px;
+	height: 45px
+}
+
+#textInput2 {
+	margin-top: 25px;
 }
 
 .math {
@@ -336,7 +397,7 @@ p {
 
 
 .blockContainer {
-	margin: 0 50px 50px 50px;
+	margin: 80px 50px 50px 50px;
     width: 60%;
     position: fixed;
     top: 20px;
@@ -391,7 +452,7 @@ p {
 	align-items: center;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation, #startButton {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid white;
@@ -400,6 +461,18 @@ p {
 	text-align: center;
 	background-color: #1F2833;
 	color: white;
+}
+
+#inputButton2 {
+	width: 70px;
+	margin: 20px 0 0 0px;
+	border-radius: 5px;
+	border: 1px solid white;
+	cursor: pointer;
+    text-align: center;
+	color: white;
+	padding: 10px;
+	background-color: #1F2833;
 }
 
 #startAnimation, #startButton {
@@ -420,9 +493,15 @@ p {
 	display: flex;
 	height: 620px;
 	position: relative;
-	/* left: 5vw; */
 	justify-content: center;
 }
+
+.infoContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
 
 .line {
 	background-color: gray;
@@ -762,8 +841,6 @@ img {
 	margin-right: 50px;	
 }
 
-/* 
-#cipher_calc, #cipher_final, #decipher_calc, #decipher_final {
-  text-align: center;
-  display: block;
-} */
+.decipher_letter {
+  font-size: 34px;
+}

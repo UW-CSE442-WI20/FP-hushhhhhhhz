@@ -1,3 +1,22 @@
+html {
+	scroll-snap-type: y mandatory;
+}
+
+body {
+	margin: unset;
+	font-family: 'Dosis', sans-serif;
+	--plain-color: #DA2C5E;
+	--key-color: #FF5733;
+	--cipher-color: #FFD700;
+}
+
+.step {
+	height: 100vh;
+	z-index: 2;
+	position: relative;
+	scroll-snap-align: start;
+}
+
 #sections {
 	position: relative;
 	display: inline-block;
@@ -38,12 +57,6 @@
 .introContainer div {
 	margin: 50px 50px 0 50px;
 	border-radius: 15px;
-}
-
-.step {
-	height: 100vh;
-	z-index: 2;
-	position: relative;
 }
 
 #historySection {
@@ -246,14 +259,6 @@ textarea {
 
 p {
 	padding: 1px;
-}
-
-body {
-	margin: unset;
-	font-family: 'Dosis', sans-serif;
-	--plain-color: #DA2C5E;
-	--key-color: #FF5733;
-	--cipher-color: #FFD700;
 }
 
 .title1 circle {

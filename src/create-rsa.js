@@ -23,7 +23,7 @@ class RSA {
             'Step 2: Calculate n = pq',
             'n = 11 * 17 = 187',
             'Step 3: Calculate ϕ(n) = (p-1)(q-1)',
-            'ϕ(n) = (p-1)(q-1) = 10 * 16 = 160',
+            'ϕ(n) = 10 * 16 = 160',
             'Step 4: Select an e such that e is relatively prime to ϕ(n)',
             'e = 3 works!',
             'Step 5: Calculate d such that de ≡ 1 (mod ϕ(n))',

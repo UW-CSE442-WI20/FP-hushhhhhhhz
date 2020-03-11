@@ -1,5 +1,6 @@
 html {
 	scroll-snap-type: y mandatory;
+	overflow-x: hidden;
 }
 
 body {
@@ -165,7 +166,7 @@ table {
 	margin-left: 50px;
 	font-size: 20px;
 	position: fixed;
-	top: 25vh;
+	top: 20vh;
 	left: 15vw;
 	width: 70vw;
 }
@@ -175,7 +176,7 @@ table {
     margin-left: 50px;
     font-size: 26px;
     position: fixed;
-    top: 5vh;
+    top: 0vh;
     left: 15vw;
     width: 50vw;
 }
@@ -185,7 +186,7 @@ table {
     margin-left: 50px;
     font-size: 20px;
     position: fixed;
-    top: 15vh;
+    top: 10vh;
     left: 15vw;
     width: 50vw;
 }
@@ -197,7 +198,8 @@ table {
     position: fixed;
     top: 55vh;
     left: 15vw;
-    width: 50vw;
+	width: 74vw;
+	border-top: 1px solid white;
 }
 
 .interactiveContainer h2 {

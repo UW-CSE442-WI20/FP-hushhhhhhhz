@@ -91,7 +91,7 @@ class Intro {
 				.style("padding", "10px")
 
 			applicationText.append("h2")
-				.text("Why is Cryptogology important?")
+				.text("Why is Cryptology important?")
 
 			applicationText.append('p')
 				.text("Cryptology has had many applications over thousands of years of history. In fact, the earliest computers were developed in order to break encrypted messages being sent during WWII. But as computers have made their way into every part of our live, cryptology has become increasingly important in protecting the personal data of individuals. To the left we highlight the major applications that motivate the study and development of cryptology today. As you can see, cryptoloy comes into our lives in a multitude of ways.")

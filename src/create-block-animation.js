@@ -15,7 +15,7 @@ class BlockAnimation {
 	}
 
 	appendItems() {
-		d3.select("#everythingContainer").append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
+		d3.select("#everythingContainer").append('h1').text('A more advanced approach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
 
 		var block_container = d3.select("#everythingContainer").append("div").attr('class', 'blockContainer')
 

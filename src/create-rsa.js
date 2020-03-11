@@ -59,7 +59,7 @@ class RSA {
                         .style('font-weight', 'bold')
                         .attr('id', 'step' + number)
                         .text(allSteps[number])
-                        // .on('end', this.senderMessage)
+                    // .on('end', this.senderMessage)
                 } else if (number < allSteps.length) {
                     d3.select('.calculation')
                         .append('div')
@@ -128,24 +128,24 @@ class RSA {
             .attr('id', 'cipher_final')
             .attr('src', "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
 
-        index = receiver_div.append('div')
+        rec_index = receiver_div.append('div')
             .attr('id', 'rec_index')
             .attr('class', 'rsa_index');
 
-        index.append('img')
+        rec_index.append('img')
             .attr('src', woman)
             .style('width', '120px')
 
-        index.append('div')
+        rec_index.append('div')
             .text('Receiver already has n, d and e')
             .style('font-weight', 'bold')
 
-        index.append('div')
+        rec_index.append('div')
             .text('They only require n and d')
             .style('font-weight', 'bold')
             .style('padding-bottom', '25px')
 
-        images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
+        images = rec_index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
 
         images.append('img')
             .attr('class', 'rsa_calc_img')
@@ -157,11 +157,22 @@ class RSA {
             .attr('id', 'decipher_final')
             .attr('src', "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
 
-        index.append('div')
+        rec_index.append('div')
             .attr('class', 'decipher_letter')
             .style('color', 'red')
-            .transition()
-        // .attr('hidden', true)
+
+        let decipher_message = rec_index.append('div')
+            .attr('class', 'decipher_message')
+            .style('display', 'flex')
+            .style('font-size', '30px')
+
+        for (let i = 0; i < initialMessage.length; i++) {
+            decipher_message.append('div')
+                .attr('class', 'rsa_decipher')
+                .attr('id', 'rsa_decipher' + i)
+                .text(initialMessage[i])
+                .style('opacity', '0')
+        }
 
         // TABLE 1
         let table = table_div.append('table');
@@ -332,6 +343,12 @@ class RSA {
                 .duration(duration)
                 .attr('hidden', null)
                 .text(String.fromCharCode(initialCipher[i]))
+                .delay((6 * interval) + timeout * i)
+
+            d3_index.select('#rsa_decipher' + i)
+                .transition()
+                .duration(duration)
+                .style('opacity', '1')
                 .delay((6 * interval) + timeout * i)
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))

@@ -854,7 +854,7 @@ img:not(.rsa_calc_img) {
 .sender_div, .receiver_div {
 	display: flex;
   	width: 250px;
-	height: 275px;
+	height: 350px;
 }
 
 .cipher_letter, .decipher_letter, .cipher {
@@ -862,10 +862,7 @@ img:not(.rsa_calc_img) {
 }
 
 .tableDivRSA { 
-	margin: 40px 0 0 0;
-	/* display: flex;
-    flex-wrap: wrap;
-	justify-content: center; */
+	margin: 10px;
 }
 
 .rsa_index {

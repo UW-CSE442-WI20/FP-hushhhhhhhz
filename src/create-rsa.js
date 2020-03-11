@@ -16,21 +16,20 @@ class RSA {
     }
 
     start() {
-        const allSteps = [
-            'The setup of RSA',
-            'Step 1: Select 2 large primes, p and q',
-            'p = 11, q = 17',
-            'Step 2: Calculate n = pq',
-            'n = 11 * 17 = 187',
-            'Step 3: Calculate ϕ(n) = (p-1)(q-1)',
-            'ϕ(n) = 10 * 16 = 160',
-            'Step 4: Select an e such that e is relatively prime to ϕ(n)',
-            'e = 3 works!',
-            'Step 5: Calculate d such that de ≡ 1 (mod ϕ(n))',
-            'd = 107',
-            'Final step: n and e are made public',
-            'd is the secret privately held by the receiver'
-        ]
+        const allSteps = {
+			'Step 1': ['Select 2 primes, p and q',
+				'we\'ll choose 11 and 17'],
+			'Step 2': ['Calculate n = pq',
+				'n = 11 * 17 = 187'],
+			'Step 3': ['Calculate ϕ(n) = (p-1)(q-1)',
+				'ϕ(n) = 10 * 16 = 160'],
+			'Step 4': ['Select an e such that e is relatively prime to ϕ(n)',
+				'e = 3 works!'],
+			'Step 5': ['Calculate d such that d * e ≡ 1 (mod ϕ(n))',
+				'd = 107'],
+			'Final step': ['n and e are made public',
+				'd is the secret privately held by the receiver']
+        }
 
         d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
@@ -42,36 +41,33 @@ class RSA {
 
         // RECEIVER
         let calc = rsa_calc_explanation.append('div').attr('class', 'calculation')
-        let timeDuration = 0
+        let timeDuration = 1500
 
         let number = -1;
         calc.transition()
             .duration(timeDuration * allSteps.length)
             .on('start', function printLine() {
-                number++
-                console.log(number, allSteps[number])
-                if (number == allSteps.length - 1) {
-                    d3.select('.calculation')
-                        .append('div')
-                        .transition()
-                        .duration(timeDuration)
-                        .attr('class', 'rsa_steps')
-                        .style('font-weight', 'bold')
-                        .attr('id', 'step' + number)
-                        .text(allSteps[number])
-                    // .on('end', this.senderMessage)
-                } else if (number < allSteps.length) {
-                    d3.select('.calculation')
-                        .append('div')
-                        .transition()
-                        .duration(timeDuration)
-                        .attr('class', 'rsa_steps')
-                        .style('font-weight', (number % 2 == 1) ? 'bold' : null)
-                        .attr('id', 'rsa_step' + number)
-                        .text(allSteps[number])
-                        .on('end', printLine)
-                }
-            })
+				for (var step in allSteps) {
+					number++
+					d3.select('.calculation')
+						.append('div')
+						.transition()
+						.duration(timeDuration)
+						.attr('class', 'rsaStepTitle')
+						.style('font-weight', 'bold')
+						.text(step)
+						.delay(timeDuration * number)
+					for (var key in allSteps[step]) {
+						d3.select('.calculation')
+							.append('div')
+							.transition()
+							.duration(timeDuration)
+							.attr('class', 'rsaStepText')
+							.style('font-weight', 'bold')
+							.text(allSteps[step][key])
+							.delay(timeDuration * number)
+					}
+				}})
             .on('end', this.senderMessage)
     }
 

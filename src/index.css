@@ -865,6 +865,11 @@ img:not(.rsa_calc_img) {
 	margin: 10px;
 }
 
+.rsaStepTitle {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
 .rsa_index {
 	display: flex;
 	flex-direction: column;

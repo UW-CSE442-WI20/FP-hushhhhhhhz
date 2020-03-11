@@ -75,9 +75,9 @@ class Intro {
 				.attr('fill', 'black')
 				.attr('opacity', 0)
 				.transition()
-				.duration(2000)
+				.duration(3000)
 				.attr('opacity', 1)
-				.delay(5000)
+				.delay(3000)
 
 
 			applicationText = applicationContainer.append('div')
@@ -166,9 +166,9 @@ class Intro {
 				.attr('fill', 'black')
 				.attr('opacity', 0)
 				.transition()
-				.duration(2000)
+				.duration(3000)
 				.attr('opacity', 1)
-				.delay(9000)
+				.delay(6000)
 
 			typeText.transition()
 				.duration(3000)

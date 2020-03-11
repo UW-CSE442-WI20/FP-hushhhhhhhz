@@ -20,11 +20,15 @@ class StreamInteraction {
 		inputMessage = "";
 		inputKey = "";
 		resultCipher = "";
+		var title = d3.select('#title4 .fullVis').append('div').attr('class', 'title1Container');
+		title.append('h1').text('Now you try!').style('font-color', 'white')
+		var title2 = d3.select('#title4 .fullVis').append('div').attr('class', 'title2Container');
+		title2.append('h2').text('Encryption:').style('font-color', 'white')
 		var inputContainer = d3.select('#title4 .fullVis').append('div').attr('class', 'inputContainer');
 		var inputs = inputContainer.append('div').attr('class', 'inputs');
-		var results = d3.select('#title4 .fullVis').append('div').attr('class', 'results');
-
-		inputs.append('h3').text('Now you try!').attr('class', 'instruction')
+		var table_div = inputContainer.append('div').attr('class', 'tableDiv')	
+		var results = inputContainer.append('div').attr('class', 'results');
+		results.append('text').text('see the results below:')
 		inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction')
 		lilDiv = inputs.append('div').attr('class', 'lilDiv')
 		var textInput = lilDiv.append('input')
@@ -35,20 +39,41 @@ class StreamInteraction {
 			.attr('id', 'inputButton')
 			.text('SELECT')
 
-		var textDisplay = results.append('p')
+		var plainDiv = results.append('div').attr('class', 'resultsDivs')
+		var textDisplay = plainDiv.append('div')
 			.attr('id', 'textDisplay')
+			.append('h2')
 			.text("plaintext: ")
 			.style('color', plainColor)
+		var plainChoice = plainDiv.append('div')
+            .append('h2')
+            .text("")
+			.attr('id', 'plainChoice')
+            .style('color', plainColor)
 
-		var keyDisplay = results.append('p')
-			.attr('id', 'keyDisplay')
-			.text("keytext: ")
-			.style('color', keyColor)
+		var keyDiv = results.append('div').attr('class', 'resultsDivs')
+        var keyDisplay = keyDiv.append('div')
+            .attr('id', 'keyDisplay')
+            .append('h2')
+            .text("keytext: ")
+            .style('color', keyColor)
+        var keyChoice = keyDiv.append('div')
+            .append('h2')
+            .text("")
+            .attr('id', 'keyChoice')
+            .style('color', keyColor)
 
-		var cipherDisplay = results.append('p')
-			.attr('id', 'cipherDisplay')
-			.text("ciphertext: ")
-			.style('color', cipherColor)
+		var cipherDiv = results.append('div').attr('class', 'resultsDivs')
+        var cipherDisplay = cipherDiv.append('div')
+            .attr('id', 'cipherDisplay')
+            .append('h2')
+            .text("ciphertext: ")
+            .style('color', cipherColor)
+        var cipherChoice = cipherDiv.append('div')
+            .append('h2')
+            .text("")
+            .attr('id', 'cipherChoice')
+            .style('color', cipherColor)
 
 		var row1 = ["RNC","ONQ","CKO","KEY","FGU"];
 		var row2 = ["MIO","CAY","ZUU","KRK","BMW"];
@@ -56,8 +81,7 @@ class StreamInteraction {
 		var row4 = ["STD","HVO","JEQ","PYL","DNO"];
 		var row5 = ["QDA","HZQ","WKV","XDF","UPR"];
 		var keys = [row1, row2, row3, row4, row5];
-		var table_div = inputContainer.append('div').attr('class', 'tableDiv')	
-		table_div.append('h4').text('hover over the keys to see the cipher:').attr('class', 'instruction')
+		table_div.append('h4').text('hover below to choose a key:').attr('class', 'instruction')
 		var keyTable = table_div.append('table').attr('class', 'keyTable')
 		var theadKey = keyTable.append('thead');
 		var tbodyKey = keyTable.append('tbody');
@@ -84,17 +108,17 @@ class StreamInteraction {
 				}
 				inputKey = newKey
 			}
-			document.getElementById('keyDisplay').innerHTML = "keytext:     " + inputKey;	
+			document.getElementById('keyChoice').innerHTML = inputKey;	
 			calculateCipher();
-			document.getElementById('cipherDisplay').innerHTML = "ciphertext: " + resultCipher;
+			document.getElementById('cipherChoice').innerHTML = resultCipher;
 		}
 		function handleMouseOut() {
 			d3.select(this).style('background-color', 'transparent')      
 			               .style('color', 'white')
 			inputKey = ""
 			resultCipher = ""
-			document.getElementById('keyDisplay').innerHTML = "keytext:    ";
-			document.getElementById('cipherDisplay').innerHTML = "ciphertext: ";
+			document.getElementById('keyChoice').innerHTML = "";
+			document.getElementById('cipherChoice').innerHTML = "";
 		}
 		var rowsKey = tbodyKey.selectAll('tr')
 			.data(keys)
@@ -117,15 +141,22 @@ class StreamInteraction {
 			inputMessage = document.getElementById('textInput').value 
 			inputMessage = inputMessage.replace(/\s+/g, '');
 			inputMessage = inputMessage.toUpperCase();
-			document.getElementById('textDisplay').innerHTML = "plaintext:  " + inputMessage;
+			document.getElementById('plainChoice').innerHTML = inputMessage;
 			document.getElementById('textInput').value = ""
 		});
 
-
+		var title3 = d3.select('#title4 .fullVis').append('div').attr('class', 'title3Container');
+        title3.append('h2').text('Decryption:')
 		var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
+		var inputs2 = input2Container.append('div').attr('class', 'inputs2'); 
+		inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
+		inputs2.append('h2').text('ciphertext: ISSNMBSX').style('color', cipherColor)
+		inputs2.append('h2').text('keytext: KEYKEYKE').style('color', keyColor)
 
 		var table_div2 = input2Container.append('div').attr('class', 'tableDiv')
-        var table = table_div2.append('table');
+		lilDiv2 = input2Container.append('div').attr('class', 'lilDiv2')
+        table_div2.append('h4').text('use this table to compute the values of C and K:').style('margin', '0 0 30px 0')
+		var table = table_div2.append('table');
         var thead = table.append('thead');
         var tbody = table.append('tbody');
         thead.append('tr')
@@ -149,7 +180,7 @@ class StreamInteraction {
             .append('td')
             .html(function(d) {return d.value})
             .attr('class', function(d) { return d.column });
-		 var table2 = table_div2.append('table');
+		var table2 = table_div2.append('table');
         var thead2 = table2.append('thead');
         var tbody2 = table2.append('tbody');
         thead2.append('tr')
@@ -174,18 +205,14 @@ class StreamInteraction {
             .html(function(d) {return d.value})
             .attr('class', function(d) { return d.column });
 		
-		var inputs2 = input2Container.append('div').attr('class', 'inputs2'); 
-		inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
-		inputs2.append('h4').text('ciphertext: ISSNMBSX').style('color', cipherColor)
-		inputs2.append('h4').text('keytext: KEYKEYKE').style('color', keyColor)
-		lilDiv2 = inputs2.append('div').attr('class', 'lilDiv2')
+		lilDiv2.append('text').text('try your answer below:')
 		var textInput2 = lilDiv2.append('input')
             .attr('id', 'textInput2')
             .attr('style', 'text')
 		var inputButton2 = lilDiv2.append('div')
             .attr('id', 'inputButton2')
             .text('CHECK')
-		var answer = inputs2.append('h4').text('')
+		var answer = lilDiv2.append('h4').text('')
 								.style('color', 'white')
 								.attr('id', 'answer')
 		d3.select('#inputButton2').on('click', function () {
@@ -193,9 +220,9 @@ class StreamInteraction {
             guess = guess.replace(/\s+/g, '');
 			guess = guess.toUpperCase();
 			if (guess == "YOUDIDIT") {
-            	document.getElementById('answer').innerHTML = "Correct!";
+            	document.getElementById('answer').innerHTML = "correct!";
             } else {
-				document.getElementById('answer').innerHTML = "Try again..."
+				document.getElementById('answer').innerHTML = "try again..."
 			}
         });
 	}

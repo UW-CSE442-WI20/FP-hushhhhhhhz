@@ -12,13 +12,15 @@ class SymmetricTutorial {
     }
 
     start() {
-        d3.select('#title8 .halfVis').html("")
-        d3.select("#title8")
-            .style("display", "flex")
-            .style("flex-direction", "row")
-        this.vis = d3.select('#title8 .halfVis')
+        d3.select('#title8 .fullVis').html("")
+
+        this.vis = d3.select('#title8 .fullVis')
 
         this.vis.append('div')
+            .attr('id', 'sym_outter')
+
+        d3.select("#sym_outter")
+            .append('div')
             .attr('id', 'symmetric_container')
 
         d3.select('#symmetric_container')
@@ -88,15 +90,20 @@ class SymmetricTutorial {
             .attr("src", locked_doc)
             .attr("id", "doc2")
             .style("opacity", "0")
+        
+        d3.select("#sym_outter")
+            .append("div")
+            .attr("id", "story_warning")
 
-        this.vis.append("div")
+        d3.select("#story_warning")
+            .append("div")
             .attr("id", "story_text")
 
-        this.vis.append("div")
+        d3.select("#story_warning")
+            .append("div")
             .attr("id", "warning")
 
-        d3.select("#title8")
-            .append("div")
+        this.vis.append("div")
             .attr("id", "startAnimation")
             .text("Start animation")
             .style("width", "10%")

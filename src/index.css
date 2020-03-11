@@ -541,6 +541,7 @@ body {
 
 #outter {
   display: flex;
+  align-items: center;
 }
 
 #senders {
@@ -559,10 +560,6 @@ body {
 
 img {
   width: 100%;
-}
-
-#outter {
-  align-items: center;
 }
 
 

@@ -16,11 +16,9 @@ class AsymmetricAnimation {
     }
 
     start() {
-        d3.select('#title9 .halfVis').html("")
-        d3.select("#title9")
-            .style("display", "flex")
-            .style("flex-direction", "row")
-        this.vis = d3.select('#title9 .halfVis')
+        d3.select('#title9 .fullVis').html("")
+
+        this.vis = d3.select('#title9 .fullVis')
         this.vis.append('div')
             .attr("id", "outter")
 
@@ -178,14 +176,19 @@ class AsymmetricAnimation {
             .style("padding", "10px")
             .attr("id", "private")
 
-        this.vis.append("div")
+        d3.select("#outter")
+            .append("div")
+            .attr("id", "story_attention")
+
+        d3.select("#story_attention")
+            .append("div")
             .attr("id", "story")
 
-        this.vis.append("div")
+        d3.select("#story_attention")
+            .append("div")
             .attr("id", "attention")
 
-        d3.select("#title9")
-            .append("div")
+        this.vis.append("div")
             .attr("id", "startAnimation")
             .text("Start animation")
             .style("width", "10%")

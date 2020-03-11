@@ -565,9 +565,6 @@ img {
   align-items: center;
 }
 
-.keys {
-  width: 30%;
-}
 
 .publickey {
   width: 15%;
@@ -712,12 +709,19 @@ img {
 
 #story, #attention{
   text-align: center;
+  margin: auto;
+  width: 85%;
+  font-size: 35px;
+}
+#story {
+	padding: 20px 0px 12px 0px;
 }
 
 #attention {
   font-weight: bold;
   color: red;
   font-size: 25px;
+  width: 65%;
 }
 
 .textDiv {

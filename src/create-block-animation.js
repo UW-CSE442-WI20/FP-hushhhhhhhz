@@ -3,27 +3,21 @@ const d3 = require('d3');
 class BlockAnimation {
 
 	constructor() {
-		this.darkColor = "#FF5733";
-		this.lightColor = "#D99E91";
-		this.cipherColor = "#C70039";
+		this.darkColor = "#DA2C5E";
+		this.lightColor = "#CA9AA7";
+		this.cipherColor = "#FFD700";
 		this.plain_text_pairs = ["GR", "MO", "MY"];
 		this.cipher_text_pairs = ["MW", "NP", "OW"];
 		this.initialMessage = "SECRET";
 		this.cipherMessage = "UCBSDU"
 		this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
+		this.reset = false;
 	}
 
-	start(flag) {
-		d3.selectAll(".fullVis:not(.special)").html("")
-        d3.selectAll('.halfVis').html("")
+	appendItems() {
+		d3.select("#everythingContainer").append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
 
-		d3.selectAll("#vis div").classed("selected", false)
-		d3.select("#content4").classed("selected", true)
-
-		var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything')
-		everything.append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
-		var block_container = everything.append("div").attr('class', 'blockContainer')
+		var block_container = d3.select("#everythingContainer").append("div").attr('class', 'blockContainer')
 
 		var grid = block_container.append('div').attr('class', 'grid');
 
@@ -40,8 +34,20 @@ class BlockAnimation {
 		encryption.append('div').attr('class', 'block_message').text("");
 		encryption.append('div').attr('class', 'cipher_message').text("");		
 
-		var interactive_container = everything.append("div").attr('class', 'interactiveContainer')
+		var interactive_container = d3.select("#everythingContainer").append("div").attr('class', 'interactiveContainer')
+	}
+
+	start(flag) {
+		d3.selectAll(".fullVis:not(.special)").html("")
+        d3.selectAll('.halfVis').html("")
+
+		d3.selectAll("#vis div").classed("selected", false)
+		d3.select("#content4").classed("selected", true)
+
 		var explanation = d3.select('#title5 .explanation')
+
+		var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything').attr('id', 'everythingContainer')
+		everything.append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
 
 		if (!flag) {
 			historyBubble = explanation.append('div')
@@ -124,7 +130,10 @@ class BlockAnimation {
 			// you gotta do what you gotta do \_(-_-)_/
 			const forreal = this;
 			document.getElementById("startAnimation").onclick = function () {
-				forreal.transitions(0);
+				document.getElementById("everythingContainer").innerHTML = ""
+				forreal.appendItems()
+				document.getElementById("startAnimation").style.pointerEvents = 'none'
+				forreal.transitions(0)
 			};
 
 			processBubble.transition()
@@ -192,18 +201,19 @@ class BlockAnimation {
 
 
 	transitions(i) {
+		
 		this.plain_text_pairs = ["GR", "MO", "MY"];
 		this.cipher_text_pairs = ["MW", "NP", "OW"];
 		
-		var rule = (i==0) ? "row" : "column"; 
+		var rule = (i==0) ? "column" : "row"; 
 
 
 		var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text( rule[0].toUpperCase() + rule.substr(1, rule.length) + " rule:")
 		var plain_text = column_ex.append('div').attr('class', 'example')
 
-		plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter')
+		plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter').attr("id", rule+"_plaintext_"+this.plain_text_pairs[i][0]).style("color", this.darkColor)
 
-		plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter')
+		plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter').attr("id", rule+"_plaintext_"+this.plain_text_pairs[i][1]).style("color", this.darkColor)
 
 		var cipher_text = column_ex.append('div').attr('class', 'example')
 		cipher_text.append('div').attr('id', rule + '_cipher_1').attr('class', 'block_letter')
@@ -217,11 +227,13 @@ class BlockAnimation {
 			.transition()
 			.duration(duration)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay(0);
 		d3.select('.block-' + this.plain_text_pairs[i][1])
 			.transition()
 			.duration(duration)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay(0);
 
 		// color the plain text letters in the grid (light red)
@@ -229,23 +241,39 @@ class BlockAnimation {
 			.transition()
 			.duration(duration)
 			.style('background-color', this.lightColor)
+			.style("color", "white")
 			.delay(duration + delay);
 		d3.select('.block-' + this.plain_text_pairs[i][1])
 			.transition()
 			.duration(duration)
 			.style('background-color', this.lightColor)
+			.style("color", "white")
 			.delay(duration + delay);
+
+		d3.select("#" + rule + "_plaintext_" + this.plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('color', 'black')
+			.delay(duration + delay)
+
+		d3.select("#" + rule + "_plaintext_" + this.plain_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('color', 'black')
+			.delay(duration + delay)
 
 		// color the cipher text letters in the grid (red)
 		d3.select('.block-' + this.cipher_text_pairs[i][0])
 			.transition()
 			.duration(duration)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay((duration + delay));
 		d3.select('.block-' + this.cipher_text_pairs[i][1])
 			.transition()
 			.duration(duration)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay((duration + delay));
 
 		// add in the ciphered letters at the same time as the cipher text highlight
@@ -269,17 +297,20 @@ class BlockAnimation {
 			.transition()
 			.duration(duration)
 			.style('background-color', 'transparent')
+			.style('color', '#9a9a9a')
 			.delay((duration + delay + 1500));
 		d3.select('.block-' + this.plain_text_pairs[i][1])
 			.transition()
 			.duration(duration)
 			.style('background-color', 'transparent')
+			.style('color', '#9a9a9a')
 			.delay(duration + delay + 1500);
 
 		d3.select('.block-' + this.cipher_text_pairs[i][0])
 			.transition()
 			.duration(duration)
 			.style('background-color', 'transparent')
+			.style('color', '#9a9a9a')
 			.delay(duration + delay + 1500);
 
 		var forreal = this;
@@ -289,6 +320,7 @@ class BlockAnimation {
 				.transition()
 				.duration(duration)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(duration + delay + 1500)
 				.on("end", function () {
 					forreal.transitions(1)
@@ -300,6 +332,7 @@ class BlockAnimation {
 				.transition()
 				.duration(duration)
 				.style('background-color', 'transparent')
+				.style('color', '#9a9a9a')
 				.delay(duration + delay + 1500)
 				.on("end", function () {
 					forreal.box_transition(2)
@@ -314,9 +347,9 @@ class BlockAnimation {
 		var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text( "Box rule:")
 		var plain_text = column_ex.append('div').attr('class', 'example')
 
-		plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter')
+		plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter').attr("id", "box_plaintext_"+this.plain_text_pairs[i][0]).style("color", this.darkColor)
 
-		plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter')
+		plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter').attr("id", "box_plaintext_"+this.plain_text_pairs[i][1]).style("color", this.darkColor)
 
 		var cipher_text = column_ex.append('div').attr('class', 'example')
 		cipher_text.append('div').attr('id', 'box_cipher_1').attr('class', 'block_letter')
@@ -332,6 +365,7 @@ class BlockAnimation {
 		d3.select('.block-' + this.plain_text_pairs[i][0])
 			.transition()
 			.duration(duration)
+			.style("color", "white")
 			.style('background-color', this.darkColor)
 			.delay(0);
 
@@ -339,6 +373,7 @@ class BlockAnimation {
 			.transition()
 			.duration(duration)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay(0);
 
 		// highlight M and Y in pink
@@ -354,17 +389,32 @@ class BlockAnimation {
 			.style('background-color', this.lightColor)
 			.delay(delay);
 
+		
+		d3.select("#box_plaintext_" + this.plain_text_pairs[i][0])
+			.transition()
+			.duration(duration)
+			.style('color', 'black')
+			.delay(duration + delay)
+
+		d3.select("#box_plaintext_" + this.plain_text_pairs[i][1])
+			.transition()
+			.duration(duration)
+			.style('color', 'black')
+			.delay(duration + delay)
+
 		// highlight O and W in red 
 		d3.select('.block-' + this.alphabet[(this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 2)])
 			.transition()
 			.duration(duration)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay(delay + duration);
 
 		d3.select('.block-' + this.alphabet[(this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 10)])
 			.transition()
 			.duration(500)
 			.style('background-color', this.darkColor)
+			.style("color", "white")
 			.delay(delay + duration);
 
 		// add in the ciphered letters at the same time as the cipher text highlight
@@ -387,21 +437,25 @@ class BlockAnimation {
 			.transition()
 			.duration(duration)
 			.style('background-color', "transparent")
+			.style("color", "#9a9a9a")
 			.delay(2*(delay+duration));
 		d3.select('.block-' + this.alphabet[(this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 2)])
 			.transition()
 			.duration(duration)
 			.style('background-color', 'transparent')
+			.style("color", "#9a9a9a")
 			.delay(2*(delay+duration));
 		d3.select('.block-' + this.alphabet[(this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 10)])
 			.transition()
 			.duration(duration)
 			.style('background-color', 'transparent')
+			.style("color", "#9a9a9a")
 			.delay(2*(delay+duration));
 		d3.select('.block-' + this.alphabet[(this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12)])
 			.transition()
 			.duration(duration)
 			.style('background-color', "transparent")
+			.style("color", "#9a9a9a")
 			.delay(2*(delay+duration))
 			.on('end', function () {
 				forreal.message_transition();
@@ -409,10 +463,6 @@ class BlockAnimation {
 	}
 
 	message_transition() {
-		// var initialMessage = "SECRET";
-		// var this.cipherMessage = "UCBSDU"
-		// var this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
 		var duration = 1000
 		var buffer = 2500;
 
@@ -539,11 +589,24 @@ class BlockAnimation {
 				.style('background-color', 'transparent')
 				.delay((last * buffer)+(delay + duration));
 
-			d3.select('.block-' + this.alphabet[c_index2])
-				.transition()
-				.duration(duration)
-				.style('background-color', 'transparent')
-				.delay((last * buffer)+(delay + duration))
+			if( i == 4 ){
+				d3.select('.block-' + this.alphabet[c_index2])
+					.transition()
+					.duration(duration)
+					.style('background-color', 'transparent')
+					.delay((last * buffer) + (delay + duration))
+					.on('end', function() {
+						document.getElementById("startAnimation").style.pointerEvents = 'auto'
+					})
+
+			} else {
+				d3.select('.block-' + this.alphabet[c_index2])
+					.transition()
+					.duration(duration)
+					.style('background-color', 'transparent')
+					.delay((last * buffer) + (delay + duration))
+			}
+
 
 			lastTiming = (last * buffer)+(delay + duration) + duration
 		}

@@ -116,6 +116,7 @@ body {
 
 .index {
 	margin: 5px;
+	width: 45px;;
 	text-align: center;
 }
 
@@ -402,7 +403,7 @@ p {
 }
 
 #startAnimation, #startButton {
-	width: 32%;
+	width: 120px;
 	margin: auto;
 	color: white;
 }
@@ -759,10 +760,6 @@ img {
   /* width: 50%; */
 	/* font-size: 34px; */
 	margin-right: 50px;	
-}
-
-.letter, .decipher_letter {
-  font-size: 34px;
 }
 
 /* 

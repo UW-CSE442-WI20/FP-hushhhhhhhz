@@ -659,7 +659,7 @@ p {
   flex-direction: column;
 }
 
-img {
+img:not(.rsa_calc_img) {
   width: 100%;
 }
 
@@ -846,19 +846,58 @@ img {
 	font-size: 26px;
 }
 
-.rsaContainer {
+.rsaAnitmation {
   display: flex;
-  /* margin: 0px 0 0 60px; */
+  justify-content: center;
 }
 
 .sender_div, .receiver_div {
 	display: flex;
-  /* width: 50%; */
-	/* font-size: 34px; */
-	margin-right: 50px;	
+  	width: 250px;
+	height: 275px;
 }
 
-.decipher_letter {
+.cipher_letter, .decipher_letter, .cipher {
   font-size: 34px;
 }
 
+.tableDivRSA { 
+	margin: 40px 0 0 0;
+	/* display: flex;
+    flex-wrap: wrap;
+	justify-content: center; */
+}
+
+.rsa_index {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.rsa_calc_img {
+	filter: invert(95%) sepia(82%) saturate(0%) hue-rotate(243deg) brightness(110%) contrast(101%);
+}
+
+#decipher_calc, #cipher_calc {
+	width: 230px;
+	padding: 5px;
+}
+
+#decipher_final, #cipher_final {
+	height: 20px;
+	padding: 5px;
+}
+
+.rsa_calc_explanation {
+	padding: 25px;
+	width: 20%;
+}
+
+.rsa_example {
+	padding: 0px 50px 0px 50px;
+}
+
+.rsa_container {
+	display: flex;
+	/* justify-content: center; */
+}

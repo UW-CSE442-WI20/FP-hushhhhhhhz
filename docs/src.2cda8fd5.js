@@ -30112,7 +30112,7 @@ function () {
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
       var alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       d3.select('#title10 .fullVis').append('div').text('Sender\'s workflow');
-      var rsa_container = d3.select('#title10 .fullVis').append('div').attr('class', 'rsaContainer');
+      var rsa_container = d3.select('#title10 .fullVis').append('div').attr('class', 'rsaAnitmation');
       var sender_div = rsa_container.append('div').attr('class', 'sender_div');
       var receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
       var table_div = d3.select('#title10 .fullVis').append('div').attr('class', 'tableDiv');

@@ -42,6 +42,7 @@ var contentToStep = {
 	"content5": "step8",
 	"content6": "step9",
 	"content7": "step10",
+	"content8": "step11",
 }
 
 d3.select("#cover")

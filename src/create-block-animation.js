@@ -55,6 +55,7 @@ class BlockAnimation {
 				.append('div')
 				.attr("class", "textDiv")
 				.attr("class", "textDivTitle")
+                .style("opacity", 0)
 				.append("text")
 				.text("Block Cipher: Playfair")
 
@@ -62,18 +63,30 @@ class BlockAnimation {
 				.append('div')
 				.attr("class", "textDiv")
 				.text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.")
+                .style("opacity", 0)
 
 			historyBubble
 				.append('div')
 				.attr("class", "textDiv")
 				.attr("id", "history_part2")
 				.text("The alphabet has 26 letters and the key table only uses 25, which means we must ommit one letter from our alphabet!")
+                .style("opacity", 0)
 
 			historyBubble.transition()
 				.duration(1000)
 				.style("width", "350px")
 				.style("height", "350px")
 				.style("color", "black")
+
+			historyBubble.selectAll(".textDiv").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(700)
+
+            historyBubble.selectAll(".textDivTitle").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(700)
 
 			processBubble = explanation.append('div')
 				.style("width", "0px")
@@ -85,6 +98,7 @@ class BlockAnimation {
 				.append('div')
 				.attr("class", "textDiv")
 				.attr("class", "textDivTitle2")
+                .style("opacity", 0)
 				.attr("id", "blockEncryptionBubble")
 				.append("text")
 				.text("Encryption")
@@ -93,13 +107,19 @@ class BlockAnimation {
 				.append('div')
 				.attr("class", "textDiv")
 				.text("The message is split into pairs of letters, and we use both letters to encrypt.")
+                .style("opacity", 0)
 
 			processBubble
 				.append('div')
 				.attr("class", "textDiv")
 				.text("Click the button below to see how it works.")
+                .style("opacity", 0)
 
-			processBubble.append('div').attr('id', 'startAnimation').text("START ANIMATION")
+			processBubble
+				.append('div')
+				.attr('id', 'startAnimation')
+				.text("START ANIMATION")
+                .style("opacity", 0)
 
 			// you gotta do what you gotta do \_(-_-)_/
 			const forreal = this;
@@ -115,6 +135,21 @@ class BlockAnimation {
 				.style("color", "black")
 				.style("margin-top", '-90px')
 
+			processBubble.selectAll("#startAnimation").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(1000)
+
+            processBubble.selectAll(".textDiv").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(1000)
+
+            processBubble.selectAll(".textDivTitle2").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(1000)
+
 			decryptBubble = explanation.append('div')
 				.style("width", "0px")
 				.style("height", "0px")
@@ -127,11 +162,13 @@ class BlockAnimation {
 				.attr("class", "textDiv")
 				.attr("class", "textDivTitle2")
 				.text("Decryption")
+                .style("opacity", 0)
 
 			decryptBubble
 				.append('div')
 				.attr("class", "textDiv")
 				.text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.")
+                .style("opacity", 0)
 
 			decryptBubble.transition()
 				.duration(1000)
@@ -140,6 +177,16 @@ class BlockAnimation {
 				.delay(1000)
 				.style("color", "black")
 				.style("margin-top", '-90px')
+
+			decryptBubble.selectAll(".textDiv").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(1500)
+
+            decryptBubble.selectAll(".textDivTitle2").transition()
+                .duration(500)
+                .style("opacity", 1)
+                .delay(1500)
 		}
 	}
 

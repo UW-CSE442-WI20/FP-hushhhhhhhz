@@ -116,6 +116,7 @@ body {
 
 .index {
 	margin: 5px;
+	width: 45px;;
 	text-align: center;
 }
 
@@ -475,7 +476,7 @@ p {
 }
 
 #startAnimation, #startButton {
-	width: 32%;
+	width: 120px;
 	margin: auto;
 	color: white;
 }
@@ -843,9 +844,3 @@ img {
 .decipher_letter {
   font-size: 34px;
 }
-
-/* 
-#cipher_calc, #cipher_final, #decipher_calc, #decipher_final {
-  text-align: center;
-  display: block;
-} */

@@ -46,26 +46,41 @@ class StreamAnimation {
 				.attr('class', 'textDiv')
 				.attr('class', 'textDivTitle')
 				.text("Stream Cipher: Vigenere")
+				.style("opacity", 0)
+
 			historyBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols.')
+				.style("opacity", 0)
 
 			historyBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('It follows the convention where letters are labeled based on their position within the alphabet:')
+				.style("opacity", 0)
 
 			historyBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text(' A = 0, B = 1, ... Z = 25')
+				.style("opacity", 0)
 
 			historyBubble.transition()
 				.duration(1000)
 				.style("width", "350px")
 				.style("height", "350px")
 				.style("color", "black")
+			
+			historyBubble.selectAll(".textDiv").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(700)
+
+			historyBubble.selectAll(".textDivTitle").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(700)
 
 			processBubble = explanation.append('div')
 				.style("width", "0px")
@@ -78,22 +93,31 @@ class StreamAnimation {
 				.attr('class', 'textDiv')
 				.attr('class', 'textDivTitle')
 				.text("Encryption")
+				.style("opacity", 0)
+
 			processBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('Plaintext (P) and keytext (C) are then added together to produce a ciphertext (C) using the following equation:')
+				.style("opacity", 0)
+
 			processBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('C = P + K mod 26')
+				.style("opacity", 0)
+
 			processBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('Click start and follow along on the left as we encrypt our plaintext message')
+				.style("opacity", 0)
+
 			processBubble.append('div')
 				.attr('id', 'startButton')
 				.text("START ANIMATION")
 				.style('width', '120px')
+				.style("opacity", 0)
 
 			processBubble.transition()
 				.duration(1000)
@@ -102,6 +126,21 @@ class StreamAnimation {
 				.delay(500)
 				.style("color", "black")
 				.style("margin-top", '-90px')
+			
+			processBubble.selectAll("#startButton").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(1000)
+
+			processBubble.selectAll(".textDiv").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(1000)
+
+			processBubble.selectAll(".textDivTitle").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(1000)
 
 			decryptBubble = explanation.append('div')
 				.style("width", "0px")
@@ -113,15 +152,19 @@ class StreamAnimation {
 				.attr('class', 'textDiv')
 				.attr('class', 'textDivTitle')
 				.text("Decryption")
+				.style("opacity", 0)
+
 			decryptBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('Decryption works similarly to encryption, except that it follows the equation in reverse:')
+				.style("opacity", 0)
 
 			decryptBubble
 				.append('div')
 				.attr('class', 'textDiv')
 				.text('P = C - K mod 26')
+				.style("opacity", 0)
 
 			decryptBubble.transition()
 				.duration(1000)
@@ -130,6 +173,16 @@ class StreamAnimation {
 				.delay(1000)
 				.style("color", "black")
 				.style("margin-top", '-90px')
+
+			decryptBubble.selectAll(".textDiv").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(1500)
+
+			decryptBubble.selectAll(".textDivTitle").transition()
+				.duration(500)
+				.style("opacity", 1)
+				.delay(1500)
 		}
 
 		for(var i = 0; i < initialMessage.length; i++) {

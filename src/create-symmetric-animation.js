@@ -102,6 +102,8 @@ class SymmetricTutorial {
             .style("width", "10%")
 
         document.getElementById("startAnimation").onclick = function () {
+            d3.select("#story_text").html("")
+            d3.select("#warning").html("")
             animation();
         };
 
@@ -143,6 +145,7 @@ class SymmetricTutorial {
                                 .transition()
                                 .text("The TA will encrypt the information using a key that only Matt and her have.")
                                 .style("opacity", 1)
+                                .style("color", "#FF5733")
                                 .duration(4 * time)
                                 .on('end', function () {
                                     // sender document becomes locked document
@@ -154,6 +157,7 @@ class SymmetricTutorial {
                                         .transition()
                                         .text("The information is now encrypted and ready to be sent")
                                         .style("opacity", 1)
+                                        .style("color", "white")
                                         .duration(3 * time)
                                         .on('end', function () {
 
@@ -174,7 +178,7 @@ class SymmetricTutorial {
                                                 .transition()
                                                 .text("Matt receives the encrypted document")
                                                 .style("opacity", 1)
-                                                .duration(2 * time)
+                                                .duration(3 * time)
                                                 .on('end', function () {
 
                                                     // increasing size of decrypt key & changine its src
@@ -190,7 +194,8 @@ class SymmetricTutorial {
                                                         .transition()
                                                         .text("and uses his key to decrypt the information")
                                                         .style("opacity", 1)
-                                                        .duration(2 * time)
+                                                        .style("color", "#FF5733")
+                                                        .duration(3 * time)
 
 
 
@@ -215,7 +220,8 @@ class SymmetricTutorial {
                                                                 .transition()
                                                                 .text("Matt is now happy that he can look at the information")
                                                                 .style("opacity", 1)
-                                                                .duration(2 * time)
+                                                                .style("color", "white")
+                                                                .duration(3 * time)
 
 
                                                                 .on('end', function () {

@@ -200,6 +200,15 @@ table {
     width: 50vw;
 }
 
+.interactiveContainer h2 {
+	margin-bottom: 10%;
+}
+
+#encr_shareResult {
+	margin-bottom: 10%;
+	height: 40px;
+}
+
 
 .input2Container {
     display: flex;
@@ -337,7 +346,7 @@ p {
 .grid_box {
 	width: 60px;
 	height: 60px;
-	border: 1px solid black;
+	border: 1px solid #9a9a9a;
 	text-align: center;
 }
 
@@ -347,7 +356,6 @@ p {
     border: 1px solid white;
     text-align: center;
 	color: white;
-	background-color: black !important;
 }
 
 .grid_box p, .grid_box_new p {
@@ -359,7 +367,7 @@ p {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 36%;
+	width: 50%;
 	float: right;
 	margin-top: 25px;
 }
@@ -369,7 +377,7 @@ p {
     flex-wrap: wrap;
     width: 21%;
     float: right;
-    margin-top: 10%;
+    margin-top: 13%;
     margin-left: 8%;
 	align-content: baseline;
 }
@@ -387,7 +395,7 @@ p {
     justify-content: flex-end;
 }
 
-.message {
+.message, .encryption, .block_letter {
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -397,12 +405,12 @@ p {
 
 
 .blockContainer {
-	margin: 80px 50px 50px 50px;
-    width: 60%;
     position: fixed;
     top: 20px;
-    left: 600px;
+    left: inherit;
     font-size: 25px;
+    width: inherit;
+    margin-top: 8%;
 }
 .interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
@@ -449,7 +457,7 @@ p {
 .encryption {
 	margin-top: 25px;
 	flex-direction: column;
-	align-items: center;
+	margin-left: 35%;
 }
 
 #encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton {

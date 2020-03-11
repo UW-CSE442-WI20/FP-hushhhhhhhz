@@ -19,7 +19,14 @@ class AsymmetricAnimation {
         d3.select('#title9 .fullVis').html("")
 
         this.vis = d3.select('#title9 .fullVis')
-        this.vis.append('div')
+        this.vis.append("h1")
+            .text("Asymmetric Keys")
+            .attr("class", "titleBox")
+
+        this.vis.append("div")
+            .attr("id", "asym")
+
+        d3.select("#asym").append('div')
             .attr("id", "outter")
 
         d3.select("#outter")
@@ -30,16 +37,22 @@ class AsymmetricAnimation {
             .append('div')
             .attr("id", "sender1")
             .attr("class", "person")
+            .append("h3")
+            .text("TA1")
 
         d3.select("#senders")
             .append('div')
             .attr("id", "sender2")
             .attr("class", "person")
+            .append("h3")
+            .text("TA2")
 
         d3.select("#senders")
             .append('div')
             .attr("id", "sender3")
             .attr("class", "person")
+            .append("h3")
+            .text("TA3")
 
         d3.select("#outter")
             .append('div')
@@ -64,12 +77,13 @@ class AsymmetricAnimation {
             .attr("src", locked_doc)
             .attr("class", "locked_doc")
 
-        d3.selectAll(".locked_doc").attr('hidden', 'true')
+        d3.selectAll(".locked_doc").style('opacity', 0)
 
         d3.select("#receiver_outer")
             .append('div')
             .attr("id", "receiver")
-
+            .append("h3")
+            .text("Matt")
 
         d3.select("#sender1")
             .append("div")
@@ -83,20 +97,20 @@ class AsymmetricAnimation {
 
         d3.select("#sender1_image")
             .append('img')
-            .attr("src", doc)
-            .attr("class", "sender_doc")
+            .attr("src", public_key)
+            .attr('class', 'publickey')
 
         // div with keys in it (senders only)
         d3.select("#sender1")
             .append('div')
-            .attr("id", "sender1_key")
+            .attr("id", "sender1_doc")
 
-        d3.select("#sender1_key")
+        d3.select("#sender1_doc")
             .append('img')
-            .attr("src", public_key)
-            .attr("class", "keys")
-            .attr('class', 'publickey')
+            .attr("src", doc)
+            .attr("class", "sender_doc")
 
+        //////sender3
         d3.select("#sender2")
             .append("div")
             .attr("id", "sender2_image")
@@ -105,23 +119,22 @@ class AsymmetricAnimation {
         d3.select("#sender2_image")
             .append('img')
             .attr("src", sender2)
-            .attr("class", "perdoc")
 
         d3.select("#sender2_image")
             .append('img')
-            .attr("src", doc)
-            .attr("class", "sender_doc")
+            .attr("src", public_key)
+            .attr('class', 'publickey')
 
         d3.select("#sender2")
             .append('div')
-            .attr("id", "sender2_key")
+            .attr("id", "sender2_doc")
 
-        d3.select("#sender2_key")
+        d3.select("#sender2_doc")
             .append('img')
-            .attr("src", public_key)
-            .attr("class", "keys")
-            .attr('class', 'publickey')
-
+            .attr("src", doc)
+            .attr("class", "sender_doc")
+            
+        /////sender 3
         d3.select("#sender3")
             .append("div")
             .attr("id", "sender3_image")
@@ -134,20 +147,18 @@ class AsymmetricAnimation {
 
         d3.select("#sender3_image")
             .append('img')
-            .attr("src", doc)
-            .attr("id", "doc1")
-            .attr("class", "sender_doc")
-
-        d3.select("#sender3")
-            .append('div')
-            .attr("id", "sender3_key")
-
-        d3.select("#sender3_key")
-            .append('img')
             .attr("src", public_key)
-            .attr("class", "keys")
             .attr('class', 'publickey')
 
+        // div with keys in it (senders only)
+        d3.select("#sender3")
+            .append('div')
+            .attr("id", "sender3_doc")
+
+        d3.select("#sender3_doc")
+            .append('img')
+            .attr("src", doc)
+            .attr("class", "sender_doc")
 
         d3.select("#receiver")
             .append("div")
@@ -238,9 +249,6 @@ class AsymmetricAnimation {
                         .on('end', function () {
                             d3.selectAll(".sender_doc")
                                 .attr("src", locked_doc)
-                                .style("width", "60%")
-                                .style("height", "60%")
-                                .style("margin-left", "-10%")
 
                             d3.select("#story")
                                 .style("opacity", 0)
@@ -257,11 +265,11 @@ class AsymmetricAnimation {
                                         .transition()
 
                                     d3.selectAll(".sender_doc")
-                                        .attr("hidden", true)
+                                        .style("opacity", 0)
                                         .transition()
 
                                     d3.selectAll(".locked_doc")
-                                        .attr('hidden', null)
+                                        .style('opacity', 1)
                                         .transition()
 
                                     d3.select("#story")

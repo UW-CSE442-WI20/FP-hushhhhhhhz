@@ -15,9 +15,13 @@ class SymmetricTutorial {
         d3.select('#title8 .fullVis').html("")
 
         this.vis = d3.select('#title8 .fullVis')
+        this.vis.append("h1")
+            .text("Symmetric Keys")
+            .attr("class", "titleBox")
 
         this.vis.append('div')
             .attr('id', 'sym_outter')
+            .style("height", "550px")
 
         d3.select("#sym_outter")
             .append('div')
@@ -26,6 +30,7 @@ class SymmetricTutorial {
         d3.select('#symmetric_container')
             .append("div")
             .attr('id', 'sender_sym')
+            .style("margin-top", "-6%")
             .append("h3")
             .attr("class", "label")
             .text("TA")
@@ -33,6 +38,7 @@ class SymmetricTutorial {
         d3.select('#symmetric_container')
             .append("div")
             .attr('id', 'receiver_sym')
+            .style("margin-top", "-6%")
             .append("h3")
             .attr("class", "label")
             .text("Matt")
@@ -90,7 +96,7 @@ class SymmetricTutorial {
             .attr("src", locked_doc)
             .attr("id", "doc2")
             .style("opacity", "0")
-        
+
         d3.select("#sym_outter")
             .append("div")
             .attr("id", "story_warning")
@@ -98,6 +104,7 @@ class SymmetricTutorial {
         d3.select("#story_warning")
             .append("div")
             .attr("id", "story_text")
+
 
         d3.select("#story_warning")
             .append("div")
@@ -109,8 +116,8 @@ class SymmetricTutorial {
             .style("width", "10%")
 
         document.getElementById("startAnimation").onclick = function () {
-            d3.select("#story_text").html("")
             d3.select("#warning").html("")
+            d3.select("#story_text").html("")
             animation();
         };
 

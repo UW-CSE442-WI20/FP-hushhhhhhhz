@@ -42,7 +42,7 @@ class RSA {
 
         // RECEIVER
         let calc = rsa_calc_explanation.append('div').attr('class', 'calculation')
-        let timeDuration = 1500
+        let timeDuration = 0
 
         let number = -1;
         calc.transition()
@@ -225,8 +225,8 @@ class RSA {
             .html(d => d.value)
             .attr('class', d => d.column);
 
-        let duration = 1000
-        let timeout = 10000;
+        let duration = 1500
+        let timeout = 15000;
         let interval = duration
         for (let i = 0; i < initialMessage.length; i++) {
             let d3_index = d3.select('#send_index')
@@ -343,25 +343,25 @@ class RSA {
                 .duration(duration)
                 .attr('hidden', null)
                 .text(String.fromCharCode(initialCipher[i]))
-                .delay((6 * interval) + timeout * i)
+                .delay((7 * interval) + timeout * i)
 
             d3_index.select('#rsa_decipher' + i)
                 .transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((6 * interval) + timeout * i)
+                .delay((7 * interval) + timeout * i)
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'red')
-                .delay((6 * interval) + timeout * i);
+                .delay((7 * interval) + timeout * i);
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'transparent')
-                .delay((7 * interval) + timeout * i);
+                .delay((8 * interval) + timeout * i);
         }
     }
 }

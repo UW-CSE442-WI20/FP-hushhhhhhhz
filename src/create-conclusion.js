@@ -8,6 +8,8 @@ class Conclusion {
         d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
 
+		d3.selectAll("#vis div").classed("selected", false)
+
         colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
 
 

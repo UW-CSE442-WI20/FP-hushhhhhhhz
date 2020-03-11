@@ -6,6 +6,9 @@ class StreamInteraction {
 	}
 
 	start() {
+		 d3.selectAll("#vis div").classed("selected", false)
+        d3.select("#content3").classed("selected", true)
+		
 		var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M"];
 		var alphabet2 = ["N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 		var alphaAlpha = alphabet.concat(alphabet2)

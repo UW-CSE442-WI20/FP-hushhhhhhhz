@@ -9,6 +9,9 @@ class BlockInteraction {
 		d3.selectAll(".fullVis:not(.special)").html("")
 		d3.selectAll('.halfVis').html("")
 
+		 d3.selectAll("#vis div").classed("selected", false)
+        d3.select("#content4").classed("selected", true)
+
 		var canvas =  d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer')
 
 		var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];

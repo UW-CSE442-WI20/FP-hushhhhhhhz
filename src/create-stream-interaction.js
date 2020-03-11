@@ -31,7 +31,7 @@ class StreamInteraction {
 		var inputs = inputContainer.append('div').attr('class', 'inputs');
 		var table_div = inputContainer.append('div').attr('class', 'tableDiv')	
 		var results = inputContainer.append('div').attr('class', 'results');
-		results.append('text').text('see the results below:')
+		results.append('text').text('see the result!')
 		inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction')
 		lilDiv = inputs.append('div').attr('class', 'lilDiv')
 		var textInput = lilDiv.append('input')

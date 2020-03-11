@@ -97,6 +97,26 @@ class StreamInteraction {
 				}
 			}
 		}
+		savedId = ""
+		savedKey = ""
+		savedCipher = ""
+		function handleClick() {
+			d3.select(this).style('color', 'white')
+			if (savedId != "") {
+				d3.select("#" + savedId).style('color', 'white')
+			}
+			inputKey = this.id
+			savedId = inputKey
+			var newKey = ""
+			if (inputMessage.length > 0) {
+				for (var i = 0; i < inputMessage.length; i++) {
+					newKey = newKey + inputKey[i%3]
+				}
+				inputKey = newKey
+			}
+			savedKey = inputKey;
+			savedCipher = resultCipher;
+		}
 		function handleMouseOver() {  // Add interactivity
 			d3.select(this).style('background-color', keyColor)
 			               .style('color', 'black')
@@ -117,8 +137,9 @@ class StreamInteraction {
 			               .style('color', 'white')
 			inputKey = ""
 			resultCipher = ""
-			document.getElementById('keyChoice').innerHTML = "";
-			document.getElementById('cipherChoice').innerHTML = "";
+			d3.select("#" + savedId).style('color', keyColor)
+			document.getElementById('keyChoice').innerHTML = savedKey;
+			document.getElementById('cipherChoice').innerHTML = savedCipher;
 		}
 		var rowsKey = tbodyKey.selectAll('tr')
 			.data(keys)
@@ -136,7 +157,8 @@ class StreamInteraction {
 			.attr('id', function(d) { return d.value })
 			.attr('class', 'keyChoice')
 			.on("mouseover", handleMouseOver)
-			.on("mouseout", handleMouseOut);;
+			.on("mouseout", handleMouseOut)
+		    .on("click", handleClick);
 		d3.select('#inputButton').on('click', function () { 
 			inputMessage = document.getElementById('textInput').value 
 			inputMessage = inputMessage.replace(/\s+/g, '');

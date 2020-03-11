@@ -201,7 +201,7 @@ class AsymmetricAnimation {
 
         this.vis.append("div")
             .attr("id", "startAnimation")
-            .text("Start animation")
+            .text("START ANIMATION")
             .style("width", "10%")
 
         document.getElementById("startAnimation").onclick = function () {

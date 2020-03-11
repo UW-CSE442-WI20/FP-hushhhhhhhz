@@ -112,7 +112,7 @@ class SymmetricTutorial {
 
         this.vis.append("div")
             .attr("id", "startAnimation")
-            .text("Start animation")
+            .text("START ANIMATION")
             .style("width", "10%")
 
         document.getElementById("startAnimation").onclick = function () {
@@ -122,57 +122,61 @@ class SymmetricTutorial {
         };
 
         function animation() {
+            let time = 2000;
             d3.select("#story_text")
                 .append("text")
                 .attr("dy", "0em")
-                .style("opacity", 0)
                 .transition()
                 .text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.")
-                .duration(4000)
-                .style("opacity", 1)
+                .delay(time)
 
             d3.select("#story_text")
                 .append("br")
 
-            let time = 2000;
-
             d3.select("#story_text").append("text")
                 .attr("dy", "1em")
-                .style("opacity", 0)
                 .transition()
-                .text("Because they are using symmetric keys, Matt and the TA will use the same exact key to encrypt and decrypt.")
-                .style("opacity", 1)
-                .duration(5 * time)
-                .delay(time)
+                .text("Because they are using symmetric keys, Matt and the TA will use")
+                .delay(3 * time)
+
+            d3.select("#story_text").append("text")
+                .style("color", "#FF5733")
+                .transition()
+                .text(" the same exact key")
+                .delay(3 * time)
+
+            d3.select("#story_text").append("text")
+                .transition()
+                .text(" to encrypt and decrypt.")
+                .style("color", "white")
+                .delay(3 * time)
                 .on('end', function () {
                     d3.select("#encrypt")
                         .transition()
-                        .duration(time)
+                        .duration(6* time)
                         .on('end', function () {
+
+                            d3.select("#story_text")
+                                .transition()
+                                .text("The TA will encrypt the information using a key that only Matt and her have.")
+
                             // increasing size of encrypt key & changine its src
                             d3.select("#encrypt")
                                 .attr("src", selected_key)
                                 .style("width", "100%")
-
-                            d3.select("#story_text")
-                                .style("opacity", 0)
                                 .transition()
-                                .text("The TA will encrypt the information using a key that only Matt and her have.")
-                                .style("opacity", 1)
-                                .style("color", "#FF5733")
-                                .duration(4 * time)
+                                .delay(2 * time)
                                 .on('end', function () {
+
+                                    d3.select("#story_text")
+                                        .transition()
+                                        .text("The information is now encrypted and ready to be sent")
+                                        
                                     // sender document becomes locked document
                                     d3.select("#doc1")
                                         .attr("src", locked_doc)
-
-                                    d3.select("#story_text")
-                                        .style("opacity", 0)
                                         .transition()
-                                        .text("The information is now encrypted and ready to be sent")
-                                        .style("opacity", 1)
-                                        .style("color", "white")
-                                        .duration(3 * time)
+                                        .delay(2 * time)
                                         .on('end', function () {
 
                                             // sender key goes back to normal 
@@ -188,11 +192,9 @@ class SymmetricTutorial {
                                                 .style("opacity", "1")
 
                                             d3.select("#story_text")
-                                                .style("opacity", 0)
                                                 .transition()
                                                 .text("Matt receives the encrypted document")
-                                                .style("opacity", 1)
-                                                .duration(3 * time)
+                                                .duration(2 * time)
                                                 .on('end', function () {
 
                                                     // increasing size of decrypt key & changine its src
@@ -204,48 +206,30 @@ class SymmetricTutorial {
                                                         .delay(time)
 
                                                     d3.select("#story_text")
-                                                        .style("opacity", 0)
                                                         .transition()
                                                         .text("and uses his key to decrypt the information")
-                                                        .style("opacity", 1)
-                                                        .style("color", "#FF5733")
-                                                        .duration(3 * time)
-
-
-
+                                                        .duration(2 * time)
                                                         .on('end', function () {
                                                             // locked doc becomes unlocked doc
                                                             d3.select("#doc2")
                                                                 .attr("src", unlocked_doc)
                                                                 .transition()
-                                                                .duration(time)
-                                                                .delay(time)
 
                                                             d3.select("#decrypt")
                                                                 .attr("src", key)
                                                                 .style("width", "65%")
                                                                 .transition()
-                                                                .duration(time)
                                                                 .delay(time)
 
-
                                                             d3.select("#story_text")
-                                                                .style("opacity", 0)
                                                                 .transition()
                                                                 .text("Matt is now happy that he can look at the information")
-                                                                .style("opacity", 1)
-                                                                .style("color", "white")
-                                                                .duration(3 * time)
-
-
+                                                                .duration(2 * time)
                                                                 .on('end', function () {
                                                                     d3.select("#warning")
-                                                                        .style("opacity", 0)
                                                                         .transition()
                                                                         .text("Warning!! If a student gets a hold of the shared key between Matt and the TA, they will also be able to decrypt the sensitive information.")
-                                                                        .style("opacity", 1)
                                                                         .duration(5 * time)
-
                                                                 })
 
                                                         })

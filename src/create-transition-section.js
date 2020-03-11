@@ -8,16 +8,10 @@ class TransitionSection {
 		d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
 
-		d3.selectAll("#vis div").classed("selected", false)
-        d3.select("#content7").classed("selected", true)
-
 		colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
 
         futureContainer = d3.select("#title7 .fullVis")
-/*        title = futureContainer.append('div')
-                .attr("class", "titleBox")
-                .text("Moving into modern cryptology...");
-*/
+
 		var nodes = [
             { id: "1", r: 1000, cx: 750, cy: 400, color: "#2B7A78"}
 		];

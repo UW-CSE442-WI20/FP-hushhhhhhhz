@@ -19,6 +19,9 @@ class RSA {
 		d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
 
+        d3.selectAll("#vis div").classed("selected", false)
+        d3.select("#content7").classed("selected", true)
+
         let overall_container = d3.select('#title10 .fullVis').append('div').attr('class', 'overall_Container');
         overall_container.append('div').attr('class', 'receiver_intro').text('The setup of the keys');
 

@@ -7,7 +7,10 @@ class History {
 	start(flag) {
 		if (flag) {
 			d3.selectAll(".fullVis:not(.special)").html("")
-        	d3.selectAll('.halfVis').html("")
+			d3.selectAll('.halfVis').html("")
+			
+			d3.selectAll("#vis div").classed("selected", false)
+			d3.select("#content2").classed("selected", true)
 		} else {
 			d = 1000
 			 d3.selectAll(".fullVis:not(.special)").style("background-color", "transparent").html("")

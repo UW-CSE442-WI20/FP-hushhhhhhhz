@@ -7,7 +7,10 @@ class Intro {
 	start(flag) {
 		if (flag) {
 			d3.selectAll(".fullVis:not(.special)").html("")
-        	d3.selectAll('.halfVis').html("")
+			d3.selectAll('.halfVis').html("")
+			
+			d3.selectAll("#vis div").classed("selected", false)
+			d3.select("#content1").classed("selected", true)
 		} else {
 			var colors = ['#2B7A78', '#4EB7B2', '#BCF2F0']
 			// highlight in table of contents

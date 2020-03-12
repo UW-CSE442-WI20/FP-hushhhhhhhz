@@ -22,11 +22,11 @@ class History {
 			var infoContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'infoContainer')
 			infoContainer.append('text')
 				.text("The study and advancement of cryptology goes back centuries.")
-				.style('font-size', '20px')
+				.style('font-size', '24px')
 			var infoContainer2 = d3.select('#title2 .fullVis').append('div').attr('class', 'infoContainer')
 			infoContainer2.append('text')
                 .text("Below we outline some of the most major discoveries and improvements in the field:")
-				.style('font-size', '20px')
+				.style('font-size', '24px')
 			var timelineContainer = d3.select('#title2 .fullVis').append('div').attr('class', 'timelineContainer');
 			var leftDiv = timelineContainer.append('div').attr('class', 'leftDiv');
 			var lineDiv = timelineContainer.append('div').attr('class', 'lineDiv');

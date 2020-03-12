@@ -206,12 +206,12 @@ class AsymmetricAnimation {
             .attr("id", "attention")
 
         this.vis.append("div")
-            .attr("id", "startAnimation")
+            .attr("id", "asym-startAnimation")
             .text("START ANIMATION")
             .style("width", "10%")
             .style("margin-top", "1%")
 
-        document.getElementById("startAnimation").onclick = function () {
+        document.getElementById("asym-startAnimation").onclick = function () {
             d3.select("#story").html("")
             d3.select("#attention").html("")
             move();

@@ -458,7 +458,7 @@ p {
 	margin-left: 35%;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid white;
@@ -481,7 +481,7 @@ p {
 	background-color: #1F2833;
 }
 
-#startAnimation, #startButton {
+#startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation {
 	width: 120px;
 	margin: auto;
 	color: white;
@@ -861,5 +861,4 @@ img {
 .decipher_letter {
   font-size: 34px;
 }
-
 

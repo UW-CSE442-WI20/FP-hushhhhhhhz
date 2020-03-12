@@ -112,11 +112,11 @@ class SymmetricTutorial {
             .attr("id", "warning")
 
         this.vis.append("div")
-            .attr("id", "startAnimation")
+            .attr("id", "sym-startAnimation")
             .text("START ANIMATION")
             .style("width", "10%")
 
-        document.getElementById("startAnimation").onclick = function () {
+        document.getElementById("sym-startAnimation").onclick = function () {
             d3.select("#warning").html("")
             d3.select("#story_text").html("")
             animation();

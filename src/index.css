@@ -380,7 +380,7 @@ p {
 	align-content: baseline;
 }
 
-.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5, .encryption{
+.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, .encryption {
 	display: flex;
 }
 
@@ -576,7 +576,8 @@ p {
 	padding: 50px;
 }
 
-#title5 {
+#title5, #title10 {
+	display: flex;
 	height: 100%;
 }
 

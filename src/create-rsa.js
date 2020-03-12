@@ -13,22 +13,20 @@ class RSA {
         this.d = 107
         this.latex_render_url = "http://latex.codecogs.com/svg.latex?"
         this.senderMessage = this.senderMessage.bind(this)
+        this.createStartButton = this.createStartButton.bind(this)
     }
 
     start() {
         const allSteps = {
-			'Step 1': ['Select 2 primes, p and q',
-				'we\'ll choose 11 and 17'],
-			'Step 2': ['Calculate n = pq',
-				'n = 11 * 17 = 187'],
-			'Step 3': ['Calculate ϕ(n) = (p-1)(q-1)',
-				'ϕ(n) = 10 * 16 = 160'],
-			'Step 4': ['Select an e such that e is relatively prime to ϕ(n)',
-				'e = 3 works!'],
-			'Step 5': ['Calculate d such that d * e ≡ 1 (mod ϕ(n))',
-				'd = 107'],
-			'Final step': ['n and e are made public',
-				'd is the secret privately held by the receiver']
+            'Generating primes': ['The sender chooses 2 prime numbers p and q which together make the product n.',
+                'We will keep track of another variable,',
+                'ϕ(n) = (p-1)(q-1)',
+                'we choose p = 17, q = 11 which makes',
+                'n = 187 and ϕ(n) = 160'],
+            'Generating the public key': ['Use the previously calculated ϕ(n), and choose a number e that is relatively prime to ϕ(n).',
+                'our ϕ(n) = 160, and we choose e = 3'],
+            'Generating the private key': ['We calculate d using d * e ≡ 1(mod ϕ(n)) and use e as well as our previously calculated ϕ(n).',
+                'our ϕ(n) = 160, and d = 107']
         }
 
         d3.selectAll(".fullVis:not(.special)").html("")
@@ -38,37 +36,53 @@ class RSA {
         d3.select("#content7").classed("selected", true)
         let vizContainer = d3.select('#content7').append('div').attr('class', 'rsa_container');
         let rsa_calc_explanation = vizContainer.append('div').attr('class', 'rsa_calc_explanation');
+        vizContainer.append('div').attr('id', 'rsa_example')
 
         // RECEIVER
         let calc = rsa_calc_explanation.append('div').attr('class', 'calculation')
         let timeDuration = 1500
 
+        let num_transitions = 12 // TODO: Find a better way to deal with this.
+
         let number = -1;
         calc.transition()
-            .duration(timeDuration * allSteps.length)
+            .duration(timeDuration * num_transitions)
             .on('start', function printLine() {
-				for (var step in allSteps) {
-					number++
-					d3.select('.calculation')
-						.append('div')
-						.transition()
-						.duration(timeDuration)
-						.attr('class', 'rsaStepTitle')
-						.style('font-weight', 'bold')
-						.text(step)
-						.delay(timeDuration * number)
-					for (var key in allSteps[step]) {
-						d3.select('.calculation')
-							.append('div')
-							.transition()
-							.duration(timeDuration)
-							.attr('class', 'rsaStepText')
-							.style('font-weight', 'bold')
-							.text(allSteps[step][key])
-							.delay(timeDuration * number)
-					}
-				}})
-            .on('end', this.senderMessage)
+                for (var step in allSteps) {
+                    number++
+                    calc.append('div')
+                        .transition()
+                        .duration(timeDuration)
+                        .attr('class', 'rsaStepTitle')
+                        .style('font-weight', 'bold')
+                        .text(step)
+                        .delay(timeDuration * number)
+                    for (var key in allSteps[step]) {
+                        number++
+                        calc.append('div')
+                            .transition()
+                            .duration(timeDuration)
+                            .attr('class', 'rsaStepText')
+                            // .style('font-weight', 'bold')
+                            .text(allSteps[step][key])
+                            .delay(timeDuration * number)
+                    }
+                }
+            })
+            .on('end', this.createStartButton)
+    }
+
+    createStartButton() {
+        d3.select('.rsa_calc_explanation')
+            .append("div")
+            .attr("id", "sym-startAnimation")
+            .text("START ANIMATION")
+            .on('click', this.senderMessage)
+            // function click() {
+            //     d3.select("#warning").html("")
+            //     d3.select("#story_text").html("")
+            //     this.senderMessage()
+            // })
     }
 
     getCipherLetter(m) {
@@ -87,13 +101,13 @@ class RSA {
         let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
         let alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-        let rsa_example = d3.select('.rsa_container').append('div').attr('class', 'rsa_example');
+        let rsa_example = d3.select('#rsa_example').html('');
 
         let rsa_container = rsa_example.append('div').attr('class', 'rsaAnitmation');
         let sender_div = rsa_container.append('div').attr('class', 'sender_div');
         let receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
 
-        let table_div = d3.select('.rsa_example').append('div').attr('class', 'tableDivRSA')
+        let table_div = rsa_example.append('div').attr('class', 'tableDivRSA')
 
         let index = sender_div.append('div')
             .attr('id', 'send_index')
@@ -102,27 +116,33 @@ class RSA {
         index.append('img')
             .attr('src', man)
             .style('width', '120px')
+            .style('margin', '10px')
 
-        index.append('div')
-            .text('Sender gets n and e')
-            .style('font-weight', 'bold')
+        let cipher_message = index.append('div')
+            .attr('class', 'cipher_message')
+            .style('display', 'flex')
+            .style('font-size', '30px')
 
-        index.append('div')
-            .attr('class', 'cipher_letter')
-            .transition()
-        index.append('div')
-            .attr('class', 'cipher')
+        for (let i = 0; i < initialMessage.length; i++) {
+            cipher_message.append('div')
+                .attr('class', 'rsa_cipher')
+                .attr('id', 'rsa_cipher' + i)
+                .text(initialMessage[i])
+        }
+
+
+        let send_eq = index.append('div')
+            .attr('class', 'rsa_equations')
+            .attr('id', 'send_eq')
+
+
+        send_eq.append('p').attr('id', 'send_eq_c').attr('class', 'rsa_equation_para').style('opacity', 0)
+        send_eq.append('p').attr('id', 'send_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 0)
+        send_eq.append('p').attr('id', 'send_eq_m').attr('class', 'rsa_equation_para').style('opacity', 0)
+        send_eq.append('sup').attr('id', 'send_eq_exp_e').attr('class', 'rsa_equation_para').style('opacity', 0)
+        send_eq.append('p').attr('id', 'send_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 0)
 
         let images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
-
-        images.append('img')
-            .attr('class', 'rsa_calc_img')
-            .attr('id', 'cipher_calc')
-            .attr('src', "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
-        images.append('img')
-            .attr('class', 'rsa_calc_img')
-            .attr('id', 'cipher_final')
-            .attr('src', "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
 
         rec_index = receiver_div.append('div')
             .attr('id', 'rec_index')
@@ -131,31 +151,19 @@ class RSA {
         rec_index.append('img')
             .attr('src', woman)
             .style('width', '120px')
+            .style('margin', '10px')
 
-        rec_index.append('div')
-            .text('Receiver already has n, d and e')
-            .style('font-weight', 'bold')
+        let req_eq = rec_index.append('div')
+            .attr('class', 'rsa_equations')
+            .attr('id', 'rec_eq')
 
-        rec_index.append('div')
-            .text('They only require n and d')
-            .style('font-weight', 'bold')
-            .style('padding-bottom', '25px')
+        req_eq.append('p').attr('id', 'rec_eq_m').attr('class', 'rsa_equation_para').style('opacity', 0)
+        req_eq.append('p').attr('id', 'rec_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 0)
+        req_eq.append('p').attr('id', 'rec_eq_c').attr('class', 'rsa_equation_para').style('opacity', 0)
+        req_eq.append('sup').attr('id', 'rec_eq_exp_d').style('opacity', 0)
+        req_eq.append('p').attr('id', 'rec_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 0)
 
         images = rec_index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
-
-        images.append('img')
-            .attr('class', 'rsa_calc_img')
-            .attr('id', 'decipher_calc')
-            .attr('src', "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
-
-        images.append('img')
-            .attr('class', 'rsa_calc_img')
-            .attr('id', 'decipher_final')
-            .attr('src', "data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
-
-        rec_index.append('div')
-            .attr('class', 'decipher_letter')
-            .style('color', 'red')
 
         let decipher_message = rec_index.append('div')
             .attr('class', 'decipher_message')
@@ -227,12 +235,17 @@ class RSA {
         for (let i = 0; i < initialMessage.length; i++) {
             let d3_index = d3.select('#send_index')
 
-            d3_index.select('.cipher_letter')
+            // d3_index.select('.cipher_letter')
+            //     .transition()
+            //     .duration(duration)
+            //     .style('color', '#fdd835')
+            //     .delay(timeout * i);
+
+            d3_index.select('#rsa_cipher' + i)
                 .transition()
                 .duration(duration)
                 .style('color', '#fdd835')
-                .text(initialMessage[i])
-                .delay(timeout * i);
+                .delay(timeout * i)
 
             d3.selectAll('.' + initialMessage[i])
                 .transition()
@@ -240,20 +253,13 @@ class RSA {
                 .style('background-color', '#fdd835')
                 .delay(timeout * i);
 
-            d3_index.select('.cipher')
-                .transition()
-                .duration(duration)
-                .style('color', '#1c87e5')
-                .text(initialCipher[i])
-                .delay(interval + timeout * i);
-
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
                 .style('background-color', 'transparent')
                 .delay(interval + timeout * i);
 
-            d3_index.select('.cipher_letter')
+            d3_index.select('#rsa_cipher' + i)
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
@@ -261,40 +267,46 @@ class RSA {
 
             // Sending the message
             let m = initialCipher[i]
-            var latex_raw = "\\text{c}=\\text{" + m + "}^\\text{" + this.e + "}\\mod{" + this.n + "}";
-            var latex_query = this.latex_render_url + latex_raw;
+            let c = this.getCipherLetter(initialCipher[i])
 
-            d3_index.select('#cipher_calc')
-                .transition()
+            d3.select('#send_eq_c').transition()
                 .duration(duration)
-                .attr('src', latex_query)
+                .text('c')
+                .style('opacity', 1)
                 .delay((2 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
-                .style('background-color', 'orange')
-                .delay(0)
+                .text(c)
+                .style('color', 'orange')
                 .transition()
                 .duration(duration)
-                .style('background-color', null)
-                .delay(0)
+                .style('color', 'white')
 
-            let c = this.getCipherLetter(initialCipher[i])
-            latex_raw = "\\text{c}=" + c;
-            latex_query = this.latex_render_url + latex_raw;
+            d3.select('#send_eq_m').transition()
+                .duration(duration)
+                .text(m)
+                .style('opacity', 1)
+                .style('color', 'red')
+                .delay((2 * interval) + timeout * i)
+                .transition()
+                .duration(duration)
+                .style('color', 'white')
 
-            d3_index.select('#cipher_final')
-                .transition()
+            d3.select('#send_eq_exp_e').transition()
                 .duration(duration)
-                .attr('src', latex_query)
-                .delay((3 * interval) + timeout * i)
-                .transition()
+                .text(this.e)
+                .style('opacity', 1)
+                .delay((2 * interval) + timeout * i)
+
+            d3.select('#send_eq_equals').transition()
                 .duration(duration)
-                .style('background-color', 'orange')
-                .delay(0)
-                .transition()
+                .style('opacity', '1')
+                .delay((2 * interval) + timeout * i)
+
+            d3.select('#send_eq_mod').transition()
                 .duration(duration)
-                .style('background-color', null)
-                .delay(0)
+                .style('opacity', '1')
+                .delay((2 * interval) + timeout * i)
 
             // Receiving the message
 
@@ -303,49 +315,70 @@ class RSA {
             var latex_raw = "\\text{m}=\\text{" + c + "}^\\text{" + this.d + "}\\mod{" + this.n + "}";
             var latex_query = this.latex_render_url + latex_raw;
 
-            d3_index.select('#decipher_calc')
+            d3.select('#rec_eq_m').transition()
+                .duration(duration)
+                .text('m')
+                .style('opacity', 1)
+                .delay((5 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
-                .attr('src', latex_query)
-                .delay((4 * interval) + timeout * i)
+                .text(initialCipher[i])
+                .style('color', 'orange')
                 .transition()
                 .duration(duration)
-                .style('background-color', 'orange')
-                .delay(0)
+                .style('color', 'white')
+
+            d3.select('#rec_eq_c').transition()
+                .duration(duration)
+                .text(c)
+                .style('opacity', 1)
+                .style('color', 'red')
+                .delay((5 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
-                .style('background-color', null)
-                .delay(0)
+                .style('color', 'white')
+
+
+            d3.select('#rec_eq_exp_d').transition()
+                .duration(duration)
+                .text(this.d)
+                .style('opacity', 1)
+                .delay((5 * interval) + timeout * i)
+
+            d3.select('#rec_eq_equals').transition()
+                .duration(duration)
+                .style('opacity', '1')
+                .delay((5 * interval) + timeout * i)
+
+            d3.select('#rec_eq_mod').transition()
+                .duration(duration)
+                .style('opacity', '1')
+                .delay((5 * interval) + timeout * i)
 
             latex_raw = "\\text{m}=" + initialCipher[i];
             latex_query = this.latex_render_url + latex_raw;
 
-            d3_index.select('#decipher_final')
+            d3.select('#rec_eq_m')
+                .style('opacity', 0)
                 .transition()
                 .duration(duration)
-                .attr('src', latex_query)
-                .delay((5 * interval) + timeout * i)
+                .text(initialCipher[i])
+                .style('opacity', 1)
+                .style('color', 'orange')
+                .delay((6 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
-                .style('background-color', 'orange')
-                .delay(0)
-                .transition()
-                .duration(duration)
-                .style('background-color', null)
-                .delay(0)
-
-            d3_index.select('.decipher_letter')
-                .transition()
-                .duration(duration)
-                .attr('hidden', null)
-                .text(String.fromCharCode(initialCipher[i]))
-                .delay((7 * interval) + timeout * i)
+                .style('color', 'white')
 
             d3_index.select('#rsa_decipher' + i)
                 .transition()
                 .duration(duration)
                 .style('opacity', '1')
+                .style('color', 'red')
                 .delay((7 * interval) + timeout * i)
+                .transition()
+                .duration(duration)
+                .style('color', 'white')
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()

@@ -47,7 +47,16 @@ class BlockAnimation {
 		var explanation = d3.select('#title5 .explanation')
 
 		var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything').attr('id', 'everythingContainer')
-		everything.append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
+		everything.append('h1').text('A more advanced approach...').style('color', 'white').style('padding', '20px').style('font-size', '36px')
+		var block_container = d3.select("#everythingContainer").append("div").attr('class', 'blockContainer')
+
+		var grid = block_container.append('div').attr('class', 'grid');
+
+		for (var i = 0; i < 5; i++) {
+			for (var j = 0; j < 5; j++) {
+				grid.append('div').attr('class', 'grid_box block-' + this.alphabet[j + i * 4 + i]).append('p').text(this.alphabet[j + i * 4 + i]);
+			}
+		}
 
 		if (!flag) {
 			historyBubble = explanation.append('div')

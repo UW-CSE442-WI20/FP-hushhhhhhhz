@@ -1,5 +1,6 @@
 html {
 	scroll-snap-type: y mandatory;
+	overflow-x: hidden;
 }
 
 body {
@@ -143,10 +144,6 @@ table {
 	padding: 20px;
 }
 
-#textInput {
-	font-size: 10px;
-}
-
 #container {
 	width: 100%;
 	position: absolute;
@@ -155,7 +152,7 @@ table {
 }
 
 .streamContainer {
-	margin: 90px 0 0 130px;
+	margin: 175px 0 0 130px;
 	position: fixed;
 	top: 50px;
 }
@@ -165,7 +162,7 @@ table {
 	margin-left: 50px;
 	font-size: 20px;
 	position: fixed;
-	top: 25vh;
+	top: 20vh;
 	left: 15vw;
 	width: 70vw;
 }
@@ -175,7 +172,7 @@ table {
     margin-left: 50px;
     font-size: 26px;
     position: fixed;
-    top: 5vh;
+    top: 0vh;
     left: 15vw;
     width: 50vw;
 }
@@ -185,7 +182,7 @@ table {
     margin-left: 50px;
     font-size: 20px;
     position: fixed;
-    top: 15vh;
+    top: 10vh;
     left: 15vw;
     width: 50vw;
 }
@@ -197,7 +194,17 @@ table {
     position: fixed;
     top: 55vh;
     left: 15vw;
-    width: 50vw;
+	width: 74vw;
+	border-top: 1px solid white;
+}
+
+.interactiveContainer h2 {
+	margin-bottom: 10%;
+}
+
+#encr_shareResult {
+	margin-bottom: 10%;
+	height: 40px;
 }
 
 
@@ -270,7 +277,7 @@ table {
 }
 
 
-#textInput, #textInput2 {
+#textInput, #textInput2, .userinput {
 	font-size:20px;
 	font-family: 'Dosis', sans-serif;
 	border-radius: 5px;
@@ -337,7 +344,7 @@ p {
 .grid_box {
 	width: 60px;
 	height: 60px;
-	border: 1px solid black;
+	border: 1px solid #9a9a9a;
 	text-align: center;
 }
 
@@ -347,7 +354,6 @@ p {
     border: 1px solid white;
     text-align: center;
 	color: white;
-	background-color: black !important;
 }
 
 .grid_box p, .grid_box_new p {
@@ -359,7 +365,7 @@ p {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 36%;
+	width: 310px;
 	float: right;
 	margin-top: 25px;
 }
@@ -369,7 +375,7 @@ p {
     flex-wrap: wrap;
     width: 21%;
     float: right;
-    margin-top: 10%;
+    margin-top: 13%;
     margin-left: 8%;
 	align-content: baseline;
 }
@@ -387,7 +393,7 @@ p {
     justify-content: flex-end;
 }
 
-.message {
+.message, .encryption, .block_letter {
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -397,12 +403,12 @@ p {
 
 
 .blockContainer {
-	margin: 80px 50px 50px 50px;
-    width: 60%;
     position: fixed;
     top: 20px;
-    left: 600px;
+    left: inherit;
     font-size: 25px;
+    width: 680px;
+    margin-top: 8%;
 }
 .interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
@@ -449,10 +455,10 @@ p {
 .encryption {
 	margin-top: 25px;
 	flex-direction: column;
-	align-items: center;
+	margin-left: 35%;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid white;
@@ -475,7 +481,7 @@ p {
 	background-color: #1F2833;
 }
 
-#startAnimation, #startButton {
+#startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation {
 	width: 120px;
 	margin: auto;
 	color: white;
@@ -578,13 +584,13 @@ p {
 	font-size: 40px;
 }
 
-#step1, #step7 {
+#step1, #step7, #step11 {
     color: white;
 	background-color: #1f2833;
     position: relative;
 }
 
-#step1::before, #step7::before {
+#step1::before, #step7::before, #step11::before {
 	content: "";
     position: absolute;
     top: 0; left: 0;
@@ -635,16 +641,18 @@ p {
 
 #outter {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #senders {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
 }
 
 .person {
-  width: 30%;
   margin-bottom: 5%;
   align-items: center;
   display: flex;
@@ -659,6 +667,10 @@ img {
   align-items: center;
 }
 
+.keyChoice {
+	cursor: pointer;
+}
+
 .keys {
   width: 30%;
 }
@@ -667,19 +679,16 @@ img {
   width: 15%;
 }
 
-#sender1_key, #sender2_key, #sender3_key, #receiver_key {
+#sender1_doc, #sender2_doc, #sender3_doc, #receiver_key {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-#sender1_image, #sender2_image, #sender3_image, #receiver_images {
+#sender1_image, #sender2_image, #sender3_image {
   width: 150px;
 }
 
-#receiver_images {
-  margin: auto;
-}
 
 #receiver_key {
   width: 50%;
@@ -692,20 +701,20 @@ img {
 }
 
 .sender_doc {
-  width: 35%;
+  width: 13%;
   height: 50%;
 }
 
 #receiver_outer {
   display: flex;
   align-items: center;
-
+  flex-direction: column;
+  margin-top: -5%;
 }
 
 #messages {
   display: flex;
-  flex-direction: column;
-  width: 200px;
+	justify-content: space-around;
 }
 
 
@@ -735,7 +744,7 @@ img {
 .sender_document {
   width: 15%;
   padding: 15px;
-  margin-right: 20%;
+  margin-right: 8%;
 }
 
 #symmetric_container {
@@ -777,7 +786,7 @@ img {
 }
 
 .label {
-  margin-right: 25%;
+  margin-right: 10%;
 }
 
 .playfairTitles {
@@ -801,17 +810,25 @@ img {
   width: 100px;
 }
 #receiver {
-  width: 150px;
+	display: flex;
+	width: 20%;
 }
 
 #story, #attention{
   text-align: center;
+  margin: auto;
+  width: 85%;
+  font-size: 35px;
+}
+#story {
+	padding: 20px 0px 12px 0px;
 }
 
 #attention {
   font-weight: bold;
   color: red;
   font-size: 25px;
+  width: 65%;
 }
 
 .textDiv {
@@ -844,6 +861,7 @@ img {
 .decipher_letter {
   font-size: 34px;
 }
+
 
 
 /*# sourceMappingURL=/src.9ad09f98.css.map */

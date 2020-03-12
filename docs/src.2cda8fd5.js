@@ -28740,7 +28740,7 @@ function () {
           return d.texty;
         }).attr('fill', 'black').attr('opacity', 0).transition().duration(3000).attr('opacity', 1).delay(3000);
         applicationText = applicationContainer.append('div').style("width", "700px").style("height", "230px").style("opacity", 0).style("background-color", "black").style("padding", "10px");
-        applicationText.append("h2").text("Why is Cryptogology important?");
+        applicationText.append("h2").text("Why is Cryptology important?");
         applicationText.append('p').text("Cryptology has had many applications over thousands of years of history. In fact, the earliest computers were developed in order to break encrypted messages being sent during WWII. But as computers have made their way into every part of our live, cryptology has become increasingly important in protecting the personal data of individuals. To the left we highlight the major applications that motivate the study and development of cryptology today. As you can see, cryptoloy comes into our lives in a multitude of ways.");
         applicationText.transition().duration(5000).style("opacity", 1).delay(2000);
         typeText = typeContainer.append('div').style("width", "700px").style("opacity", 0).style("background-color", "black").style("padding", "10px");
@@ -29017,6 +29017,9 @@ function () {
       var mod = math_div.append('p').text(' mod 26 = ').attr('class', 'mathSymbol');
       var cipher = math_div.append('p').text('C').style('color', cipherColor).attr('id', 'cipher').attr('class', 'mathSymbol');
       d3.select('#startButton').on('click', function () {
+        d3.selectAll('.cipher').html("");
+        document.getElementById("startButton").style.pointerEvents = 'none';
+        d3.select('#startButton').style('opacity', '0.7');
         var m = 3000;
 
         for (var i = 0; i < initialMessage.length; i++) {
@@ -29036,9 +29039,12 @@ function () {
           d3.selectAll('.' + initialCipher[i]).transition().duration(500).style('background-color', 'transparent').style('color', '#9a9a9a').delay(2000 + m * i);
         }
 
-        d3.select('#plain').transition().duration(50).text('P').delay(20000);
-        d3.select('#cipher').transition().duration(50).text('C').delay(20000);
-        d3.select('#key').transition().duration(50).text('K').delay(20000);
+        d3.select('#plain').transition().duration(50).text('P').delay(26000);
+        d3.select('#cipher').transition().duration(50).text('C').delay(26000);
+        d3.select('#key').transition().duration(50).text('K').delay(26000);
+        d3.select('#startButton').transition().delay(26000).style('opacity', '1').on('end', function () {
+          document.getElementById("startButton").style.pointerEvents = 'auto';
+        });
       });
     }
   }]);
@@ -29066,6 +29072,8 @@ function () {
   _createClass(StreamInteraction, [{
     key: "start",
     value: function start() {
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content3").classed("selected", true);
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
       var alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var alphaAlpha = alphabet.concat(alphabet2);
@@ -29085,8 +29093,8 @@ function () {
       var inputs = inputContainer.append('div').attr('class', 'inputs');
       var table_div = inputContainer.append('div').attr('class', 'tableDiv');
       var results = inputContainer.append('div').attr('class', 'results');
-      results.append('text').text('see the results below:');
-      inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction');
+      results.append('text').text('See the result!');
+      inputs.append('h4').text('Type your message and hit select:').attr('class', 'instruction');
       lilDiv = inputs.append('div').attr('class', 'lilDiv');
       var textInput = lilDiv.append('input').attr('id', 'textInput').attr('style', 'text');
       var inputButton = lilDiv.append('div').attr('id', 'inputButton').text('SELECT');
@@ -29105,7 +29113,7 @@ function () {
       var row4 = ["STD", "HVO", "JEQ", "PYL", "DNO"];
       var row5 = ["QDA", "HZQ", "WKV", "XDF", "UPR"];
       var keys = [row1, row2, row3, row4, row5];
-      table_div.append('h4').text('hover below to choose a key:').attr('class', 'instruction');
+      table_div.append('h4').text('Hover below to choose a key:').attr('class', 'instruction');
       var keyTable = table_div.append('table').attr('class', 'keyTable');
       var theadKey = keyTable.append('thead');
       var tbodyKey = keyTable.append('tbody');
@@ -29202,12 +29210,16 @@ function () {
       title3.append('h2').text('Decryption:');
       var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
       var inputs2 = input2Container.append('div').attr('class', 'inputs2');
-      inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction');
-      inputs2.append('h2').text('ciphertext: ISSNMBSX').style('color', cipherColor);
-      inputs2.append('h2').text('keytext: KEYKEYKE').style('color', keyColor);
+      inputs2.append('h4').text('Try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction');
+      var decryptDiv = inputs2.append('div').attr('class', 'resultsDivs');
+      decryptDiv.append('div').attr('id', 'cipherDisplay').append('h2').text('ciphertext: ').style('color', cipherColor);
+      decryptDiv.append('div').append('h2').text("ISSNMBSX").style('color', cipherColor);
+      var decryptDiv2 = inputs2.append('div').attr('class', 'resultsDivs');
+      decryptDiv2.append('div').attr('id', 'keyDisplay').append('h2').text('keytext: ').style('color', keyColor);
+      decryptDiv2.append('div').append('h2').text("KEYKEYKE").style('color', keyColor);
       var table_div2 = input2Container.append('div').attr('class', 'tableDiv');
       lilDiv2 = input2Container.append('div').attr('class', 'lilDiv2');
-      table_div2.append('h4').text('use this table to compute the values of C and K:').style('margin', '0 0 30px 0');
+      table_div2.append('h4').text('Use this table to compute the values of C and K:').style('margin', '0 0 30px 0');
       var table = table_div2.append('table');
       var thead = table.append('thead');
       var tbody = table.append('tbody');
@@ -29250,7 +29262,7 @@ function () {
       }).attr('class', function (d) {
         return d.column;
       });
-      lilDiv2.append('text').text('try your answer below:');
+      lilDiv2.append('text').text('Try your answer below:');
       var textInput2 = lilDiv2.append('input').attr('id', 'textInput2').attr('style', 'text');
       var inputButton2 = lilDiv2.append('div').attr('id', 'inputButton2').text('CHECK');
       var answer = lilDiv2.append('h4').text('').style('color', 'white').attr('id', 'answer');
@@ -29260,9 +29272,9 @@ function () {
         guess = guess.toUpperCase();
 
         if (guess == "YOUDIDIT") {
-          document.getElementById('answer').innerHTML = "correct!";
+          document.getElementById('answer').innerHTML = "CONGRATS! YOU\'RE A MASTER!";
         } else {
-          document.getElementById('answer').innerHTML = "try again...";
+          document.getElementById('answer').innerHTML = "TRY AGAIN...";
         }
       });
     }
@@ -29287,26 +29299,25 @@ function () {
   function BlockAnimation() {
     _classCallCheck(this, BlockAnimation);
 
-    this.darkColor = "#FF5733";
-    this.lightColor = "#D99E91";
-    this.cipherColor = "#C70039";
+    // dark pink
+    this.darkColor = "#DA2C5E"; // light pink
+
+    this.lightColor = "#CA9AA7"; // yellow
+
+    this.cipherColor = "#FFD700";
     this.plain_text_pairs = ["GR", "MO", "MY"];
     this.cipher_text_pairs = ["MW", "NP", "OW"];
     this.initialMessage = "SECRET";
     this.cipherMessage = "UCBSDU";
     this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    this.reset = false;
   }
 
   _createClass(BlockAnimation, [{
-    key: "start",
-    value: function start(flag) {
-      d3.selectAll(".fullVis:not(.special)").html("");
-      d3.selectAll('.halfVis').html("");
-      d3.selectAll("#vis div").classed("selected", false);
-      d3.select("#content4").classed("selected", true);
-      var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything');
-      everything.append('h1').text('A more advanced aproach...').style('color', 'white').style('padding', '20px').style('font-size', '36px');
-      var block_container = everything.append("div").attr('class', 'blockContainer');
+    key: "appendItems",
+    value: function appendItems() {
+      d3.select("#everythingContainer").append('h1').text('A more advanced approach...').style('color', 'white').style('padding', '20px').style('font-size', '36px');
+      var block_container = d3.select("#everythingContainer").append("div").attr('class', 'blockContainer');
       var grid = block_container.append('div').attr('class', 'grid');
 
       for (var i = 0; i < 5; i++) {
@@ -29320,8 +29331,26 @@ function () {
       var encryption = block_container.append('div').attr('class', 'encryption');
       encryption.append('div').attr('class', 'block_message').text("");
       encryption.append('div').attr('class', 'cipher_message').text("");
-      var interactive_container = everything.append("div").attr('class', 'interactiveContainer');
+      var interactive_container = d3.select("#everythingContainer").append("div").attr('class', 'interactiveContainer');
+    }
+  }, {
+    key: "start",
+    value: function start(flag) {
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content4").classed("selected", true);
       var explanation = d3.select('#title5 .explanation');
+      var everything = d3.select("#title5 .halfVis").append("div").attr('class', 'everything').attr('id', 'everythingContainer');
+      everything.append('h1').text('A more advanced approach...').style('color', 'white').style('padding', '20px').style('font-size', '36px');
+      var block_container = d3.select("#everythingContainer").append("div").attr('class', 'blockContainer');
+      var grid = block_container.append('div').attr('class', 'grid');
+
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5; j++) {
+          grid.append('div').attr('class', 'grid_box block-' + this.alphabet[j + i * 4 + i]).append('p').text(this.alphabet[j + i * 4 + i]);
+        }
+      }
 
       if (!flag) {
         historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle").style("margin-left", "auto");
@@ -29340,6 +29369,10 @@ function () {
         var forreal = this;
 
         document.getElementById("startAnimation").onclick = function () {
+          document.getElementById("everythingContainer").innerHTML = "";
+          forreal.appendItems();
+          document.getElementById("startAnimation").style.pointerEvents = 'none';
+          d3.select('#startAnimation').style('opacity', '0.7');
           forreal.transitions(0);
         };
 
@@ -29360,42 +29393,44 @@ function () {
     value: function transitions(i) {
       this.plain_text_pairs = ["GR", "MO", "MY"];
       this.cipher_text_pairs = ["MW", "NP", "OW"];
-      var rule = i == 0 ? "row" : "column";
+      var rule = i == 0 ? "column" : "row";
       var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text(rule[0].toUpperCase() + rule.substr(1, rule.length) + " rule:");
       var plain_text = column_ex.append('div').attr('class', 'example');
-      plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter');
-      plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter');
+      plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter').attr("id", rule + "_plaintext_" + this.plain_text_pairs[i][0]).style("color", this.darkColor);
+      plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter').attr("id", rule + "_plaintext_" + this.plain_text_pairs[i][1]).style("color", this.darkColor);
       var cipher_text = column_ex.append('div').attr('class', 'example');
       cipher_text.append('div').attr('id', rule + '_cipher_1').attr('class', 'block_letter');
       cipher_text.append('div').attr('id', rule + '_cipher_2').attr('class', 'block_letter');
       var duration = 500;
       var delay = 1000; // color the plain text letters in the grid (red)
 
-      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).delay(0);
-      d3.select('.block-' + this.plain_text_pairs[i][1]).transition().duration(duration).style('background-color', this.darkColor).delay(0); // color the plain text letters in the grid (light red)
+      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).style("color", "white").delay(0);
+      d3.select('.block-' + this.plain_text_pairs[i][1]).transition().duration(duration).style('background-color', this.darkColor).style("color", "white").delay(0); // color the plain text letters in the grid (light red)
 
-      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.lightColor).delay(duration + delay);
-      d3.select('.block-' + this.plain_text_pairs[i][1]).transition().duration(duration).style('background-color', this.lightColor).delay(duration + delay); // color the cipher text letters in the grid (red)
+      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.lightColor).style("color", "white").delay(duration + delay);
+      d3.select('.block-' + this.plain_text_pairs[i][1]).transition().duration(duration).style('background-color', this.lightColor).style("color", "white").delay(duration + delay);
+      d3.select("#" + rule + "_plaintext_" + this.plain_text_pairs[i][0]).transition().duration(duration).style('color', this.lightColor).delay(duration + delay);
+      d3.select("#" + rule + "_plaintext_" + this.plain_text_pairs[i][1]).transition().duration(duration).style('color', this.lightColor).delay(duration + delay); // color the cipher text letters in the grid (red)
 
-      d3.select('.block-' + this.cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).delay(duration + delay);
-      d3.select('.block-' + this.cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', this.darkColor).delay(duration + delay); // add in the ciphered letters at the same time as the cipher text highlight
+      d3.select('.block-' + this.cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).style("color", "white").delay(duration + delay);
+      d3.select('.block-' + this.cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', this.darkColor).style("color", "white").delay(duration + delay); // add in the ciphered letters at the same time as the cipher text highlight
 
-      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', this.cipherColor).text(this.cipher_text_pairs[i][0]).delay(duration + delay + 500);
-      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', this.cipherColor).text(this.cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
+      d3.select("#" + rule + "_cipher_1").transition().duration(duration).style('color', this.darkColor).text(this.cipher_text_pairs[i][0]).delay(duration + delay + 500);
+      d3.select("#" + rule + "_cipher_2").transition().duration(duration).style('color', this.darkColor).text(this.cipher_text_pairs[i][1]).delay(duration + delay + 500); // decolor everything 
 
-      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
-      d3.select('.block-' + this.plain_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
-      d3.select('.block-' + this.cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500);
+      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').style('color', '#9a9a9a').delay(duration + delay + 1500);
+      d3.select('.block-' + this.plain_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').style('color', '#9a9a9a').delay(duration + delay + 1500);
+      d3.select('.block-' + this.cipher_text_pairs[i][0]).transition().duration(duration).style('background-color', 'transparent').style('color', '#9a9a9a').delay(duration + delay + 1500);
       var forreal = this;
 
       if (i == 0) {
-        d3.select('.block-' + this.cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500).on("end", function () {
+        d3.select('.block-' + this.cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').style('color', '#9a9a9a').delay(duration + delay + 1500).on("end", function () {
           forreal.transitions(1);
         });
       }
 
       if (i == 1) {
-        d3.select('.block-' + this.cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').delay(duration + delay + 1500).on("end", function () {
+        d3.select('.block-' + this.cipher_text_pairs[i][1]).transition().duration(duration).style('background-color', 'transparent').style('color', '#9a9a9a').delay(duration + delay + 1500).on("end", function () {
           forreal.box_transition(2);
         });
       }
@@ -29407,8 +29442,8 @@ function () {
       this.cipher_text_pairs = ["MW", "NP", "OW"];
       var column_ex = d3.select(".rules").append("div").attr('class', 'exampleContainer').append("h3").text("Box rule:");
       var plain_text = column_ex.append('div').attr('class', 'example');
-      plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter');
-      plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter');
+      plain_text.append('div').text(this.plain_text_pairs[i][0]).attr('class', 'block_letter').attr("id", "box_plaintext_" + this.plain_text_pairs[i][0]).style("color", this.darkColor);
+      plain_text.append('div').text(this.plain_text_pairs[i][1]).attr('class', 'block_letter').attr("id", "box_plaintext_" + this.plain_text_pairs[i][1]).style("color", this.darkColor);
       var cipher_text = column_ex.append('div').attr('class', 'example');
       cipher_text.append('div').attr('id', 'box_cipher_1').attr('class', 'block_letter');
       cipher_text.append('div').attr('id', 'box_cipher_2').attr('class', 'block_letter'); // var this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -29417,31 +29452,30 @@ function () {
       var delay = 1000;
       var forreal = this; // highlight M and Y in red 
 
-      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.darkColor).delay(0);
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', this.darkColor).delay(0); // highlight M and Y in pink
+      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style("color", "white").style('background-color', this.darkColor).delay(0);
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', this.darkColor).style("color", "white").delay(0); // highlight M and Y in pink
 
       d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', this.lightColor).delay(delay);
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', this.lightColor).delay(delay); // highlight O and W in red 
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', this.lightColor).delay(delay);
+      d3.select("#box_plaintext_" + this.plain_text_pairs[i][0]).transition().duration(duration).style('color', this.lightColor).delay(duration + delay);
+      d3.select("#box_plaintext_" + this.plain_text_pairs[i][1]).transition().duration(duration).style('color', this.lightColor).delay(duration + delay); // highlight O and W in red 
 
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', this.darkColor).delay(delay + duration);
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 10]).transition().duration(500).style('background-color', this.darkColor).delay(delay + duration); // add in the ciphered letters at the same time as the cipher text highlight
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', this.darkColor).style("color", "white").delay(delay + duration);
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 10]).transition().duration(500).style('background-color', this.darkColor).style("color", "white").delay(delay + duration); // add in the ciphered letters at the same time as the cipher text highlight
 
-      d3.select("#box_cipher_1").transition().duration(duration).style('color', this.cipherColor).text(this.cipher_text_pairs[i][0]).delay(delay + duration);
-      d3.select("#box_cipher_2").transition().duration(duration).style('color', this.cipherColor).text(this.cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
+      d3.select("#box_cipher_1").transition().duration(duration).style('color', this.darkColor).text(this.cipher_text_pairs[i][0]).delay(delay + duration);
+      d3.select("#box_cipher_2").transition().duration(duration).style('color', this.darkColor).text(this.cipher_text_pairs[i][1]).delay(delay + duration); // decolor everything
 
-      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', "transparent").delay(2 * (delay + duration));
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', 'transparent').delay(2 * (delay + duration));
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 10]).transition().duration(duration).style('background-color', 'transparent').delay(2 * (delay + duration));
-      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', "transparent").delay(2 * (delay + duration)).on('end', function () {
+      d3.select('.block-' + this.plain_text_pairs[i][0]).transition().duration(duration).style('background-color', "transparent").style("color", "#9a9a9a").delay(2 * (delay + duration));
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 2]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(2 * (delay + duration));
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 10]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(2 * (delay + duration));
+      d3.select('.block-' + this.alphabet[this.alphabet.indexOf(this.plain_text_pairs[i][0]) + 12]).transition().duration(duration).style('background-color', "transparent").style("color", "#9a9a9a").delay(2 * (delay + duration)).on('end', function () {
         forreal.message_transition();
       });
     }
   }, {
     key: "message_transition",
     value: function message_transition() {
-      // var initialMessage = "SECRET";
-      // var this.cipherMessage = "UCBSDU"
-      // var this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var duration = 1000;
       var buffer = 2500;
 
@@ -29461,27 +29495,36 @@ function () {
         var e_index1 = this.alphabet.indexOf(this.initialMessage[i]);
         var e_index2 = this.alphabet.indexOf(this.initialMessage[i + 1]); // make two plain text letters red 
 
-        d3.select('.block-' + this.alphabet[e_index1]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
-        d3.select('.block-' + this.alphabet[e_index2]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[e_index1]).transition().duration(duration).style('background-color', this.darkColor).style('color', 'white').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[e_index2]).transition().duration(duration).style('background-color', this.darkColor).style('color', 'white').delay(last * buffer + (delay + duration));
         delay = i == 0 ? 2000 : lastTiming - i / 2 * 1000 - 1000 * (i - 2);
-        d3.select("#encr_block_" + i).transition().duration(duration).style('color', 'black').delay(last * buffer + (delay + duration));
-        d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', 'black').delay(last * buffer + (delay + duration)); // make two plain text letters pink
+        d3.select("#encr_block_" + i).transition().duration(duration).style('color', this.lightColor).delay(last * buffer + (delay + duration));
+        d3.select("#encr_block_" + (i + 1)).transition().duration(duration).style('color', this.lightColor).delay(last * buffer + (delay + duration)); // make two plain text letters pink
 
-        d3.select('.block-' + this.alphabet[e_index1]).transition().duration(duration).style('background-color', this.lightColor).delay(last * buffer + (delay + duration));
-        d3.select('.block-' + this.alphabet[e_index2]).transition().duration(duration).style('background-color', this.lightColor).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[e_index1]).transition().duration(duration).style('background-color', this.lightColor).style('color', 'white').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[e_index2]).transition().duration(duration).style('background-color', this.lightColor).style('color', 'white').delay(last * buffer + (delay + duration));
         var c_index1 = this.alphabet.indexOf(this.cipherMessage[i]);
         var c_index2 = this.alphabet.indexOf(this.cipherMessage[i + 1]); // make two cipher text letters red
 
-        d3.select('.block-' + this.alphabet[c_index1]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
-        d3.select('.block-' + this.alphabet[c_index2]).transition().duration(duration).style('background-color', this.darkColor).delay(last * buffer + (delay + duration));
-        d3.select("#decr_block_" + i).transition().duration(duration).style('color', this.cipherColor).text(this.cipherMessage[i]).delay(last * buffer + (delay + duration));
-        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', this.cipherColor).text(this.cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[c_index1]).transition().duration(duration).style('background-color', this.darkColor).style('color', 'white').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[c_index2]).transition().duration(duration).style('background-color', this.darkColor).style('color', 'white').delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + i).transition().duration(duration).style('color', this.darkColor).text(this.cipherMessage[i]).delay(last * buffer + (delay + duration));
+        d3.select("#decr_block_" + (i + 1)).transition().duration(duration).style('color', this.darkColor).text(this.cipherMessage[i + 1]).delay(last * buffer + (delay + duration));
         delay = i == 0 ? 3000 : lastTiming - (i - 2) * 500; // decolor everything
 
-        d3.select('.block-' + this.alphabet[e_index1]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
-        d3.select('.block-' + this.alphabet[e_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
-        d3.select('.block-' + this.alphabet[c_index1]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
-        d3.select('.block-' + this.alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[e_index1]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[e_index2]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(last * buffer + (delay + duration));
+        d3.select('.block-' + this.alphabet[c_index1]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(last * buffer + (delay + duration));
+
+        if (i == 4) {
+          d3.select('.block-' + this.alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(last * buffer + (delay + duration)).on('end', function () {
+            document.getElementById("startAnimation").style.pointerEvents = 'auto';
+            d3.select('#startAnimation').style('opacity', '1');
+          });
+        } else {
+          d3.select('.block-' + this.alphabet[c_index2]).transition().duration(duration).style('background-color', 'transparent').style("color", "#9a9a9a").delay(last * buffer + (delay + duration));
+        }
+
         lastTiming = last * buffer + (delay + duration) + duration;
       }
     }
@@ -29505,6 +29548,10 @@ var BlockInteraction =
 function () {
   function BlockInteraction() {
     _classCallCheck(this, BlockInteraction);
+
+    this.darkColor = "#DA2C5E";
+    this.lightColor = "#CA9AA7";
+    this.cipherColor = "#FFD700";
   }
 
   _createClass(BlockInteraction, [{
@@ -29512,12 +29559,14 @@ function () {
     value: function start() {
       d3.selectAll(".fullVis:not(.special)").html("");
       d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content4").classed("selected", true);
       var canvas = d3.select('#title6 .fullVis').append('div').attr('class', 'interactiveContainerContainer');
       var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       var interactive_container = canvas.append('div').attr('class', 'interactiveContainer');
-      interactive_container.append('h2').attr("class", "block_interactive_title").text('Test your block cipher skills!'); // test encryption skills
+      interactive_container.append('h2').attr("class", "block_interactive_title").text('Now you try!'); // test encryption skills
 
-      interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to ENCRYPT it. When you are done click on the check button to see if you got it right');
+      interactive_container.append('h3').attr("class", "block_interactive_title").append("text").text('Choose a word from the dropdown below, and try to ').append("text").style("color", this.darkColor).text('ENCRYPT ').append("text").style("color", "white").text("it. When you are done click on the check button to see if you got it right");
       var textboxes_and_res = interactive_container.append('div');
       var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes');
       var words = ['CHOOSE A WORD', 'BASE', 'LOVE', 'GENDER', 'FINGER', 'ACADEMIC', 'ACTIVIST'];
@@ -29532,7 +29581,7 @@ function () {
       textboxes_and_res.append('div').attr('id', 'encr_shareResult').attr("class", "shareresult");
       document.getElementById("encr_checkbutton").onclick = this.checkencrypt; // test decreyption skills
 
-      interactive_container.append('h3').attr("class", "block_interactive_title").text('Choose a word from the dropdown below, and try to DECRYPT it. When you are done click on the check button to see if you got it right');
+      interactive_container.append('h3').attr("class", "block_interactive_title").append("text").text('Choose a word from the dropdown below, and try to ').append("text").style("color", this.cipherColor).text('DECRYPT ').append("text").style("color", "white").text("it. When you are done click on the check button to see if you got it right");
       var textboxes_and_res = interactive_container.append('div');
       var textboxes = textboxes_and_res.append('div').attr('class', 'textboxes');
       var words = ['CHOOSE A WORD', 'EBDQ', 'XSMY', 'GWKHIS', 'LQKHIS', 'CBDSBUFD', 'ESOFLCTW'];
@@ -29623,27 +29672,44 @@ function () {
     value: function start() {
       d3.selectAll(".fullVis:not(.special)").html("");
       d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
       colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
-      futureContainer = d3.select("#title7 .fullVis");
+      transitionContainer = d3.select("#title7 .fullVis");
       var nodes = [{
         id: "1",
         r: 1000,
         cx: 750,
         cy: 400,
-        color: "#2B7A78"
+        color: "#1f2833"
       }];
-      var futureContainer = futureContainer.append('svg').style('width', '3000').style('height', '1000').append('g');
+      var futureContainer = transitionContainer.append('svg').style('width', '3000').style('height', '1000').append('g');
       var nodeElements = futureContainer.selectAll("circle").data(nodes).enter().append("circle").attr('r', '2').attr('fill', function (d) {
         return d.color;
       }).attr('cx', function (d) {
         return d.cx;
       }).attr('cy', function (d) {
         return d.cy;
-      }).style('opacity', 0.5);
+      }).style('opacity', 0.8);
       nodeElements.transition("grow").duration(2000).attr('r', function (d) {
         return d.r;
       });
-      futureTitle = futureContainer.append("text").text("Moving into modern cryptology...").attr('x', 500).attr('y', 100).attr('fill', 'white').style("font-size", "40px").attr('opacity', 0).transition().duration(2000).attr('opacity', 100).delay(1000);
+      futureTitle = futureContainer.append("text").text("Moving into modern cryptology...").attr('x', 500).attr('y', 100).attr('fill', 'white').style("font-size", "40px").attr('opacity', 0).transition().duration(2000).attr('opacity', 1).delay(1000);
+      bubbleContainer = transitionContainer.append('div').style('width', '900px').style('position', 'fixed').style('top', '15vh').style('left', '25vw').style('text-align', 'center');
+      firstBubble = bubbleContainer.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").style('color', 'black').attr("class", "explanationCircle");
+      firstBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').style('font-size', '28px').text("Personal Data Protection").style("opacity", 0);
+      firstBubble.append('div').attr('class', 'textDiv').text('With the advancement of personal computers and online interactions, cryptology transitioned from just protecting government and military secrets to focusing on the large scale encryption of individuals\' data. ').style('font-size', '20px').style("opacity", 0);
+      firstBubble.append('div').attr('class', 'textDiv').text('An average internet-user would have passwords, messages, banking information and more being stored on internet servers. This required more advanced encryption schemes.').style('font-size', '20px').style("opacity", 0);
+      firstBubble.transition().duration(1000).style("width", "460px").style("height", "460px").delay(2000);
+      firstBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(2800);
+      firstBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(2800);
+      secondBubble = bubbleContainer.append('div').style("width", "0px").style("height", "0px").style("background-color", "#4EB7B2").style('color', 'black').attr("class", "explanationCircle").style("margin-left", "auto");
+      secondBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').style('font-size', '28px').text("Advanced Key Encryption").style("opacity", 0);
+      secondBubble.append('div').attr('class', 'textDiv').text('As demands have increased, RSA and SHA (Secure Hashing Algorithm) have become standard.').style('font-size', '20px').style("opacity", 0);
+      secondBubble.append('div').attr('class', 'textDiv').text('Keys are now standard lengths as long as 64 or 128 bits, exponentially increasing the amount of possible combinations.').style('font-size', '20px').style("opacity", 0);
+      secondBubble.append('div').attr('class', 'textDiv').text('In the following slides we\'ll explore two modern form of message exchange, symmetric and asymmetric, and outline the math behind RSA.').style('font-size', '20px').style("opacity", 0);
+      secondBubble.transition().duration(1000).style("width", "460px").style("height", "460px").delay(2700).style("margin-top", '-180px');
+      secondBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(3500);
+      secondBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(3500);
       /*
               var nodes = [
                   { id: "1", r: 5, cx: 162, cy: 350, color: 0},
@@ -29692,7 +29758,7 @@ function () {
 
 module.exports = TransitionSection;
 },{"d3":"UzF0"}],"hV9v":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/public_key.878a28f0.png";
+module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/public_key.918d259c.png";
 },{}],"ouSx":[function(require,module,exports) {
 module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/boy.c454f41b.png";
 },{}],"bG90":[function(require,module,exports) {
@@ -29700,11 +29766,11 @@ module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/girl2.82c5465e
 },{}],"vbEo":[function(require,module,exports) {
 module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/regular.1ce89c89.png";
 },{}],"sQDZ":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/lock_doc.2a956e52.png";
+module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/lock_doc.f1d2b6f6.png";
 },{}],"tfap":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/unlock_doc.9ca9db1b.png";
+module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/unlock_doc.5c4f5c6c.png";
 },{}],"O4k3":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/highlighted_key.6017b1c2.png";
+module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/highlighted_key.53e65ed4.png";
 },{}],"cbjS":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29738,13 +29804,15 @@ function () {
   _createClass(SymmetricTutorial, [{
     key: "start",
     value: function start() {
-      d3.select('#title8 .halfVis').html("");
+      d3.select('#title8 .fullVis').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content5").classed("selected", true);
-      this.vis = d3.select('#title8 .halfVis');
-      this.vis.append('div').attr('id', 'symmetric_container');
-      d3.select('#symmetric_container').append("div").attr('id', 'sender_sym').append("h3").attr("class", "label").text("TA");
-      d3.select('#symmetric_container').append("div").attr('id', 'receiver_sym').append("h3").attr("class", "label").text("Matt");
+      this.vis = d3.select('#title8 .fullVis');
+      this.vis.append("h1").text("Symmetric Encryption: using a single key").attr("class", "titleBox");
+      this.vis.append('div').attr('id', 'sym_outter').style("height", "550px");
+      d3.select("#sym_outter").append('div').attr('id', 'symmetric_container');
+      d3.select('#symmetric_container').append("div").attr('id', 'sender_sym').style("margin-top", "-6%").append("h3").attr("class", "label").text("TA");
+      d3.select('#symmetric_container').append("div").attr('id', 'receiver_sym').style("margin-top", "-6%").append("h3").attr("class", "label").text("Matt");
       d3.select("#sender_sym").append("div").attr("id", "sender_personAndKey");
       d3.select("#receiver_sym").append("div").attr("id", "receiver_personAndKey");
       d3.select("#sender_personAndKey").append("div").attr("class", "people_sender_sym").append("img").attr("src", sender);
@@ -29753,38 +29821,52 @@ function () {
       d3.select("#receiver_personAndKey").append("div").attr("class", "people_sender_sym").append("img").attr("src", receiver);
       d3.select("#receiver_personAndKey").append("div").attr("class", "symmetric_key").append("img").attr("src", key).attr("id", "decrypt").style("width", "65%");
       d3.select("#receiver_sym").append("div").attr("class", "sender_document").append("img").attr("src", locked_doc).attr("id", "doc2").style("opacity", "0");
-      this.vis.append("div").attr("id", "story_text");
-      this.vis.append("div").attr("id", "warning");
-      d3.select("#story_text").append("text").attr("dy", "0em").text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.").style("opacity", 0).transition().duration(500).style("opacity", 1);
-      d3.select("#story_text").append("br");
-      d3.select("#story_text").append("text").attr("dy", "1em").text("Because they are using symmetric keys, Matt and the TA will use the same exact key to encrypt and decrypt.").style("opacity", 0).transition().duration(1000).style("opacity", 1).delay(2000).on('end', function () {
-        d3.select("#encrypt").transition().duration(1000).delay(1000).on('end', function () {
-          // increasing size of encrypt key & changine its src
-          d3.select("#encrypt").attr("src", selected_key).transition().duration(1000).delay(1000);
-          d3.select("#story_text").text("The TA will encrypt the information using a key that only Matt and her have.").transition().duration(2000).delay(1000).on('end', function () {
-            // sender document becomes locked document
-            d3.select("#doc1").attr("src", locked_doc).transition().duration(1000).delay(2000);
-            d3.select("#story_text").text("The information is now encrypted and ready to be sent").transition().duration(2000).delay(700).on('end', function () {
-              // sender key goes back to normal 
-              d3.select("#encrypt").attr("src", key).transition().duration(0).delay(0);
-              d3.select("#doc1").style("opacity", "0");
-              d3.select("#doc2").style("opacity", "1").transition().duration(1000).delay(1000);
-              d3.select("#story_text").text("Matt receives the encrypted document").transition().duration(2000).delay(1000).on('end', function () {
-                // increasing size of decrypt key & changine its src
-                d3.select("#decrypt").attr("src", selected_key).transition().duration(1000).delay(1000);
-                d3.select("#story_text").text("and uses his key to decrypt the information").transition().duration(2000).delay(1000).on('end', function () {
-                  // locked doc becomes unlocked doc
-                  d3.select("#doc2").attr("src", unlocked_doc).transition().duration(1000).delay(1000);
-                  d3.select("#decrypt").attr("src", key);
-                  d3.select("#story_text").text("Matt is now happy that he can look at the information").transition().duration(2000).delay(1000).on('end', function () {
-                    d3.select("#warning").text("Warning!! If a student gets a hold of the shared key between Matt and the TA, they will also be able to decrypt the sensitive information.");
+      d3.select("#sym_outter").append("div").attr("id", "story_warning");
+      d3.select("#story_warning").append("div").attr("id", "story_text");
+      d3.select("#story_warning").append("div").attr("id", "warning");
+      this.vis.append("div").attr("id", "sym-startAnimation").text("START ANIMATION").style("width", "10%");
+
+      document.getElementById("sym-startAnimation").onclick = function () {
+        d3.select("#warning").html("");
+        d3.select("#story_text").html("");
+        animation();
+      };
+
+      function animation() {
+        var time = 2000;
+        d3.select("#story_text").append("text").attr("dy", "0em").text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.");
+        d3.select("#story_text").append("br");
+        d3.select("#story_text").append("text").attr("dy", "1em").transition().text("Because they are using symmetric keys, Matt and the TA will use").delay(2 * time);
+        d3.select("#story_text").append("text").style("color", "#FF5733").transition().text(" the same exact key").delay(2 * time);
+        d3.select("#story_text").append("text").transition().text(" to encrypt and decrypt.").style("color", "white").delay(2 * time).on('end', function () {
+          d3.select("#encrypt").transition().duration(6 * time).on('end', function () {
+            d3.select("#story_text").transition().text("The TA will encrypt the information using a key that only Matt and her have."); // increasing size of encrypt key & changine its src
+
+            d3.select("#encrypt").attr("src", selected_key).style("width", "100%").transition().delay(2 * time).on('end', function () {
+              d3.select("#story_text").transition().text("The information is now encrypted and ready to be sent"); // sender document becomes locked document
+
+              d3.select("#doc1").attr("src", locked_doc).transition().delay(2 * time).on('end', function () {
+                // sender key goes back to normal 
+                d3.select("#encrypt").attr("src", key).style("width", "65%").transition();
+                d3.select("#doc1").style("opacity", "0");
+                d3.select("#doc2").style("opacity", "1");
+                d3.select("#story_text").transition().text("Matt receives the encrypted document").duration(2 * time).on('end', function () {
+                  // increasing size of decrypt key & changine its src
+                  d3.select("#decrypt").attr("src", selected_key).style("width", "100%").transition().duration(2 * time).delay(time);
+                  d3.select("#story_text").transition().text("and uses his key to decrypt the information").duration(2 * time).on('end', function () {
+                    // locked doc becomes unlocked doc
+                    d3.select("#doc2").attr("src", unlocked_doc).transition();
+                    d3.select("#decrypt").attr("src", key).style("width", "65%").transition().delay(time);
+                    d3.select("#story_text").transition().text("Matt is now happy that he can look at the information").duration(2 * time).on('end', function () {
+                      d3.select("#warning").transition().text("Warning!! If a student gets a hold of the shared key between Matt and the TA, they will also be able to decrypt the sensitive information.").duration(5 * time);
+                    });
                   });
                 });
               });
             });
           });
         });
-      });
+      }
     }
   }]);
 
@@ -29796,14 +29878,10 @@ module.exports = SymmetricTutorial;
 module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/girl1.6bb66b44.png";
 },{}],"XZ9M":[function(require,module,exports) {
 module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/man.027e85e4.png";
-},{}],"JTXG":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/blue_key.7af2216d.png";
-},{}],"GfIa":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/red_key.0e939450.png";
-},{}],"N7Wn":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/orange_key.4b68faa0.png";
 },{}],"LUUO":[function(require,module,exports) {
-module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/private.951201ca.png";
+module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/private.ae164443.png";
+},{}],"FK3k":[function(require,module,exports) {
+module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/private_highlighted.94fff348.png";
 },{}],"puH3":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29821,12 +29899,6 @@ var sender2 = require('./images/girl1.png');
 
 var sender3 = require('./images/man.png');
 
-var blue = require('./images/blue_key.png');
-
-var red = require('./images/red_key.png');
-
-var orange = require('./images/orange_key.png');
-
 var public_key = require('./images/public_key.png');
 
 var private_key = require('./images/private.png');
@@ -29839,6 +29911,8 @@ var unlocked_doc = require('./images/unlock_doc.png');
 
 var selected_key = require('./images/highlighted_key.png');
 
+var private_selected_key = require('./images/private_highlighted.png');
+
 var AsymmetricAnimation =
 /*#__PURE__*/
 function () {
@@ -29849,77 +29923,90 @@ function () {
   _createClass(AsymmetricAnimation, [{
     key: "start",
     value: function start() {
-      d3.select('#title9 .halfVis').html("");
+      d3.select('#title9 .fullVis').html("");
       d3.selectAll("#vis div").classed("selected", false);
       d3.select("#content6").classed("selected", true);
-      this.vis = d3.select('#title9 .halfVis');
-      this.vis.append('div').attr("id", "outter");
+      this.vis = d3.select('#title9 .fullVis');
+      this.vis.append("h1").text("Asymmetric Encryption: harder to crack").attr("class", "titleBox");
+      this.vis.append("div").attr("id", "asym").style("height", "700px");
+      d3.select("#asym").append('div').attr("id", "outter");
       d3.select("#outter").append('div').attr("id", "senders");
-      d3.select("#senders").append('div').attr("id", "sender1").attr("class", "person");
-      d3.select("#senders").append('div').attr("id", "sender2").attr("class", "person");
-      d3.select("#senders").append('div').attr("id", "sender3").attr("class", "person");
+      d3.select("#senders").append('div').attr("id", "sender1").attr("class", "person").append("h3").text("TA1");
+      d3.select("#senders").append('div').attr("id", "sender2").attr("class", "person").append("h3").text("TA2");
+      d3.select("#senders").append('div').attr("id", "sender3").attr("class", "person").append("h3").text("TA3");
       d3.select("#outter").append('div').attr("id", "receiver_outer");
       d3.select("#receiver_outer").append('div').attr("id", "messages");
       d3.select("#messages").append("img").attr("src", locked_doc).attr("class", "locked_doc");
       d3.select("#messages").append("img").attr("src", locked_doc).attr("class", "locked_doc");
       d3.select("#messages").append("img").attr("src", locked_doc).attr("class", "locked_doc");
-      d3.selectAll(".locked_doc").attr('hidden', 'true');
-      d3.select("#receiver_outer").append('div').attr("id", "receiver");
+      d3.selectAll(".locked_doc").style('opacity', 0);
+      d3.select("#receiver_outer").append('div').attr("id", "receiver").append("h3").text("Matt");
       d3.select("#sender1").append("div").attr("id", "sender1_image").attr("class", "perdoc");
       d3.select("#sender1_image").append('img').attr("src", sender1);
-      d3.select("#sender1_image").append('img').attr("src", doc).attr("class", "sender_doc"); // div with keys in it (senders only)
+      d3.select("#sender1_image").append('img').attr("src", public_key).attr('class', 'publickey'); // div with keys in it (senders only)
 
-      d3.select("#sender1").append('div').attr("id", "sender1_key");
-      d3.select("#sender1_key").append('img').attr("src", blue).attr("class", "keys");
-      d3.select("#sender1_key").append('img').attr("src", public_key).attr("class", "keys").attr('class', 'publickey');
+      d3.select("#sender1").append('div').attr("id", "sender1_doc");
+      d3.select("#sender1_doc").append('img').attr("src", doc).attr("class", "sender_doc"); //////sender3
+
       d3.select("#sender2").append("div").attr("id", "sender2_image").attr("class", "perdoc");
-      d3.select("#sender2_image").append('img').attr("src", sender2).attr("class", "perdoc");
-      d3.select("#sender2_image").append('img').attr("src", doc).attr("class", "sender_doc");
-      d3.select("#sender2").append('div').attr("id", "sender2_key");
-      d3.select("#sender2_key").append('img').attr("src", red).attr("class", "keys");
-      d3.select("#sender2_key").append('img').attr("src", public_key).attr("class", "keys").attr('class', 'publickey');
+      d3.select("#sender2_image").append('img').attr("src", sender2);
+      d3.select("#sender2_image").append('img').attr("src", public_key).attr('class', 'publickey');
+      d3.select("#sender2").append('div').attr("id", "sender2_doc");
+      d3.select("#sender2_doc").append('img').attr("src", doc).attr("class", "sender_doc"); /////sender 3
+
       d3.select("#sender3").append("div").attr("id", "sender3_image").attr("class", "perdoc");
       d3.select("#sender3_image").append('img').attr("src", sender3);
-      d3.select("#sender3_image").append('img').attr("src", doc).attr("id", "doc1").attr("class", "sender_doc");
-      d3.select("#sender3").append('div').attr("id", "sender3_key");
-      d3.select("#sender3_key").append('img').attr("src", orange).attr("class", "keys");
-      d3.select("#sender3_key").append('img').attr("src", public_key).attr("class", "keys").attr('class', 'publickey');
-      d3.select("#receiver").append("div").attr("id", "receiver_images");
+      d3.select("#sender3_image").append('img').attr("src", public_key).attr('class', 'publickey'); // div with keys in it (senders only)
+
+      d3.select("#sender3").append('div').attr("id", "sender3_doc");
+      d3.select("#sender3_doc").append('img').attr("src", doc).attr("class", "sender_doc");
+      d3.select("#receiver").append("div").attr("id", "receiver_images").style("width", "93%").style("margin-bottom", "-8%").style("margin-top", "-9%");
       d3.select("#receiver").append("div").attr("id", "receiver_key");
       d3.select("#receiver_images").append("img").attr("src", receiver);
       d3.select("#receiver_key").append('img').attr("src", public_key).attr("class", "keys").style('width', '30%').style("padding", "10px");
       d3.select("#receiver_key").append('img').attr("src", private_key).attr("class", "keys").style('width', '30%').style("padding", "10px").attr("id", "private");
-      this.vis.append("div").attr("id", "story");
-      this.vis.append("div").attr("id", "attention");
-      this.move();
-    }
-  }, {
-    key: "move",
-    value: function move() {
-      var foreal = this;
-      d3.select("#story").append("text").attr("dy", "0em").text("Matt is waiting for all of his TAs to send him sensitive information which needs to be encrypted").append("br");
-      d3.select("#story").append("text").attr("dy", "1em").text("Because they are using asymmetric keys this time, each TA will need Matt's public key").append("br");
-      d3.select("#story").append("text").attr("dy", "2em").text("If Matt wanted to send an encrypted message back to each of the TAs, he would need to use each of their unique public keys");
-      d3.selectAll(".publickey").transition().duration(1000).delay(1000).on('end', function () {
-        d3.select("#story").text("The TAs use Matt's public key to encrypt their sensiive information");
-        d3.selectAll(".publickey").attr("src", selected_key).transition().duration(0).delay(1000).on('end', function () {
-          d3.select("#story").text("The information is now encrypted and ready to be sent");
-          d3.selectAll(".sender_doc").attr("src", locked_doc).style("width", "60%").style("height", "60%").style("margin-left", "-10%").transition().duration(1000).delay(1000).on('end', function () {
-            d3.selectAll(".sender_doc").attr("hidden", true).transition().duration(1000).delay(1000);
-            d3.selectAll(".publickey").attr("src", public_key).style('width', '15%');
-            d3.select("#story").text("Matt receives the encrypted documents, which only HE can decrypt using his private key");
-            d3.selectAll(".locked_doc").attr('hidden', null).transition().duration(1000).delay(1000).on('end', function () {
-              d3.select("#story").text("Matt uses his private key to decrypt the documents");
-              d3.select("#private").attr("src", selected_key).transition().duration(1000).delay(500).on('end', function () {
-                d3.select("#story").text("Matt is now happy that he can look at the information and can be rest assured that no one else can");
-                d3.selectAll(".locked_doc").attr('src', unlocked_doc).transition().duration(1000).delay(1000);
-                d3.select("#private").attr('src', private_key);
-                d3.select("#attention").text("Note that it is impossible for a student to decrypt the senititve information with Matt's public key, because his private key is the only thing that can decrypt the message");
+      d3.select("#outter").append("div").attr("id", "story_attention").style("width", "100%");
+      d3.select("#story_attention").append("div").attr("id", "story");
+      d3.select("#story_attention").append("div").attr("id", "attention");
+      this.vis.append("div").attr("id", "asym-startAnimation").text("START ANIMATION").style("width", "10%").style("margin-top", "1%");
+
+      document.getElementById("asym-startAnimation").onclick = function () {
+        d3.select("#story").html("");
+        d3.select("#attention").html("");
+        move();
+      };
+
+      function move() {
+        var time = 1000;
+        var foreal = this;
+        d3.select("#story").append("text").attr("dy", "0em").text("Matt is waiting for all of his TAs to send him sensitive information which needs to be encrypted").append("br");
+        d3.select("#story").append("text").attr("dy", "1em").transition().text("Because they are using asymmetric keys this time, each TA will need Matt's public key").delay(time); // d3.select("#story")
+        //     .append("text")
+        //     .attr("dy", "2em")
+        //     .text("If Matt wanted to send an encrypted message back to each of the TAs, he would need to use each of their unique public keys")
+
+        d3.selectAll(".publickey").transition().delay(7 * time).on('end', function () {
+          d3.selectAll(".publickey").attr("src", selected_key).style("width", "25%");
+          d3.select("#story").transition().text("The TAs use Matt's public key to encrypt their sensitive information").duration(3 * time).on('end', function () {
+            d3.selectAll(".sender_doc").attr("src", locked_doc);
+            d3.select("#story").transition().text("The information is now encrypted and ready to be sent").duration(3 * time).on('end', function () {
+              d3.selectAll(".publickey").attr("src", public_key).style('width', '15%').transition();
+              d3.selectAll(".sender_doc").style("opacity", 0).transition();
+              d3.selectAll(".locked_doc").style('opacity', 1).transition();
+              d3.select("#story").transition().text("Matt receives the encrypted documents, which only HE can decrypt using his private key").duration(3 * time).on('end', function () {
+                d3.select("#private").attr("src", private_selected_key).transition().duration(2 * time).delay(time);
+                d3.select("#story").transition().text("Matt uses his private key to decrypt the documents").duration(3 * time).on('end', function () {
+                  d3.selectAll(".locked_doc").attr('src', unlocked_doc).transition().duration(time).delay(time);
+                  d3.select("#private").attr('src', private_key).transition().duration(time).delay(time);
+                  d3.select("#story").transition().text("Matt is now happy that he can look at the information and can be rest assured that no one else can").duration(3 * time).on('end', function () {
+                    d3.select("#attention").transition().text("Note that it is impossible for a student to decrypt the senititve information with Matt's public key, because his private key is the only thing that can decrypt the message").duration(5 * time);
+                  });
+                });
               });
             });
           });
         });
-      });
+      }
     }
   }]);
 
@@ -29927,7 +30014,7 @@ function () {
 }();
 
 module.exports = AsymmetricAnimation;
-},{"d3":"UzF0","./images/boy.png":"ouSx","./images/girl2.png":"bG90","./images/girl1.png":"dtwH","./images/man.png":"XZ9M","./images/blue_key.png":"JTXG","./images/red_key.png":"GfIa","./images/orange_key.png":"N7Wn","./images/public_key.png":"hV9v","./images/private.png":"LUUO","./images/regular.png":"vbEo","./images/lock_doc.png":"sQDZ","./images/unlock_doc.png":"tfap","./images/highlighted_key.png":"O4k3"}],"w1tF":[function(require,module,exports) {
+},{"d3":"UzF0","./images/boy.png":"ouSx","./images/girl2.png":"bG90","./images/girl1.png":"dtwH","./images/man.png":"XZ9M","./images/public_key.png":"hV9v","./images/private.png":"LUUO","./images/regular.png":"vbEo","./images/lock_doc.png":"sQDZ","./images/unlock_doc.png":"tfap","./images/highlighted_key.png":"O4k3","./images/private_highlighted.png":"FK3k"}],"w1tF":[function(require,module,exports) {
 module.exports = "https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/woman.2c73f55a.png";
 },{}],"IBPU":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30134,7 +30221,75 @@ function () {
 }();
 
 module.exports = RSA;
-},{"d3":"UzF0","./images/man.png":"XZ9M","./images/woman.png":"w1tF"}],"Focm":[function(require,module,exports) {
+},{"d3":"UzF0","./images/man.png":"XZ9M","./images/woman.png":"w1tF"}],"Q8Am":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3 = require('d3');
+
+var Conclusion =
+/*#__PURE__*/
+function () {
+  function Conclusion() {
+    _classCallCheck(this, Conclusion);
+  }
+
+  _createClass(Conclusion, [{
+    key: "start",
+    value: function start() {
+      d3.selectAll(".fullVis:not(.special)").html("");
+      d3.selectAll('.halfVis').html("");
+      d3.selectAll("#vis div").classed("selected", false);
+      d3.select("#content8").classed("selected", true);
+      colors = ["#FFFFFF", "#BCF2F0", "#4EB7B2", "#2B7A78"];
+      titleContainer = d3.select("#title11 .fullVis").append('div').style('text-align', 'center');
+      titleContainer.append("h1").text("Thank you for watching!").style("font-size", "40px").transition().duration(2000);
+      titleContainer.append('div').style("font-size", "20px").text('We hope you have learned something about this interesting and complex field.');
+      titleContainer.append('div').style("font-size", "20px").text('It is important to understand how our data is protected, especially in this modern age of technology.');
+      conclusionContainer = d3.select("#title11 .fullVis").append('div').style('width', '1300px').style('display', 'flex').style('text-align', 'center').style('justify-content', 'center').style('margin', 'auto').style('margin-top', '100px');
+      firstBubble = conclusionContainer.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
+      firstBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Learn More").style("opacity", 0);
+      firstBubble.append('div').attr('class', 'textDiv').text('There is plenty more to learn and study when it comes to cryptography!').style("opacity", 0);
+      firstBubble.append('div').attr('class', 'textDiv').text('We recommend looking into our sources on the right, or feel free to visit Khan Academy, where they have tons of more tutorials and practice exercises.').style("opacity", 0);
+      link0 = firstBubble.append('div').attr('class', 'textDiv').style("opacity", 0);
+      link0.append('a').html('Khan Academy').attr('href', 'https://www.khanacademy.org/computing/computer-science/cryptography');
+      firstBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black").style('margin-right', '30px');
+      firstBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1000);
+      firstBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(700);
+      historyBubble = conclusionContainer.append('div').style("width", "0px").style("height", "0px").style("background-color", '#4EB7B2').attr("class", "explanationCircle");
+      historyBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Sources").style("opacity", 0);
+      link1 = historyBubble.append('div').attr('class', 'textDiv').style("opacity", 0);
+      link1.append('a').html('Asymmetric/Symmetric').attr('href', 'https://www.cryptomathic.com/news-events/blog/classification-of-cryptographic-keys-functions-and-properties?fbclid=IwAR1GXcSfL-18_UUJsw69e59Cl_qQ3342QyewLwnJO9eOd0Mi0eub-jcOaIk');
+      link2 = historyBubble.append('div').attr('class', 'textDiv').style("opacity", 0);
+      link2.append('a').html('Why Cryptography').attr('href', 'https://www.commonlounge.com/discussion/921db548a81f4d5d91cd03fc22f4b0a1');
+      link3 = historyBubble.append('div').attr('class', 'textDiv').style("opacity", 0);
+      link3.append('a').html('Hacker Gif').attr('href', 'https://www.google.com/imgres?imgurl=https://media2.giphy.com/media/9WC8WTZsFxkRi/source.gif&imgrefurl=https://giphy.com/gifs/hack-9WC8WTZsFxkRi&tbnid=CEULoB359FPrTM&vet=1&docid=UGFOTdP4wh8OyM&w=800&h=600&q=hackery+gif&source=sh/x/im');
+      link4 = historyBubble.append('div').attr('class', 'textDiv').style("opacity", 0);
+      link4.append('a').html('Cipher Info').attr('href', 'http://www.quotium.com/resources/importance-cryptography/');
+      historyBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(500).style("color", "black").style('margin-right', '30px');
+      historyBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1000);
+      historyBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(1000);
+      processBubble = conclusionContainer.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle");
+      processBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Teammates").style("opacity", 0);
+      processBubble.append('div').attr('class', 'textDiv').text('Lior Levy').style("opacity", 0);
+      processBubble.append('div').attr('class', 'textDiv').text('Emma Raible').style("opacity", 0);
+      processBubble.append('div').attr('class', 'textDiv').text('Heather Harvey').style("opacity", 0);
+      processBubble.append('div').attr('class', 'textDiv').text('Amir Mola').style("opacity", 0);
+      processBubble.append('div').attr('class', 'textDiv').text('Kushal Jhunjhunwalla').style("opacity", 0);
+      processBubble.transition().duration(1000).style("width", "350px").style("height", "350px").delay(1000).style("color", "black").style('margin-right', '30px');
+      processBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(1300);
+      processBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(1300);
+    }
+  }]);
+
+  return Conclusion;
+}();
+
+module.exports = Conclusion;
+},{"d3":"UzF0"}],"Focm":[function(require,module,exports) {
 var d3 = require('d3');
 
 var createIntro = require('./create-intro');
@@ -30155,7 +30310,9 @@ var createSymmetricAnimation = require('./create-symmetric-animation');
 
 var createAsymmetricAnimation = require('./create-asymmetric-animation');
 
-var createRSA = require('./create-rsa'); // get scrolling coordinates
+var createRSA = require('./create-rsa');
+
+var createConclusion = require('./create-conclusion'); // get scrolling coordinates
 
 
 sections = d3.selectAll('.step');
@@ -30175,7 +30332,7 @@ sections.each(function (d, i) {
   sectionPositions.push(top - startPos);
 });
 var currentIndex = -1;
-var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA]; // also bug with intro and history on up scroll
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createConclusion]; // also bug with intro and history on up scroll
 // and maybe with it disappearing ?
 
 var contentToStep = {
@@ -30185,7 +30342,8 @@ var contentToStep = {
   "content4": "step5",
   "content5": "step8",
   "content6": "step9",
-  "content7": "step10"
+  "content7": "step10",
+  "content8": "step11"
 };
 d3.select("#cover").transition().duration(2500).delay(800).style("opacity", '0').on("end", function () {
   d3.select("#cover").remove();
@@ -30228,5 +30386,5 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 });
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
-},{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.f0ff1e6e.js.map
+},{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU","./create-conclusion":"Q8Am"}]},{},["Focm"], null)
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.2cda8fd5.js.map

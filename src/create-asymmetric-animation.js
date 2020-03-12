@@ -9,7 +9,7 @@ const doc = require('./images/regular.png')
 const locked_doc = require('./images/lock_doc.png')
 const unlocked_doc = require('./images/unlock_doc.png')
 const selected_key = require('./images/highlighted_key.png')
-
+const private_selected_key = require('./images/private_highlighted.png')
 
 class AsymmetricAnimation {
     constructor() {
@@ -165,7 +165,7 @@ class AsymmetricAnimation {
             .append("div")
             .attr("id", "receiver_images")
             .style("width", "93%")
-            .style("margin-bottom", "-10%")
+            .style("margin-bottom", "-8%")
             .style("margin-top", "-9%")
 
         d3.select("#receiver")
@@ -217,7 +217,7 @@ class AsymmetricAnimation {
         };
 
         function move() {
-            let time = 2000;
+            let time = 1000;
             const foreal = this
             d3.select("#story")
                 .append("text")
@@ -280,7 +280,7 @@ class AsymmetricAnimation {
                                         .on('end', function () {
 
                                             d3.select("#private")
-                                                .attr("src", selected_key)
+                                                .attr("src", private_selected_key)
                                                 .style("width", "25%")
                                                 .transition()
                                                 .duration(2 * time)

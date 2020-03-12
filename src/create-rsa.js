@@ -166,11 +166,11 @@ class RSA {
             .attr('id', 'send_eq')
 
 
-        send_eq.append('p').attr('id', 'send_eq_c').attr('class', 'rsa_equation_para').style('opacity', 0)
-        send_eq.append('p').attr('id', 'send_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 0)
-        send_eq.append('p').attr('id', 'send_eq_m').attr('class', 'rsa_equation_para').style('opacity', 0)
-        send_eq.append('sup').attr('id', 'send_eq_exp_e').attr('class', 'rsa_equation_para').style('opacity', 0)
-        send_eq.append('p').attr('id', 'send_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 0)
+        send_eq.append('p').attr('id', 'send_eq_c').attr('class', 'rsa_equation_para').text("C").style("color", "#da2c5e")
+        send_eq.append('p').attr('id', 'send_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 1)
+        send_eq.append('p').attr('id', 'send_eq_m').attr('class', 'rsa_equation_para').text('M').style("color", "#ffd700")
+        send_eq.append('sup').attr('id', 'send_eq_exp_e').attr('class', 'rsa_equation_para').text('3')
+        send_eq.append('p').attr('id', 'send_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 1)
 
 
         rec_index = receiver_div.append('div')
@@ -186,11 +186,11 @@ class RSA {
             .attr('class', 'rsa_equations')
             .attr('id', 'rec_eq')
 
-        req_eq.append('p').attr('id', 'rec_eq_m').attr('class', 'rsa_equation_para').style('opacity', 0)
-        req_eq.append('p').attr('id', 'rec_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 0)
-        req_eq.append('p').attr('id', 'rec_eq_c').attr('class', 'rsa_equation_para').style('opacity', 0)
-        req_eq.append('sup').attr('id', 'rec_eq_exp_d').style('opacity', 0)
-        req_eq.append('p').attr('id', 'rec_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 0)
+        req_eq.append('p').attr('id', 'rec_eq_m').attr('class', 'rsa_equation_para').text('M').style('color', "#ff5733")
+        req_eq.append('p').attr('id', 'rec_eq_equals').attr('class', 'rsa_equation_para').text(" = ")
+        req_eq.append('p').attr('id', 'rec_eq_c').attr('class', 'rsa_equation_para').text('C').style('color', '#ffd700')
+        req_eq.append('sup').attr('id', 'rec_eq_exp_d').text('D')
+        req_eq.append('p').attr('id', 'rec_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n)
 
         images = rec_index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
 
@@ -299,13 +299,13 @@ class RSA {
             d3_index.select('#rsa_cipher' + i)
                 .transition()
                 .duration(duration)
-                .style('color', 'red')
+                .style('color', '#da2c5e')
                 .delay(timeout * i)
 
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
-                .style('background-color', 'red')
+                .style('background-color', '#da2c5e')
                 .delay(timeout * i);
 
             d3.selectAll('.' + initialMessage[i])
@@ -317,7 +317,7 @@ class RSA {
             d3_index.select('#rsa_cipher' + i)
                 .transition()
                 .duration(duration)
-                .style('color', 'white')
+                .style('color', 'black')
                 .delay(interval + timeout * i);
 
             // Sending the message
@@ -325,7 +325,6 @@ class RSA {
             let c = this.getCipherLetter(initialCipher[i])
 
             // story
-
             let send_time_story = (6 * interval)
             d3.select('#story_intro')
                 .transition()
@@ -353,36 +352,23 @@ class RSA {
                 .delay(send_time_story)
                 .text('')
 
-
             // equations
-            d3.select('#send_eq_c').transition()
-                .duration(duration)
-                .text('c')
-                .style('opacity', 1)
-                .delay((2 * interval) + timeout * i)
-                .transition()
+            d3.select('#send_eq_c')
+				.transition()
                 .duration(duration)
                 .text(c)
-                .style('color', '#fdd835')
-                .delay(interval)
-                .transition()
-                .duration(duration)
-                .style('color', 'white')
+                .style('opacity', 1)
+                .delay((2 * interval) + timeout * i)
 
-            d3.select('#send_eq_m').transition()
+            d3.select('#send_eq_m')
+				.transition()
                 .duration(duration)
                 .text(m)
-                .style('opacity', 1)
-                .style('color', 'red')
                 .delay((2 * interval) + timeout * i)
-                .transition()
-                .duration(duration)
-                .style('color', 'white')
 
             d3.select('#send_eq_exp_e').transition()
                 .duration(duration)
                 .text(this.e)
-                .style('opacity', 1)
                 .delay((2 * interval) + timeout * i)
 
             d3.select('#send_eq_equals').transition()
@@ -401,13 +387,10 @@ class RSA {
 
             d3.select('#rec_eq_m').transition()
                 .duration(duration)
-                .text('m')
-                .style('opacity', 1)
-                .delay((6 * interval) + timeout * i)
+                .delay((4 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
                 .text(initialCipher[i])
-                .style('color', 'orange')
                 .delay(duration)
                 .transition()
                 .duration(duration)
@@ -418,7 +401,7 @@ class RSA {
                 .text(c)
                 .style('opacity', 1)
                 .style('color', '#fdd835')
-                .delay((6 * interval) + timeout * i)
+                .delay((4 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
@@ -428,26 +411,25 @@ class RSA {
                 .duration(duration)
                 .text(this.d)
                 .style('opacity', 1)
-                .delay((6 * interval))
+                .delay((4 * interval))
 
             d3.select('#rec_eq_equals').transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((6 * interval))
+                .delay((4 * interval))
 
             d3.select('#rec_eq_mod').transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((6 * interval))
+                .delay((4 * interval))
 
             d3.select('#rec_eq_m')
-                .style('opacity', 0)
                 .transition()
                 .duration(duration)
                 .text(initialCipher[i])
                 .style('opacity', 1)
-                .style('color', 'orange')
-                .delay((7 * interval) + timeout * i)
+                .style('color', '#ff5733')
+                .delay((4 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
@@ -486,7 +468,7 @@ class RSA {
                 .duration(duration)
                 .style('opacity', '1')
                 .style('color', 'orange')
-                .delay((10 * interval) + timeout * i)
+                .delay((5 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
                 .style('color', 'white')

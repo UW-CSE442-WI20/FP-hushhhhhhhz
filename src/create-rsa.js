@@ -113,19 +113,37 @@ class RSA {
         let alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
         let story = [
-            'Bob encrypts his message to Alice letter by letter using her public key in the following equation  C = M^k mod n where M is the ASCII representation of the letter Bob is currently encrypting',
+            'Bob encrypts his message to Alice letter by letter using her public key in the following equation<br> C = M<sup>e</sup> mod n <br> where M is the ASCII representation of the letter Bob is currently encrypting',
             'Bob sends C to Alice.',
-            'Alice receives C and is now decrypting the letter using her private key in the following equation M =  C^d mod n',
+            'Alice receives C and is now decrypting the letter using her private key in the following equation <br> M =  C<sup>d</sup> mod n',
             'Alice now has the ASCII representation of the letter Bob just sent, which she translates into the letter itself'
         ]
-
+ 
         let rsa_example = d3.select('#rsa_example').html('');
 
 
         let rsa_container = rsa_example.append('div').attr('class', 'rsaAnitmation');
         let sender_div = rsa_container.append('div').attr('class', 'sender_div');
         let receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
-        let storyboard = rsa_example.append('div').attr('class', 'storyboard')
+        let storyboard = rsa_example.append('div').attr('class', 'storyboard').style('text-align', 'center')
+
+        storyboard.append('text')
+            .attr('id', 'story_intro')
+        storyboard.append('br')
+
+        // eq
+        storyboard.append('text')
+            .attr('id', 'story_eq_1')
+        storyboard.append('sup')
+            .attr('id', 'story_exp')
+        storyboard.append('text')
+            .attr('id', 'story_eq_2')
+        storyboard.append('br')
+
+        
+        storyboard.append('text')
+            .attr('id', 'story_conclusion')
+
         let table_div = rsa_example.append('div').attr('class', 'tableDivRSA')
 
         let index = sender_div.append('div')
@@ -161,7 +179,6 @@ class RSA {
         send_eq.append('sup').attr('id', 'send_eq_exp_e').attr('class', 'rsa_equation_para').style('opacity', 0)
         send_eq.append('p').attr('id', 'send_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 0)
 
-        let images = index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
 
         rec_index = receiver_div.append('div')
             .attr('id', 'rec_index')
@@ -254,16 +271,38 @@ class RSA {
         for (let i = 0; i < initialMessage.length; i++) {
             let d3_index = d3.select('#send_index')
 
-            d3.select('.storyboard')
+            d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .text(story[0])
-                .delay(0)
+                .delay(timeout * 0)
+                .text('Bob encrypts his message to Alice letter by letter using her public key in the following equation')
+
+            d3.select('#story_eq_1')
+                .transition()
+                .duration(duration)
+                .delay(timeout * 0)
+                .text('C = M')
+            d3.select('#story_exp')
+                .transition()
+                .duration(duration)
+                .delay(timeout * 0)
+                .text('e')
+            d3.select('#story_eq_2')
+                .transition()
+                .duration(duration)
+                .delay(timeout * 0)
+                .text(' mod N')
+
+            d3.select('#story_conclusion')
+                .transition()
+                .duration(duration)
+                .delay(timeout * 0)
+                .text('where M is the ASCII representation of the letter Bob is currently encrypting')
 
             d3_index.select('#rsa_cipher' + i)
                 .transition()
                 .duration(duration)
-                .style('color', '#fdd835')
+                .style('color', 'red')
                 .delay(timeout * i)
 
             d3.selectAll('.' + initialMessage[i])
@@ -296,16 +335,36 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .text(c)
-                .style('color', 'orange')
+                .style('color', 'yellow')
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
 
-            d3.select('.storyboard')
+            d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .text(story[1])
                 .delay((5 * interval) + timeout * 0)
+                .text('Bob sends C to Alice')
+            d3.select('#story_eq_1')
+                .transition()
+                .duration(duration)
+                .delay((5 * interval) + timeout * 0)
+                .text('')
+            d3.select('#story_exp')
+                .transition()
+                .duration(duration)
+                .delay((5 * interval) + timeout * 0)
+                .text('')
+            d3.select('#story_eq_2')
+                .transition()
+                .duration(duration)
+                .delay((5 * interval) + timeout * 0)
+                .text('')
+            d3.select('#story_conclusion')
+                .transition()
+                .duration(duration)
+                .delay((5 * interval) + timeout * 0)
+                .text('')
 
             d3.select('#send_eq_m').transition()
                 .duration(duration)
@@ -333,11 +392,31 @@ class RSA {
                 .style('opacity', '1')
                 .delay((2 * interval) + timeout * i)
 
-            d3.select('.storyboard')
+            d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .text(story[2])
                 .delay((6 * interval) + timeout * 0)
+                .text('Alice receives C and is now decrypting the letter using her private key in the following equation')
+            d3.select('#story_eq_1')
+                .transition()
+                .duration(duration)
+                .delay((6 * interval) + timeout * 0)
+                .text('M = C')
+            d3.select('#story_exp')
+                .transition()
+                .duration(duration)
+                .delay((6 * interval) + timeout * 0)
+                .text('d')
+            d3.select('#story_eq_2')
+                .transition()
+                .duration(duration)
+                .delay((6 * interval) + timeout * 0)
+                .text(' mod N')
+            d3.select('#story_conclusion')
+                .transition()
+                .duration(duration)
+                .delay((6 * interval) + timeout * 0)
+                .text('')
 
             // Receiving the message
 
@@ -360,7 +439,7 @@ class RSA {
                 .duration(duration)
                 .text(c)
                 .style('opacity', 1)
-                .style('color', 'red')
+                .style('color', 'yellow')
                 .delay((5 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
@@ -382,7 +461,7 @@ class RSA {
                 .duration(duration)
                 .style('opacity', '1')
                 .delay((5 * interval) + timeout * i)
-            
+
             d3.select('#rec_eq_m')
                 .style('opacity', 0)
                 .transition()
@@ -399,7 +478,7 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .style('color', 'red')
+                .style('color', 'orange')
                 .delay((7 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
@@ -416,19 +495,46 @@ class RSA {
                 .duration(duration)
                 .style('background-color', 'transparent')
                 .delay((8 * interval) + timeout * i);
-            
-            d3.select('.storyboard')
+
+             d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .text(story[3])
                 .delay((7 * interval) + timeout * 0)
+                .text('Alice now has the ASCII representation of the letter Bob just sent, which she translates into the letter itself')
+            d3.select('#story_eq_1')
+                .transition()
+                .duration(duration)
+                .delay((7 * interval) + timeout * 0)
+                .text('')
+            d3.select('#story_exp')
+                .transition() 
+                .duration(duration)
+                .delay((7 * interval) + timeout * 0)
+                .text('')
+            d3.select('#story_eq_2')
+                .transition()
+                .duration(duration)
+                .delay((7 * interval) + timeout * 0)
+                .text('')
+            d3.select('#story_conclusion')
+                .transition()
+                .duration(duration)
+                .delay((7 * interval) + timeout * 0)
+                .text('')
+
         }
 
-        d3.select('.storyboard')
+        d3.select('#story_intro')
             .transition()
-            .text('Note: In the real world, we use much bigger primes so that they are harder to crack and with bigger primes a message can be encrypted and decrypted together rather than letter by letter. ')
+            .text('Note: In the real world, we use much bigger primes so that they are harder to crack')
             .style('color', 'red')
-            .delay((8 * interval) + timeout * initialMessage.length)
+            .delay(timeout * initialMessage.length)
+
+        d3.select('#story_conclusion')
+            .transition()
+            .text('and with bigger primes a message can be encrypted and decrypted together rather than letter by letter.')
+            .style('color', 'red')
+            .delay(timeout * initialMessage.length)
     }
 
     // to have inline bold and other tags

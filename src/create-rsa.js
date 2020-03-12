@@ -166,9 +166,9 @@ class RSA {
             .attr('id', 'send_eq')
 
 
-        send_eq.append('p').attr('id', 'send_eq_c').attr('class', 'rsa_equation_para').text("C").style("color", "#da2c5e")
+        send_eq.append('p').attr('id', 'send_eq_c').attr('class', 'rsa_equation_para').text("C").style("color", "#ffd700")
         send_eq.append('p').attr('id', 'send_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 1)
-        send_eq.append('p').attr('id', 'send_eq_m').attr('class', 'rsa_equation_para').text('M').style("color", "#ffd700")
+        send_eq.append('p').attr('id', 'send_eq_m').attr('class', 'rsa_equation_para').text('M').style("color", "#da2c5e")
         send_eq.append('sup').attr('id', 'send_eq_exp_e').attr('class', 'rsa_equation_para').text('3')
         send_eq.append('p').attr('id', 'send_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 1)
 
@@ -189,7 +189,7 @@ class RSA {
         req_eq.append('p').attr('id', 'rec_eq_m').attr('class', 'rsa_equation_para').text('M').style('color', "#ff5733")
         req_eq.append('p').attr('id', 'rec_eq_equals').attr('class', 'rsa_equation_para').text(" = ")
         req_eq.append('p').attr('id', 'rec_eq_c').attr('class', 'rsa_equation_para').text('C').style('color', '#ffd700')
-        req_eq.append('sup').attr('id', 'rec_eq_exp_d').text('D')
+        req_eq.append('sup').attr('id', 'rec_eq_exp_d').text('107')
         req_eq.append('p').attr('id', 'rec_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n)
 
         images = rec_index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
@@ -258,11 +258,19 @@ class RSA {
             .html(d => d.value)
             .attr('class', d => d.column);
 
-        let duration = 1500
-        let timeout = 20000;
-        let interval = duration
+        let initialTimeout = 0
+		let duration = 4000
+        let timeout = 0
+        let interval = 4000
         for (let i = 0; i < initialMessage.length; i++) {
             let d3_index = d3.select('#send_index')
+		
+			if (i > 0) {
+				timeout = 9000
+				duration = 1500
+				interval = 1500
+				initialTimeout = 32000
+			}
 
             d3.select('#story_intro')
                 .transition()
@@ -296,41 +304,36 @@ class RSA {
                 .delay(0)
                 .text('where M is the ASCII representation of the letter Bob is currently encrypting')
 
-            d3_index.select('#rsa_cipher' + i)
+            d3_index.select('#' + 'rsa_cipher' + i)
                 .transition()
                 .duration(duration)
                 .style('color', '#da2c5e')
-                .delay(timeout * i)
+                .delay(timeout * (i-1) + initialTimeout)
 
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
                 .style('background-color', '#da2c5e')
-                .delay(timeout * i);
+                .delay(timeout * (i-1) + initialTimeout);
 
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
                 .style('background-color', 'transparent')
-                .delay(interval + timeout * i);
+                .delay(interval + timeout * (i-1) + initialTimeout);
 
             d3_index.select('#rsa_cipher' + i)
                 .transition()
                 .duration(duration)
                 .style('color', 'black')
-                .delay(interval + timeout * i);
+                .delay(interval + timeout * (i-1) + initialTimeout);
 
             // Sending the message
             let m = initialCipher[i]
             let c = this.getCipherLetter(initialCipher[i])
 
             // story
-            let send_time_story = (6 * interval)
-            d3.select('#story_intro')
-                .transition()
-                .duration(duration)
-                .delay(send_time_story)
-                .text('Bob sends C to Alice')
+            let send_time_story = (8 * interval)
             d3.select('#story_eq_1')
                 .transition()
                 .duration(duration)
@@ -358,28 +361,28 @@ class RSA {
                 .duration(duration)
                 .text(c)
                 .style('opacity', 1)
-                .delay((2 * interval) + timeout * i)
+                .delay((2 * interval) + timeout * (i-1) + initialTimeout)
 
             d3.select('#send_eq_m')
 				.transition()
                 .duration(duration)
                 .text(m)
-                .delay((2 * interval) + timeout * i)
+                .delay((2 * interval) + timeout * (i-1) + initialTimeout)
 
             d3.select('#send_eq_exp_e').transition()
                 .duration(duration)
                 .text(this.e)
-                .delay((2 * interval) + timeout * i)
+                .delay((2 * interval) + timeout * (i-1) + initialTimeout)
 
             d3.select('#send_eq_equals').transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((2 * interval) + timeout * i)
+                .delay((2 * interval) + timeout * (i-1) + initialTimeout)
 
             d3.select('#send_eq_mod').transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((2 * interval) + timeout * i)
+                .delay((2 * interval) + timeout * (i-1) + initialTimeout)
 
             // Receiving the message
             // equations
@@ -387,24 +390,22 @@ class RSA {
 
             d3.select('#rec_eq_m').transition()
                 .duration(duration)
-                .delay((4 * interval) + timeout * i)
+                .delay((4 * interval) + timeout * (i-1) + initialTimeout)
                 .transition()
                 .duration(duration)
                 .text(initialCipher[i])
                 .delay(duration)
                 .transition()
                 .duration(duration)
-                .style('color', 'white')
 
             d3.select('#rec_eq_c').transition()
                 .duration(duration)
                 .text(c)
                 .style('opacity', 1)
                 .style('color', '#fdd835')
-                .delay((4 * interval) + timeout * i)
+                .delay((4 * interval) + timeout * (i-1) + initialTimeout)
                 .transition()
                 .duration(duration)
-                .style('color', 'white')
 
 
             d3.select('#rec_eq_exp_d').transition()
@@ -427,12 +428,11 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .text(initialCipher[i])
-                .style('opacity', 1)
+				.style('opacity', 1)
                 .style('color', '#ff5733')
-                .delay((4 * interval) + timeout * i)
+                .delay((4 * interval) + timeout * (i-1) + initialTimeout)
                 .transition()
                 .duration(duration)
-                .style('color', 'white')
 
             // story
             let rec_time_story = (8 * interval)
@@ -467,27 +467,30 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .style('color', 'orange')
-                .delay((5 * interval) + timeout * i)
-                .transition()
-                .duration(duration)
-                .style('color', 'white')
+                .style('color', '#ff5733')
+                .delay((5 * interval) + timeout * (i-1) + initialTimeout)
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
-                .style('background-color', 'orange')
-                .delay((10 * interval) + timeout * i)
+                .style('background-color', '#ff5733')
+                .delay((5 * interval) + timeout * (i-1) + initialTimeout)
                 .transition()
                 .style('background-color', 'transparent')
 
-            let final_time_story = (10 * interval)
+            let final_time_story = (12 * interval)
 
             d3.select('#story_intro')
                 .transition()
                 .duration(duration)
                 .delay(final_time_story)
                 .text('Alice now has the ASCII representation of the letter Bob just sent, which she translates into the letter itself')
+
+			d3.select('#story_intro')
+                .transition()
+                .duration(duration)
+                .delay(final_time_story + 8*interval)
+                .text('')
 
             d3.select('.story_equations')
                 .transition()
@@ -506,14 +509,14 @@ class RSA {
             .text('Note: In the real world, we use much bigger primes so that they are harder to crack')
             .style('color', 'red')
             .style('font-weight', 'bold')
-            .delay(timeout * initialMessage.length)
+            .delay(timeout * (initialMessage.length - 1) + initialTimeout)
 
         d3.select('#story_conclusion')
             .transition()
             .text('and with bigger primes a message can be encrypted and decrypted together rather than letter by letter.')
             .style('color', 'red')
             .style('font-weight', 'bold')
-            .delay(timeout * initialMessage.length)
+            .delay(timeout * (initialMessage.length - 1) + initialTimeout)
     }
 }
 

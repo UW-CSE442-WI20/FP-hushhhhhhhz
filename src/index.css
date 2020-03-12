@@ -11,6 +11,11 @@ body {
 	--cipher-color: #FFD700;
 }
 
+.rsa_cipher, .rsa_decipher {
+	font-family: 'Roboto', sans-serif;
+	font-size: 50px;
+}
+
 .step {
 	height: 100vh;
 	z-index: 2;

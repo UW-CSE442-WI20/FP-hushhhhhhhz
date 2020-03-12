@@ -924,3 +924,7 @@ p.rsa_equation_para {
 	width: 700px;
 	height: 70px;
 }
+
+#send_index .cipher_message {
+	margin-block-start: 0.75em;
+}

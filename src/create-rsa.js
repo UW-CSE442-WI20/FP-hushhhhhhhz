@@ -13,7 +13,6 @@ class RSA {
         this.d = 107
         this.senderMessage = this.senderMessage.bind(this)
         this.createStartButton = this.createStartButton.bind(this)
-        this.wrap = this.wrap.bind(this)
     }
 
     start() {
@@ -132,13 +131,14 @@ class RSA {
         storyboard.append('br')
 
         // eq
-        storyboard.append('text')
+        let eq_div = storyboard.append('div').attr('class', 'story_equations')
+        eq_div.append('text')
             .attr('id', 'story_eq_1')
-        storyboard.append('sup')
+        eq_div.append('sup')
             .attr('id', 'story_exp')
-        storyboard.append('text')
+        eq_div.append('text')
             .attr('id', 'story_eq_2')
-        storyboard.append('br')
+        eq_div.append('br')
 
         
         storyboard.append('text')
@@ -274,29 +274,29 @@ class RSA {
             d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .delay(timeout * 0)
+                .delay(0)
                 .text('Bob encrypts his message to Alice letter by letter using her public key in the following equation')
 
             d3.select('#story_eq_1')
                 .transition()
                 .duration(duration)
-                .delay(timeout * 0)
+                .delay(0)
                 .text('C = M')
             d3.select('#story_exp')
                 .transition()
                 .duration(duration)
-                .delay(timeout * 0)
+                .delay(0)
                 .text('e')
             d3.select('#story_eq_2')
                 .transition()
                 .duration(duration)
-                .delay(timeout * 0)
+                .delay(0)
                 .text(' mod N')
 
             d3.select('#story_conclusion')
                 .transition()
                 .duration(duration)
-                .delay(timeout * 0)
+                .delay(0)
                 .text('where M is the ASCII representation of the letter Bob is currently encrypting')
 
             d3_index.select('#rsa_cipher' + i)
@@ -308,7 +308,7 @@ class RSA {
             d3.selectAll('.' + initialMessage[i])
                 .transition()
                 .duration(duration)
-                .style('background-color', '#fdd835')
+                .style('background-color', 'red')
                 .delay(timeout * i);
 
             d3.selectAll('.' + initialMessage[i])
@@ -335,7 +335,7 @@ class RSA {
                 .transition()
                 .duration(duration)
                 .text(c)
-                .style('color', 'yellow')
+                .style('color', '#fdd835')
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
@@ -343,27 +343,27 @@ class RSA {
             d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .delay((5 * interval) + timeout * 0)
+                .delay((5 * interval))
                 .text('Bob sends C to Alice')
             d3.select('#story_eq_1')
                 .transition()
                 .duration(duration)
-                .delay((5 * interval) + timeout * 0)
+                .delay((5 * interval))
                 .text('')
             d3.select('#story_exp')
                 .transition()
                 .duration(duration)
-                .delay((5 * interval) + timeout * 0)
+                .delay((5 * interval))
                 .text('')
             d3.select('#story_eq_2')
                 .transition()
                 .duration(duration)
-                .delay((5 * interval) + timeout * 0)
+                .delay((5 * interval))
                 .text('')
             d3.select('#story_conclusion')
                 .transition()
                 .duration(duration)
-                .delay((5 * interval) + timeout * 0)
+                .delay((5 * interval))
                 .text('')
 
             d3.select('#send_eq_m').transition()
@@ -395,27 +395,27 @@ class RSA {
             d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .delay((6 * interval) + timeout * 0)
+                .delay((6 * interval))
                 .text('Alice receives C and is now decrypting the letter using her private key in the following equation')
             d3.select('#story_eq_1')
                 .transition()
                 .duration(duration)
-                .delay((6 * interval) + timeout * 0)
+                .delay((6 * interval))
                 .text('M = C')
             d3.select('#story_exp')
                 .transition()
                 .duration(duration)
-                .delay((6 * interval) + timeout * 0)
+                .delay((6 * interval))
                 .text('d')
             d3.select('#story_eq_2')
                 .transition()
                 .duration(duration)
-                .delay((6 * interval) + timeout * 0)
+                .delay((6 * interval))
                 .text(' mod N')
             d3.select('#story_conclusion')
                 .transition()
                 .duration(duration)
-                .delay((6 * interval) + timeout * 0)
+                .delay((6 * interval))
                 .text('')
 
             // Receiving the message
@@ -439,7 +439,7 @@ class RSA {
                 .duration(duration)
                 .text(c)
                 .style('opacity', 1)
-                .style('color', 'yellow')
+                .style('color', '#fdd835')
                 .delay((5 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
@@ -450,17 +450,17 @@ class RSA {
                 .duration(duration)
                 .text(this.d)
                 .style('opacity', 1)
-                .delay((5 * interval) + timeout * i)
+                .delay((5 * interval))
 
             d3.select('#rec_eq_equals').transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((5 * interval) + timeout * i)
+                .delay((5 * interval))
 
             d3.select('#rec_eq_mod').transition()
                 .duration(duration)
                 .style('opacity', '1')
-                .delay((5 * interval) + timeout * i)
+                .delay((5 * interval))
 
             d3.select('#rec_eq_m')
                 .style('opacity', 0)
@@ -469,7 +469,7 @@ class RSA {
                 .text(initialCipher[i])
                 .style('opacity', 1)
                 .style('color', 'orange')
-                .delay((6 * interval) + timeout * i)
+                .delay((7 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
@@ -479,7 +479,7 @@ class RSA {
                 .duration(duration)
                 .style('opacity', '1')
                 .style('color', 'orange')
-                .delay((7 * interval) + timeout * i)
+                .delay((8 * interval) + timeout * i)
                 .transition()
                 .duration(duration)
                 .style('color', 'white')
@@ -487,141 +487,46 @@ class RSA {
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
-                .style('background-color', 'red')
-                .delay((7 * interval) + timeout * i);
+                .style('background-color', 'orange')
+                .delay((8 * interval) + timeout * i);
 
             d3.selectAll('.' + String.fromCharCode(initialCipher[i]))
                 .transition()
                 .duration(duration)
                 .style('background-color', 'transparent')
-                .delay((8 * interval) + timeout * i);
+                .delay((9 * interval) + timeout * i);
 
              d3.select('#story_intro')
                 .transition()
                 .duration(duration)
-                .delay((7 * interval) + timeout * 0)
+                .delay((8 * interval))
                 .text('Alice now has the ASCII representation of the letter Bob just sent, which she translates into the letter itself')
-            d3.select('#story_eq_1')
-                .transition()
-                .duration(duration)
-                .delay((7 * interval) + timeout * 0)
-                .text('')
-            d3.select('#story_exp')
-                .transition() 
-                .duration(duration)
-                .delay((7 * interval) + timeout * 0)
-                .text('')
-            d3.select('#story_eq_2')
-                .transition()
-                .duration(duration)
-                .delay((7 * interval) + timeout * 0)
-                .text('')
+            
+        d3.select('.story_equations')
+            .transition()
+            .remove()
+            .delay(8 * interval)
+            
             d3.select('#story_conclusion')
                 .transition()
                 .duration(duration)
-                .delay((7 * interval) + timeout * 0)
+                .delay((8 * interval))
                 .text('')
-
         }
 
         d3.select('#story_intro')
             .transition()
             .text('Note: In the real world, we use much bigger primes so that they are harder to crack')
             .style('color', 'red')
+            .style('font-weight', 'bold')
             .delay(timeout * initialMessage.length)
 
         d3.select('#story_conclusion')
             .transition()
             .text('and with bigger primes a message can be encrypted and decrypted together rather than letter by letter.')
             .style('color', 'red')
+            .style('font-weight', 'bold')
             .delay(timeout * initialMessage.length)
-    }
-
-    // to have inline bold and other tags
-    // src: https://stackoverflow.com/questions/37421900/d3-textwrap-to-incorporate-b-and-em-tags
-    wrap(text, width, block_id) {
-        text.each(function () {
-            var text = d3.select(this),
-                words = text.text().split(/\s+/).reverse(),
-                word,
-                lineNumber = 0,
-                lineHeight = 1.1, // ems
-                y = text.attr("y"),
-                x = text.attr("x"),
-                dy = 0
-            tspan = text.text(null)
-                .append("tspan")
-                .attr("x", x)
-                .attr("y", y)
-                .attr("dy", dy + "em");
-
-            word_id_counter = 0
-            bold_state = false
-            italic_state = false
-            while (word = words.pop()) {
-                // change state to bold 
-                if (word.split('<b>').length > 1) {
-                    bold_state = true
-                    word = word.replace('<b>', '')
-                }
-                //change state to italic
-                if (word.split('<em>').length > 1) {
-                    italic_state = true
-                    word = word.replace('<em>', '')
-                }
-
-                tspan.append('tspan')
-                    .attr('id', 'word' + '_' + word_id_counter + '_' + block_id)
-                    .attr('font-weight', bold_state ? 'bold' : 'normal')
-                    .attr('font-style', italic_state ? 'italic' : 'normal')
-                    .text(
-                        word.replace('</b>', '').replace('</em>', '').replace(new RegExp('<br>', 'g'), '')
-                        + " "
-                    );
-
-                // handle overflow
-                if (tspan.node().getComputedTextLength() >= width) {
-                    d3.select("#" + 'word' + '_' + word_id_counter + '_' + block_id).remove();
-
-                    // handle edge case where line break and overflow occur at same time
-                    word = word.replace('<br>', '')
-
-                    tspan = text.append("tspan")
-                        .attr("x", x)
-                        .attr("y", y)
-                        .attr('id', 'wrap-text')
-                        .attr("dy", ++lineNumber * lineHeight + dy + "em")
-
-                    tspan.append('tspan')
-                        .attr('id', 'word' + '_' + word_id_counter + '_' + block_id)
-                        .attr('font-weight', bold_state ? 'bold' : 'normal')
-                        .attr('font-style', italic_state ? 'italic' : 'normal')
-                        .text(word.replace('</em>', '').replace('</b>', '').replace(new RegExp('<br>', 'g'), '') + " ");
-                }
-
-                // handle newline (can handle multiple)
-                if ((total_br = word.split('<br>').length - 1) > 0) {
-                    lineNumber = lineNumber + total_br
-                    tspan = text.append("tspan")
-                        .attr("x", x)
-                        .attr("y", y)
-                        .attr('id', 'wrap-text')
-                        .attr("dy", lineNumber * lineHeight + dy + "em")
-                }
-
-                //handle close bold: change bold_state back to normal
-                if (word.split('</b>').length > 1) {
-                    bold_state = false
-                }
-
-                //handle close italics: change state back to normal
-                if (word.split('</em>').length > 1) {
-                    italic_state = false
-                }
-
-                word_id_counter = word_id_counter + 1
-            }
-        });
     }
 }
 

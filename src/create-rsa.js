@@ -38,7 +38,7 @@ class RSA {
 
         d3.selectAll("#vis div").classed("selected", false)
         d3.select("#content7").classed("selected", true)
-        let vizContainer = d3.select('#content7').append('div').attr('class', 'rsa_container');
+        let vizContainer = d3.select('#title10 .fullVis').append('div').attr('class', 'rsa_container');
         let rsa_calc_explanation = vizContainer.append('div').attr('class', 'rsa_calc_explanation');
         let rsa_example = vizContainer.append('div').attr('id', 'rsa_example')
 
@@ -54,6 +54,7 @@ class RSA {
         let calc = rsa_calc_explanation.append('div').attr('class', 'calculation').style('display', 'grid')
         rsa_calc_explanation.append("div")
             .attr("id", "sym-startAnimation")
+            .style('opacity', '0')
 
         let timeDuration = 150
 
@@ -91,6 +92,7 @@ class RSA {
         d3.select('#sym-startAnimation').html('')
         d3.select('#sym-startAnimation')
             .text("START ANIMATION")
+            .style('opacity', '1')
             .on('click', this.senderMessage)
     }
 

@@ -274,8 +274,11 @@ class StreamAnimation {
 			.attr('class', 'mathSymbol')
 
 		d3.select('#startButton').on('click', function () {
+		d3.selectAll('.cipher').html("")
+		document.getElementById("startButton").style.pointerEvents = 'none'
+		d3.select('#startButton').style('opacity', '0.7')
 		var m = 3000;
-		for (var i = 0; i < initialMessage.length; i++) {
+		for (var i = 0; i < initialMessage.length; i++) {						
 			d3.select('#index'+i).select('.letter')
 				.transition()
 				.duration(500)
@@ -359,17 +362,24 @@ class StreamAnimation {
 			.transition()
 			.duration(50)
 			.text('P')
-			.delay(20000);
+			.delay(26000);
 		d3.select('#cipher')
 			.transition()
 			.duration(50)
 			.text('C')
-			.delay(20000);
+			.delay(26000);
 		d3.select('#key')
 			.transition()
 			.duration(50)
 			.text('K')
-			.delay(20000);
+			.delay(26000);
+		d3.select('#startButton')
+			.transition()
+			.delay(26000)
+			.style('opacity', '1')
+			.on('end', function () {
+				document.getElementById("startButton").style.pointerEvents = 'auto'
+			})
         });
 	}
 	

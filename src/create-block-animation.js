@@ -145,6 +145,7 @@ class BlockAnimation {
 				document.getElementById("everythingContainer").innerHTML = ""
 				forreal.appendItems()
 				document.getElementById("startAnimation").style.pointerEvents = 'none'
+				d3.select('#startAnimation').style('opacity', '0.7')
 				forreal.transitions(0)
 			};
 
@@ -619,6 +620,7 @@ class BlockAnimation {
 					.delay((last * buffer) + (delay + duration))
 					.on('end', function() {
 						document.getElementById("startAnimation").style.pointerEvents = 'auto'
+						d3.select('#startAnimation').style('opacity', '1')
 					})
 
 			} else {

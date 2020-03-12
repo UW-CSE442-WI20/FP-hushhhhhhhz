@@ -11,8 +11,10 @@ body {
 	--cipher-color: #FFD700;
 }
 
+/* PLEASE LOOK HERE AT THE WIDTH!! */
 .step {
 	height: 100vh;
+	width: 90vw;
 	z-index: 2;
 	position: relative;
 	scroll-snap-align: start;
@@ -76,7 +78,7 @@ body {
 	position: fixed;
 	z-index: 1;
 	height: 100%;
-	width: 150px;
+	width: 10vw;
 	background-color: black;
 	color: white;
 }
@@ -448,6 +450,15 @@ p {
 	font-size: 65px;
 }
 
+#sym_outter {
+	height: 600px;
+    border: 1px solid white;
+    width: 85% !important;
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 35px;
+}
+
 .update_margin {
 	margin-right: 17px;
 }
@@ -686,7 +697,7 @@ img {
 }
 
 #sender1_image, #sender2_image, #sender3_image {
-  width: 150px;
+  width: 140px;
 }
 
 
@@ -712,10 +723,19 @@ img {
   margin-top: -5%;
 }
 
+#asym {
+    height: 685px;
+    width: 80%;
+    margin: auto;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
 #messages {
   display: flex;
 	justify-content: space-around;
 }
+
 
 
 .locked_doc {
@@ -738,7 +758,7 @@ img {
 }
 
 .people_sender_sym {
-  width: 25%;
+  width: 30%;
 }
 
 .sender_document {
@@ -771,7 +791,7 @@ img {
   text-align: center;
   margin: auto;
   width: 85%;
-  font-size: 35px;
+  font-size: 25px;
 }
 
 #story_text {
@@ -818,7 +838,7 @@ img {
   text-align: center;
   margin: auto;
   width: 85%;
-  font-size: 35px;
+  font-size: 25px;
 }
 #story {
 	padding: 35px 0px 12px 0px;
@@ -828,7 +848,7 @@ img {
   font-weight: bold;
   color: red;
   font-size: 25px;
-  width: 65%;
+  width: 90%;
 }
 
 .textDiv {

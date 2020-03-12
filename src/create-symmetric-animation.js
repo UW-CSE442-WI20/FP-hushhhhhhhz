@@ -22,7 +22,6 @@ class SymmetricTutorial {
 
 		this.vis.append('div')
 			.attr('id', 'sym_outter')
-			.style("height", "550px")
 
 		d3.select("#sym_outter")
 			.append('div')
@@ -31,7 +30,7 @@ class SymmetricTutorial {
 		d3.select('#symmetric_container')
 			.append("div")
 			.attr('id', 'sender_sym')
-			.style("margin-top", "-6%")
+			// .style("margin-top", "-6%")
 			.append("h3")
 			.attr("class", "label")
 			.text("TA")
@@ -39,7 +38,7 @@ class SymmetricTutorial {
 		d3.select('#symmetric_container')
 			.append("div")
 			.attr('id', 'receiver_sym')
-			.style("margin-top", "-6%")
+			// .style("margin-top", "-6%")
 			.append("h3")
 			.attr("class", "label")
 			.text("Matt")
@@ -148,24 +147,28 @@ class SymmetricTutorial {
 			d3.select("#story_text").append("text")
 				.attr("dy", "1em")
 				.transition()
-				.text("Because they are using symmetric keys, Matt and the TA will use")
-				.delay(2 * time)
+				.text("They are using symmetric keys, which means Matt and the TA will use")
+				.delay(4 * time)
 
 			d3.select("#story_text").append("text")
 				.style("color", "#FF5733")
 				.transition()
 				.text(" the same exact key")
-				.delay(2 * time)
+				.delay(4 * time)
 
 			d3.select("#story_text").append("text")
 				.transition()
-				.text(" to encrypt and decrypt.")
+				.text(" that they have exchanged in person, to encrypt and decrypt.")
 				.style("color", "white")
-				.delay(2 * time)
+				.delay(4 * time)
+
+			d3.select("#encrypt")
+				.transition()
+				.delay(6.5 * time)
 				.on('end', function () {
 					d3.select("#encrypt")
 						.transition()
-						.duration(3 * time)
+						.delay(4 * time)
 						.on('end', function () {
 
 							d3.select("#story_text")
@@ -188,7 +191,7 @@ class SymmetricTutorial {
 									d3.select("#doc1")
 										.attr("src", locked_doc)
 										.transition()
-										.delay(2 * time)
+										.delay(2.5 * time)
 										.on('end', function () {
 
 											// sender key goes back to normal 
@@ -206,7 +209,7 @@ class SymmetricTutorial {
 											d3.select("#story_text")
 												.transition()
 												.text("Matt receives the encrypted document")
-												.duration(2 * time)
+												.duration(2.5 * time)
 												.on('end', function () {
 
 													// increasing size of decrypt key & changine its src
@@ -214,13 +217,13 @@ class SymmetricTutorial {
 														.attr("src", selected_key)
 														.style("width", "100%")
 														.transition()
-														.duration(2 * time)
+														.duration(2.5 * time)
 														.delay(time)
 
 													d3.select("#story_text")
 														.transition()
 														.text("and uses his key to decrypt the information")
-														.duration(2 * time)
+														.duration(2.5 * time)
 														.on('end', function () {
 															// locked doc becomes unlocked doc
 															d3.select("#doc2")
@@ -236,7 +239,7 @@ class SymmetricTutorial {
 															d3.select("#story_text")
 																.transition()
 																.text("Matt is now happy that he can look at the information")
-																.duration(2 * time)
+																.duration(2.5 * time)
 																.on('end', function () {
 																	d3.select("#warning")
 																		.transition()

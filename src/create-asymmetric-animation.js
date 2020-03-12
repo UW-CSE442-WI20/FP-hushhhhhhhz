@@ -27,7 +27,6 @@ class AsymmetricAnimation {
 
 		this.vis.append("div")
 			.attr("id", "asym")
-			.style("height", "700px")
 
 		d3.select("#asym").append('div')
 			.attr("id", "outter")
@@ -41,21 +40,24 @@ class AsymmetricAnimation {
 			.attr("id", "sender1")
 			.attr("class", "person")
 			.append("h3")
-			.text("TA1")
+			.style("color", "white")
+			.text("TA 1")
 
 		d3.select("#senders")
 			.append('div')
 			.attr("id", "sender2")
 			.attr("class", "person")
 			.append("h3")
-			.text("TA2")
+			.style("color", "white")
+			.text("TA 2")
 
 		d3.select("#senders")
 			.append('div')
 			.attr("id", "sender3")
 			.attr("class", "person")
 			.append("h3")
-			.text("TA3")
+			.style("color", "white")
+			.text("TA 3")
 
 		d3.select("#outter")
 			.append('div')
@@ -86,6 +88,7 @@ class AsymmetricAnimation {
 			.append('div')
 			.attr("id", "receiver")
 			.append("h3")
+			.style("color", "white")
 			.text("Matt")
 
 		d3.select("#sender1")
@@ -166,7 +169,7 @@ class AsymmetricAnimation {
 		d3.select("#receiver")
 			.append("div")
 			.attr("id", "receiver_images")
-			.style("width", "93%")
+			.style("width", "400px")
 			.style("margin-bottom", "-8%")
 			.style("margin-top", "-9%")
 
@@ -182,14 +185,14 @@ class AsymmetricAnimation {
 			.append('img')
 			.attr("src", public_key)
 			.attr("class", "keys")
-			.style('width', '30%')
+			.style('width', '50%')
 			.style("padding", "10px")
 
 		d3.select("#receiver_key")
 			.append('img')
 			.attr("src", private_key)
 			.attr("class", "keys")
-			.style('width', '30%')
+			.style('width', '50%')
 			.style("padding", "10px")
 			.attr("id", "private")
 
@@ -197,6 +200,7 @@ class AsymmetricAnimation {
 			.append("div")
 			.attr("id", "story_attention")
 			.style("width", "100%")
+			.style("color", "white")
 
 		d3.select("#story_attention")
 			.append("div")
@@ -210,7 +214,8 @@ class AsymmetricAnimation {
 			.attr("id", "asym-startAnimation")
 			.text("START ANIMATION")
 			.style("width", "10%")
-			.style("margin-top", "3%")
+			.style("margin-top", "1%")
+			.style("background-color", "black")
 
 		document.getElementById("asym-startAnimation").onclick = function () {
 			d3.select("#story").html("")
@@ -233,117 +238,196 @@ class AsymmetricAnimation {
 				.append("text")
 				.attr("dy", "1em")
 				.transition()
-				.text("Because they are using asymmetric keys this time, each TA will need Matt's public key.")
-				.delay(2 * time)
+				.text("Because they are using asymmetric keys this time, each TA will only need ")
+				.delay(4 * time)
+				
+			d3.select("#story").append("text")
+				.style("color", "#FF5733")
+				.transition()
+				.text("Matt's public key ")
+				.delay(4 * time)
+				
+			d3.select("#story").append("text")
+				.style("color", "white")
+				.transition()
+				.text(" which is open for anyone to use.")
+				.delay(4 * time)
 
-			// d3.select("#story")
-			//     .append("text")
-			//     .attr("dy", "2em")
-			//     .text("If Matt wanted to send an encrypted message back to each of the TAs, he would need to use each of their unique public keys")
-			d3.selectAll(".sender_doc")
-				.attr("src", doc)
+			d3.select("#story")
 				.transition()
 				.duration(500)
-				.style("opacity", 1)
-
-			d3.selectAll(".locked_doc")
-				.transition()
-				.duration(500)
-				.style("opacity", 0)
-				.on('end', () => {d3.selectAll(".locked_doc").attr("src", locked_doc) })
-
-			d3.select("#doc2")
-				.transition()
-				.duration(500)
-				.style("opacity", 0)
-
-
-			d3.selectAll(".publickey")
-				.transition()
 				.delay(5 * time)
-				.on('end', function () {
-					d3.selectAll(".publickey")
-						.attr("src", selected_key)
-						.style("width", "25%")
+				.on("end", function () {
 
-					d3.select("#story")
+					d3.selectAll(".sender_doc")
+						.attr("src", doc)
 						.transition()
-						.text("The TAs use Matt's public key to encrypt their sensitive information")
-						.duration(3 * time)
+						.duration(500)
+						.style("opacity", 1)
+
+					d3.selectAll(".locked_doc")
+						.transition()
+						.duration(500)
+						.style("opacity", 0)
+						.on('end', () => { d3.selectAll(".locked_doc").attr("src", locked_doc) })
+
+					d3.select("#doc2")
+						.transition()
+						.duration(500)
+						.style("opacity", 0)
+
+
+					d3.selectAll(".publickey")
+						.transition()
+						.delay(5 * time)
 						.on('end', function () {
-							d3.selectAll(".sender_doc")
-								.attr("src", locked_doc)
+							d3.selectAll(".publickey")
+								.attr("src", selected_key)
+								.style("width", "25%")
+
+							//////////////////////////////
+							document.getElementById("story").innerHTML = ""
+							d3.select("#story")
+								.append("text")
+								.transition()
+								.text("The TAs use ")
+								.duration(3 * time)
+
+							d3.select("#story")
+								.append("text")
+								.style("color", "#FF5733")
+								.transition()
+								.text("Matt's public key ")
+								.duration(3 * time)
+
+							d3.select("#story")
+								.append("text")
+								.transition()
+								.text("to encrypt their sensitive information")
+								.duration(3 * time)
+							
+							////////////////////////////
 
 							d3.select("#story")
 								.transition()
-								.text("The information is now encrypted and ready to be sent")
-								.duration(3 * time)
+								.delay(5*time)
 								.on('end', function () {
-
-									d3.selectAll(".publickey")
-										.attr("src", public_key)
-										.style('width', '15%')
-										.transition()
-
 									d3.selectAll(".sender_doc")
-										.style("opacity", 0)
-										.transition()
-
-									d3.selectAll(".locked_doc")
-										.style('opacity', 1)
-										.transition()
+										.attr("src", locked_doc)
 
 									d3.select("#story")
 										.transition()
-										.text("Matt receives the encrypted documents, which only HE can decrypt using his private key")
+										.text("The information is now encrypted and ready to be sent")
 										.duration(3 * time)
 										.on('end', function () {
 
-											d3.select("#private")
-												.attr("src", private_selected_key)
+											d3.selectAll(".publickey")
+												.attr("src", public_key)
+												.style('width', '15%')
 												.transition()
-												.duration(2 * time)
-												.delay(time)
+
+											d3.selectAll(".sender_doc")
+												.style("opacity", 0)
+												.transition()
+
+											d3.selectAll(".locked_doc")
+												.style('opacity', 1)
+												.transition()
+
+											//////////////////////////////
+											document.getElementById("story").innerHTML = ""
+											d3.select("#story")
+												.append("text")
+												.transition()
+												.text("Matt receives the encrypted documents, which only HE can decrypt using his ")
+												.duration(3 * time)
+
+											d3.select("#story")
+												.append("text")
+												.style("color", "#1F2833")
+												.style("text-shadow", "2px 0 0 #FF5733, -2px 0 0 #FF5733, 0 2px 0 #FF5733, 0 -2px 0 #FF5733, 1px 1px #FF5733, -1px -1px 0 #FF5733, 1px -1px 0 #FF5733, -1px 1px 0 #FF5733")
+												.transition()
+												.text("private key")
+												.duration(3 * time)
+
+											////////////////////////////
 
 											d3.select("#story")
 												.transition()
-												.text("Matt uses his private key to decrypt the documents")
-												.duration(3 * time)
+												.delay(3 * time)
 												.on('end', function () {
 
-													d3.selectAll(".locked_doc")
-														.attr('src', unlocked_doc)
+													d3.select("#private")
+														.attr("src", private_selected_key)
 														.transition()
-														.duration(time)
+														.duration(2 * time)
 														.delay(time)
 
-													d3.select("#private")
-														.attr('src', private_key)
+													//////////////////////////////
+													document.getElementById("story").innerHTML = ""
+													d3.select("#story")
+														.append("text")
 														.transition()
-														.duration(time)
-														.delay(time)
+														.text("Matt uses his ")
+														.duration(3 * time)
+
+													d3.select("#story")
+														.append("text")
+														.style("color", "#1F2833")
+														.style("text-shadow", "2px 0 0 #FF5733, -2px 0 0 #FF5733, 0 2px 0 #FF5733, 0 -2px 0 #FF5733, 1px 1px #FF5733, -1px -1px 0 #FF5733, 1px -1px 0 #FF5733, -1px 1px 0 #FF5733")
+														.transition()
+														.text("private key ")
+														.duration(3 * time)
+
+													d3.select("#story")
+														.append("text")
+														.style("color", "white")
+														.transition()
+														.text("to decrypt the documents")
+														.duration(3 * time)
+													////////////////////////////
 
 													d3.select("#story")
 														.transition()
-														.text("Matt is now happy that he can look at the information and can rest assured that no one else can")
-														.duration(3 * time)
+														.delay(3 * time)
 														.on('end', function () {
-															d3.select("#attention")
-																.transition()
-																.text("Note that it is impossible for a student to decrypt the senititve information with Matt's public key, because his private key is the only thing that can decrypt the message")
-																.duration(5 * time)
 
-															document.getElementById("asym-startAnimation").style.pointerEvents = 'auto'
-															d3.select("#asym-startAnimation")
+															d3.selectAll(".locked_doc")
+																.attr('src', unlocked_doc)
 																.transition()
-																.style("opacity", 1)
-																.duration(5 * time)
+																.duration(time)
+																.delay(time)
+
+															d3.select("#private")
+																.attr('src', private_key)
+																.transition()
+																.duration(time)
+																.delay(time)
+
+															d3.select("#story")
+																.transition()
+																.text("Matt is happy that he can look at the information and can be rest assured that no one else can")
+																.duration(3 * time)
+																.on('end', function () {
+																	d3.select("#attention")
+																		.transition()
+																		.text("Note that it is impossible for a student to decrypt the senititve information with Matt's public key, because his private key is the only thing that can decrypt the message")
+																		.duration(5 * time)
+
+																	document.getElementById("asym-startAnimation").style.pointerEvents = 'auto'
+																	d3.select("#asym-startAnimation")
+																		.transition()
+																		.style("opacity", 1)
+																		.duration(5 * time)
+																})
 														})
 												})
 										})
 								})
 						})
 				})
+
+
 		}
 	}
 }

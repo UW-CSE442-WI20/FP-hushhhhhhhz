@@ -144,10 +144,6 @@ table {
 	padding: 20px;
 }
 
-#textInput {
-	font-size: 10px;
-}
-
 #container {
 	width: 100%;
 	position: absolute;
@@ -281,7 +277,7 @@ table {
 }
 
 
-#textInput, #textInput2 {
+#textInput, #textInput2, .userinput {
 	font-size:20px;
 	font-family: 'Dosis', sans-serif;
 	border-radius: 5px;

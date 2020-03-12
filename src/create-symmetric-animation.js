@@ -16,7 +16,7 @@ class SymmetricTutorial {
 
         this.vis = d3.select('#title8 .fullVis')
         this.vis.append("h1")
-            .text("Symmetric Keys")
+            .text("Symmetric Encryption: using a single key")
             .attr("class", "titleBox")
 
         this.vis.append('div')

@@ -20,7 +20,7 @@ class AsymmetricAnimation {
 
         this.vis = d3.select('#title9 .fullVis')
         this.vis.append("h1")
-            .text("Asymmetric Keys")
+            .text("Asymmetric Encryption: harder to crack")
             .attr("class", "titleBox")
 
         this.vis.append("div")

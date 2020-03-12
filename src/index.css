@@ -385,7 +385,7 @@ p {
 	align-content: baseline;
 }
 
-.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, #title5, .encryption{
+.example, .rules, .block_message, .cipher_message, .textboxes, .flexin, .encryption {
 	display: flex;
 }
 
@@ -581,7 +581,15 @@ p {
 	padding: 50px;
 }
 
-#title5 {
+#title5, #title10 {
+	display: flex;
+	height: 100%;
+}
+
+#title10 .halfVis {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 100%;
 }
 
@@ -783,6 +791,10 @@ img:not(.rsa_calc_img) {
 	padding: 20px 0px 12px 0px;
 }
 
+.storyboard {
+	font-size: 25px;
+}
+
 #warning {
   font-weight: bold;
   color: red;
@@ -868,7 +880,7 @@ img:not(.rsa_calc_img) {
 }
 
 .tableDivRSA { 
-	margin: 10px;
+	margin-top: 100px;
 }
 
 .tableDivRSA table {

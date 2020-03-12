@@ -665,6 +665,10 @@ img {
   align-items: center;
 }
 
+.keyChoice {
+	cursor: pointer;
+}
+
 .keys {
   width: 30%;
 }

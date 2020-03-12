@@ -119,18 +119,30 @@ class SymmetricTutorial {
         document.getElementById("sym-startAnimation").onclick = function () {
             d3.select("#warning").html("")
             d3.select("#story_text").html("")
+            d3.select("#sym-startAnimation").style("opacity", 0.7)
+			document.getElementById("sym-startAnimation").style.pointerEvents = 'none'
             animation();
         };
 
         function animation() {
-            let time = 2000;
+            let time = 1500;
             d3.select("#story_text")
                 .append("text")
                 .attr("dy", "0em")
                 .text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.")
 
+			d3.select("#doc1")
+				.attr("src", doc)
+				.transition()
+				.duration(500)
+				.style("opacity", 1)
 
-            d3.select("#story_text")
+			d3.select("#doc2")
+				.transition()
+				.duration(500)
+				.style("opacity", 0)
+
+			d3.select("#story_text")
                 .append("br")
 
             d3.select("#story_text").append("text")
@@ -153,7 +165,7 @@ class SymmetricTutorial {
                 .on('end', function () {
                     d3.select("#encrypt")
                         .transition()
-                        .duration(6* time)
+                        .duration(3 * time)
                         .on('end', function () {
 
                             d3.select("#story_text")
@@ -165,7 +177,7 @@ class SymmetricTutorial {
                                 .attr("src", selected_key)
                                 .style("width", "100%")
                                 .transition()
-                                .delay(2 * time)
+                                .delay(2.5 * time)
                                 .on('end', function () {
 
                                     d3.select("#story_text")
@@ -230,7 +242,13 @@ class SymmetricTutorial {
                                                                         .transition()
                                                                         .text("Warning!! If a student gets a hold of the shared key between Matt and the TA, they will also be able to decrypt the sensitive information.")
                                                                         .duration(5 * time)
-                                                                })
+
+																	document.getElementById("sym-startAnimation").style.pointerEvents = 'auto'
+																	d3.select("#sym-startAnimation")
+																		.transition()
+																		.style("opacity", 1)
+																		.duration(5 * time)
+																})
 
                                                         })
 

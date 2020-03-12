@@ -274,115 +274,115 @@ class StreamAnimation {
 			.attr('class', 'mathSymbol')
 
 		d3.select('#startButton').on('click', function () {
-		d3.selectAll('.cipher').html("")
-		document.getElementById("startButton").style.pointerEvents = 'none'
-		d3.select('#startButton').style('opacity', '0.7')
-		var m = 3000;
-		for (var i = 0; i < initialMessage.length; i++) {						
-			d3.select('#index'+i).select('.letter')
-				.transition()
-				.duration(500)
-				.style('color', plainColor)
-				.delay(m*i);
-			d3.select('#index'+i).select('.key')
-				.transition()
-				.duration(500)
-				.style('color', keyColor)
-				.delay(m*i);
-			d3.select('#key')
-				.transition()
-				.duration(500)
-				.text(alphaAlpha.indexOf(initialKey[i]))
-				.delay(m*i);
+			d3.selectAll('.cipher').html("")
+			document.getElementById("startButton").style.pointerEvents = 'none'
+			d3.select('#startButton').style('opacity', '0.7')
+			var m = 3000;
+			for (var i = 0; i < initialMessage.length; i++) {
+				d3.select('#index'+i).select('.letter')
+					.transition()
+					.duration(500)
+					.style('color', plainColor)
+					.delay(m*i);
+				d3.select('#index'+i).select('.key')
+					.transition()
+					.duration(500)
+					.style('color', keyColor)
+					.delay(m*i);
+				d3.select('#key')
+					.transition()
+					.duration(500)
+					.text(alphaAlpha.indexOf(initialKey[i]))
+					.delay(m*i);
+				d3.select('#plain')
+					.transition()
+					.duration(500)
+					.text(alphaAlpha.indexOf(initialMessage[i]))
+					.delay(m*i);
+				d3.selectAll('.'+initialMessage[i])
+					.transition()
+					.duration(500)
+					.style('background-color', plainColor)
+					.style('color', 'white')
+					.delay(m*i);
+				d3.selectAll('.'+initialKey[i])
+					.transition()
+					.duration(500)
+					.style('background-color', keyColor)
+					.style('color', 'white')
+					.delay(m*i);
+				d3.select('#index'+i).select('.cipher')
+					.transition()
+					.duration(500)
+					.style('color', cipherColor)
+					.text(initialCipher[i])
+					.delay(1000+m*i);
+				d3.select('#cipher')
+					.transition()
+					.duration(500)
+					.text(alphaAlpha.indexOf(initialCipher[i]))
+					.delay(1000+m*i);
+				d3.selectAll('.'+initialMessage[i])
+					.transition()
+					.duration(500)
+					.style('background-color', 'transparent')
+					.style('color', '#9a9a9a')
+					.delay(1000+m*i);
+				d3.selectAll('.'+initialKey[i])
+					.transition()
+					.duration(500)
+					.style('background-color', 'transparent')
+					.style('color', '#9a9a9a')
+					.delay(1000+m*i);
+				d3.selectAll('.'+initialCipher[i])
+					.transition()
+					.duration(500)
+					.style('background-color', cipherColor)
+					.style('color', 'white')
+					.delay(1000+m*i);
+
+				d3.select('#index'+i).select('.letter')
+					.transition()
+					.duration(500)
+					.style('color', 'black')
+					.delay(1000+m*i);
+				d3.select('#index'+i).select('.key')
+					.transition()
+					.duration(500)
+					.style('color', 'black')
+					.delay(1000+m*i);
+				d3.selectAll('.'+initialCipher[i])
+					.transition()
+					.duration(500)
+					.style('background-color', 'transparent')
+					.style('color', '#9a9a9a')
+					.delay(2000+m*i);
+			}
 			d3.select('#plain')
 				.transition()
-				.duration(500)
-				.text(alphaAlpha.indexOf(initialMessage[i]))
-				.delay(m*i);
-			d3.selectAll('.'+initialMessage[i])
-				.transition()
-				.duration(500)
-				.style('background-color', plainColor)
-				.style('color', 'white')
-				.delay(m*i);
-			d3.selectAll('.'+initialKey[i])
-				.transition()
-				.duration(500)
-				.style('background-color', keyColor)
-				.style('color', 'white')
-				.delay(m*i);
-			d3.select('#index'+i).select('.cipher')
-				.transition()
-				.duration(500)
-				.style('color', cipherColor)
-				.text(initialCipher[i])
-				.delay(1000+m*i);
+				.duration(50)
+				.text('P')
+				.delay(26000);
 			d3.select('#cipher')
 				.transition()
-				.duration(500)
-				.text(alphaAlpha.indexOf(initialCipher[i]))
-				.delay(1000+m*i);
-			d3.selectAll('.'+initialMessage[i])
+				.duration(50)
+				.text('C')
+				.delay(26000);
+			d3.select('#key')
 				.transition()
-				.duration(500)
-				.style('background-color', 'transparent')
-				.style('color', '#9a9a9a')
-				.delay(1000+m*i);
-			d3.selectAll('.'+initialKey[i])
+				.duration(50)
+				.text('K')
+				.delay(26000);
+			d3.select('#startButton')
 				.transition()
-				.duration(500)
-				.style('background-color', 'transparent')
-				.style('color', '#9a9a9a')
-				.delay(1000+m*i);
-			d3.selectAll('.'+initialCipher[i])
-				.transition()
-				.duration(500)
-				.style('background-color', cipherColor)
-				.style('color', 'white')
-				.delay(1000+m*i);
-
-			d3.select('#index'+i).select('.letter')
-				.transition()
-				.duration(500)
-				.style('color', 'black')
-				.delay(1000+m*i);
-			d3.select('#index'+i).select('.key')
-				.transition()
-				.duration(500)
-				.style('color', 'black')
-				.delay(1000+m*i);
-			d3.selectAll('.'+initialCipher[i])
-				.transition()
-				.duration(500)
-				.style('background-color', 'transparent')
-				.style('color', '#9a9a9a')
-				.delay(2000+m*i);
-		}
-		d3.select('#plain')
-			.transition()
-			.duration(50)
-			.text('P')
-			.delay(26000);
-		d3.select('#cipher')
-			.transition()
-			.duration(50)
-			.text('C')
-			.delay(26000);
-		d3.select('#key')
-			.transition()
-			.duration(50)
-			.text('K')
-			.delay(26000);
-		d3.select('#startButton')
-			.transition()
-			.delay(26000)
-			.style('opacity', '1')
-			.on('end', function () {
-				document.getElementById("startButton").style.pointerEvents = 'auto'
-			})
-        });
+				.delay(26000)
+				.style('opacity', '1')
+				.on('end', function () {
+					document.getElementById("startButton").style.pointerEvents = 'auto'
+				})
+		});
 	}
-	
+
 }
 
 module.exports = StreamAnimation;

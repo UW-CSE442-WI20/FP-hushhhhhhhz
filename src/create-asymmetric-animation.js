@@ -218,7 +218,7 @@ class AsymmetricAnimation {
         };
 
         function move() {
-            let time = 500;
+            let time = 1000;
             const foreal = this
             d3.select("#story")
                 .append("text")

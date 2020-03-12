@@ -127,9 +127,8 @@ class SymmetricTutorial {
             d3.select("#story_text")
                 .append("text")
                 .attr("dy", "0em")
-                .transition()
                 .text("Matt is waiting for his TA to send him sensitive information which needs to be encrypted.")
-                .delay(time)
+
 
             d3.select("#story_text")
                 .append("br")
@@ -138,19 +137,19 @@ class SymmetricTutorial {
                 .attr("dy", "1em")
                 .transition()
                 .text("Because they are using symmetric keys, Matt and the TA will use")
-                .delay(3 * time)
+                .delay(2 * time)
 
             d3.select("#story_text").append("text")
                 .style("color", "#FF5733")
                 .transition()
                 .text(" the same exact key")
-                .delay(3 * time)
+                .delay(2 * time)
 
             d3.select("#story_text").append("text")
                 .transition()
                 .text(" to encrypt and decrypt.")
                 .style("color", "white")
-                .delay(3 * time)
+                .delay(2 * time)
                 .on('end', function () {
                     d3.select("#encrypt")
                         .transition()

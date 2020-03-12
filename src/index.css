@@ -365,7 +365,7 @@ p {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 50%;
+	width: 310px;
 	float: right;
 	margin-top: 25px;
 }
@@ -407,7 +407,7 @@ p {
     top: 20px;
     left: inherit;
     font-size: 25px;
-    width: inherit;
+    width: 680px;
     margin-top: 8%;
 }
 .interactiveContainerContainer {
@@ -663,6 +663,17 @@ img {
   width: 100%;
 }
 
+#outter {
+  align-items: center;
+}
+
+.keyChoice {
+	cursor: pointer;
+}
+
+.keys {
+  width: 30%;
+}
 
 .publickey {
   width: 15%;

@@ -31,8 +31,8 @@ class StreamInteraction {
 		var inputs = inputContainer.append('div').attr('class', 'inputs');
 		var table_div = inputContainer.append('div').attr('class', 'tableDiv')	
 		var results = inputContainer.append('div').attr('class', 'results');
-		results.append('text').text('see the result!')
-		inputs.append('h4').text('type your message and hit select:').attr('class', 'instruction')
+		results.append('text').text('See the result!')
+		inputs.append('h4').text('Type your message and hit select:').attr('class', 'instruction')
 		lilDiv = inputs.append('div').attr('class', 'lilDiv')
 		var textInput = lilDiv.append('input')
 			.attr('id', 'textInput')
@@ -84,7 +84,7 @@ class StreamInteraction {
 		var row4 = ["STD","HVO","JEQ","PYL","DNO"];
 		var row5 = ["QDA","HZQ","WKV","XDF","UPR"];
 		var keys = [row1, row2, row3, row4, row5];
-		table_div.append('h4').text('hover below to choose a key:').attr('class', 'instruction')
+		table_div.append('h4').text('Hover below to choose a key:').attr('class', 'instruction')
 		var keyTable = table_div.append('table').attr('class', 'keyTable')
 		var theadKey = keyTable.append('thead');
 		var tbodyKey = keyTable.append('tbody');
@@ -174,7 +174,7 @@ class StreamInteraction {
 		title3.append('h2').text('Decryption:')
 		var input2Container = d3.select('#title4 .fullVis').append('div').attr('class', 'input2Container');
 		var inputs2 = input2Container.append('div').attr('class', 'inputs2'); 
-		inputs2.append('h4').text('try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
+		inputs2.append('h4').text('Try to decode this secret message by reversing the equation (C - K mod 26 = P)').attr('class', 'instruction')
 		var decryptDiv = inputs2.append('div').attr('class', 'resultsDivs')
 		decryptDiv.append('div')
 			.attr('id', 'cipherDisplay')
@@ -199,7 +199,7 @@ class StreamInteraction {
 
 		var table_div2 = input2Container.append('div').attr('class', 'tableDiv')
 		lilDiv2 = input2Container.append('div').attr('class', 'lilDiv2')
-		table_div2.append('h4').text('use this table to compute the values of C and K:').style('margin', '0 0 30px 0')
+		table_div2.append('h4').text('Use this table to compute the values of C and K:').style('margin', '0 0 30px 0')
 		var table = table_div2.append('table');
 		var thead = table.append('thead');
 		var tbody = table.append('tbody');
@@ -249,7 +249,7 @@ class StreamInteraction {
 			.html(function(d) {return d.value})
 			.attr('class', function(d) { return d.column });
 
-		lilDiv2.append('text').text('try your answer below:')
+		lilDiv2.append('text').text('Try your answer below:')
 		var textInput2 = lilDiv2.append('input')
 			.attr('id', 'textInput2')
 			.attr('style', 'text')
@@ -264,9 +264,9 @@ class StreamInteraction {
 			guess = guess.replace(/\s+/g, '');
 			guess = guess.toUpperCase();
 			if (guess == "YOUDIDIT") {
-				document.getElementById('answer').innerHTML = "correct!";
+				document.getElementById('answer').innerHTML = "CONGRATS! YOU\'RE A MASTER!";
 			} else {
-				document.getElementById('answer').innerHTML = "try again..."
+				document.getElementById('answer').innerHTML = "TRY AGAIN..."
 			}
 		});
 	}

@@ -641,16 +641,18 @@ p {
 
 #outter {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #senders {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
 }
 
 .person {
-  width: 30%;
   margin-bottom: 5%;
   align-items: center;
   display: flex;
@@ -661,31 +663,21 @@ img {
   width: 100%;
 }
 
-#outter {
-  align-items: center;
-}
-
-.keys {
-  width: 30%;
-}
 
 .publickey {
   width: 15%;
 }
 
-#sender1_key, #sender2_key, #sender3_key, #receiver_key {
+#sender1_doc, #sender2_doc, #sender3_doc, #receiver_key {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-#sender1_image, #sender2_image, #sender3_image, #receiver_images {
+#sender1_image, #sender2_image, #sender3_image {
   width: 150px;
 }
 
-#receiver_images {
-  margin: auto;
-}
 
 #receiver_key {
   width: 50%;
@@ -698,20 +690,20 @@ img {
 }
 
 .sender_doc {
-  width: 35%;
+  width: 13%;
   height: 50%;
 }
 
 #receiver_outer {
   display: flex;
   align-items: center;
-
+  flex-direction: column;
+  margin-top: -5%;
 }
 
 #messages {
   display: flex;
-  flex-direction: column;
-  width: 200px;
+	justify-content: space-around;
 }
 
 
@@ -741,7 +733,7 @@ img {
 .sender_document {
   width: 15%;
   padding: 15px;
-  margin-right: 20%;
+  margin-right: 8%;
 }
 
 #symmetric_container {
@@ -783,7 +775,7 @@ img {
 }
 
 .label {
-  margin-right: 25%;
+  margin-right: 10%;
 }
 
 .playfairTitles {
@@ -807,17 +799,25 @@ img {
   width: 100px;
 }
 #receiver {
-  width: 150px;
+	display: flex;
+	width: 20%;
 }
 
 #story, #attention{
   text-align: center;
+  margin: auto;
+  width: 85%;
+  font-size: 35px;
+}
+#story {
+	padding: 20px 0px 12px 0px;
 }
 
 #attention {
   font-weight: bold;
   color: red;
   font-size: 25px;
+  width: 65%;
 }
 
 .textDiv {
@@ -850,3 +850,5 @@ img {
 .decipher_letter {
   font-size: 34px;
 }
+
+

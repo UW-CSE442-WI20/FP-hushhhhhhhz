@@ -55,7 +55,7 @@ class RSA {
             .attr("id", "sym-startAnimation")
             .style('opacity', '0')
 
-        let timeDuration = 150
+        let timeDuration = 1500
 
         let num_transitions = 13  // TODO: Find a better way to deal with this.
 

@@ -13,7 +13,8 @@ class SymmetricTutorial {
 
     start() {
         d3.select('#title8 .fullVis').html("")
-
+        d3.selectAll("#vis div").classed("selected", false)
+        d3.select("#content5").classed("selected", true)
         this.vis = d3.select('#title8 .fullVis')
         this.vis.append("h1")
             .text("Symmetric Encryption: using a single key")

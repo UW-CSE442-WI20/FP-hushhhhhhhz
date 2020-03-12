@@ -1,3 +1,23 @@
+html {
+	scroll-snap-type: y mandatory;
+	overflow-x: hidden;
+}
+
+body {
+	margin: unset;
+	font-family: 'Dosis', sans-serif;
+	--plain-color: #DA2C5E;
+	--key-color: #FF5733;
+	--cipher-color: #FFD700;
+}
+
+.step {
+	height: 100vh;
+	z-index: 2;
+	position: relative;
+	scroll-snap-align: start;
+}
+
 #sections {
 	position: relative;
 	display: inline-block;
@@ -37,12 +57,7 @@
 
 .introContainer div {
 	margin: 50px 50px 0 50px;
-}
-
-.step {
-	height: 100vh;
-	z-index: 2;
-	position: relative;
+	border-radius: 15px;
 }
 
 #historySection {
@@ -102,10 +117,11 @@
 
 .index {
 	margin: 5px;
+	width: 45px;;
 	text-align: center;
 }
 
-#step3 td,#step3 th {
+#step3 td,#step3 th,#step10 td, #step10 th {
 	border: 1px solid #9a9a9a;
 	padding: 6px;	
 	text-align: center;
@@ -128,10 +144,6 @@ table {
 	padding: 20px;
 }
 
-#textInput {
-	font-size: 10px;
-}
-
 #container {
 	width: 100%;
 	position: absolute;
@@ -140,7 +152,7 @@ table {
 }
 
 .streamContainer {
-	margin: 0px 0 0 80px;
+	margin: 175px 0 0 130px;
 	position: fixed;
 	top: 50px;
 }
@@ -150,60 +162,131 @@ table {
 	margin-left: 50px;
 	font-size: 20px;
 	position: fixed;
-	top: 5vh;
-	left: 25vw;
-	width: 50vw;
+	top: 20vh;
+	left: 15vw;
+	width: 70vw;
 }
+
+.title1Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 26px;
+    position: fixed;
+    top: 0vh;
+    left: 15vw;
+    width: 50vw;
+}
+
+.title2Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    position: fixed;
+    top: 10vh;
+    left: 15vw;
+    width: 50vw;
+}
+
+.title3Container {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    position: fixed;
+    top: 55vh;
+    left: 15vw;
+	width: 74vw;
+	border-top: 1px solid white;
+}
+
+.interactiveContainer h2 {
+	margin-bottom: 10%;
+}
+
+#encr_shareResult {
+	margin-bottom: 10%;
+	height: 40px;
+}
+
 
 .input2Container {
     display: flex;
     margin-left: 50px;
     font-size: 20px;
     position: fixed;
-    top: 60vh;
-    left: 25vw;
-    width: 50vw;
+    top: 65vh;
+    left: 15vw;
+    width: 200vw;
 }
 
 .results {
-    font-size: 26px;
-    position: fixed;
-	margin-left: 50px;
-    top: 34vh;
-    left: 25vw;
-    width: 50vw;
+	margin-left: 100px;
+}
+
+.resultsDivs {
+	display: flex;
+	width: 100px;
+}
+
+#keyDisplay {
+    width: 120px;
+    margin-right: 48px;
+}
+
+#textDisplay{
+    width: 120px;
+    margin-right: 32px;
+}
+
+#cipherDisplay {
+	width: 120px;
+	margin-right: 15px;
 }
 
 .inputs2 {
-	margin: 0 30px 0 30px;
+	margin: 0 40px 0 0;
+	width: 315px;
+}
+
+.instruction {
+	margin: 0 0 30px 0;
 }
 
 .inputs {
     margin: 0 50px 0 0;
 }
 
-.tableDiv {
-	margin: 40px 0 0 0;
-}
 
 .inFFD700 {
 	width: 320px;
 }
 
 #answer {
-	margin: 10px 0 0 50px;
+	margin: 20px 0 0445px;
 }
 
-.lilDiv, .lilDiv2  {
+.lilDiv {
 	display: flex;
-	width: 380px;
+	width: 300px;
+	height: 50px;
 }
 
-#textInput, #textInput2 {
+.lilDiv2  {
+    width: 200px;
+    height: 50px;
+	margin: 0 0 0 50px;
+}
+
+
+#textInput, #textInput2, .userinput {
 	font-size:20px;
 	font-family: 'Dosis', sans-serif;
-	margin-right: 20px;
 	border-radius: 5px;
+	width: 150px;
+	height: 45px
+}
+
+#textInput2 {
+	margin-top: 25px;
 }
 
 .math {
@@ -247,14 +330,6 @@ p {
 	padding: 1px;
 }
 
-body {
-	margin: unset;
-	font-family: 'Dosis', sans-serif;
-	--plain-color: #C70039;
-	--key-color: #FF5733;
-	--cipher-color: #FFD700;
-}
-
 .title1 circle {
 	stroke: #509556;
 	stroke-width: 3px;
@@ -269,7 +344,7 @@ body {
 .grid_box {
 	width: 60px;
 	height: 60px;
-	border: 1px solid black;
+	border: 1px solid #9a9a9a;
 	text-align: center;
 }
 
@@ -279,7 +354,6 @@ body {
     border: 1px solid white;
     text-align: center;
 	color: white;
-	background-color: black !important;
 }
 
 .grid_box p, .grid_box_new p {
@@ -291,7 +365,7 @@ body {
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: 36%;
+	width: 50%;
 	float: right;
 	margin-top: 25px;
 }
@@ -301,7 +375,7 @@ body {
     flex-wrap: wrap;
     width: 21%;
     float: right;
-    margin-top: 10%;
+    margin-top: 13%;
     margin-left: 8%;
 	align-content: baseline;
 }
@@ -319,7 +393,7 @@ body {
     justify-content: flex-end;
 }
 
-.message {
+.message, .encryption, .block_letter {
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -329,12 +403,12 @@ body {
 
 
 .blockContainer {
-	margin: 0 50px 50px 50px;
-    width: 60%;
     position: fixed;
     top: 20px;
-    left: 600px;
+    left: inherit;
     font-size: 25px;
+    width: inherit;
+    margin-top: 8%;
 }
 .interactiveContainerContainer {
 	margin: 0 50px 50px 50px;
@@ -381,22 +455,34 @@ body {
 .encryption {
 	margin-top: 25px;
 	flex-direction: column;
-	align-items: center;
+	margin-left: 35%;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #inputButton2, #startAnimation {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton {
 	border-radius: 5px;
 	margin-left: 15px;
-	border: 1px solid darkgray;
+	border: 1px solid white;
 	padding: 10px;
 	cursor: pointer;
 	text-align: center;
-	background-color: black;
+	background-color: #1F2833;
 	color: white;
 }
 
-#startAnimation {
-	width: 32%;
+#inputButton2 {
+	width: 70px;
+	margin: 20px 0 0 0px;
+	border-radius: 5px;
+	border: 1px solid white;
+	cursor: pointer;
+    text-align: center;
+	color: white;
+	padding: 10px;
+	background-color: #1F2833;
+}
+
+#startAnimation, #startButton {
+	width: 120px;
 	margin: auto;
 	color: white;
 }
@@ -413,8 +499,15 @@ body {
 	display: flex;
 	height: 620px;
 	position: relative;
-	left: 5vw;
+	justify-content: center;
 }
+
+.infoContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
 
 .line {
 	background-color: gray;
@@ -460,11 +553,14 @@ body {
 	border-radius: 10px;
 	padding: 10px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .explanation {
 	width: 800px;
-	text-align: justify;
+	text-align: center;
 	color: transparent;
 	padding: 5px 20px 5px 20px;
 	display: flex;
@@ -484,13 +580,17 @@ body {
 	height: 100%;
 }
 
-#step1, #step7 {
+#title2 h1 {
+	font-size: 40px;
+}
+
+#step1, #step7, #step11 {
     color: white;
 	background-color: #1f2833;
     position: relative;
 }
 
-#step1::before, #step7::before {
+#step1::before, #step7::before, #step11::before {
 	content: "";
     position: absolute;
     top: 0; left: 0;
@@ -721,7 +821,7 @@ img {
 }
 
 .textDiv {
-	padding: 6% !important;
+	padding: 3% 6% 3% 6% !important;
 	text-align: center;
 }
 
@@ -730,12 +830,25 @@ img {
     padding: 0px 0 0 45px !important;
 }
 
-.textDivTitle {
-	padding: 50px 0 0 25% !important;
+.textDivTitle, .textDivTitle2 {
+	padding: 50px 0 10px 0 !important;
+	font-size: 26px;
 }
 
-.textDivTitle2 {
-	padding: 50px 0 0 38% !important;
+.rsaContainer {
+  display: flex;
+  /* margin: 0px 0 0 60px; */
+}
+
+.sender_div, .receiver_div {
+	display: flex;
+  /* width: 50%; */
+	/* font-size: 34px; */
+	margin-right: 50px;	
+}
+
+.decipher_letter {
+  font-size: 34px;
 }
 
 

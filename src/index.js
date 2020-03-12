@@ -10,12 +10,14 @@ const createTransitionSection = require('./create-transition-section');
 const createSymmetricAnimation = require('./create-symmetric-animation');
 const createAsymmetricAnimation = require('./create-asymmetric-animation');
 const createRSA = require('./create-rsa');
-
+const createConclusion = require('./create-conclusion');
 // get scrolling coordinates
 sections = d3.selectAll('.step');
 names = d3.select("#sections").selectAll('div');
 sectionPositions = [];
 historyFlag = false;
+blockFlag = false;
+streamFlag = false;
 var startPos;
 sections.each(function(d,i) {
 	var top = this.getBoundingClientRect().top;
@@ -28,7 +30,7 @@ sections.each(function(d,i) {
 
 var currentIndex = -1;
 
-var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA]
+var activateFunctions = [createIntro, createHistory, createStreamAnimation, createStreamInteraction, createBlockAnimation, createBlockInteraction, createTransitionSection, createSymmetricAnimation, createAsymmetricAnimation, createRSA, createConclusion]
 
 // also bug with intro and history on up scroll
 // and maybe with it disappearing ?
@@ -40,6 +42,7 @@ var contentToStep = {
 	"content5": "step8",
 	"content6": "step9",
 	"content7": "step10",
+	"content8": "step11",
 }
 
 d3.select("#cover")
@@ -62,14 +65,15 @@ function position() {
 		dispatch.call('active', this, sectionIndex);
 		currentIndex = sectionIndex;
 		if (currentIndex == 1) {
-			if (historyFlag) {
-				newInstance.start(true);
-			} else {
-				newInstance.start(false);
-				console.log("got here");
-				historyFlag = true;
-			}
-		} else if (currentIndex == 0) {
+			newInstance.start(historyFlag);
+			historyFlag = true
+		} else if (currentIndex == 2) {
+			newInstance.start(streamFlag);
+			streamFlag = true
+		} else if (currentIndex == 4) {
+			newInstance.start(blockFlag);
+			blockFlag = true
+		}else if (currentIndex == 0) {
 			newInstance.start(true);
 		} else {
 			newInstance.start();

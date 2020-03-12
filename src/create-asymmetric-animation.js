@@ -25,6 +25,7 @@ class AsymmetricAnimation {
 
         this.vis.append("div")
             .attr("id", "asym")
+            .style("height", "700px")
 
         d3.select("#asym").append('div')
             .attr("id", "outter")
@@ -133,7 +134,7 @@ class AsymmetricAnimation {
             .append('img')
             .attr("src", doc)
             .attr("class", "sender_doc")
-            
+
         /////sender 3
         d3.select("#sender3")
             .append("div")
@@ -163,6 +164,9 @@ class AsymmetricAnimation {
         d3.select("#receiver")
             .append("div")
             .attr("id", "receiver_images")
+            .style("width", "93%")
+            .style("margin-bottom", "-10%")
+            .style("margin-top", "-9%")
 
         d3.select("#receiver")
             .append("div")
@@ -190,6 +194,7 @@ class AsymmetricAnimation {
         d3.select("#outter")
             .append("div")
             .attr("id", "story_attention")
+            .style("width", "100%")
 
         d3.select("#story_attention")
             .append("div")
@@ -203,6 +208,7 @@ class AsymmetricAnimation {
             .attr("id", "startAnimation")
             .text("START ANIMATION")
             .style("width", "10%")
+            .style("margin-top", "1%")
 
         document.getElementById("startAnimation").onclick = function () {
             d3.select("#story").html("")
@@ -222,40 +228,35 @@ class AsymmetricAnimation {
             d3.select("#story")
                 .append("text")
                 .attr("dy", "1em")
+                .transition()
                 .text("Because they are using asymmetric keys this time, each TA will need Matt's public key")
-                .append("br")
+                .delay(time)
 
-            d3.select("#story")
-                .append("text")
-                .attr("dy", "2em")
-                .text("If Matt wanted to send an encrypted message back to each of the TAs, he would need to use each of their unique public keys")
+
+            // d3.select("#story")
+            //     .append("text")
+            //     .attr("dy", "2em")
+            //     .text("If Matt wanted to send an encrypted message back to each of the TAs, he would need to use each of their unique public keys")
 
             d3.selectAll(".publickey")
                 .transition()
-                .duration(0.5 * time)
-                .duration(time)
+                .delay(7 * time)
                 .on('end', function () {
                     d3.selectAll(".publickey")
                         .attr("src", selected_key)
                         .style("width", "25%")
 
                     d3.select("#story")
-                        .style("opacity", 0)
                         .transition()
-                        .text("The TAs use Matt's public key to encrypt their sensiive information")
-                        .style("opacity", 1)
-                        .style("color", "#FF5733")
+                        .text("The TAs use Matt's public key to encrypt their sensitive information")
                         .duration(3 * time)
                         .on('end', function () {
                             d3.selectAll(".sender_doc")
                                 .attr("src", locked_doc)
 
                             d3.select("#story")
-                                .style("opacity", 0)
                                 .transition()
                                 .text("The information is now encrypted and ready to be sent")
-                                .style("opacity", 1)
-                                .style("color", "white")
                                 .duration(3 * time)
                                 .on('end', function () {
 
@@ -273,10 +274,8 @@ class AsymmetricAnimation {
                                         .transition()
 
                                     d3.select("#story")
-                                        .style("opacity", 0)
                                         .transition()
                                         .text("Matt receives the encrypted documents, which only HE can decrypt using his private key")
-                                        .style("opacity", 1)
                                         .duration(3 * time)
                                         .on('end', function () {
 
@@ -288,11 +287,8 @@ class AsymmetricAnimation {
                                                 .delay(time)
 
                                             d3.select("#story")
-                                                .style("opacity", 0)
                                                 .transition()
                                                 .text("Matt uses his private key to decrypt the documents")
-                                                .style("opacity", 1)
-                                                .style("color", "#FF5733")
                                                 .duration(3 * time)
                                                 .on('end', function () {
 
@@ -309,18 +305,13 @@ class AsymmetricAnimation {
                                                         .delay(time)
 
                                                     d3.select("#story")
-                                                        .style("opacity", 0)
                                                         .transition()
                                                         .text("Matt is now happy that he can look at the information and can be rest assured that no one else can")
-                                                        .style("opacity", 1)
-                                                        .style("color", "white")
                                                         .duration(3 * time)
                                                         .on('end', function () {
                                                             d3.select("#attention")
-                                                                .style("opacity", 0)
                                                                 .transition()
                                                                 .text("Note that it is impossible for a student to decrypt the senititve information with Matt's public key, because his private key is the only thing that can decrypt the message")
-                                                                .style("opacity", 1)
                                                                 .duration(5 * time)
 
                                                         })

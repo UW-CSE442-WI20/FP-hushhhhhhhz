@@ -553,7 +553,6 @@ body {
 }
 
 .person {
-  width: 30%;
   margin-bottom: 5%;
   align-items: center;
   display: flex;
@@ -575,13 +574,10 @@ img {
   margin-top: 10px;
 }
 
-#sender1_image, #sender2_image, #sender3_image, #receiver_images {
+#sender1_image, #sender2_image, #sender3_image {
   width: 150px;
 }
 
-#receiver_images {
-  margin: auto;
-}
 
 #receiver_key {
   width: 50%;

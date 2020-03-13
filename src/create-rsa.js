@@ -533,8 +533,15 @@ class RSA {
 		introBubble
 			.append('div')
 			.attr('class', 'textDiv')
-            .text('One implementation of asymmetric keys that is used commonly is the RSA algorithm. We will give a high level quick overview of how this complicated algorithm works. ')
+            .text('One implementation of asymmetric keys that is used commonly is the RSA algorithm.')
 			.style("opacity", 0)
+
+		introBubble
+            .append('div')
+            .attr('class', 'textDiv')
+            .text('We will give a high level quick overview of how this complicated algorithm works. ')
+            .style("opacity", 0)
+
 
 		introBubble.transition()
 			.duration(1000)

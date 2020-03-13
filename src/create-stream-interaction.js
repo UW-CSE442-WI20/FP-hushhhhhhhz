@@ -106,7 +106,8 @@ class StreamInteraction {
 		function handleClick() {
 			d3.select(this).style('color', 'white')
 			if (savedId != "") {
-				d3.select("#" + savedId).style('color', 'white')
+				curr = "#" + savedId
+				d3.select(curr).style('color', 'white')
 			}
 			inputKey = this.id
 			savedId = inputKey
@@ -135,14 +136,27 @@ class StreamInteraction {
 			calculateCipher();
 			document.getElementById('cipherChoice').innerHTML = resultCipher;
 		}
+
 		function handleMouseOut() {
+			
 			d3.select(this).style('background-color', 'transparent')      
 				.style('color', 'white')
+			
 			inputKey = ""
 			resultCipher = ""
-			d3.select("#" + savedId).style('color', keyColor)
-			document.getElementById('keyChoice').innerHTML = savedKey;
-			document.getElementById('cipherChoice').innerHTML = savedCipher;
+			
+			if(savedId != "") {
+				curr = "#" + savedId;
+				d3.select(curr).style('color', keyColor)
+				document.getElementById('keyChoice').innerHTML = savedId
+				document.getElementById('cipherChoice').innerHTML = savedCipher;
+			} else{
+
+				document.getElementById('keyChoice').innerHTML = "";
+				document.getElementById('cipherChoice').innerHTML = "";
+
+			}
+			
 		}
 		var rowsKey = tbodyKey.selectAll('tr')
 			.data(keys)

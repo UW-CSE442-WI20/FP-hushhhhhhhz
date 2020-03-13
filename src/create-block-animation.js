@@ -183,13 +183,20 @@ class BlockAnimation {
 				.append('div')
 				.attr("class", "textDiv")
 				.attr("class", "textDivTitle2")
+				.attr("id", "block_decr_title")
 				.text("Decryption")
                 .style("opacity", 0)
 
 			decryptBubble
 				.append('div')
 				.attr("class", "textDiv")
-				.text("Decryption works the same as encryption but in the opposite way. For example, if two letters were in the same column, take the letters above each one.")
+				.text("Decryption works the same as encryption but in the opposite way.")
+				.style("opacity", 0)
+				
+			decryptBubble
+				.append('div')
+				.attr("class", "textDiv")
+				.text("For example, if two letters were in the same column, take the letters above each one.")
                 .style("opacity", 0)
 
 			decryptBubble.transition()

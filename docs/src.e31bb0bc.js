@@ -30563,7 +30563,8 @@ function () {
       var explanation = d3.select('#title10 .explanation');
       introBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
       introBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("RSA Encryption").style("opacity", 0);
-      introBubble.append('div').attr('class', 'textDiv').text('One implementation of asymmetric keys that is used commonly is the RSA algorithm. We will give a high level quick overview of how this complicated algorithm works. ').style("opacity", 0);
+      introBubble.append('div').attr('class', 'textDiv').text('One implementation of asymmetric keys that is used commonly is the RSA algorithm.').style("opacity", 0);
+      introBubble.append('div').attr('class', 'textDiv').text('We will give a high level quick overview of how this complicated algorithm works. ').style("opacity", 0);
       introBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black");
       introBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(700);
       introBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(700);
@@ -30799,7 +30800,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60493" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57286" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -682,7 +682,7 @@ p {
   flex-direction: column;
 }
 
-img:not(.rsa_calc_img) {
+img {
   width: 100%;
 }
 

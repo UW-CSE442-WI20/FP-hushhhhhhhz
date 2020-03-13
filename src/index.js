@@ -18,6 +18,7 @@ sectionPositions = [];
 historyFlag = false;
 blockFlag = false;
 streamFlag = false;
+rsaFlag = false;
 var startPos;
 sections.each(function(d,i) {
 	var top = this.getBoundingClientRect().top;
@@ -73,7 +74,10 @@ function position() {
 		} else if (currentIndex == 4) {
 			newInstance.start(blockFlag);
 			blockFlag = true
-		}else if (currentIndex == 0) {
+		} else if (currentIndex == 9) {
+			newInstance.start(rsaFlag);
+			rsaFlag = true
+		} else if (currentIndex == 0) {
 			newInstance.start(true);
 		} else {
 			newInstance.start();

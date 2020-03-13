@@ -30356,6 +30356,8 @@ function () {
         this.createBubbles();
       }
 
+      document.getElementById("rsaStartButton").style.pointerEvents = 'auto';
+      d3.select('#rsaStartButton').style('opacity', 1);
       var rsa_container = rsa_example.append('div').attr('class', 'rsaAnitmation');
       var sender_div = rsa_container.append('div').attr('class', 'sender_div');
       var receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
@@ -30800,7 +30802,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64933" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51668" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

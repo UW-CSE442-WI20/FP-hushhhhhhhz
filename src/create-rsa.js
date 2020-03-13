@@ -23,6 +23,7 @@ class RSA {
         d3.selectAll("#vis div").classed("selected", false)
         d3.select("#content7").classed("selected", true)
         let vizContainer = d3.select('#title10 .halfVis').append('div').attr('class', 'rsa_container');
+        vizContainer.append('h1').text('Asymmetric Encryption: in action');
         let rsa_example = vizContainer.append('div').attr('id', 'rsa_example')
 
 		if (!flag) {
@@ -38,6 +39,8 @@ class RSA {
 			.attr('id', 'send_index')
 			.attr('class', 'rsa_index');
 
+		index.append('div').attr('id', 'sender_title').text('Bob').style('opacity', 0).style('text-align', 'center');
+
 		index.append('img')
 			.attr('id', 'rsa_man_img')
 			.attr('src', man)
@@ -48,6 +51,8 @@ class RSA {
         let rec_index = receiver_div.append('div')
             .attr('id', 'rec_index')
             .attr('class', 'rsa_index');
+
+		rec_index.append('div').attr('id', 'rec_title').text('Alice').style('opacity', 0).style('text-align', 'center');
 
         rec_index.append('img')
 			.attr('id', 'rsa_woman_img')
@@ -171,6 +176,8 @@ class RSA {
         let rsa_container = d3.select('.rsaAnitmation');
         let sender_div = d3.select('.sender_div');
         let receiver_div = d3.select('.receiver_div');
+		d3.select('#sender_title').style('opacity', 1)
+		d3.select('#rec_title').style('opacity', 1)
         let storyboard = d3.select('.storyboard').html("");
 
         storyboard.append('text')
@@ -502,8 +509,8 @@ class RSA {
             .style('font-weight', 'bold')
             .delay(timeout * (initialMessage.length - 1) + initialTimeout)
 			.on("end", function() {
-				document.getElementById("startButton").style.pointerEvents = 'auto'
-				d3.select('#startButton').style('opacity', 1)
+				document.getElementById("rsaStartButton").style.pointerEvents = 'auto'
+				d3.select('#rsaStartButton').style('opacity', 1)
 			})
     }
 
@@ -558,23 +565,46 @@ class RSA {
 			.text("Generating Primes")
 			.style("opacity", 0)
 
-		primeBubble
+		idc = primeBubble
 			.append('div')
+			.style('padding', '3%')
+
+		idc.append('text')
 			.attr('class', 'textDiv')
-			.text('The sender chooses 2 prime numbers p and q which together make the product n. we choose p = 17, q = 11.')
+			.attr('dy', '0em')
+			.text('The sender chooses 2 prime numbers p and q which together make the product n.')
+			.style("opacity", 0)
+			.append('br')
+
+		idc.append('text')
+			.attr('class', 'textDiv')
+			.attr('dy', '1em')
+			.text('We choose p = 17, q = 11.')
 			.style("opacity", 0)
 
-		primeBubble
+		idc = primeBubble
 			.append('div')
+			.style('padding', '3%')
+
+		idc.append('text')
 			.attr('class', 'textDiv')
-			.text('We will keep track of another variable, ϕ(n) = (p-1)(q-1). For us, n = 187 and ϕ(n) = 160.')
+			.attr('dy', '0em')
+			.text('We will keep track of another variable,')
+			.style("opacity", 0)
+			.append('br')
+
+		idc.append('text')
+			.attr('class', 'textDiv')
+			.attr('dy', '1em')
+			.text('ϕ(n) = (p-1)(q-1). For us, n = 187 and ϕ(n) = 160.')
 			.style("opacity", 0)
 
 		primeBubble.append('div')
-			.attr('id', 'startButton')
+			.attr('id', 'rsaStartButton')
 			.text("START ANIMATION")
 			.style('width', '120px')
 			.style("opacity", 0)
+			.style('margin-top', '10px')
 
 		primeBubble.transition()
 			.duration(1000)
@@ -584,7 +614,7 @@ class RSA {
 			.style("color", "black")
 			.style("margin-top", '-90px')
 
-		primeBubble.selectAll("#startButton").transition()
+		primeBubble.selectAll("#rsaStartButton").transition()
 			.duration(500)
 			.style("opacity", 1)
 			.delay(1000)
@@ -614,7 +644,7 @@ class RSA {
 		keyBubble
 			.append('div')
 			.attr('class', 'textDiv')
-			.text('The public key uses the previously calculated ϕ(n), and a number e that is relatively prime to ϕ(n). our ϕ(n) = 160, and we choose e = 3')
+			.text('The public key uses the previously calculated ϕ(n), and a number e that is relatively prime to ϕ(n). Our ϕ(n) = 160, and we choose e = 3')
 			.style("opacity", 0)
 
 		keyBubble
@@ -642,13 +672,13 @@ class RSA {
 			.style("opacity", 1)
 			.delay(1500)
 			.on('end', function() {
-				d3.select('#startButton').html('')
-				d3.select('#startButton')
+				d3.select('#rsaStartButton').html('')
+				d3.select('#rsaStartButton')
 					.text("START ANIMATION")
 					.style('opacity', '1')
 					.on('click', function() {
-						document.getElementById("startButton").style.pointerEvents = 'none'
-						d3.select('#startButton').style('opacity', '0.7')
+						document.getElementById("rsaStartButton").style.pointerEvents = 'none'
+						d3.select('#rsaStartButton').style('opacity', '0.7')
 						forreal.senderMessage()
 					})
 			})

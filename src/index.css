@@ -473,7 +473,7 @@ p {
 	margin-left: 35%;
 }
 
-#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation {
+#encr_checkbutton, #decr_checkbutton,  #inputButton, #startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation, #rsaStartButton {
 	border-radius: 5px;
 	margin-left: 15px;
 	border: 1px solid white;
@@ -500,7 +500,7 @@ p {
 	background-color: #1F2833;
 }
 
-#startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation {
+#startAnimation, #startButton, #asym-startAnimation, #sym-startAnimation, #rsaStartButton {
 	width: 120px;
 	margin: auto;
 	color: white;
@@ -951,7 +951,13 @@ img {
 
 .rsa_container {
 	display: flex;
+	flex-direction: column;
 	/* justify-content: center; */
+}
+
+.rsa_container h1 {
+	font-size: 36px;
+	margin-top: -55px;
 }
 
 .rsa_equations {

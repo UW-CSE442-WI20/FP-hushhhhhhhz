@@ -17,10 +17,6 @@ class RSA {
 
     start(flag) {
 
-        /**
-         * One implementation of asymmetric keys that is used commonly is the RSA algorithm. We will give a high level quick overview of how this complicated algorithm works. 
-         */
-
         d3.selectAll(".fullVis:not(.special)").html("")
         d3.selectAll('.halfVis').html("")
 
@@ -37,6 +33,61 @@ class RSA {
         let sender_div = rsa_container.append('div').attr('class', 'sender_div');
         let receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
         let storyboard = rsa_example.append('div').attr('class', 'storyboard').style('text-align', 'center')
+
+		let index = sender_div.append('div')
+			.attr('id', 'send_index')
+			.attr('class', 'rsa_index');
+
+		index.append('img')
+			.attr('id', 'rsa_man_img')
+			.attr('src', man)
+			.style('width', '120px')
+			.style('margin', '10px')
+			.style('opacity', 0)
+
+        let rec_index = receiver_div.append('div')
+            .attr('id', 'rec_index')
+            .attr('class', 'rsa_index');
+
+        rec_index.append('img')
+			.attr('id', 'rsa_woman_img')
+            .attr('src', woman)
+            .style('width', '120px')
+            .style('margin', '10px')
+			.style('opacity', 0)
+
+        let cipher_message = index.append('div')
+            .attr('class', 'cipher_message')
+            .style('display', 'flex')
+
+        initialMessage = "SECRET";
+        for (let i = 0; i < initialMessage.length; i++) {
+            cipher_message.append('div')
+                .attr('class', 'rsa_cipher')
+                .attr('id', 'rsa_cipher' + i)
+                .text(initialMessage[i])
+				.style('opacity', 0)
+        }
+
+        let send_eq = index.append('div')
+            .attr('class', 'rsa_equations')
+            .attr('id', 'send_eq')
+
+        let req_eq = rec_index.append('div')
+            .attr('class', 'rsa_equations')
+            .attr('id', 'rec_eq')
+
+        let decipher_message = rec_index.append('div')
+            .attr('class', 'decipher_message')
+            .style('display', 'flex')
+
+        for (let i = 0; i < initialMessage.length; i++) {
+            decipher_message.append('div')
+                .attr('class', 'rsa_decipher')
+                .attr('id', 'rsa_decipher' + i)
+                .text(initialMessage[i])
+                .style('opacity', '0')
+        }
 
         let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
         let alphabet2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -120,7 +171,7 @@ class RSA {
         let rsa_container = d3.select('.rsaAnitmation');
         let sender_div = d3.select('.sender_div');
         let receiver_div = d3.select('.receiver_div');
-        let storyboard = d3.select('.storyboard');
+        let storyboard = d3.select('.storyboard').html("");
 
         storyboard.append('text')
             .attr('id', 'story_intro')
@@ -139,32 +190,18 @@ class RSA {
             .attr('id', 'story_conclusion')
 
 
-        let index = sender_div.append('div')
-            .attr('id', 'send_index')
-            .attr('class', 'rsa_index');
+        let index = d3.select('#send_index')
 
-        index.append('img')
-            .attr('src', man)
-            .style('width', '120px')
-            .style('margin', '10px')
+		d3.select('#rsa_man_img')
+			.style('opacity', 1)
 
-        let cipher_message = index.append('div')
-            .attr('class', 'cipher_message')
-            .style('display', 'flex')
-            .style('font-size', '30px')
+        let cipher_message = d3.selectAll('.rsa_cipher')
+			.style('color', 'white')
+			.style('opacity', 1)
+            
+		d3.selectAll('.rsa_decipher').style('opacity', 0)
 
-        for (let i = 0; i < initialMessage.length; i++) {
-            cipher_message.append('div')
-                .attr('class', 'rsa_cipher')
-                .attr('id', 'rsa_cipher' + i)
-                .text(initialMessage[i])
-        }
-
-
-        let send_eq = index.append('div')
-            .attr('class', 'rsa_equations')
-            .attr('id', 'send_eq')
-
+		send_eq = d3.select('#send_eq').html("")
 
         send_eq.append('p').attr('id', 'send_eq_c').attr('class', 'rsa_equation_para').text("C").style("color", "#ffd700")
         send_eq.append('p').attr('id', 'send_eq_equals').attr('class', 'rsa_equation_para').text(" = ").style('opacity', 1)
@@ -173,18 +210,12 @@ class RSA {
         send_eq.append('p').attr('id', 'send_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n).style('opacity', 1)
 
 
-        rec_index = receiver_div.append('div')
-            .attr('id', 'rec_index')
-            .attr('class', 'rsa_index');
+        let rec_index = d3.select('#rec_index')
 
-        rec_index.append('img')
-            .attr('src', woman)
-            .style('width', '120px')
-            .style('margin', '10px')
+		d3.select('#rsa_woman_img')
+			.style('opacity', 1)
 
-        let req_eq = rec_index.append('div')
-            .attr('class', 'rsa_equations')
-            .attr('id', 'rec_eq')
+		req_eq = d3.select('#rec_eq').html("")
 
         req_eq.append('p').attr('id', 'rec_eq_m').attr('class', 'rsa_equation_para').text('M').style('color', "#ff5733")
         req_eq.append('p').attr('id', 'rec_eq_equals').attr('class', 'rsa_equation_para').text(" = ")
@@ -193,19 +224,6 @@ class RSA {
         req_eq.append('p').attr('id', 'rec_eq_mod').attr('class', 'rsa_equation_para').text(" mod " + this.n)
 
         images = rec_index.append('div').style('display', 'flex').style('justify-content', 'center').style('flex-wrap', 'wrap')
-
-        let decipher_message = rec_index.append('div')
-            .attr('class', 'decipher_message')
-            .style('display', 'flex')
-            .style('font-size', '30px')
-
-        for (let i = 0; i < initialMessage.length; i++) {
-            decipher_message.append('div')
-                .attr('class', 'rsa_decipher')
-                .attr('id', 'rsa_decipher' + i)
-                .text(initialMessage[i])
-                .style('opacity', '0')
-        }
 
 
         let initialTimeout = 0
@@ -468,19 +486,25 @@ class RSA {
                 .text('')
         }
 
+		// sorry for this hack lol
         d3.select('#story_intro')
             .transition()
-            .text('Note: In the real world, we use much bigger primes so that they are harder to crack')
             .style('color', 'red')
+            .delay(timeout * (initialMessage.length - 2) + initialTimeout)
+
+        d3.select('#story_intro')
+            .transition()
+            .text('Note: In the real world, we use much bigger primes so that they are harder to crack and with bigger primes a message can be encrypted and decrypted together rather than letter by letter.')
             .style('font-weight', 'bold')
             .delay(timeout * (initialMessage.length - 1) + initialTimeout)
 
-        d3.select('#story_conclusion')
-            .transition()
-            .text('and with bigger primes a message can be encrypted and decrypted together rather than letter by letter.')
             .style('color', 'red')
             .style('font-weight', 'bold')
             .delay(timeout * (initialMessage.length - 1) + initialTimeout)
+			.on("end", function() {
+				document.getElementById("startButton").style.pointerEvents = 'auto'
+				d3.select('#startButton').style('opacity', 1)
+			})
     }
 
 	createBubbles() {

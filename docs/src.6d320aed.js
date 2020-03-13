@@ -28930,7 +28930,10 @@ function () {
       var message = stream_container.append('div').attr('class', 'message');
       var explanation = d3.select('#title3 .explanation');
 
-      if (!flag) {
+      if (flag) {
+        document.getElementById("startButton").style.pointerEvents = 'auto';
+        processBubble.selectAll("#startButton").transition().style("opacity", 1);
+      } else {
         historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
         historyBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("Stream Cipher: Vigenere").style("opacity", 0);
         historyBubble.append('div').attr('class', 'textDiv').text('In a stream cipher, the encryption rule depends on a plaintext symbol\'s position in the stream of plaintext symbols.').style("opacity", 0);
@@ -29360,7 +29363,10 @@ function () {
         }
       }
 
-      if (!flag) {
+      if (flag) {
+        document.getElementById("startAnimation").style.pointerEvents = 'auto';
+        processBubble.selectAll("#startAnimation").transition().style("opacity", 1);
+      } else {
         historyBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#2B7A78").attr("class", "explanationCircle").style("margin-left", "auto");
         historyBubble.append('div').attr("class", "textDiv").attr("class", "textDivTitle").style("opacity", 0).append("text").text("Block Cipher: Playfair");
         historyBubble.append('div').attr("class", "textDiv").text("Playfair uses a key table that acts as the key for encrypting plaintext, and decrypting the ciphered text.").style("opacity", 0);
@@ -30100,10 +30106,11 @@ function () {
 
       if (!flag) {
         this.createBubbles();
+      } else {
+        document.getElementById("rsaStartButton").style.pointerEvents = 'auto';
+        primeBubble.selectAll("#rsaStartButton").transition().style("opacity", 1);
       }
 
-      document.getElementById("rsaStartButton").style.pointerEvents = 'auto';
-      d3.select('#rsaStartButton').style('opacity', 1);
       var rsa_container = rsa_example.append('div').attr('class', 'rsaAnitmation');
       var sender_div = rsa_container.append('div').attr('class', 'sender_div');
       var receiver_div = rsa_container.append('div').attr('class', 'receiver_div');
@@ -30521,4 +30528,4 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU","./create-conclusion":"Q8Am"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.daaee3f0.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.6d320aed.js.map

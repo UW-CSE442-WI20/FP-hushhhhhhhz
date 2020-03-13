@@ -148,7 +148,7 @@ class StreamInteraction {
 			if(savedId != "") {
 				curr = "#" + savedId;
 				d3.select(curr).style('color', keyColor)
-				document.getElementById('keyChoice').innerHTML = savedId
+				document.getElementById('keyChoice').innerHTML = savedKey;
 				document.getElementById('cipherChoice').innerHTML = savedCipher;
 			} else{
 

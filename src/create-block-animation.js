@@ -61,7 +61,11 @@ class BlockAnimation {
 			}
 		}
 
-		if (!flag) {
+		if (flag) {
+			document.getElementById("startAnimation").style.pointerEvents = 'auto'
+			processBubble.selectAll("#startAnimation").transition()
+				.style("opacity", 1)
+		} else {
 			historyBubble = explanation.append('div')
 				.style("width", "0px")
 				.style("height", "0px")

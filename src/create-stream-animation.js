@@ -35,7 +35,11 @@ class StreamAnimation {
 
 		var explanation = d3.select('#title3 .explanation')
 
-		if (!flag) {
+		if (flag) {
+			document.getElementById("startButton").style.pointerEvents = 'auto'
+			processBubble.selectAll("#startButton").transition()
+				.style("opacity", 1)
+		} else {
 			historyBubble = explanation.append('div')
 				.style("width", "0px")
 				.style("height", "0px")

@@ -28,10 +28,11 @@ class RSA {
 
 		if (!flag) {
 			this.createBubbles()
+		} else {
+			document.getElementById("rsaStartButton").style.pointerEvents = 'auto'
+			primeBubble.selectAll("#rsaStartButton").transition()
+				.style("opacity", 1)
 		}
-
-		document.getElementById("rsaStartButton").style.pointerEvents = 'auto'
-		d3.select('#rsaStartButton').style('opacity', 1)
 
         let rsa_container = rsa_example.append('div').attr('class', 'rsaAnitmation');
         let sender_div = rsa_container.append('div').attr('class', 'sender_div');

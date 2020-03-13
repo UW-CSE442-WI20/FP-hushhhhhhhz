@@ -455,7 +455,7 @@ p {
 }
 
 #sym_outter {
-	height: 600px;
+	height: 650px;
     border: 1px solid white;
     width: 85% !important;
     border-radius: 20px;
@@ -482,6 +482,10 @@ p {
 	text-align: center;
 	background-color: #1F2833;
 	color: white;
+}
+
+#startAnimation {
+	margin-top: 35px !important;
 }
 
 #inputButton2 {
@@ -882,6 +886,10 @@ img {
 	font-size: 26px;
 }
 
+#block_decr_title {
+	margin-bottom: 5%;
+}
+
 .rsaAnitmation {
   display: flex;
   justify-content: center;
@@ -895,7 +903,7 @@ img {
 }
 
 .cipher_letter, .decipher_letter, .cipher {
-  font-size: 34px;
+  font-size: 65px;
 }
 
 .tableDivRSA { 

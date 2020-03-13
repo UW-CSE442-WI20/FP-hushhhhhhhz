@@ -29440,7 +29440,7 @@ function () {
         if (savedId != "") {
           curr = "#" + savedId;
           d3.select(curr).style('color', keyColor);
-          document.getElementById('keyChoice').innerHTML = savedId;
+          document.getElementById('keyChoice').innerHTML = savedKey;
           document.getElementById('cipherChoice').innerHTML = savedCipher;
         } else {
           document.getElementById('keyChoice').innerHTML = "";
@@ -30800,7 +30800,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57286" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64933" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -29186,7 +29186,7 @@ function () {
         if (savedId != "") {
           curr = "#" + savedId;
           d3.select(curr).style('color', keyColor);
-          document.getElementById('keyChoice').innerHTML = savedId;
+          document.getElementById('keyChoice').innerHTML = savedKey;
           document.getElementById('cipherChoice').innerHTML = savedCipher;
         } else {
           document.getElementById('keyChoice').innerHTML = "";
@@ -30519,4 +30519,4 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU","./create-conclusion":"Q8Am"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.aa174496.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.256a3ab2.js.map

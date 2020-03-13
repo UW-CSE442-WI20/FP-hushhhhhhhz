@@ -30309,7 +30309,8 @@ function () {
       var explanation = d3.select('#title10 .explanation');
       introBubble = explanation.append('div').style("width", "0px").style("height", "0px").style("background-color", "#BCF2F0").attr("class", "explanationCircle");
       introBubble.append("div").attr('class', 'textDiv').attr('class', 'textDivTitle').text("RSA Encryption").style("opacity", 0);
-      introBubble.append('div').attr('class', 'textDiv').text('One implementation of asymmetric keys that is used commonly is the RSA algorithm. We will give a high level quick overview of how this complicated algorithm works. ').style("opacity", 0);
+      introBubble.append('div').attr('class', 'textDiv').text('One implementation of asymmetric keys that is used commonly is the RSA algorithm.').style("opacity", 0);
+      introBubble.append('div').attr('class', 'textDiv').text('We will give a high level quick overview of how this complicated algorithm works. ').style("opacity", 0);
       introBubble.transition().duration(1000).style("width", "350px").style("height", "350px").style("color", "black");
       introBubble.selectAll(".textDiv").transition().duration(500).style("opacity", 1).delay(700);
       introBubble.selectAll(".textDivTitle").transition().duration(500).style("opacity", 1).delay(700);
@@ -30518,4 +30519,4 @@ d3.selectAll("#vis div").style("font-weight", "normal").on("click", function (d)
 var dispatch = d3.dispatch("active", "progress");
 d3.select(window).on("scroll.scroller", position);
 },{"d3":"UzF0","./create-intro":"LRLC","./create-history":"HZPL","./create-stream-animation":"idcR","./create-stream-interaction":"FIUB","./create-block-animation":"buaC","./create-block-interaction":"Aq8g","./create-transition-section":"oUP4","./create-symmetric-animation":"cbjS","./create-asymmetric-animation":"puH3","./create-rsa":"IBPU","./create-conclusion":"Q8Am"}]},{},["Focm"], null)
-//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.f394bd0d.js.map
+//# sourceMappingURL=https://uw-cse442-wi20.github.io/FP-hushhhhhhhz/src.aa174496.js.map
